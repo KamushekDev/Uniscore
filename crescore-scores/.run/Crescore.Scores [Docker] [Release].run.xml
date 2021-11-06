@@ -1,0 +1,22 @@
+﻿<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="Crescore.Scores [Docker] [Release]" type="docker-deploy" factoryName="dockerfile" server-name="Docker">
+    <deployment type="dockerfile">
+      <settings>
+        <option name="imageTag" value="crescore-scores" />
+        <option name="attachToContainerNeeded" value="true" />
+        <option name="containerName" value="crescore-scores" />
+        <option name="entrypoint" value="dotnet CreScore.Scores.dll" />
+        <option name="portBindings">
+          <list>
+            <DockerPortBindingImpl>
+              <option name="containerPort" value="82" />
+              <option name="hostPort" value="82" />
+            </DockerPortBindingImpl>
+          </list>
+        </option>
+        <option name="sourceFilePath" value="Dockerfile" />
+      </settings>
+    </deployment>
+    <method v="2" />
+  </configuration>
+</component>
