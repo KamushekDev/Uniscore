@@ -1,0 +1,25 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: grpc-ingress
+  annotations:
+    # kubernetes.io/ingress.global-static-ip-name: crescore-ip
+    kubernetes.io/ingress.class: "nginx"
+    ingress.kubernetes.io/ssl-redirect: "true"
+    nginx.ingress.kubernetes.io/backend-protocol: "GRPC"
+    #cert-manager.io/issuer: "letsencrypt-staging"
+  labels:
+    project: crescore
+spec:
+  rules:
+  - host: scores.grpc.crescore.net
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service: 
+            name: scores-service
+            port:
+              # name: grpc
+              number: 82
