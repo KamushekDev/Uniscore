@@ -1,0 +1,37 @@
+﻿syntax = "proto3";
+package Scores.V1;
+option csharp_namespace = "CreScore.Scores";
+
+service ScoresService {
+  rpc GetScores(GetScoresRequest) returns (GetScoresResponse) {}
+  rpc GetGames(GetGamesRequest) returns (GetGamesResponse) {}
+}
+
+message Grade {
+  int64 id = 1;
+  int32 value = 2;
+  string name = 3;
+}
+
+message Game {
+  int64 id = 1;
+  string name = 2;
+  Grade score = 3;
+  double average = 4;
+}
+
+message GetScoresRequest {
+  int32 count = 1;
+}
+
+message GetScoresResponse{
+  repeated Grade grades = 1;
+}
+
+message GetGamesRequest {
+  int32 count = 1;
+}
+
+message GetGamesResponse {
+  repeated Game games = 1;
+}
