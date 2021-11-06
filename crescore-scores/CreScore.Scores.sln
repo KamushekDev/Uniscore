@@ -19,8 +19,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "k8s", "k8s", "{02768BEB-0C4
 ProjectSection(SolutionItems) = preProject
 	Dockerfile = Dockerfile
 	.dockerignore = .dockerignore
-	k8s\deploy.yaml = k8s\deploy.yaml
-	k8s\loadBalancer.yaml = k8s\loadBalancer.yaml
 EndProjectSection
 EndProject
 Global

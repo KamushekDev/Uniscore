@@ -33,7 +33,7 @@ if (app.Environment.IsDevelopment())
 app.UseRouting();
 app.UseEndpoints(endpoints =>
 {
-    endpoints.MapGrpcService<ScoreService>();
+    endpoints.MapGrpcService<FakeScoreService>();
     endpoints.MapHealthChecksWithCancellationSuppression("/live", new HealthCheckOptions
     {
         Predicate = check => check.Tags.Contains("live")
