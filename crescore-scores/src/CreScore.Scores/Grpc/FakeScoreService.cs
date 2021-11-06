@@ -7,7 +7,7 @@ using Grpc.Core;
 
 namespace Crescore.Scores.Grpc
 {
-    public class ScoreService : ScoresService.ScoresServiceBase
+    public class FakeScoreService : ScoresService.ScoresServiceBase
     {
         static readonly string[] GradeNames =
         {
@@ -47,7 +47,7 @@ namespace Crescore.Scores.Grpc
         private static readonly List<Game> Games = new();
         private static readonly List<Grade> Grades = new();
 
-        static ScoreService()
+        static FakeScoreService()
         {
             var random = new Random();
             for (int i = 0; i < 50; i++)
