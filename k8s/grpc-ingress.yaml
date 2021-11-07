@@ -13,7 +13,7 @@ metadata:
 spec:
   tls:
   - hosts:
-    - "*.crescore.net"
+    - "*.grpc.crescore.net"
     secretName: crescore-cert-secret
     # secretName: cert-manager-webhook-ca
   rules:
