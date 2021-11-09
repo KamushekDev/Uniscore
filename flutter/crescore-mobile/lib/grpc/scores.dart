@@ -8,9 +8,9 @@ class ScoresClient {
 
   ScoresClient() {
     channel = ClientChannel(
-      '34.116.238.87',
-      port: 82,
-      options: const ChannelOptions(credentials: ChannelCredentials.insecure()),
+      'scores.grpc.crescore.net',
+      port: 443,
+      options: const ChannelOptions(credentials: ChannelCredentials.secure()),
     );
     stub = ScoresServiceClient(channel);
   }
