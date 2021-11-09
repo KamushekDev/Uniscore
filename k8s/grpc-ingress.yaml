@@ -11,6 +11,11 @@ metadata:
   labels:
     project: crescore
 spec:
+  tls:
+  - hosts:
+    - "*.grpc.crescore.net"
+    secretName: crescore-cert-secret
+    # secretName: cert-manager-webhook-ca
   rules:
   - host: scores.grpc.crescore.net
     http:

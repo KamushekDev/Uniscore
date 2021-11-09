@@ -1,0 +1,66 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CreScore.Events.Twitch", "src\CreScore.Events.Twitch\CreScore.Events.Twitch.csproj", "{21545AF9-EE3A-4359-8CB7-472D096A5570}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{FC14F127-F714-476F-87B5-313AD89AE2CE}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{62751DCB-FA26-42BF-8841-EDE22DC650ED}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "common", "common", "{4C614637-B4A8-4F63-A7B7-D5327F4325F0}"
+ProjectSection(SolutionItems) = preProject
+	.gitignore = .gitignore
+	Readme.md = Readme.md
+EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "k8s", "k8s", "{79ABAD6E-A560-4CC1-AF48-EAD18F6AC52A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CreScore.Events.Twitch.Infrastructure", "src\CreScore.Events.Twitch.Infrastructure\CreScore.Events.Twitch.Infrastructure.csproj", "{EDD3E342-EC5B-44FD-987D-25B12BE248AD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CreScore.Events.Twitch.Contract", "src\CreScore.Events.Twitch.Contract\CreScore.Events.Twitch.Contract.csproj", "{D62D26CD-6681-4178-A68C-35D1C4806726}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CreScore.Events.Twitch.Core", "src\CreScore.Events.Twitch.Core\CreScore.Events.Twitch.Core.csproj", "{B6B37279-38D5-48ED-9027-88446A7672FC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CreScore.Events.Twitch.Clients", "src\CreScore.Events.Twitch.Clients\CreScore.Events.Twitch.Clients.csproj", "{488D1E88-2F76-430A-B4FE-0B79D934FFC0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CreScore.Events.Twitch.Tests", "tests\CreScore.Events.Twitch.Tests\CreScore.Events.Twitch.Tests.csproj", "{58D48EB9-B5F8-4E74-84A6-4344A121DB95}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{21545AF9-EE3A-4359-8CB7-472D096A5570}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{21545AF9-EE3A-4359-8CB7-472D096A5570}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{21545AF9-EE3A-4359-8CB7-472D096A5570}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{21545AF9-EE3A-4359-8CB7-472D096A5570}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EDD3E342-EC5B-44FD-987D-25B12BE248AD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EDD3E342-EC5B-44FD-987D-25B12BE248AD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EDD3E342-EC5B-44FD-987D-25B12BE248AD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EDD3E342-EC5B-44FD-987D-25B12BE248AD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D62D26CD-6681-4178-A68C-35D1C4806726}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D62D26CD-6681-4178-A68C-35D1C4806726}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D62D26CD-6681-4178-A68C-35D1C4806726}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D62D26CD-6681-4178-A68C-35D1C4806726}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B6B37279-38D5-48ED-9027-88446A7672FC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B6B37279-38D5-48ED-9027-88446A7672FC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B6B37279-38D5-48ED-9027-88446A7672FC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B6B37279-38D5-48ED-9027-88446A7672FC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{488D1E88-2F76-430A-B4FE-0B79D934FFC0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{488D1E88-2F76-430A-B4FE-0B79D934FFC0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{488D1E88-2F76-430A-B4FE-0B79D934FFC0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{488D1E88-2F76-430A-B4FE-0B79D934FFC0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{58D48EB9-B5F8-4E74-84A6-4344A121DB95}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{58D48EB9-B5F8-4E74-84A6-4344A121DB95}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{58D48EB9-B5F8-4E74-84A6-4344A121DB95}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{58D48EB9-B5F8-4E74-84A6-4344A121DB95}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{21545AF9-EE3A-4359-8CB7-472D096A5570} = {FC14F127-F714-476F-87B5-313AD89AE2CE}
+		{EDD3E342-EC5B-44FD-987D-25B12BE248AD} = {FC14F127-F714-476F-87B5-313AD89AE2CE}
+		{D62D26CD-6681-4178-A68C-35D1C4806726} = {FC14F127-F714-476F-87B5-313AD89AE2CE}
+		{B6B37279-38D5-48ED-9027-88446A7672FC} = {FC14F127-F714-476F-87B5-313AD89AE2CE}
+		{488D1E88-2F76-430A-B4FE-0B79D934FFC0} = {FC14F127-F714-476F-87B5-313AD89AE2CE}
+		{58D48EB9-B5F8-4E74-84A6-4344A121DB95} = {62751DCB-FA26-42BF-8841-EDE22DC650ED}
+	EndGlobalSection
+EndGlobal

@@ -8,6 +8,7 @@ spec:
   secretName: crescore-cert-secret
   dnsNames:
   - "*.crescore.net"
+  - "*.grpc.crescore.net"
   issuerRef:
     name: letsencrypt-prod
     kind: ClusterIssuer

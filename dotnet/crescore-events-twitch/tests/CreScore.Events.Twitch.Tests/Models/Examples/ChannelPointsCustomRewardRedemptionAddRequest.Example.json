@@ -1,0 +1,13 @@
+﻿{
+  "type": "channel.channel_points_custom_reward_redemption.add",
+  "version": "1",
+  "condition": {
+    "broadcaster_user_id": "1337",
+    "reward_id": "9001"
+  },
+  "transport": {
+    "method": "webhook",
+    "callback": "https://example.com/webhooks/callback",
+    "secret": "s3cRe7"
+  }
+}
