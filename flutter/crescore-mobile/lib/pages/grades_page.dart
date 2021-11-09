@@ -24,19 +24,29 @@ class _GradesPageState extends State<GradesPage> {
         child: FutureBuilder(
           future: GetIt.I.get<ScoresClient>().getGrades(38),
           builder: (BuildContext context, AsyncSnapshot<List<Grade>> snapshot) {
-            if (snapshot.hasData) {
-              var games = snapshot.data!;
-              return ListView.builder(
-                itemCount: games.length,
-                itemBuilder: (context, index) {
-                  return GradeWidget(games[index]);
-                },
-              );
+            switch (snapshot.connectionState) {
+              case ConnectionState.waiting:
+                return const CircularProgressIndicator();
+              case ConnectionState.done:
+                {
+                  if (snapshot.hasData) {
+                    var games = snapshot.data!;
+                    return ListView.builder(
+                      itemCount: games.length,
+                      itemBuilder: (context, index) {
+                        return GradeWidget(games[index]);
+                      },
+                    );
+                  }
+                  if (snapshot.hasError) {
+                    return Text(snapshot.error.toString());
+                  }
+                  return Text("WTF!?!?!?!?");
+                }
+              case ConnectionState.none:
+              case ConnectionState.active:
+                return Text("Wrong state!?!?!??!");
             }
-            if (snapshot.hasError){
-              Text(snapshot.error.toString());
-            }
-            return const CircularProgressIndicator();
           },
         ),
       ),
