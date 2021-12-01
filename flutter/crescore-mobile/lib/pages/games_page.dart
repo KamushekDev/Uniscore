@@ -15,7 +15,6 @@ class GamesPage extends StatefulWidget {
 }
 
 class _GamesPageState extends State<GamesPage> {
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -25,19 +24,29 @@ class _GamesPageState extends State<GamesPage> {
         child: FutureBuilder(
           future: GetIt.I.get<ScoresClient>().getGames(50),
           builder: (BuildContext context, AsyncSnapshot<List<Game>> snapshot) {
-            if (snapshot.hasData) {
-              var games = snapshot.data!;
-              return ListView.builder(
-                itemCount: games.length,
-                itemBuilder: (context, index) {
-                  return GameWidget(games[index]);
-                },
-              );
+            switch (snapshot.connectionState) {
+              case ConnectionState.waiting:
+                return const CircularProgressIndicator();
+              case ConnectionState.done:
+                {
+                  if (snapshot.hasData) {
+                    var games = snapshot.data!;
+                    return ListView.builder(
+                      itemCount: games.length,
+                      itemBuilder: (context, index) {
+                        return GameWidget(games[index]);
+                      },
+                    );
+                  }
+                  if (snapshot.hasError) {
+                    return Text(snapshot.error.toString());
+                  }
+                  return Text("WTF!?!?!?!?");
+                }
+              case ConnectionState.none:
+              case ConnectionState.active:
+                return Text("Wrong state!?!?!??!");
             }
-            if (snapshot.hasError){
-              Text(snapshot.error.toString());
-            }
-            return const CircularProgressIndicator();
           },
         ),
       ),
