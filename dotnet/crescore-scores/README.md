@@ -1,7 +1,7 @@
 CreScore.Scores
 
 # nginx & sert installation
-https://kubernetes.github.io/ingress-nginx/deploy/  
+https://kubernetes.github.io/ingress-nginx/deploy/
 https://kubernetes.github.io/ingress-nginx/user-guide/tls/#automated-certificate-management-with-cert-manager
 https://gouthampilla.medium.com/generating-lets-encrypt-wildcard-certs-using-cert-manager-on-gke-25bf454e5904
 

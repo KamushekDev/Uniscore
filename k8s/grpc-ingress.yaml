@@ -2,14 +2,13 @@ apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: grpc-ingress
+  namespace: crescore
   annotations:
     # kubernetes.io/ingress.global-static-ip-name: crescore-ip
     kubernetes.io/ingress.class: "nginx"
     ingress.kubernetes.io/ssl-redirect: "true"
     nginx.ingress.kubernetes.io/backend-protocol: "GRPC"
     #cert-manager.io/issuer: "letsencrypt-staging"
-  labels:
-    project: crescore
 spec:
   tls:
   - hosts:
