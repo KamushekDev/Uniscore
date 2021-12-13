@@ -9,5 +9,6 @@ spec:
   - "*.crescore.net"
   - "*.grpc.crescore.net"
   issuerRef:
-    name: letsencrypt-staging
+    # name: letsencrypt-staging
+    name: letsencrypt-prod
     kind: ClusterIssuer
