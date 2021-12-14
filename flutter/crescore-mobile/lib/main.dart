@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
 import 'package:theme_provider/theme_provider.dart';
 
+import 'grpc/scores_moq.dart';
+
 void main() {
   setup();
   runApp(const MyApp());
@@ -11,6 +13,7 @@ void main() {
 
 void setup(){
   GetIt.I.registerSingleton<ScoresClient>(ScoresClient());
+  GetIt.I.registerSingleton<ScoresMoq>(ScoresMoq());
 }
 
 class MyApp extends StatelessWidget {

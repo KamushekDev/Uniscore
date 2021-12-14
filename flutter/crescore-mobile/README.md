@@ -2,6 +2,12 @@
 
 Creator Score
 
+# Wireless debug
+```
+adb pair ip:port    
+adb connect ip:port
+```
+
 ## Generate native splash screen
 ```
 flutter pub run flutter_native_splash:create
