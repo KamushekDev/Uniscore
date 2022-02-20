@@ -1,7 +1,9 @@
-﻿namespace CreScore.Scores.Core.Exceptions
+﻿using System;
+
+namespace CreScore.Scores.Core.Exceptions
 {
-    public class DomainException
+    public class DomainException : Exception
     {
-        
+        public DomainException(string message, Exception? exception = null) { }
     }
 }

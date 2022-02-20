@@ -1,16 +1,13 @@
-import 'package:crescore/widgets/helpers/page_base.dart';
 import 'package:flutter/material.dart';
 
 class FuturePage<TFutureResult> extends StatefulWidget {
   final Future<TFutureResult> _future;
-  final AppBar _appBar;
   final Widget Function(TFutureResult) _onData;
 
-  const FuturePage(AppBar appBar, Future<TFutureResult> future,
+  const FuturePage(Future<TFutureResult> future,
       Widget Function(TFutureResult) onData,
       {Key? key})
       : _future = future,
-        _appBar = appBar,
         _onData = onData,
         super(key: key);
 
@@ -22,9 +19,8 @@ class FuturePage<TFutureResult> extends StatefulWidget {
 class _FuturePageState<TFutureResult> extends State<FuturePage<TFutureResult>> {
   @override
   Widget build(BuildContext context) {
-    return PageBase(
-      widget._appBar,
-      FutureBuilder(
+    return Center(
+      child: FutureBuilder(
         future: widget._future,
         builder: (BuildContext context, AsyncSnapshot<TFutureResult> snapshot) {
           switch (snapshot.connectionState) {

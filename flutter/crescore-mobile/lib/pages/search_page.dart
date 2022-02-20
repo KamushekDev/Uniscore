@@ -1,7 +1,7 @@
-import 'package:crescore/grpc/scores_moq.dart';
-import 'package:crescore/widgets/helpers/future_page.dart';
+import 'package:crescore/grpc/moq/scores_moq.dart';
+import 'package:crescore/grpc/scores.dart';
+import 'package:crescore/widgets/future_page.dart';
 import 'package:flutter/material.dart';
-import 'package:crescore/pages/shared.dart';
 import 'package:get_it/get_it.dart';
 
 class SearchPage extends StatefulWidget {
@@ -15,12 +15,20 @@ class SearchPage extends StatefulWidget {
 }
 
 class _SearchPageState extends State<SearchPage> {
+
+  late final ScoresClient _scores;
+
+  @override
+  void initState() {
+    super.initState();
+    _scores = GetIt.I.get<ScoresClient>();
+  }
+
   @override
   Widget build(BuildContext context) {
     return FuturePage(
-      Shared.appBar(SearchPage.name, context),
-      Future.delayed(const Duration(milliseconds: 700)),
-          (_) => const Text("To be made."),
+      Future.delayed(Duration()),
+      (_) => const Text("To be made."),
     );
   }
 }
