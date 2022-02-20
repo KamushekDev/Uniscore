@@ -2,11 +2,25 @@
 
     <PropertyGroup>
         <TargetFramework>net6.0</TargetFramework>
-        <Nullable>enable</Nullable>
+        <Nullable>annotations</Nullable>
     </PropertyGroup>
 
     <ItemGroup>
-      <Folder Include="Database" />
+      <PackageReference Include="Dawn.Guard" Version="1.12.0" />
+      <PackageReference Include="FirebaseAdmin" Version="2.2.0" />
+      <PackageReference Include="Microsoft.Extensions.Configuration.Abstractions" Version="6.0.0" />
+      <PackageReference Include="Microsoft.Extensions.Hosting.Abstractions" Version="6.0.0" />
+      <PackageReference Include="Microsoft.Extensions.Options" Version="6.0.0" />
+      <PackageReference Include="Microsoft.Extensions.Options.ConfigurationExtensions" Version="6.0.0" />
+      <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="6.0.1" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\CreScore.Scores.Core\CreScore.Scores.Core.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Folder Include="Database\Configs" />
     </ItemGroup>
 
 </Project>

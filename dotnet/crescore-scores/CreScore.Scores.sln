@@ -5,6 +5,7 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "common", "common", "{9E2461DE-6769-44A2-8572-5EAC6A6A1A8D}"
 ProjectSection(SolutionItems) = preProject
 	README.md = README.md
+	.gitignore = .gitignore
 EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CreScore.Scores", "src\CreScore.Scores\CreScore.Scores.csproj", "{F50A93A2-028D-434F-8FD5-247D1C1846C5}"

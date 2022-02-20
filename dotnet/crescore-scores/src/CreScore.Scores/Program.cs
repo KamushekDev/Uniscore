@@ -1,6 +1,7 @@
 using CreScore.Scores.Extensions;
-using Crescore.Scores.Grpc;
-using Crescore.Scores.Grpc.Interceptors;
+using CreScore.Scores.Grpc;
+using CreScore.Scores.Grpc.Interceptors;
+using CreScore.Scores.Infrastructure;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Diagnostics.HealthChecks;
 using Microsoft.AspNetCore.Hosting;
@@ -17,7 +18,13 @@ builder.WebHost.ConfigureKestrel(options =>
     options.ListenAnyIP(84, o => o.Protocols = HttpProtocols.Http1);
 });
 
-builder.Services.AddGrpc(options => { options.Interceptors.Add<ExceptionInterceptor>(); });
+builder.Services.AddGrpc(options =>
+{
+    options.Interceptors.Add<ExceptionInterceptor>();
+    options.Interceptors.Add<FirebaseAuthInterceptor>();
+});
+
+builder.Services.AddInfrastructure(builder.Configuration);
 
 builder.Services.AddHealthChecks()
     .AddCheck("live", () => HealthCheckResult.Healthy("live"), tags: new[] { "live" })
@@ -33,7 +40,9 @@ if (app.Environment.IsDevelopment())
 app.UseRouting();
 app.UseEndpoints(endpoints =>
 {
-    endpoints.MapGrpcService<FakeScoreService>();
+    endpoints.MapGrpcService<ScoresService>();
+    endpoints.MapGrpcService<GradesService>();
+    
     endpoints.MapHealthChecksWithCancellationSuppression("/live", new HealthCheckOptions
     {
         Predicate = check => check.Tags.Contains("live")
