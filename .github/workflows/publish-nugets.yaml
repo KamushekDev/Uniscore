@@ -20,6 +20,7 @@ jobs:
       shell: bash
       env:
         BRANCH: ${{github.ref_name}}
+        BUILD_NUMBER: ${{github.run_number}}
     - name: Add github packages source
       run: "dotnet nuget add source --username USERNAME --password ${{ secrets.GITHUB_TOKEN }} --store-password-in-clear-text --name github \"https://nuget.pkg.github.com/OWNER/index.json\""
     - name: Build all solutions

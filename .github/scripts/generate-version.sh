@@ -1,9 +1,14 @@
 #!/bin/bash
-if [ $BRANCH != "master" ]
+suffix=""
+
+if [[ $BRANCH != "master" ]]
 then
-    prefix=$BRANCH
+    suffix=$BRANCH
 fi
 
-export BUILD_VERSION=$prefix$(date +'%Y.%m.%d').${{github.run_number}} 
-echo $BUILD_VERSION
-echo ::set-output name=version::$BUILD_VERSION
+version="$(date +'%Y.%m.%d')"
+version+=".$BUILD_NUMBER"
+version+="-$suffix"
+
+echo $version
+echo ::set-output name=version::$version
