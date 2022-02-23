@@ -15,4 +15,4 @@ jobs:
       run: "dotnet nuget add source --username USERNAME --password ${{ secrets.GITHUB_TOKEN }} --store-password-in-clear-text --name github \"https://nuget.pkg.github.com/OWNER/index.json\""
     - name: Publish
       # run: "dotnet publish -c Release -r linux-arm64 --no-self-contained /p:Version=2022.02.23.1"
-      run: "dotnet publish -c Release /p:Version=${{jobs.steps.version.output.version}}"
+      run: "dotnet publish -c Release /p:Version=${{ steps.version.output.version }}"
