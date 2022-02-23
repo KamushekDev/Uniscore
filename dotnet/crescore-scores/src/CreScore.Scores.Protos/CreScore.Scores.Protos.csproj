@@ -6,7 +6,7 @@
         <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
         <PackageVersion></PackageVersion>
         <PackageProjectUrl>https://github.com/KamushekDev/CreScore</PackageProjectUrl>
-        <RepositoryUrl>https://github.com/KamushekDev/CreScore/tree/master/dotnet/crescore-scores</RepositoryUrl>
+        <RepositoryUrl>https://github.com/KamushekDev/CreScore</RepositoryUrl>
         <Authors>Kamushek</Authors>
     </PropertyGroup>
     
