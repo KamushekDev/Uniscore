@@ -27,3 +27,5 @@ jobs:
     - name: Publish nugets
       run: ./.github/scripts/publish-all-nugets.sh
       shell: bash
+      env:
+        BUILD_VERSION: ${{ steps.version.outputs.version }}
