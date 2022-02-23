@@ -29,3 +29,4 @@ jobs:
       shell: bash
       env:
         BUILD_VERSION: ${{ steps.version.outputs.version }}
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
