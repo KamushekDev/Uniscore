@@ -15,9 +15,9 @@ do
         echo "path does not match the pattern"
         continue
     fi
-    tag=$name:$BUILD_VERSION
-    docker build -t $tag --build-arg proto_os=linux --build-arg proto_cpu=arm64 .
-    docker push $($REGISTRY/$USERNAME/$tag)
+    fullname=$name:$BUILD_VERSION
+    docker build -t $BUILD_VERSION --build-arg proto_os=linux --build-arg proto_cpu=arm64 -f $file
+    # docker push
     # dotnet nuget push $nuget --api-key $GITHUB_TOKEN --source "github"
     # dotnet publish -c Release /p:Version=$BUILD_VERSION $solution
 done
