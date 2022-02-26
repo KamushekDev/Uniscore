@@ -2,7 +2,7 @@
 ARG proto_os
 ARG proto_cpu
 
-FROM mcr.microsoft.com/dotnet/aspnet:6.0 AS base
+FROM mcr.microsoft.com/dotnet/aspnet:6.0-alpine-arm64v8 AS base
 EXPOSE 80
 EXPOSE 82
 EXPOSE 84
