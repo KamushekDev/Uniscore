@@ -42,6 +42,8 @@ ARG c
 RUN dotnet publish "CreScore.Scores.sln" -c $c -o /app/publish
 
 FROM base AS final
+LABEL org.opencontainers.image.source="https://github.com/KamushekDev/CreScore"
+
 WORKDIR /app
 COPY --from=publish /app/publish .
 ENTRYPOINT dotnet CreScore.Scores.dll
