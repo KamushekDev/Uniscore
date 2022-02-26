@@ -19,7 +19,7 @@ spec:
       containers:
       - name: crescore-scores-container
         # image: gcr.io/creator-score/crescore-scores:v0.0.1.2
-        image: ghcr.io/kamushekdev/crescore-scores:2022.02.26.202-test
+        image: ghcr.io/kamushekdev/crescore-scores:{VERSION}
         livenessProbe:
           initialDelaySeconds: 20
           periodSeconds: 5
