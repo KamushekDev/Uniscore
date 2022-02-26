@@ -8,6 +8,7 @@ fi
 
 version="$(date +'%Y.%m.%d')"
 version+=".$BUILD_NUMBER"
+version+="$RUN_ATTEMPT"
 version+="-$suffix"
 
 echo $version
