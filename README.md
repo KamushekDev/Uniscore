@@ -1,3 +1,4 @@
+[![Scores](https://github.com/KamushekDev/CreScore/actions/workflows/publish-nugets.yaml/badge.svg)](https://github.com/KamushekDev/CreScore/actions/workflows/publish-nugets.yaml)
 # CreScore
 Creator-score
 
