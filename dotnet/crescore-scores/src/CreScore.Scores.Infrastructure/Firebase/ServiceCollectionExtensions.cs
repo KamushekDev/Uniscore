@@ -8,12 +8,12 @@ public static class ServiceCollectionExtensions
 {
     public static void AddFirebase(this IServiceCollection serviceCollection)
     {
-        //var app = FirebaseApp.Create(new AppOptions()
-        //{
-        //    Credential = GoogleCredential.FromFile("crescore-adminsdk.json")
-        //});
+        var app = FirebaseApp.Create(new AppOptions()
+        {
+            Credential = GoogleCredential.FromFile("secrets/crescore-adminsdk.json")
+        });
 
-        //serviceCollection.AddSingleton<FirebaseApp>(app);
+        serviceCollection.AddSingleton<FirebaseApp>(app);
         serviceCollection.AddSingleton<IAuthService, AuthService>();
     }
 }
