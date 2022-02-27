@@ -25,6 +25,8 @@ public class GradeVariantsGateway : IGradeVariantsGateway
 
         var result = await _context.GradesVariants.AddAsync(variant, token);
 
+        await _context.SaveChangesAsync(token);
+
         return result.Entity.Id;
     }
 }
