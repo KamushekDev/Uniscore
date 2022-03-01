@@ -19,8 +19,4 @@
       <ProjectReference Include="..\CreScore.Scores.Core\CreScore.Scores.Core.csproj" />
     </ItemGroup>
 
-    <ItemGroup>
-      <Folder Include="Database\Configs" />
-    </ItemGroup>
-
 </Project>

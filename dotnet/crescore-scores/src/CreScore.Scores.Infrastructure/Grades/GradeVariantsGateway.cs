@@ -17,13 +17,13 @@ public class GradeVariantsGateway : IGradeVariantsGateway
 
     public async Task<long> AddGradeVariant(string name, string ownerUserId, CancellationToken token)
     {
-        var variant = new GradesVariant()
+        var variant = new GradeVariants()
         {
             Name = name,
             OwnerUserId = ownerUserId
         };
 
-        var result = await _context.GradesVariants.AddAsync(variant, token);
+        var result = await _context.GradeVariants.AddAsync(variant, token);
 
         await _context.SaveChangesAsync(token);
 

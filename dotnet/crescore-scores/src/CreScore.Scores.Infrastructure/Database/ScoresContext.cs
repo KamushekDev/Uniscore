@@ -7,5 +7,11 @@ public class ScoresContext : DbContext
 {
     public ScoresContext(DbContextOptions<ScoresContext> options) : base(options) { }
 
-    public DbSet<GradesVariant> GradesVariants { get; set; }
+    public DbSet<GradeVariants> GradeVariants { get; set; }
+
+
+    protected override void OnModelCreating(ModelBuilder modelBuilder)
+    {
+        modelBuilder.ApplyConfigurationsFromAssembly(typeof(IInfrastructureAssembly).Assembly);
+    }
 }
