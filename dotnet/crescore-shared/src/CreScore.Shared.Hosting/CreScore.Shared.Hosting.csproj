@@ -5,6 +5,8 @@
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
         <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+        <PackageProjectUrl>https://github.com/KamushekDev/CreScore</PackageProjectUrl>
+        <RepositoryUrl>https://github.com/KamushekDev/CreScore</RepositoryUrl>
     </PropertyGroup>
 
     <ItemGroup>

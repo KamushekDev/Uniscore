@@ -1,4 +1,4 @@
-name: Scores
+name: Build and publish CreScore
 on:
   push:
     branches:    
