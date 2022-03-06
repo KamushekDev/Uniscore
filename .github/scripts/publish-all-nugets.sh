@@ -5,6 +5,7 @@ echo "build version: $BUILD_VERSION"
 # workflow wouldn't contain old nugets
 for nuget in $nugets
 do
+    echo nuget
     dotnet nuget push $nuget --api-key $GITHUB_TOKEN --source "github"
     # dotnet publish -c Release /p:Version=$BUILD_VERSION $solution
 done
