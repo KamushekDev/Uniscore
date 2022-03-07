@@ -7,7 +7,19 @@ namespace CreScore.Shared.Hosting;
 
 public static class EndpointRouteBuilderExtensions
 {
-    public static IEndpointConventionBuilder MapHealthChecksWithCancellationSuppression(
+    public static void MapCreScoreHealthChecks(this IEndpointRouteBuilder endpoints)
+    {
+        endpoints.MapHealthChecksWithCancellationSuppression("/live", new HealthCheckOptions
+        {
+            Predicate = check => check.Tags.Contains("live")
+        });
+        endpoints.MapHealthChecksWithCancellationSuppression("/health", new HealthCheckOptions
+        {
+            Predicate = check => check.Tags.Contains("health")
+        });
+    }
+
+    private static IEndpointConventionBuilder MapHealthChecksWithCancellationSuppression(
         this IEndpointRouteBuilder endpoints, string pattern, HealthCheckOptions options)
     {
         // This is more or less a copy of HealthCheckEndpointRouteBuilderExtensions.MapHealthChecksCore - source: https://source.dot.net/#Microsoft.AspNetCore.Diagnostics.HealthChecks/Builder/HealthCheckEndpointRouteBuilderExtensions.cs,12465841a38c75e2,references
