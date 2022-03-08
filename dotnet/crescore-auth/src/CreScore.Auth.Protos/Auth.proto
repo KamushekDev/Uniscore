@@ -1,0 +1,42 @@
+syntax = "proto3";
+package Auth.V1;
+option csharp_namespace = "CreScore.Auth";
+
+service AuthorizationApi {
+  rpc AuthorizeFirebaseToken(AuthRequest) returns (AuthResponse);
+  rpc GetFirebaseUser(GetFirebaseUserRequest) returns (GetFirebaseUserResponse);
+}
+
+message AuthRequest {
+  string idToken = 1;
+}
+
+message AuthResponse {
+  bool success = 1;
+  string userId = 2;
+}
+
+message GetFirebaseUserRequest {
+  string userId = 1;
+}
+
+message GetFirebaseUserResponse {
+  bool success = 1;
+  UserInfo userInfo = 2;
+}
+
+message UserInfo{
+  string uid = 1;
+  string displayName = 2;
+  string photoUrl = 3;
+  bool disable = 4;
+  string tenantId = 5;
+  string providerId = 6;
+  ContactInfo contactInfo = 7;
+
+  message ContactInfo{
+    string email = 1;
+    bool emailConfirmed = 2;
+    string phoneNumber = 3;
+  }
+}
