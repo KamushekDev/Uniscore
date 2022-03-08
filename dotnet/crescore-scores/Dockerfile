@@ -1,6 +1,4 @@
 ﻿ARG c=Release
-ARG proto_os
-ARG proto_cpu
 
 FROM mcr.microsoft.com/dotnet/aspnet:6.0-alpine-arm64v8 AS base
 EXPOSE 80
@@ -10,13 +8,6 @@ WORKDIR /app
 
 FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build
 ARG c
-ARG proto_os
-ARG proto_cpu
-ENV PROTOBUF_TOOLS_OS $proto_os
-ENV PROTOBUF_TOOLS_CPU $proto_cpu
-
-RUN echo $PROTOBUF_TOOLS_OS
-RUN echo $PROTOBUF_TOOLS_CPU
 
 WORKDIR /source
 COPY src/CreScore.Scores/*.csproj src/CreScore.Scores/
@@ -28,10 +19,6 @@ COPY *.sln .
 RUN dotnet restore
 
 COPY . .
-
-# RUN cd /root/.nuget/packages/grpc.tools/2.41.0/tools/linux_arm64 && echo $(ls)
-# RUN cd /source/src/CreScore.Scores.Protos && echo $(ls)
-# RUN echo $(cat /root/.nuget/packages/grpc.tools/2.41.0/build/_protobuf/Google.Protobuf.Tools.targets)
 
 RUN dotnet build "src/CreScore.Scores.Protos/CreScore.Scores.Protos.csproj" -c $c
 

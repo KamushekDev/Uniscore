@@ -1,12 +1,7 @@
-using CreScore.Scores.Grpc;
-using CreScore.Scores.Grpc.Interceptors;
-using CreScore.Scores.Infrastructure;
+using CreScore.Auth.Grpc;
+using CreScore.Auth.Infrastructure;
 using CreScore.Shared.Hosting;
-using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Server.Kestrel.Core;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
 
 var builder = WebApplication.CreateBuilder(args);
 builder.WebHost.ConfigureKestrel(options =>
@@ -16,14 +11,7 @@ builder.WebHost.ConfigureKestrel(options =>
     options.ListenAnyIP(84, o => o.Protocols = HttpProtocols.Http1);
 });
 
-builder.Services.AddCreScoreAuth(builder.Configuration);
-
-builder.Services.AddGrpc(options =>
-{
-    options.AddCreScoreAuthInterceptors(builder.Configuration);
-    options.Interceptors.Add<ExceptionInterceptor>();
-    
-});
+builder.Services.AddGrpc();
 
 builder.Services.AddInfrastructure(builder.Configuration);
 
@@ -37,14 +25,9 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseRouting();
-
-app.UseAuthentication();
-app.UseAuthorization();
-
 app.UseEndpoints(endpoints =>
 {
-    endpoints.MapGrpcService<ScoresService>();
-    endpoints.MapGrpcService<GradesService>();
+    endpoints.MapGrpcService<AuthorizationService>();
 
     endpoints.MapCreScoreHealthChecks();
 });

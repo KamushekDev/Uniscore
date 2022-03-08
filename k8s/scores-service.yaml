@@ -19,9 +19,6 @@ spec:
       containers:
       - name: crescore-scores-container
         image: ghcr.io/kamushekdev/crescore-scores:{VERSION}
-        volumeMounts:
-          - name: firebase-admin-sdk
-            mountPath: /app/secrets
         livenessProbe:
           initialDelaySeconds: 20
           periodSeconds: 5
@@ -49,15 +46,11 @@ spec:
           limits:
             memory: "128Mi"
             cpu: "300m"
-      volumes:
-        - name: firebase-admin-sdk
-          secret:
-            secretName: firebase-admin-sdk-json
 ---
 apiVersion: v1
 kind: Service
 metadata:
-  name: scores-service
+  name: crescore-scores-service
   namespace: crescore
   annotations:
     cloud.google.com/app-protocols: '{"grpc":"HTTP2", "http": "HTTP"}'
