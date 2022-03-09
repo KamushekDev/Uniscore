@@ -23,7 +23,7 @@ jobs:
         BUILD_NUMBER: ${{github.run_number}}
         RUN_ATTEMPT: ${{github.run_attempt}}
     - name: Add github packages source
-      run: "dotnet nuget add source --username KamushekDev --password ${{ secrets.PACKAGES_PAT }} --store-password-in-clear-text --name github \"https://nuget.pkg.github.com/OWNER/index.json\""
+      run: "dotnet nuget add source --username KamushekDev --password ${{ secrets.PACKAGES_PAT }} --store-password-in-clear-text --name github \"https://nuget.pkg.github.com/KamushekDev/index.json\""
     - name: Cache nuget
       uses: actions/cache@v1
       with:
