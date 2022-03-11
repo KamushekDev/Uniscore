@@ -25,6 +25,7 @@ do
 
     fullname=$REGISTRY/$rep/$name:$BUILD_VERSION
     # docker build -t fullname --build-arg proto_os=linux --build-arg proto_cpu=arm64 $path
+    DOCKER_BUILDKIT=1
     docker build -t $fullname --secret id=packages_pat,src=./PACKAGES_PAT $path
     docker push $fullname
 done
