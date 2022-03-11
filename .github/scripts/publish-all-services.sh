@@ -1,5 +1,7 @@
 #!/bin/bash
 
+echo $PACKAGES_PAT > ./PACKAGES_PAT
+
 dockerFiles=$(find . -type f -name "Dockerfile")
 for file in $dockerFiles
 do
@@ -23,6 +25,6 @@ do
 
     fullname=$REGISTRY/$rep/$name:$BUILD_VERSION
     # docker build -t fullname --build-arg proto_os=linux --build-arg proto_cpu=arm64 $path
-    docker build -t $fullname $path
+    docker build -t $fullname --secret id=packages_pat,src=./PACKAGES_PAT $path
     docker push $fullname
 done
