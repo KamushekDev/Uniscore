@@ -19,7 +19,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "k8s", "k8s", "{2E003F9C-3E6
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CreScore.Auth.Protos", "src\CreScore.Auth.Protos\CreScore.Auth.Protos.csproj", "{B4771DEF-2FAB-4036-A6DC-2ECE8E920F65}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CreScore.Auth.Infrastructure", "CreScore.Auth.Infrastructure\CreScore.Auth.Infrastructure.csproj", "{5F0631D5-D7EA-4F88-936B-9070F1ABCF13}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CreScore.Auth.Infrastructure", "src\CreScore.Auth.Infrastructure\CreScore.Auth.Infrastructure.csproj", "{5F0631D5-D7EA-4F88-936B-9070F1ABCF13}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{B945FDE0-43F2-419D-9B89-9917D05A06FE}"
 EndProject

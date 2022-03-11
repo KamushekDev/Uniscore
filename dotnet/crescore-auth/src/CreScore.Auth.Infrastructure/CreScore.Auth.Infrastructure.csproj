@@ -7,8 +7,8 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\src\CreScore.Auth.Core\CreScore.Auth.Core.csproj" />
-      <ProjectReference Include="..\src\CreScore.Auth.Protos\CreScore.Auth.Protos.csproj" />
+      <ProjectReference Include="..\CreScore.Auth.Core\CreScore.Auth.Core.csproj" />
+      <ProjectReference Include="..\CreScore.Auth.Protos\CreScore.Auth.Protos.csproj" />
     </ItemGroup>
 
     <ItemGroup>
