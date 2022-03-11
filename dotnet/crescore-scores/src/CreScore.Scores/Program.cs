@@ -1,3 +1,4 @@
+using CreScore.Auth.Helper;
 using CreScore.Scores.Grpc;
 using CreScore.Scores.Grpc.Interceptors;
 using CreScore.Scores.Infrastructure;
