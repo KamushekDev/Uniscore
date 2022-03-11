@@ -57,3 +57,4 @@ jobs:
         USERNAME: ${{ github.actor }}
         BUILD_VERSION: ${{ steps.version.outputs.version }}
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        PACKAGES_PAT: ${{ secrets.PACKAGES_PAT }}
