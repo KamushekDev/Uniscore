@@ -11,11 +11,7 @@ ARG c
 
 RUN --mount=type=secret,id=packages_pat,dst=/secrets/packages_pat
 
-RUN dotnet nuget add source && \
-    --username KamushekDev && \
-    --password $(cat /secrets/packages_pat) && \
-    --store-password-in-clear-text && \
-    --name github "https://nuget.pkg.github.com/KamushekDev/index.json"
+RUN dotnet nuget add source -u KamushekDev -p "$(cat /secrets/packages_pat)" --store-password-in-clear-text -n github "https://nuget.pkg.github.com/KamushekDev/index.json"
 
 WORKDIR /source
 COPY src/CreScore.Auth/*.csproj src/CreScore.Auth/
