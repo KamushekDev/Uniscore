@@ -9,7 +9,7 @@ WORKDIR /app
 FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build
 ARG c
 
-RUN --mount=type=secret,id=packages_pat,dst=/secrets/packages_pat
+RUN --mount=type=secret,id=packages_pat,target=/secrets/packages_pat
 
 RUN dotnet nuget add source -u KamushekDev -p "$(cat /secrets/packages_pat)" --store-password-in-clear-text -n github "https://nuget.pkg.github.com/KamushekDev/index.json"
 
