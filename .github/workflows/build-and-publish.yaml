@@ -1,11 +1,11 @@
-name: Build and publish CreScore
+name: Build and publish everything
 on:
   push:
     branches:    
       - 'main'
       - 'test'
 jobs:
-  Build-PublishNugets:
+  Build-Publish:
     runs-on: ubuntu-latest
     steps:
     - name: Checkout
