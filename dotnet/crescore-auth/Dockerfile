@@ -9,7 +9,7 @@ WORKDIR /app
 FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build
 ARG c
 
-RUN --mount=type=secret,id=packages_pat
+RUN --mount=type=secret,id=packages_pat,required=true cat /run/secrets/packages_pat
 
 RUN cat /run/secrets/packages_pat
 
