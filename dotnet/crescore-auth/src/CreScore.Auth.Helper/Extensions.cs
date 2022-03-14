@@ -10,9 +10,15 @@ public static class ServiceCollectionExtensions
 {
     public static IServiceCollection AddCreScoreAuth(this IServiceCollection sc, IConfiguration configuration)
     {
+        sc.AddAuthentication();
+        sc.AddAuthorization(configure =>
+        {
+            //configure.AddPolicy("Firebase");
+        });
+        
         sc.AddScoped<ITokenStore, TokenStore>();
 
-        sc.AddGrpcClient<CreScore.Auth.AuthorizationApi.AuthorizationApiClient>();
+        sc.AddGrpcClient<AuthorizationApi.AuthorizationApiClient>();
 
         return sc;
     }

@@ -1,5 +1,4 @@
 ﻿using CreScore.Auth.Core;
-using CreScore.Auth.Infrastructure.Firebase;
 using Grpc.Core;
 
 namespace CreScore.Auth.Grpc;
@@ -25,6 +24,9 @@ public class AuthorizationService : AuthorizationApi.AuthorizationApiBase
     {
         var result = await _auth.GetUserById(request.UserId, context.CancellationToken);
 
+        if (result is null)
+            throw new Exception("User wasn't found");
+        
         var contactInfo = new UserInfo.Types.ContactInfo()
         {
             Email = result.ContactInfo.Email,
