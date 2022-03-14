@@ -1,6 +1,6 @@
 ﻿namespace CreScore.Auth.Helper.Helpers;
 
-public class TokenStore : ITokenStore
+internal class TokenStore : ITokenStore
 {
     private string? _token;
 
