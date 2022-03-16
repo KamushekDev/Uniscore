@@ -18,7 +18,6 @@ COPY src/CreScore.Auth/*.csproj src/CreScore.Auth/
 COPY src/CreScore.Auth.Protos/*.csproj src/CreScore.Auth.Protos/
 COPY src/CreScore.Auth.Infrastructure/*.csproj src/CreScore.Auth.Infrastructure/
 COPY src/CreScore.Auth.Core/*.csproj src/CreScore.Auth.Core/
-COPY src/CreScore.Auth.Helper/*.csproj src/CreScore.Auth.Helper/
 COPY *.sln .
 
 RUN dotnet restore
