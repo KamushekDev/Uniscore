@@ -18,7 +18,13 @@ public static class ServiceCollectionExtensions
         });
 
         sc.AddScoped<ITokenStore, TokenStore>();
-        sc.AddGrpcClient<AuthorizationApi.AuthorizationApiClient>();
+
+        var authUri = configuration.GetSection("CreScoreUri").Get<string>() ?? "https://crescore-auth:82";
+        
+        sc.AddGrpcClient<AuthorizationApi.AuthorizationApiClient>("CreScore Auth service", options =>
+        {
+            options.Address = new Uri(authUri);
+        });
 
         return sc;
     }
