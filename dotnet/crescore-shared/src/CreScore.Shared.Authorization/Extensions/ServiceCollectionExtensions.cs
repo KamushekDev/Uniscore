@@ -2,6 +2,7 @@
 using CreScore.Shared.Authorization.Interceptors;
 using Grpc.AspNetCore.Server;
 using Grpc.Net.ClientFactory;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -14,6 +15,7 @@ public static class ServiceCollectionExtensions
         sc.AddAuthentication(AuthConstants.CreScoreAuthScheme);
         sc.AddAuthorization(configure =>
         {
+            // configure.DefaultPolicy = ;
             //configure.AddPolicy("Firebase");
         });
 
