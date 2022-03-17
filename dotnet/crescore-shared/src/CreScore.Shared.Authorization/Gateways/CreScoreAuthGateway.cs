@@ -13,8 +13,15 @@ public class CreScoreAuthGateway : ICreScoreAuthGateway
 
     public async Task<string?> GetUserIdFromToken(string idToken, CancellationToken ct)
     {
-        var request = new AuthRequest() { IdToken = idToken };
-        var response = await _client.AuthorizeFirebaseTokenAsync(request, cancellationToken: ct);
-        return response?.UserId;
+        try
+        {
+            var request = new AuthRequest() { IdToken = idToken };
+            var response = await _client.AuthorizeFirebaseTokenAsync(request, cancellationToken: ct);
+            return response?.UserId;
+        }
+        catch
+        {
+            return null;
+        }
     }
 }
