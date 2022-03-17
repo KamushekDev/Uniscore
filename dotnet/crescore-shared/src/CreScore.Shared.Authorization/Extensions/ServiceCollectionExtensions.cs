@@ -1,4 +1,5 @@
 ﻿using CreScore.Auth;
+using CreScore.Shared.Authorization.Gateways;
 using CreScore.Shared.Authorization.Handlers;
 using CreScore.Shared.Authorization.Interceptors;
 using Grpc.AspNetCore.Server;
@@ -14,6 +15,7 @@ public static class ServiceCollectionExtensions
 {
     public static IServiceCollection AddCreScoreAuth(this IServiceCollection sc, IConfiguration configuration)
     {
+        sc.AddTransient<ICreScoreAuthGateway, CreScoreAuthGateway>();
         sc.AddScoped<IAuthenticationHandler, CreScoreAuthenticationHandler>();
         sc.AddAuthentication(AuthConstants.CreScoreAuthScheme)
             .AddScheme<AuthenticationSchemeOptions, CreScoreAuthenticationHandler>(
