@@ -1,7 +1,9 @@
 ﻿using CreScore.Auth;
+using CreScore.Shared.Authorization.Handlers;
 using CreScore.Shared.Authorization.Interceptors;
 using Grpc.AspNetCore.Server;
 using Grpc.Net.ClientFactory;
+using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -12,7 +14,13 @@ public static class ServiceCollectionExtensions
 {
     public static IServiceCollection AddCreScoreAuth(this IServiceCollection sc, IConfiguration configuration)
     {
-        sc.AddAuthentication(AuthConstants.CreScoreAuthScheme);
+        sc.AddScoped<IAuthenticationHandler, CreScoreAuthenticationHandler>();
+        sc.AddAuthentication(AuthConstants.CreScoreAuthScheme)
+            .AddScheme<AuthenticationSchemeOptions, CreScoreAuthenticationHandler>(
+                AuthConstants.CreScoreAuthScheme,
+                "CreScore auth",
+                options => { }
+            );
         sc.AddAuthorization(configure =>
         {
             // configure.DefaultPolicy = ;
@@ -22,11 +30,9 @@ public static class ServiceCollectionExtensions
         sc.AddScoped<ITokenStore, TokenStore>();
 
         var authUri = configuration.GetSection("CreScoreUri").Get<string>() ?? "https://crescore-auth:82";
-        
-        sc.AddGrpcClient<AuthorizationApi.AuthorizationApiClient>("CreScore Auth service", options =>
-        {
-            options.Address = new Uri(authUri);
-        });
+
+        sc.AddGrpcClient<AuthorizationApi.AuthorizationApiClient>("CreScore Auth service",
+            options => { options.Address = new Uri(authUri); });
 
         return sc;
     }
