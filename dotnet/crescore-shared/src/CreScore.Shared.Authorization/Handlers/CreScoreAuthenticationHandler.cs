@@ -27,13 +27,19 @@ public class CreScoreAuthenticationHandler : AuthenticationHandler<Authenticatio
     protected override async Task<AuthenticateResult> HandleAuthenticateAsync()
     {
         if (!Request.Headers.TryGetValue(AuthConstants.AuthorizationHeaderName, out var token))
+        {
+            await ChallengeAsync(null);
             return AuthenticateResult.Fail("No id token was provided.");
+        }
 
         // todo: CancellationToken
         var response = await _gateway.GetUserIdFromToken(token, CancellationToken.None);
 
         if (response is null)
+        {
+            await ForbidAsync(null); 
             return AuthenticateResult.Fail("Couldn't authenticate provided id token.");
+        }
 
         // todo: username 
         var userIdentity = new UserIdentity(AuthConstants.CreScoreAuthScheme, true, "__username__", response);

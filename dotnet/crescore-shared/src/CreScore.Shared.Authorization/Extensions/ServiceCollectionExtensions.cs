@@ -26,7 +26,7 @@ public static class ServiceCollectionExtensions
         sc.AddAuthorization(configure =>
         {
             // configure.DefaultPolicy = ;
-            //configure.AddPolicy("Firebase");
+            // configure.AddPolicy("Firebase");
         });
 
         sc.AddScoped<ITokenStore, TokenStore>();
