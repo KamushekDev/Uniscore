@@ -49,4 +49,14 @@ public class CreScoreAuthenticationHandler : AuthenticationHandler<Authenticatio
         var ticket = new AuthenticationTicket(claims, AuthConstants.CreScoreAuthScheme);
         return AuthenticateResult.Success(ticket);
     }
+
+    protected override Task HandleForbiddenAsync(AuthenticationProperties properties)
+    {
+        return base.HandleForbiddenAsync(properties);
+    }
+
+    protected override Task HandleChallengeAsync(AuthenticationProperties properties)
+    {
+        return base.HandleForbiddenAsync(properties);
+    }
 }
