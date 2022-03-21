@@ -27,13 +27,6 @@ public class AuthorizationService : AuthorizationApi.AuthorizationApiBase
         if (result is null)
             throw new Exception("User wasn't found");
         
-        var contactInfo = new UserInfo.Types.ContactInfo()
-        {
-            Email = result.ContactInfo.Email,
-            EmailConfirmed = result.ContactInfo.EmailVerified,
-            PhoneNumber = result.ContactInfo.PhoneNumber
-        };
-
         var userInfo = new UserInfo()
         {
             Disable = result.Disabled,
@@ -42,7 +35,9 @@ public class AuthorizationService : AuthorizationApi.AuthorizationApiBase
             PhotoUrl = result.PhotoUrl,
             ProviderId = result.ProviderId,
             TenantId = result.TenantId,
-            ContactInfo = contactInfo
+            Email = result.ContactInfo.Email,
+            EmailConfirmed = result.ContactInfo.EmailVerified,
+            PhoneNumber = result.ContactInfo.PhoneNumber
         };
 
         return new GetFirebaseUserResponse()

@@ -34,11 +34,7 @@ message UserInfo {
   bool disable = 4;
   google.protobuf.StringValue tenantId = 5;
   string providerId = 6;
-  ContactInfo contactInfo = 7;
-
-  message ContactInfo{
-    google.protobuf.StringValue email = 1;
-    bool emailConfirmed = 2;
-    google.protobuf.StringValue phoneNumber = 3;
-  }
+  google.protobuf.StringValue email = 7;
+  bool emailConfirmed = 8;
+  google.protobuf.StringValue phoneNumber = 9;
 }
