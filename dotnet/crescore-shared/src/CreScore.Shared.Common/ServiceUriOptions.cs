@@ -1,11 +1,11 @@
 ﻿namespace CreScore.Shared.Common;
 
-public class ServiceUriOptions
+public record ServiceUrl(string Host, int Port)
 {
-    public string Host { get; init; }
-    public int Port { get; init; }
+    public const string SectionName = "ServiceUrls";
 
     private string? _uri;
-
     public string Uri => _uri ??= $"http://{Host}:{Port}";
+
+    public ServiceUrl() : this("localhost", 82) { }
 }

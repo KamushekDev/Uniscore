@@ -26,12 +26,8 @@ public static class ServiceCollectionExtensions
 
         sc.AddScoped<ITokenStore, TokenStore>();
 
-        var authService = configuration.GetSection("CreScoreUris:auth").Get<ServiceUriOptions>()
-                          ?? new ServiceUriOptions()
-                          {
-                              Host = "crescore-auth-service.crescore",
-                              Port = 82
-                          };
+        var authService = configuration.GetSection(ServiceUrl.SectionName + ":auth").Get<ServiceUrl>()
+                          ?? new ServiceUrl("crescore-auth-service.crescore", 82);
 
         sc.AddGrpcClient<AuthorizationApi.AuthorizationApiClient>("CreScore Auth service",
             options => { options.Address = new Uri(authService.Uri); });

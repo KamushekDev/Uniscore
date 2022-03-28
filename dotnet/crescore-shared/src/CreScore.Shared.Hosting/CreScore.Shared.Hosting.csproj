@@ -13,4 +13,8 @@
         <FrameworkReference Include="Microsoft.AspNetCore.App" />
     </ItemGroup>
 
+    <ItemGroup>
+      <ProjectReference Include="..\CreScore.Shared.Common\CreScore.Shared.Common.csproj" />
+    </ItemGroup>
+
 </Project>
