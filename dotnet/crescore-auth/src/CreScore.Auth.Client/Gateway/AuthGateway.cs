@@ -14,19 +14,11 @@ public class AuthGateway : IAuthGateway
         _logger = logger;
     }
 
-    public async Task<string?> GetUserIdFromToken(string idToken, CancellationToken ct)
+    public async Task<Token> GetUserIdFromToken(string idToken, CancellationToken ct)
     {
-        try
-        {
-            var request = new AuthRequest() { IdToken = idToken };
-            var response = await _client.AuthorizeFirebaseTokenAsync(request, cancellationToken: ct);
-            return response?.UserId;
-        }
-        catch (Exception e)
-        {
-            _logger.LogError(e, "{MethodName} was thrown an Exception", nameof(GetUserIdFromToken));
-            return null;
-        }
+        var request = new AuthRequest() { IdToken = idToken };
+        var response = await _client.AuthorizeFirebaseTokenAsync(request, cancellationToken: ct);
+        return new Token(response.UserId, response.Issuer, response.Subject, response.Audience, response.TenantId);
     }
 
     public async Task<User?> GetUser(string userId, CancellationToken ct)
@@ -52,7 +44,7 @@ public class AuthGateway : IAuthGateway
                 ProviderId = userInfo.ProviderId,
                 TenantId = userInfo.TenantId,
                 UserId = userInfo.Uid,
-                
+
                 Email = userInfo.Email,
                 EmailConfirmed = userInfo.EmailConfirmed,
                 PhoneNumber = userInfo.PhoneNumber
