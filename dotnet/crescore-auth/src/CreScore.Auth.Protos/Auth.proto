@@ -14,8 +14,11 @@ message AuthRequest {
 }
 
 message AuthResponse {
-  bool success = 1;
-  google.protobuf.StringValue userId = 2;
+  string userId = 1;
+  google.protobuf.StringValue issuer = 2;
+  google.protobuf.StringValue subject = 3;
+  google.protobuf.StringValue audience = 4;
+  google.protobuf.StringValue tenantId = 5;
 }
 
 message GetFirebaseUserRequest {

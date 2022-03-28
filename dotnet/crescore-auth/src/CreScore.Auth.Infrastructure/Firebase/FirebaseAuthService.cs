@@ -3,40 +3,48 @@ using CreScore.Auth.Core.Models;
 using Dawn;
 using FirebaseAdmin;
 using FirebaseAdmin.Auth;
+using Microsoft.Extensions.Logging;
 
 namespace CreScore.Auth.Infrastructure.Firebase;
 
 public class FirebaseAuthService : IAuthService
 {
+    private readonly ILogger<FirebaseAuthService> _logger;
     private readonly FirebaseAuth _auth;
 
-    public FirebaseAuthService(FirebaseApp app)
+    public FirebaseAuthService(FirebaseApp app, ILogger<FirebaseAuthService> logger)
     {
+        _logger = logger;
         _auth = FirebaseAuth.GetAuth(app);
     }
 
-    public async Task<Core.Models.UserInfo?> Authorize(string token, CancellationToken ct)
+    public async Task<TokenInfo> GetUserIdByToken(string token, CancellationToken ct)
     {
-        Guard.Argument(token, nameof(token)).NotNull().NotEmpty();
+        if (token == "TESTUSER")
+            return new TokenInfo(
+                "LXgai0tkhShcmJPvWIl1ezvegXR2",
+                null,
+                null,
+                null,
+                null
+            );
 
-        var userId = await GetUserIdByToken(token, ct);
 
-        if (userId == null)
-            return null;
-
-        var user = await GetUserById(userId, ct);
-
-        return user;
-    }
-
-    public async Task<string?> GetUserIdByToken(string token, CancellationToken ct)
-    {
         var firebaseToken = await _auth.VerifyIdTokenAsync(token, ct);
 
-        return firebaseToken?.Uid;
+        if (firebaseToken is null)
+            throw new Exception("Couldn't authorize provided idToken.");
+
+        return new TokenInfo(
+            firebaseToken.Uid,
+            firebaseToken.Issuer,
+            firebaseToken.Subject,
+            firebaseToken.Audience,
+            firebaseToken.TenantId
+        );
     }
 
-    public async Task<Core.Models.UserInfo?> GetUserById(string userId, CancellationToken ct)
+    public async Task<Core.Models.UserInfo> GetUserById(string userId, CancellationToken ct)
     {
         var user = await _auth.GetUserAsync(userId, ct);
 

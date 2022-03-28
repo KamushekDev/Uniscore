@@ -1,7 +1,9 @@
-﻿namespace CreScore.Auth.Core;
+﻿using CreScore.Auth.Core.Models;
+
+namespace CreScore.Auth.Core;
 
 public interface IAuthService
 {
-    Task<string?> GetUserIdByToken(string token, CancellationToken ct);
-    Task<Models.UserInfo?> GetUserById(string userId, CancellationToken ct);
+    Task<TokenInfo> GetUserIdByToken(string token, CancellationToken ct);
+    Task<UserInfo> GetUserById(string userId, CancellationToken ct);
 }
