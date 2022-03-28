@@ -66,22 +66,22 @@ public static class ServiceCollectionExtensions
         });
     }
     
-    public static IHttpClientBuilder AddGrpcClientWithAuth<TClient>(this IServiceCollection sc,
+    public static IHttpClientBuilder AddCustomGrpcClient<TClient>(this IServiceCollection sc,
         Action<GrpcClientFactoryOptions> configureAction) where TClient : class
     {
-        sc.AddTransient<GrpcAuthClientInterceptor>();
+        //sc.AddTransient<GrpcAuthClientInterceptor>();
 
-        return sc.AddGrpcClient<TClient>(configureAction)
-            .AddInterceptor<GrpcAuthClientInterceptor>();
+        return sc.AddGrpcClient<TClient>(configureAction);
+        //.AddInterceptor<GrpcAuthClientInterceptor>();
     }
 
-    public static void AddGrpcWithAuth(this IServiceCollection sc, Action<GrpcServiceOptions> configure)
+    public static void AddCustomGrpc(this IServiceCollection sc, Action<GrpcServiceOptions> configure)
     {
-        sc.AddTransient<GrpcAuthServerInterceptor>();
+        //sc.AddTransient<GrpcAuthServerInterceptor>();
 
         sc.AddGrpc(options =>
         {
-            options.Interceptors.Add<GrpcAuthServerInterceptor>();
+            //options.Interceptors.Add<GrpcAuthServerInterceptor>();
             configure(options);
         });
     }
