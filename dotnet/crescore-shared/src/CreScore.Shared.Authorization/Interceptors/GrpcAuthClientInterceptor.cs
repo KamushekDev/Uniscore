@@ -20,7 +20,7 @@ public class GrpcAuthClientInterceptor : Interceptor
         AsyncUnaryCallContinuation<TRequest, TResponse> continuation)
     {
         if (_store.IsTokenSet)
-            context.Options.Headers?.Add(AuthConstants.AuthorizationHeaderName, _store.GetToken()!);
+            context.Options.Headers?.Add(Schemes.AuthorizationHeaderName, _store.GetToken()!);
         else
             _logger.LogWarning("Token for a request wasn't set");
 

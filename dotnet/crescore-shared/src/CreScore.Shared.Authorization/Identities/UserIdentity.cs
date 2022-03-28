@@ -4,16 +4,15 @@ namespace CreScore.Shared.Authorization.Identities;
 
 public class UserIdentity : IIdentity
 {
-    public UserIdentity(string? authenticationType, bool isAuthenticated, string name, string userId)
+    public UserIdentity(string? authenticationType, bool isAuthenticated, string userId)
     {
         AuthenticationType = authenticationType;
         IsAuthenticated = isAuthenticated;
-        Name = name;
-        UserId = userId;
+        Name = userId;
     }
 
     public string? AuthenticationType { get; }
     public bool IsAuthenticated { get; }
     public string Name { get; }
-    public string UserId { get; }
+    public string UserId => Name;
 }

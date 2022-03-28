@@ -21,7 +21,7 @@ public class GrpcAuthServerInterceptor : Interceptor
             _logger.LogWarning("Token for a request was already set");
         else
         {
-            var token = headers?.GetValue(AuthConstants.AuthorizationHeaderName);
+            var token = headers?.GetValue(Schemes.AuthorizationHeaderName);
 
             if (token is null)
                 _logger.LogWarning("Token for a request wasn't provided by the client");

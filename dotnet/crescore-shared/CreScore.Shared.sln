@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CreScore.Shared.Hosting", "
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CreScore.Shared.Authorization", "src\CreScore.Shared.Authorization\CreScore.Shared.Authorization.csproj", "{284C69EF-0CB8-4E16-92BD-F009792B52B3}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CreScore.Shared.Common", "src\CreScore.Shared.Common\CreScore.Shared.Common.csproj", "{62133C41-FB7A-4CD4-B8A8-D991771D4857}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -20,6 +22,7 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{E91B70B4-2DEE-4F6E-B5E6-767CE902544E} = {8C66BBDA-4CAA-4335-9CA7-F11CBF64FFB7}
 		{284C69EF-0CB8-4E16-92BD-F009792B52B3} = {8C66BBDA-4CAA-4335-9CA7-F11CBF64FFB7}
+		{62133C41-FB7A-4CD4-B8A8-D991771D4857} = {8C66BBDA-4CAA-4335-9CA7-F11CBF64FFB7}
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{E91B70B4-2DEE-4F6E-B5E6-767CE902544E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
@@ -30,5 +33,9 @@ Global
 		{284C69EF-0CB8-4E16-92BD-F009792B52B3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{284C69EF-0CB8-4E16-92BD-F009792B52B3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{284C69EF-0CB8-4E16-92BD-F009792B52B3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{62133C41-FB7A-4CD4-B8A8-D991771D4857}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{62133C41-FB7A-4CD4-B8A8-D991771D4857}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{62133C41-FB7A-4CD4-B8A8-D991771D4857}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{62133C41-FB7A-4CD4-B8A8-D991771D4857}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

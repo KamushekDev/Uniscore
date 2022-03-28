@@ -10,7 +10,11 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <PackageReference Include="CreScore.Auth.Protos" Version="2022.3.17.331-test" />
+      <ProjectReference Include="..\CreScore.Shared.Common\CreScore.Shared.Common.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <PackageReference Include="CreScore.Auth.Client" Version="2022.3.28.411-test" />
     </ItemGroup>
 
 </Project>

@@ -1,8 +1,8 @@
 ﻿namespace CreScore.Shared.Authorization;
 
-public static class AuthConstants
+public static class Schemes
 {
-    public const string CreScoreAuthScheme = "CreScoreAuth";
+    public const string CreScoreScheme = "crescore-scheme";
     
     
     internal const string AuthorizationHeaderName = "Authorization";
