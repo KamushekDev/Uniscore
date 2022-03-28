@@ -6,6 +6,7 @@
         <Nullable>enable</Nullable>
         <PackageProjectUrl>https://github.com/KamushekDev/CreScore</PackageProjectUrl>
         <RepositoryUrl>https://github.com/KamushekDev/CreScore</RepositoryUrl>
+        <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     </PropertyGroup>
 
     <ItemGroup>
