@@ -19,11 +19,12 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseRouting();
+
+app.UserCustomHealthChecks();
+
 app.UseEndpoints(endpoints =>
 {
     endpoints.MapGrpcService<AuthorizationService>();
-
-    endpoints.MapCreScoreHealthChecks();
 });
 
 app.Run();
