@@ -2,23 +2,33 @@
 using System.Threading.Tasks;
 using CreScore.Scores.Core.Exceptions;
 using CreScore.Scores.Core.Grades.Gateways;
+using CreScore.Shared.Authorization;
 using Grpc.Core;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.Extensions.Logging;
 
 namespace CreScore.Scores.Grpc;
 
 public class GradesService : GradesApi.GradesApiBase
 {
     private readonly IGradeVariantsGateway _gateway;
+    private readonly ILogger<GradesService> _logger;
 
-    public GradesService(IGradeVariantsGateway gradeVariantsGateway)
+    public GradesService(IGradeVariantsGateway gradeVariantsGateway, ILogger<GradesService> logger)
     {
         _gateway = gradeVariantsGateway;
+        _logger = logger;
     }
 
+    [Authorize(Policies.ValidUser)]
     public override async Task<AddGradeVariantResponse> AddGradeVariant(AddGradeVariantRequest request,
         ServerCallContext context)
     {
-        throw new NotImplementedException();
+        var claims = context.GetClaims();
+        _logger.LogInformation("Fake add grade was invoked with name: {Name}. User id: {UId}", request.Name, claims?.Name);
+
+        
+        return new AddGradeVariantResponse() { Id = -1 };
         
         // var ownerUser = context.GetUserToken();
         // if (ownerUser is null)
