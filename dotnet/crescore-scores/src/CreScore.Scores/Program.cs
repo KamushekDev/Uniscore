@@ -1,30 +1,17 @@
-using CreScore.Auth.Helper;
 using CreScore.Scores.Grpc;
 using CreScore.Scores.Grpc.Interceptors;
 using CreScore.Scores.Infrastructure;
+using CreScore.Shared.Authorization;
 using CreScore.Shared.Hosting;
 using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Server.Kestrel.Core;
-using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 
 var builder = WebApplication.CreateBuilder(args);
-builder.WebHost.ConfigureKestrel(options =>
-{
-    options.ListenAnyIP(80, o => o.Protocols = HttpProtocols.Http1AndHttp2);
-    options.ListenAnyIP(82, o => o.Protocols = HttpProtocols.Http2);
-    options.ListenAnyIP(84, o => o.Protocols = HttpProtocols.Http1);
-});
+builder.WebHost.ConfigureCustomKestrel(builder.Configuration);
 
 builder.Services.AddCreScoreAuth(builder.Configuration);
 
-builder.Services.AddGrpc(options =>
-{
-    options.AddCreScoreAuthInterceptors(builder.Configuration);
-    options.Interceptors.Add<ExceptionInterceptor>();
-    
-});
+builder.Services.AddCustomGrpc(options => { options.Interceptors.Add<ExceptionInterceptor>(); });
 
 builder.Services.AddInfrastructure(builder.Configuration);
 
