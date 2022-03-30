@@ -1,36 +1,32 @@
 <Project Sdk="Microsoft.NET.Sdk.Web">
 
-    <PropertyGroup>
-        <TargetFramework>net6.0</TargetFramework>
-        <Nullable>enable</Nullable>
-        <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
-    </PropertyGroup>
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
+  </PropertyGroup>
 
-    <ItemGroup>
-      <ProjectReference Include="..\CreScore.Scores.Infrastructure\CreScore.Scores.Infrastructure.csproj" />
-      <ProjectReference Include="..\CreScore.Scores.Protos\CreScore.Scores.Protos.csproj" />
-    </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\CreScore.Scores.Infrastructure\CreScore.Scores.Infrastructure.csproj" />
+    <ProjectReference Include="..\CreScore.Scores.Protos\CreScore.Scores.Protos.csproj" />
+  </ItemGroup>
 
-    <ItemGroup>
-      <Content Update="appsettings.Development.json">
-        <DependentUpon>appsettings.json</DependentUpon>
-      </Content>
-    </ItemGroup>
+  <ItemGroup>
+    <Content Update="appsettings.Development.json">
+      <DependentUpon>appsettings.json</DependentUpon>
+    </Content>
+  </ItemGroup>
 
-    <ItemGroup>
-      <Folder Include="Controllers" />
-    </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Controllers" />
+  </ItemGroup>
 
-    <ItemGroup>
-      <None Include="crescore-adminsdk.json" />
-    </ItemGroup>
-
-    <ItemGroup>
-      <PackageReference Include="Dawn.Guard" Version="1.12.0" />
-      <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="6.0.2">
-        <PrivateAssets>all</PrivateAssets>
-        <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-      </PackageReference>
-    </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Dawn.Guard" Version="1.12.0" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="6.0.2">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+  </ItemGroup>
 
 </Project>
