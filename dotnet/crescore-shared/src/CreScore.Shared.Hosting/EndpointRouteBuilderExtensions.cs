@@ -7,7 +7,8 @@ namespace CreScore.Shared.Hosting;
 
 public static class EndpointRouteBuilderExtensions
 {
-    public static void MapCreScoreHealthChecks(this IEndpointRouteBuilder endpoints)
+    [Obsolete("Если так мапить хелсчеки, то они попадают под аутентификацию, а я не хочу такое")]
+    private static void MapCreScoreHealthChecks(this IEndpointRouteBuilder endpoints)
     {
         endpoints.MapHealthChecksWithCancellationSuppression("/live", new HealthCheckOptions
         {
