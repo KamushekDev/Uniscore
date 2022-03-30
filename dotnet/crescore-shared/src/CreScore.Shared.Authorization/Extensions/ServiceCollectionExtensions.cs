@@ -2,8 +2,6 @@
 using CreScore.Auth.Client;
 using CreScore.Auth.Client.Gateway;
 using CreScore.Shared.Authorization.Handlers;
-using CreScore.Shared.Authorization.Identities;
-using CreScore.Shared.Authorization.Interceptors;
 using CreScore.Shared.Authorization.Requirements;
 using CreScore.Shared.Common;
 using Grpc.AspNetCore.Server;
