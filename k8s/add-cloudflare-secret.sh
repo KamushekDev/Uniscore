@@ -15,6 +15,6 @@ secret+=$token
 kubectl create secret generic cloudflare-api-token-secret \
 	--type=Opaque \
 	--from-literal=$secret \
-	--namespace=crescore --save-config \
+	--namespace=cert-manager --save-config \
 	--dry-run=client -o yaml |
 kubectl apply -f -
