@@ -1,0 +1,8 @@
+kind: ConfigMap
+apiVersion: v1
+metadata:
+  name: nginx-config
+  namespace: ingress-nginx
+data:
+  error-log-level: "debug"
+  backend-protocol: "HTTP"
