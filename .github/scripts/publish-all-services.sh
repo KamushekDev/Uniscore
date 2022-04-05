@@ -11,15 +11,19 @@ do
     if [[ $file =~ (.*)/([^/]+)/Dockerfile ]]; then
         name="${BASH_REMATCH[2]}"
     else
-        echo "path does not match the pattern"
+        echo "name does not match the pattern"
         continue
     fi
+
     if [[ $file =~ (.*)/Dockerfile ]]; then
         path="${BASH_REMATCH[1]}"
     else
         echo "path does not match the pattern"
         continue
     fi
+
+    ./get-git-info.sh > GIT
+    echo $(cat GIT)
 
     rep=$( echo $USERNAME | tr '[:upper:]' '[:lower:]' )
 
