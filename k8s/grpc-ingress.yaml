@@ -12,11 +12,11 @@ metadata:
 spec:
   tls:
   - hosts:
-    - "*.grpc.crescore.net"
+    - "*.uniscore.ru"
     secretName: crescore-cert-secret
     # secretName: cert-manager-webhook-ca
   rules:
-  - host: scores.grpc.crescore.net
+  - host: scores-grpc.uniscore.ru
     http:
       paths:
       - path: /
