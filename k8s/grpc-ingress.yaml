@@ -23,7 +23,7 @@ spec:
         pathType: Prefix
         backend:
           service: 
-            name: scores-service
+            name: crescore-scores-service
             port:
               # name: grpc
               number: 82
