@@ -22,7 +22,7 @@ do
         continue
     fi
 
-    source /get-git-info.sh > GIT
+    source ./get-git-info.sh > GIT
     echo $(cat GIT)
 
     rep=$( echo $USERNAME | tr '[:upper:]' '[:lower:]' )
