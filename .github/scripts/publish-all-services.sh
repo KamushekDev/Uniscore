@@ -22,7 +22,7 @@ do
         continue
     fi
 
-    ./.github/scripts/get-git-info.sh > GIT
+    cp ./GIT $("$path"+"/GIT")
     echo $(cat GIT)
 
     rep=$( echo $USERNAME | tr '[:upper:]' '[:lower:]' )
