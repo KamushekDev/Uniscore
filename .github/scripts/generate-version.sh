@@ -19,4 +19,8 @@ echo $HASH >> ./GIT
 echo "https://github.com/KamushekDev/CreScore/commit" >> ./GIT
 echo $version >> ./GIT
 
-echo $(cat ./GIT)
+n=1
+while read line; do
+echo "#$n: $line"
+n=$((n+1))
+done < ./GIT
