@@ -18,3 +18,5 @@ echo $SOURCE_NAME > ./GIT
 echo $HASH >> ./GIT
 echo "https://github.com/KamushekDev/CreScore/commit" >> ./GIT
 echo $version >> ./GIT
+
+echo $(cat ./GIT)
