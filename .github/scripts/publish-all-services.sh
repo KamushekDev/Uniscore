@@ -22,7 +22,7 @@ do
         continue
     fi
 
-    cp ./GIT $("$path"+"/GIT")
+    cp ./GIT $("$path/GIT")
     echo $(cat GIT)
 
     rep=$( echo $USERNAME | tr '[:upper:]' '[:lower:]' )
