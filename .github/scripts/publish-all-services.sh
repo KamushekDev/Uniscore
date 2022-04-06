@@ -23,7 +23,7 @@ do
     fi
 
     cp ./GIT "$path/GIT"
-    echo $(ls -a)
+    echo $(find . -type f -name "GIT")
 
     rep=$( echo $USERNAME | tr '[:upper:]' '[:lower:]' )
 
