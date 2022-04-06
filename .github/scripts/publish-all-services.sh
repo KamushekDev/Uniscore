@@ -23,7 +23,7 @@ do
     fi
 
     cp ./GIT "$path/GIT"
-    echo $(cat GIT)
+    echo $(ls -a)
 
     rep=$( echo $USERNAME | tr '[:upper:]' '[:lower:]' )
 
