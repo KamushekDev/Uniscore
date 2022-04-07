@@ -35,5 +35,5 @@ LABEL org.opencontainers.image.source="https://github.com/KamushekDev/CreScore"
 
 WORKDIR /app
 COPY --from=publish /app/publish .
-COPY --from=publish /app/GIT .
+# COPY --from=publish /app/GIT .
 ENTRYPOINT dotnet CreScore.Scores.dll
