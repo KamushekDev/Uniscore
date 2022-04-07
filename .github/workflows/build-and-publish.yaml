@@ -1,9 +1,9 @@
 name: Build and publish everything
 on:
   push:
-    branches:    
-      - 'main'
-      - 'test'
+#    branches:    
+#      - 'main'
+#      - 'test'
 jobs:
   Build-Publish:
     runs-on: ubuntu-latest
