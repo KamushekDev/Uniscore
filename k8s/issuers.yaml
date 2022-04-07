@@ -14,11 +14,11 @@ spec:
     #     ingress:
     #       class:  nginx
     - dns01:
-        cloudDNS:
-          project: creator-score
-          serviceAccountSecretRef:
-            name: clouddns-dns01-solver-svc-acct
-            key: key.json
+        cloudflare:
+          email: kamushek.stone@gmail.com
+          apiTokenSecretRef:
+            name: cloudflare-api-token-secret
+            key: api-token
 
 ---
 apiVersion: cert-manager.io/v1
@@ -34,8 +34,8 @@ spec:
       name: letsencrypt-prod
     solvers:
     - dns01:
-        cloudDNS:
-          project: creator-score
-          serviceAccountSecretRef:
-            name: clouddns-dns01-solver-svc-acct
-            key: key.json
+        cloudflare:
+          email: kamushek.stone@gmail.com
+          apiTokenSecretRef:
+            name: cloudflare-api-token-secret
+            key: api-token

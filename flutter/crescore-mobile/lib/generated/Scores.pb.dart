@@ -10,29 +10,99 @@ import 'dart:core' as $core;
 import 'package:fixnum/fixnum.dart' as $fixnum;
 import 'package:protobuf/protobuf.dart' as $pb;
 
-class Grade extends $pb.GeneratedMessage {
-  static final $pb.BuilderInfo _i = $pb.BuilderInfo(const $core.bool.fromEnvironment('protobuf.omit_message_names') ? '' : 'Grade', package: const $pb.PackageName(const $core.bool.fromEnvironment('protobuf.omit_message_names') ? '' : 'Scores.V1'), createEmptyInstance: create)
-    ..aInt64(1, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'id')
-    ..a<$core.int>(2, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'value', $pb.PbFieldType.O3)
-    ..aOS(3, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'name')
+import 'Scores.pbenum.dart';
+
+export 'Scores.pbenum.dart';
+
+class User extends $pb.GeneratedMessage {
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(const $core.bool.fromEnvironment('protobuf.omit_message_names') ? '' : 'User', package: const $pb.PackageName(const $core.bool.fromEnvironment('protobuf.omit_message_names') ? '' : 'Scores.V1'), createEmptyInstance: create)
+    ..aOS(1, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'id')
+    ..aOS(2, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'name')
     ..hasRequiredFields = false
   ;
 
-  Grade._() : super();
-  factory Grade({
-    $fixnum.Int64? id,
-    $core.int? value,
+  User._() : super();
+  factory User({
+    $core.String? id,
     $core.String? name,
   }) {
     final _result = create();
     if (id != null) {
       _result.id = id;
     }
-    if (value != null) {
-      _result.value = value;
+    if (name != null) {
+      _result.name = name;
+    }
+    return _result;
+  }
+  factory User.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
+  factory User.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
+  @$core.Deprecated(
+  'Using this can add significant overhead to your binary. '
+  'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
+  'Will be removed in next major version')
+  User clone() => User()..mergeFromMessage(this);
+  @$core.Deprecated(
+  'Using this can add significant overhead to your binary. '
+  'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
+  'Will be removed in next major version')
+  User copyWith(void Function(User) updates) => super.copyWith((message) => updates(message as User)) as User; // ignore: deprecated_member_use
+  $pb.BuilderInfo get info_ => _i;
+  @$core.pragma('dart2js:noInline')
+  static User create() => User._();
+  User createEmptyInstance() => create();
+  static $pb.PbList<User> createRepeated() => $pb.PbList<User>();
+  @$core.pragma('dart2js:noInline')
+  static User getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<User>(create);
+  static User? _defaultInstance;
+
+  @$pb.TagNumber(1)
+  $core.String get id => $_getSZ(0);
+  @$pb.TagNumber(1)
+  set id($core.String v) { $_setString(0, v); }
+  @$pb.TagNumber(1)
+  $core.bool hasId() => $_has(0);
+  @$pb.TagNumber(1)
+  void clearId() => clearField(1);
+
+  @$pb.TagNumber(2)
+  $core.String get name => $_getSZ(1);
+  @$pb.TagNumber(2)
+  set name($core.String v) { $_setString(1, v); }
+  @$pb.TagNumber(2)
+  $core.bool hasName() => $_has(1);
+  @$pb.TagNumber(2)
+  void clearName() => clearField(2);
+}
+
+class Grade extends $pb.GeneratedMessage {
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(const $core.bool.fromEnvironment('protobuf.omit_message_names') ? '' : 'Grade', package: const $pb.PackageName(const $core.bool.fromEnvironment('protobuf.omit_message_names') ? '' : 'Scores.V1'), createEmptyInstance: create)
+    ..aInt64(1, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'id')
+    ..aOS(2, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'name')
+    ..aInt64(3, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'gradeSystemId', protoName: 'gradeSystemId')
+    ..aOS(4, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'gradeSystemName', protoName: 'gradeSystemName')
+    ..hasRequiredFields = false
+  ;
+
+  Grade._() : super();
+  factory Grade({
+    $fixnum.Int64? id,
+    $core.String? name,
+    $fixnum.Int64? gradeSystemId,
+    $core.String? gradeSystemName,
+  }) {
+    final _result = create();
+    if (id != null) {
+      _result.id = id;
     }
     if (name != null) {
       _result.name = name;
+    }
+    if (gradeSystemId != null) {
+      _result.gradeSystemId = gradeSystemId;
+    }
+    if (gradeSystemName != null) {
+      _result.gradeSystemName = gradeSystemName;
     }
     return _result;
   }
@@ -67,39 +137,48 @@ class Grade extends $pb.GeneratedMessage {
   void clearId() => clearField(1);
 
   @$pb.TagNumber(2)
-  $core.int get value => $_getIZ(1);
+  $core.String get name => $_getSZ(1);
   @$pb.TagNumber(2)
-  set value($core.int v) { $_setSignedInt32(1, v); }
+  set name($core.String v) { $_setString(1, v); }
   @$pb.TagNumber(2)
-  $core.bool hasValue() => $_has(1);
+  $core.bool hasName() => $_has(1);
   @$pb.TagNumber(2)
-  void clearValue() => clearField(2);
+  void clearName() => clearField(2);
 
   @$pb.TagNumber(3)
-  $core.String get name => $_getSZ(2);
+  $fixnum.Int64 get gradeSystemId => $_getI64(2);
   @$pb.TagNumber(3)
-  set name($core.String v) { $_setString(2, v); }
+  set gradeSystemId($fixnum.Int64 v) { $_setInt64(2, v); }
   @$pb.TagNumber(3)
-  $core.bool hasName() => $_has(2);
+  $core.bool hasGradeSystemId() => $_has(2);
   @$pb.TagNumber(3)
-  void clearName() => clearField(3);
+  void clearGradeSystemId() => clearField(3);
+
+  @$pb.TagNumber(4)
+  $core.String get gradeSystemName => $_getSZ(3);
+  @$pb.TagNumber(4)
+  set gradeSystemName($core.String v) { $_setString(3, v); }
+  @$pb.TagNumber(4)
+  $core.bool hasGradeSystemName() => $_has(3);
+  @$pb.TagNumber(4)
+  void clearGradeSystemName() => clearField(4);
 }
 
-class Game extends $pb.GeneratedMessage {
-  static final $pb.BuilderInfo _i = $pb.BuilderInfo(const $core.bool.fromEnvironment('protobuf.omit_message_names') ? '' : 'Game', package: const $pb.PackageName(const $core.bool.fromEnvironment('protobuf.omit_message_names') ? '' : 'Scores.V1'), createEmptyInstance: create)
+class Content extends $pb.GeneratedMessage {
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(const $core.bool.fromEnvironment('protobuf.omit_message_names') ? '' : 'Content', package: const $pb.PackageName(const $core.bool.fromEnvironment('protobuf.omit_message_names') ? '' : 'Scores.V1'), createEmptyInstance: create)
     ..aInt64(1, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'id')
     ..aOS(2, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'name')
-    ..aOM<Grade>(3, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'score', subBuilder: Grade.create)
-    ..a<$core.double>(4, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'average', $pb.PbFieldType.OD)
+    ..e<ContentType>(3, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'type', $pb.PbFieldType.OE, defaultOrMaker: ContentType.Game, valueOf: ContentType.valueOf, enumValues: ContentType.values)
+    ..aOS(4, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'description')
     ..hasRequiredFields = false
   ;
 
-  Game._() : super();
-  factory Game({
+  Content._() : super();
+  factory Content({
     $fixnum.Int64? id,
     $core.String? name,
-    Grade? score,
-    $core.double? average,
+    ContentType? type,
+    $core.String? description,
   }) {
     final _result = create();
     if (id != null) {
@@ -108,34 +187,34 @@ class Game extends $pb.GeneratedMessage {
     if (name != null) {
       _result.name = name;
     }
-    if (score != null) {
-      _result.score = score;
+    if (type != null) {
+      _result.type = type;
     }
-    if (average != null) {
-      _result.average = average;
+    if (description != null) {
+      _result.description = description;
     }
     return _result;
   }
-  factory Game.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
-  factory Game.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
+  factory Content.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
+  factory Content.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
   @$core.Deprecated(
   'Using this can add significant overhead to your binary. '
   'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
   'Will be removed in next major version')
-  Game clone() => Game()..mergeFromMessage(this);
+  Content clone() => Content()..mergeFromMessage(this);
   @$core.Deprecated(
   'Using this can add significant overhead to your binary. '
   'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
   'Will be removed in next major version')
-  Game copyWith(void Function(Game) updates) => super.copyWith((message) => updates(message as Game)) as Game; // ignore: deprecated_member_use
+  Content copyWith(void Function(Content) updates) => super.copyWith((message) => updates(message as Content)) as Content; // ignore: deprecated_member_use
   $pb.BuilderInfo get info_ => _i;
   @$core.pragma('dart2js:noInline')
-  static Game create() => Game._();
-  Game createEmptyInstance() => create();
-  static $pb.PbList<Game> createRepeated() => $pb.PbList<Game>();
+  static Content create() => Content._();
+  Content createEmptyInstance() => create();
+  static $pb.PbList<Content> createRepeated() => $pb.PbList<Content>();
   @$core.pragma('dart2js:noInline')
-  static Game getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<Game>(create);
-  static Game? _defaultInstance;
+  static Content getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<Content>(create);
+  static Content? _defaultInstance;
 
   @$pb.TagNumber(1)
   $fixnum.Int64 get id => $_getI64(0);
@@ -156,81 +235,466 @@ class Game extends $pb.GeneratedMessage {
   void clearName() => clearField(2);
 
   @$pb.TagNumber(3)
-  Grade get score => $_getN(2);
+  ContentType get type => $_getN(2);
   @$pb.TagNumber(3)
-  set score(Grade v) { setField(3, v); }
+  set type(ContentType v) { setField(3, v); }
   @$pb.TagNumber(3)
-  $core.bool hasScore() => $_has(2);
+  $core.bool hasType() => $_has(2);
   @$pb.TagNumber(3)
-  void clearScore() => clearField(3);
-  @$pb.TagNumber(3)
-  Grade ensureScore() => $_ensure(2);
+  void clearType() => clearField(3);
 
   @$pb.TagNumber(4)
-  $core.double get average => $_getN(3);
+  $core.String get description => $_getSZ(3);
   @$pb.TagNumber(4)
-  set average($core.double v) { $_setDouble(3, v); }
+  set description($core.String v) { $_setString(3, v); }
   @$pb.TagNumber(4)
-  $core.bool hasAverage() => $_has(3);
+  $core.bool hasDescription() => $_has(3);
   @$pb.TagNumber(4)
-  void clearAverage() => clearField(4);
+  void clearDescription() => clearField(4);
 }
 
-class GetScoresRequest extends $pb.GeneratedMessage {
-  static final $pb.BuilderInfo _i = $pb.BuilderInfo(const $core.bool.fromEnvironment('protobuf.omit_message_names') ? '' : 'GetScoresRequest', package: const $pb.PackageName(const $core.bool.fromEnvironment('protobuf.omit_message_names') ? '' : 'Scores.V1'), createEmptyInstance: create)
-    ..a<$core.int>(1, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'count', $pb.PbFieldType.O3)
+class GradedContent extends $pb.GeneratedMessage {
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(const $core.bool.fromEnvironment('protobuf.omit_message_names') ? '' : 'GradedContent', package: const $pb.PackageName(const $core.bool.fromEnvironment('protobuf.omit_message_names') ? '' : 'Scores.V1'), createEmptyInstance: create)
+    ..aOM<User>(1, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'user', subBuilder: User.create)
+    ..aOM<Content>(2, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'content', subBuilder: Content.create)
+    ..pc<Grade>(3, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'grade', $pb.PbFieldType.PM, subBuilder: Grade.create)
+    ..aInt64(4, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'timestamp')
     ..hasRequiredFields = false
   ;
 
-  GetScoresRequest._() : super();
-  factory GetScoresRequest({
-    $core.int? count,
+  GradedContent._() : super();
+  factory GradedContent({
+    User? user,
+    Content? content,
+    $core.Iterable<Grade>? grade,
+    $fixnum.Int64? timestamp,
   }) {
     final _result = create();
-    if (count != null) {
-      _result.count = count;
+    if (user != null) {
+      _result.user = user;
+    }
+    if (content != null) {
+      _result.content = content;
+    }
+    if (grade != null) {
+      _result.grade.addAll(grade);
+    }
+    if (timestamp != null) {
+      _result.timestamp = timestamp;
     }
     return _result;
   }
-  factory GetScoresRequest.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
-  factory GetScoresRequest.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
+  factory GradedContent.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
+  factory GradedContent.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
   @$core.Deprecated(
   'Using this can add significant overhead to your binary. '
   'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
   'Will be removed in next major version')
-  GetScoresRequest clone() => GetScoresRequest()..mergeFromMessage(this);
+  GradedContent clone() => GradedContent()..mergeFromMessage(this);
   @$core.Deprecated(
   'Using this can add significant overhead to your binary. '
   'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
   'Will be removed in next major version')
-  GetScoresRequest copyWith(void Function(GetScoresRequest) updates) => super.copyWith((message) => updates(message as GetScoresRequest)) as GetScoresRequest; // ignore: deprecated_member_use
+  GradedContent copyWith(void Function(GradedContent) updates) => super.copyWith((message) => updates(message as GradedContent)) as GradedContent; // ignore: deprecated_member_use
   $pb.BuilderInfo get info_ => _i;
   @$core.pragma('dart2js:noInline')
-  static GetScoresRequest create() => GetScoresRequest._();
-  GetScoresRequest createEmptyInstance() => create();
-  static $pb.PbList<GetScoresRequest> createRepeated() => $pb.PbList<GetScoresRequest>();
+  static GradedContent create() => GradedContent._();
+  GradedContent createEmptyInstance() => create();
+  static $pb.PbList<GradedContent> createRepeated() => $pb.PbList<GradedContent>();
   @$core.pragma('dart2js:noInline')
-  static GetScoresRequest getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<GetScoresRequest>(create);
-  static GetScoresRequest? _defaultInstance;
+  static GradedContent getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<GradedContent>(create);
+  static GradedContent? _defaultInstance;
 
   @$pb.TagNumber(1)
-  $core.int get count => $_getIZ(0);
+  User get user => $_getN(0);
   @$pb.TagNumber(1)
-  set count($core.int v) { $_setSignedInt32(0, v); }
+  set user(User v) { setField(1, v); }
   @$pb.TagNumber(1)
-  $core.bool hasCount() => $_has(0);
+  $core.bool hasUser() => $_has(0);
   @$pb.TagNumber(1)
-  void clearCount() => clearField(1);
+  void clearUser() => clearField(1);
+  @$pb.TagNumber(1)
+  User ensureUser() => $_ensure(0);
+
+  @$pb.TagNumber(2)
+  Content get content => $_getN(1);
+  @$pb.TagNumber(2)
+  set content(Content v) { setField(2, v); }
+  @$pb.TagNumber(2)
+  $core.bool hasContent() => $_has(1);
+  @$pb.TagNumber(2)
+  void clearContent() => clearField(2);
+  @$pb.TagNumber(2)
+  Content ensureContent() => $_ensure(1);
+
+  @$pb.TagNumber(3)
+  $core.List<Grade> get grade => $_getList(2);
+
+  @$pb.TagNumber(4)
+  $fixnum.Int64 get timestamp => $_getI64(3);
+  @$pb.TagNumber(4)
+  set timestamp($fixnum.Int64 v) { $_setInt64(3, v); }
+  @$pb.TagNumber(4)
+  $core.bool hasTimestamp() => $_has(3);
+  @$pb.TagNumber(4)
+  void clearTimestamp() => clearField(4);
 }
 
-class GetScoresResponse extends $pb.GeneratedMessage {
-  static final $pb.BuilderInfo _i = $pb.BuilderInfo(const $core.bool.fromEnvironment('protobuf.omit_message_names') ? '' : 'GetScoresResponse', package: const $pb.PackageName(const $core.bool.fromEnvironment('protobuf.omit_message_names') ? '' : 'Scores.V1'), createEmptyInstance: create)
+class GetMyScoresRequest extends $pb.GeneratedMessage {
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(const $core.bool.fromEnvironment('protobuf.omit_message_names') ? '' : 'GetMyScoresRequest', package: const $pb.PackageName(const $core.bool.fromEnvironment('protobuf.omit_message_names') ? '' : 'Scores.V1'), createEmptyInstance: create)
+    ..hasRequiredFields = false
+  ;
+
+  GetMyScoresRequest._() : super();
+  factory GetMyScoresRequest() => create();
+  factory GetMyScoresRequest.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
+  factory GetMyScoresRequest.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
+  @$core.Deprecated(
+  'Using this can add significant overhead to your binary. '
+  'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
+  'Will be removed in next major version')
+  GetMyScoresRequest clone() => GetMyScoresRequest()..mergeFromMessage(this);
+  @$core.Deprecated(
+  'Using this can add significant overhead to your binary. '
+  'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
+  'Will be removed in next major version')
+  GetMyScoresRequest copyWith(void Function(GetMyScoresRequest) updates) => super.copyWith((message) => updates(message as GetMyScoresRequest)) as GetMyScoresRequest; // ignore: deprecated_member_use
+  $pb.BuilderInfo get info_ => _i;
+  @$core.pragma('dart2js:noInline')
+  static GetMyScoresRequest create() => GetMyScoresRequest._();
+  GetMyScoresRequest createEmptyInstance() => create();
+  static $pb.PbList<GetMyScoresRequest> createRepeated() => $pb.PbList<GetMyScoresRequest>();
+  @$core.pragma('dart2js:noInline')
+  static GetMyScoresRequest getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<GetMyScoresRequest>(create);
+  static GetMyScoresRequest? _defaultInstance;
+}
+
+class GetMyScoresResponse extends $pb.GeneratedMessage {
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(const $core.bool.fromEnvironment('protobuf.omit_message_names') ? '' : 'GetMyScoresResponse', package: const $pb.PackageName(const $core.bool.fromEnvironment('protobuf.omit_message_names') ? '' : 'Scores.V1'), createEmptyInstance: create)
+    ..pc<GradedContent>(1, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'gradedContentList', $pb.PbFieldType.PM, protoName: 'gradedContentList', subBuilder: GradedContent.create)
+    ..hasRequiredFields = false
+  ;
+
+  GetMyScoresResponse._() : super();
+  factory GetMyScoresResponse({
+    $core.Iterable<GradedContent>? gradedContentList,
+  }) {
+    final _result = create();
+    if (gradedContentList != null) {
+      _result.gradedContentList.addAll(gradedContentList);
+    }
+    return _result;
+  }
+  factory GetMyScoresResponse.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
+  factory GetMyScoresResponse.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
+  @$core.Deprecated(
+  'Using this can add significant overhead to your binary. '
+  'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
+  'Will be removed in next major version')
+  GetMyScoresResponse clone() => GetMyScoresResponse()..mergeFromMessage(this);
+  @$core.Deprecated(
+  'Using this can add significant overhead to your binary. '
+  'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
+  'Will be removed in next major version')
+  GetMyScoresResponse copyWith(void Function(GetMyScoresResponse) updates) => super.copyWith((message) => updates(message as GetMyScoresResponse)) as GetMyScoresResponse; // ignore: deprecated_member_use
+  $pb.BuilderInfo get info_ => _i;
+  @$core.pragma('dart2js:noInline')
+  static GetMyScoresResponse create() => GetMyScoresResponse._();
+  GetMyScoresResponse createEmptyInstance() => create();
+  static $pb.PbList<GetMyScoresResponse> createRepeated() => $pb.PbList<GetMyScoresResponse>();
+  @$core.pragma('dart2js:noInline')
+  static GetMyScoresResponse getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<GetMyScoresResponse>(create);
+  static GetMyScoresResponse? _defaultInstance;
+
+  @$pb.TagNumber(1)
+  $core.List<GradedContent> get gradedContentList => $_getList(0);
+}
+
+class GetHomeContentRequest extends $pb.GeneratedMessage {
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(const $core.bool.fromEnvironment('protobuf.omit_message_names') ? '' : 'GetHomeContentRequest', package: const $pb.PackageName(const $core.bool.fromEnvironment('protobuf.omit_message_names') ? '' : 'Scores.V1'), createEmptyInstance: create)
+    ..hasRequiredFields = false
+  ;
+
+  GetHomeContentRequest._() : super();
+  factory GetHomeContentRequest() => create();
+  factory GetHomeContentRequest.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
+  factory GetHomeContentRequest.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
+  @$core.Deprecated(
+  'Using this can add significant overhead to your binary. '
+  'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
+  'Will be removed in next major version')
+  GetHomeContentRequest clone() => GetHomeContentRequest()..mergeFromMessage(this);
+  @$core.Deprecated(
+  'Using this can add significant overhead to your binary. '
+  'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
+  'Will be removed in next major version')
+  GetHomeContentRequest copyWith(void Function(GetHomeContentRequest) updates) => super.copyWith((message) => updates(message as GetHomeContentRequest)) as GetHomeContentRequest; // ignore: deprecated_member_use
+  $pb.BuilderInfo get info_ => _i;
+  @$core.pragma('dart2js:noInline')
+  static GetHomeContentRequest create() => GetHomeContentRequest._();
+  GetHomeContentRequest createEmptyInstance() => create();
+  static $pb.PbList<GetHomeContentRequest> createRepeated() => $pb.PbList<GetHomeContentRequest>();
+  @$core.pragma('dart2js:noInline')
+  static GetHomeContentRequest getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<GetHomeContentRequest>(create);
+  static GetHomeContentRequest? _defaultInstance;
+}
+
+class GetHomeContentResponse extends $pb.GeneratedMessage {
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(const $core.bool.fromEnvironment('protobuf.omit_message_names') ? '' : 'GetHomeContentResponse', package: const $pb.PackageName(const $core.bool.fromEnvironment('protobuf.omit_message_names') ? '' : 'Scores.V1'), createEmptyInstance: create)
+    ..pc<GradedContent>(1, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'gradedContentList', $pb.PbFieldType.PM, protoName: 'gradedContentList', subBuilder: GradedContent.create)
+    ..hasRequiredFields = false
+  ;
+
+  GetHomeContentResponse._() : super();
+  factory GetHomeContentResponse({
+    $core.Iterable<GradedContent>? gradedContentList,
+  }) {
+    final _result = create();
+    if (gradedContentList != null) {
+      _result.gradedContentList.addAll(gradedContentList);
+    }
+    return _result;
+  }
+  factory GetHomeContentResponse.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
+  factory GetHomeContentResponse.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
+  @$core.Deprecated(
+  'Using this can add significant overhead to your binary. '
+  'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
+  'Will be removed in next major version')
+  GetHomeContentResponse clone() => GetHomeContentResponse()..mergeFromMessage(this);
+  @$core.Deprecated(
+  'Using this can add significant overhead to your binary. '
+  'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
+  'Will be removed in next major version')
+  GetHomeContentResponse copyWith(void Function(GetHomeContentResponse) updates) => super.copyWith((message) => updates(message as GetHomeContentResponse)) as GetHomeContentResponse; // ignore: deprecated_member_use
+  $pb.BuilderInfo get info_ => _i;
+  @$core.pragma('dart2js:noInline')
+  static GetHomeContentResponse create() => GetHomeContentResponse._();
+  GetHomeContentResponse createEmptyInstance() => create();
+  static $pb.PbList<GetHomeContentResponse> createRepeated() => $pb.PbList<GetHomeContentResponse>();
+  @$core.pragma('dart2js:noInline')
+  static GetHomeContentResponse getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<GetHomeContentResponse>(create);
+  static GetHomeContentResponse? _defaultInstance;
+
+  @$pb.TagNumber(1)
+  $core.List<GradedContent> get gradedContentList => $_getList(0);
+}
+
+class GetContentRequest extends $pb.GeneratedMessage {
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(const $core.bool.fromEnvironment('protobuf.omit_message_names') ? '' : 'GetContentRequest', package: const $pb.PackageName(const $core.bool.fromEnvironment('protobuf.omit_message_names') ? '' : 'Scores.V1'), createEmptyInstance: create)
+    ..hasRequiredFields = false
+  ;
+
+  GetContentRequest._() : super();
+  factory GetContentRequest() => create();
+  factory GetContentRequest.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
+  factory GetContentRequest.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
+  @$core.Deprecated(
+  'Using this can add significant overhead to your binary. '
+  'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
+  'Will be removed in next major version')
+  GetContentRequest clone() => GetContentRequest()..mergeFromMessage(this);
+  @$core.Deprecated(
+  'Using this can add significant overhead to your binary. '
+  'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
+  'Will be removed in next major version')
+  GetContentRequest copyWith(void Function(GetContentRequest) updates) => super.copyWith((message) => updates(message as GetContentRequest)) as GetContentRequest; // ignore: deprecated_member_use
+  $pb.BuilderInfo get info_ => _i;
+  @$core.pragma('dart2js:noInline')
+  static GetContentRequest create() => GetContentRequest._();
+  GetContentRequest createEmptyInstance() => create();
+  static $pb.PbList<GetContentRequest> createRepeated() => $pb.PbList<GetContentRequest>();
+  @$core.pragma('dart2js:noInline')
+  static GetContentRequest getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<GetContentRequest>(create);
+  static GetContentRequest? _defaultInstance;
+}
+
+class GetContentResponse extends $pb.GeneratedMessage {
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(const $core.bool.fromEnvironment('protobuf.omit_message_names') ? '' : 'GetContentResponse', package: const $pb.PackageName(const $core.bool.fromEnvironment('protobuf.omit_message_names') ? '' : 'Scores.V1'), createEmptyInstance: create)
+    ..pc<Content>(1, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'contentList', $pb.PbFieldType.PM, protoName: 'contentList', subBuilder: Content.create)
+    ..hasRequiredFields = false
+  ;
+
+  GetContentResponse._() : super();
+  factory GetContentResponse({
+    $core.Iterable<Content>? contentList,
+  }) {
+    final _result = create();
+    if (contentList != null) {
+      _result.contentList.addAll(contentList);
+    }
+    return _result;
+  }
+  factory GetContentResponse.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
+  factory GetContentResponse.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
+  @$core.Deprecated(
+  'Using this can add significant overhead to your binary. '
+  'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
+  'Will be removed in next major version')
+  GetContentResponse clone() => GetContentResponse()..mergeFromMessage(this);
+  @$core.Deprecated(
+  'Using this can add significant overhead to your binary. '
+  'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
+  'Will be removed in next major version')
+  GetContentResponse copyWith(void Function(GetContentResponse) updates) => super.copyWith((message) => updates(message as GetContentResponse)) as GetContentResponse; // ignore: deprecated_member_use
+  $pb.BuilderInfo get info_ => _i;
+  @$core.pragma('dart2js:noInline')
+  static GetContentResponse create() => GetContentResponse._();
+  GetContentResponse createEmptyInstance() => create();
+  static $pb.PbList<GetContentResponse> createRepeated() => $pb.PbList<GetContentResponse>();
+  @$core.pragma('dart2js:noInline')
+  static GetContentResponse getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<GetContentResponse>(create);
+  static GetContentResponse? _defaultInstance;
+
+  @$pb.TagNumber(1)
+  $core.List<Content> get contentList => $_getList(0);
+}
+
+class AddScoreRequest extends $pb.GeneratedMessage {
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(const $core.bool.fromEnvironment('protobuf.omit_message_names') ? '' : 'AddScoreRequest', package: const $pb.PackageName(const $core.bool.fromEnvironment('protobuf.omit_message_names') ? '' : 'Scores.V1'), createEmptyInstance: create)
+    ..aInt64(1, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'contentId', protoName: 'contentId')
+    ..aInt64(2, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'gradeId', protoName: 'gradeId')
+    ..hasRequiredFields = false
+  ;
+
+  AddScoreRequest._() : super();
+  factory AddScoreRequest({
+    $fixnum.Int64? contentId,
+    $fixnum.Int64? gradeId,
+  }) {
+    final _result = create();
+    if (contentId != null) {
+      _result.contentId = contentId;
+    }
+    if (gradeId != null) {
+      _result.gradeId = gradeId;
+    }
+    return _result;
+  }
+  factory AddScoreRequest.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
+  factory AddScoreRequest.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
+  @$core.Deprecated(
+  'Using this can add significant overhead to your binary. '
+  'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
+  'Will be removed in next major version')
+  AddScoreRequest clone() => AddScoreRequest()..mergeFromMessage(this);
+  @$core.Deprecated(
+  'Using this can add significant overhead to your binary. '
+  'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
+  'Will be removed in next major version')
+  AddScoreRequest copyWith(void Function(AddScoreRequest) updates) => super.copyWith((message) => updates(message as AddScoreRequest)) as AddScoreRequest; // ignore: deprecated_member_use
+  $pb.BuilderInfo get info_ => _i;
+  @$core.pragma('dart2js:noInline')
+  static AddScoreRequest create() => AddScoreRequest._();
+  AddScoreRequest createEmptyInstance() => create();
+  static $pb.PbList<AddScoreRequest> createRepeated() => $pb.PbList<AddScoreRequest>();
+  @$core.pragma('dart2js:noInline')
+  static AddScoreRequest getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<AddScoreRequest>(create);
+  static AddScoreRequest? _defaultInstance;
+
+  @$pb.TagNumber(1)
+  $fixnum.Int64 get contentId => $_getI64(0);
+  @$pb.TagNumber(1)
+  set contentId($fixnum.Int64 v) { $_setInt64(0, v); }
+  @$pb.TagNumber(1)
+  $core.bool hasContentId() => $_has(0);
+  @$pb.TagNumber(1)
+  void clearContentId() => clearField(1);
+
+  @$pb.TagNumber(2)
+  $fixnum.Int64 get gradeId => $_getI64(1);
+  @$pb.TagNumber(2)
+  set gradeId($fixnum.Int64 v) { $_setInt64(1, v); }
+  @$pb.TagNumber(2)
+  $core.bool hasGradeId() => $_has(1);
+  @$pb.TagNumber(2)
+  void clearGradeId() => clearField(2);
+}
+
+class AddScoreResponse extends $pb.GeneratedMessage {
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(const $core.bool.fromEnvironment('protobuf.omit_message_names') ? '' : 'AddScoreResponse', package: const $pb.PackageName(const $core.bool.fromEnvironment('protobuf.omit_message_names') ? '' : 'Scores.V1'), createEmptyInstance: create)
+    ..aOB(1, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'success')
+    ..hasRequiredFields = false
+  ;
+
+  AddScoreResponse._() : super();
+  factory AddScoreResponse({
+    $core.bool? success,
+  }) {
+    final _result = create();
+    if (success != null) {
+      _result.success = success;
+    }
+    return _result;
+  }
+  factory AddScoreResponse.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
+  factory AddScoreResponse.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
+  @$core.Deprecated(
+  'Using this can add significant overhead to your binary. '
+  'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
+  'Will be removed in next major version')
+  AddScoreResponse clone() => AddScoreResponse()..mergeFromMessage(this);
+  @$core.Deprecated(
+  'Using this can add significant overhead to your binary. '
+  'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
+  'Will be removed in next major version')
+  AddScoreResponse copyWith(void Function(AddScoreResponse) updates) => super.copyWith((message) => updates(message as AddScoreResponse)) as AddScoreResponse; // ignore: deprecated_member_use
+  $pb.BuilderInfo get info_ => _i;
+  @$core.pragma('dart2js:noInline')
+  static AddScoreResponse create() => AddScoreResponse._();
+  AddScoreResponse createEmptyInstance() => create();
+  static $pb.PbList<AddScoreResponse> createRepeated() => $pb.PbList<AddScoreResponse>();
+  @$core.pragma('dart2js:noInline')
+  static AddScoreResponse getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<AddScoreResponse>(create);
+  static AddScoreResponse? _defaultInstance;
+
+  @$pb.TagNumber(1)
+  $core.bool get success => $_getBF(0);
+  @$pb.TagNumber(1)
+  set success($core.bool v) { $_setBool(0, v); }
+  @$pb.TagNumber(1)
+  $core.bool hasSuccess() => $_has(0);
+  @$pb.TagNumber(1)
+  void clearSuccess() => clearField(1);
+}
+
+class GetGradesRequest extends $pb.GeneratedMessage {
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(const $core.bool.fromEnvironment('protobuf.omit_message_names') ? '' : 'GetGradesRequest', package: const $pb.PackageName(const $core.bool.fromEnvironment('protobuf.omit_message_names') ? '' : 'Scores.V1'), createEmptyInstance: create)
+    ..hasRequiredFields = false
+  ;
+
+  GetGradesRequest._() : super();
+  factory GetGradesRequest() => create();
+  factory GetGradesRequest.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
+  factory GetGradesRequest.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
+  @$core.Deprecated(
+  'Using this can add significant overhead to your binary. '
+  'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
+  'Will be removed in next major version')
+  GetGradesRequest clone() => GetGradesRequest()..mergeFromMessage(this);
+  @$core.Deprecated(
+  'Using this can add significant overhead to your binary. '
+  'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
+  'Will be removed in next major version')
+  GetGradesRequest copyWith(void Function(GetGradesRequest) updates) => super.copyWith((message) => updates(message as GetGradesRequest)) as GetGradesRequest; // ignore: deprecated_member_use
+  $pb.BuilderInfo get info_ => _i;
+  @$core.pragma('dart2js:noInline')
+  static GetGradesRequest create() => GetGradesRequest._();
+  GetGradesRequest createEmptyInstance() => create();
+  static $pb.PbList<GetGradesRequest> createRepeated() => $pb.PbList<GetGradesRequest>();
+  @$core.pragma('dart2js:noInline')
+  static GetGradesRequest getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<GetGradesRequest>(create);
+  static GetGradesRequest? _defaultInstance;
+}
+
+class GetGradesResponse extends $pb.GeneratedMessage {
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(const $core.bool.fromEnvironment('protobuf.omit_message_names') ? '' : 'GetGradesResponse', package: const $pb.PackageName(const $core.bool.fromEnvironment('protobuf.omit_message_names') ? '' : 'Scores.V1'), createEmptyInstance: create)
     ..pc<Grade>(1, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'grades', $pb.PbFieldType.PM, subBuilder: Grade.create)
     ..hasRequiredFields = false
   ;
 
-  GetScoresResponse._() : super();
-  factory GetScoresResponse({
+  GetGradesResponse._() : super();
+  factory GetGradesResponse({
     $core.Iterable<Grade>? grades,
   }) {
     final _result = create();
@@ -239,116 +703,293 @@ class GetScoresResponse extends $pb.GeneratedMessage {
     }
     return _result;
   }
-  factory GetScoresResponse.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
-  factory GetScoresResponse.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
+  factory GetGradesResponse.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
+  factory GetGradesResponse.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
   @$core.Deprecated(
   'Using this can add significant overhead to your binary. '
   'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
   'Will be removed in next major version')
-  GetScoresResponse clone() => GetScoresResponse()..mergeFromMessage(this);
+  GetGradesResponse clone() => GetGradesResponse()..mergeFromMessage(this);
   @$core.Deprecated(
   'Using this can add significant overhead to your binary. '
   'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
   'Will be removed in next major version')
-  GetScoresResponse copyWith(void Function(GetScoresResponse) updates) => super.copyWith((message) => updates(message as GetScoresResponse)) as GetScoresResponse; // ignore: deprecated_member_use
+  GetGradesResponse copyWith(void Function(GetGradesResponse) updates) => super.copyWith((message) => updates(message as GetGradesResponse)) as GetGradesResponse; // ignore: deprecated_member_use
   $pb.BuilderInfo get info_ => _i;
   @$core.pragma('dart2js:noInline')
-  static GetScoresResponse create() => GetScoresResponse._();
-  GetScoresResponse createEmptyInstance() => create();
-  static $pb.PbList<GetScoresResponse> createRepeated() => $pb.PbList<GetScoresResponse>();
+  static GetGradesResponse create() => GetGradesResponse._();
+  GetGradesResponse createEmptyInstance() => create();
+  static $pb.PbList<GetGradesResponse> createRepeated() => $pb.PbList<GetGradesResponse>();
   @$core.pragma('dart2js:noInline')
-  static GetScoresResponse getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<GetScoresResponse>(create);
-  static GetScoresResponse? _defaultInstance;
+  static GetGradesResponse getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<GetGradesResponse>(create);
+  static GetGradesResponse? _defaultInstance;
 
   @$pb.TagNumber(1)
   $core.List<Grade> get grades => $_getList(0);
 }
 
-class GetGamesRequest extends $pb.GeneratedMessage {
-  static final $pb.BuilderInfo _i = $pb.BuilderInfo(const $core.bool.fromEnvironment('protobuf.omit_message_names') ? '' : 'GetGamesRequest', package: const $pb.PackageName(const $core.bool.fromEnvironment('protobuf.omit_message_names') ? '' : 'Scores.V1'), createEmptyInstance: create)
-    ..a<$core.int>(1, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'count', $pb.PbFieldType.O3)
+class LoginEchoRequest extends $pb.GeneratedMessage {
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(const $core.bool.fromEnvironment('protobuf.omit_message_names') ? '' : 'LoginEchoRequest', package: const $pb.PackageName(const $core.bool.fromEnvironment('protobuf.omit_message_names') ? '' : 'Scores.V1'), createEmptyInstance: create)
     ..hasRequiredFields = false
   ;
 
-  GetGamesRequest._() : super();
-  factory GetGamesRequest({
-    $core.int? count,
-  }) {
-    final _result = create();
-    if (count != null) {
-      _result.count = count;
-    }
-    return _result;
-  }
-  factory GetGamesRequest.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
-  factory GetGamesRequest.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
+  LoginEchoRequest._() : super();
+  factory LoginEchoRequest() => create();
+  factory LoginEchoRequest.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
+  factory LoginEchoRequest.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
   @$core.Deprecated(
   'Using this can add significant overhead to your binary. '
   'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
   'Will be removed in next major version')
-  GetGamesRequest clone() => GetGamesRequest()..mergeFromMessage(this);
+  LoginEchoRequest clone() => LoginEchoRequest()..mergeFromMessage(this);
   @$core.Deprecated(
   'Using this can add significant overhead to your binary. '
   'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
   'Will be removed in next major version')
-  GetGamesRequest copyWith(void Function(GetGamesRequest) updates) => super.copyWith((message) => updates(message as GetGamesRequest)) as GetGamesRequest; // ignore: deprecated_member_use
+  LoginEchoRequest copyWith(void Function(LoginEchoRequest) updates) => super.copyWith((message) => updates(message as LoginEchoRequest)) as LoginEchoRequest; // ignore: deprecated_member_use
   $pb.BuilderInfo get info_ => _i;
   @$core.pragma('dart2js:noInline')
-  static GetGamesRequest create() => GetGamesRequest._();
-  GetGamesRequest createEmptyInstance() => create();
-  static $pb.PbList<GetGamesRequest> createRepeated() => $pb.PbList<GetGamesRequest>();
+  static LoginEchoRequest create() => LoginEchoRequest._();
+  LoginEchoRequest createEmptyInstance() => create();
+  static $pb.PbList<LoginEchoRequest> createRepeated() => $pb.PbList<LoginEchoRequest>();
   @$core.pragma('dart2js:noInline')
-  static GetGamesRequest getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<GetGamesRequest>(create);
-  static GetGamesRequest? _defaultInstance;
-
-  @$pb.TagNumber(1)
-  $core.int get count => $_getIZ(0);
-  @$pb.TagNumber(1)
-  set count($core.int v) { $_setSignedInt32(0, v); }
-  @$pb.TagNumber(1)
-  $core.bool hasCount() => $_has(0);
-  @$pb.TagNumber(1)
-  void clearCount() => clearField(1);
+  static LoginEchoRequest getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<LoginEchoRequest>(create);
+  static LoginEchoRequest? _defaultInstance;
 }
 
-class GetGamesResponse extends $pb.GeneratedMessage {
-  static final $pb.BuilderInfo _i = $pb.BuilderInfo(const $core.bool.fromEnvironment('protobuf.omit_message_names') ? '' : 'GetGamesResponse', package: const $pb.PackageName(const $core.bool.fromEnvironment('protobuf.omit_message_names') ? '' : 'Scores.V1'), createEmptyInstance: create)
-    ..pc<Game>(1, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'games', $pb.PbFieldType.PM, subBuilder: Game.create)
+class LoginEchoResponse extends $pb.GeneratedMessage {
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(const $core.bool.fromEnvironment('protobuf.omit_message_names') ? '' : 'LoginEchoResponse', package: const $pb.PackageName(const $core.bool.fromEnvironment('protobuf.omit_message_names') ? '' : 'Scores.V1'), createEmptyInstance: create)
     ..hasRequiredFields = false
   ;
 
-  GetGamesResponse._() : super();
-  factory GetGamesResponse({
-    $core.Iterable<Game>? games,
-  }) {
-    final _result = create();
-    if (games != null) {
-      _result.games.addAll(games);
-    }
-    return _result;
-  }
-  factory GetGamesResponse.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
-  factory GetGamesResponse.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
+  LoginEchoResponse._() : super();
+  factory LoginEchoResponse() => create();
+  factory LoginEchoResponse.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
+  factory LoginEchoResponse.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
   @$core.Deprecated(
   'Using this can add significant overhead to your binary. '
   'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
   'Will be removed in next major version')
-  GetGamesResponse clone() => GetGamesResponse()..mergeFromMessage(this);
+  LoginEchoResponse clone() => LoginEchoResponse()..mergeFromMessage(this);
   @$core.Deprecated(
   'Using this can add significant overhead to your binary. '
   'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
   'Will be removed in next major version')
-  GetGamesResponse copyWith(void Function(GetGamesResponse) updates) => super.copyWith((message) => updates(message as GetGamesResponse)) as GetGamesResponse; // ignore: deprecated_member_use
+  LoginEchoResponse copyWith(void Function(LoginEchoResponse) updates) => super.copyWith((message) => updates(message as LoginEchoResponse)) as LoginEchoResponse; // ignore: deprecated_member_use
   $pb.BuilderInfo get info_ => _i;
   @$core.pragma('dart2js:noInline')
-  static GetGamesResponse create() => GetGamesResponse._();
-  GetGamesResponse createEmptyInstance() => create();
-  static $pb.PbList<GetGamesResponse> createRepeated() => $pb.PbList<GetGamesResponse>();
+  static LoginEchoResponse create() => LoginEchoResponse._();
+  LoginEchoResponse createEmptyInstance() => create();
+  static $pb.PbList<LoginEchoResponse> createRepeated() => $pb.PbList<LoginEchoResponse>();
   @$core.pragma('dart2js:noInline')
-  static GetGamesResponse getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<GetGamesResponse>(create);
-  static GetGamesResponse? _defaultInstance;
+  static LoginEchoResponse getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<LoginEchoResponse>(create);
+  static LoginEchoResponse? _defaultInstance;
+}
+
+class GetProfileRequest extends $pb.GeneratedMessage {
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(const $core.bool.fromEnvironment('protobuf.omit_message_names') ? '' : 'GetProfileRequest', package: const $pb.PackageName(const $core.bool.fromEnvironment('protobuf.omit_message_names') ? '' : 'Scores.V1'), createEmptyInstance: create)
+    ..hasRequiredFields = false
+  ;
+
+  GetProfileRequest._() : super();
+  factory GetProfileRequest() => create();
+  factory GetProfileRequest.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
+  factory GetProfileRequest.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
+  @$core.Deprecated(
+  'Using this can add significant overhead to your binary. '
+  'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
+  'Will be removed in next major version')
+  GetProfileRequest clone() => GetProfileRequest()..mergeFromMessage(this);
+  @$core.Deprecated(
+  'Using this can add significant overhead to your binary. '
+  'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
+  'Will be removed in next major version')
+  GetProfileRequest copyWith(void Function(GetProfileRequest) updates) => super.copyWith((message) => updates(message as GetProfileRequest)) as GetProfileRequest; // ignore: deprecated_member_use
+  $pb.BuilderInfo get info_ => _i;
+  @$core.pragma('dart2js:noInline')
+  static GetProfileRequest create() => GetProfileRequest._();
+  GetProfileRequest createEmptyInstance() => create();
+  static $pb.PbList<GetProfileRequest> createRepeated() => $pb.PbList<GetProfileRequest>();
+  @$core.pragma('dart2js:noInline')
+  static GetProfileRequest getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<GetProfileRequest>(create);
+  static GetProfileRequest? _defaultInstance;
+}
+
+class GradeSystem extends $pb.GeneratedMessage {
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(const $core.bool.fromEnvironment('protobuf.omit_message_names') ? '' : 'GradeSystem', package: const $pb.PackageName(const $core.bool.fromEnvironment('protobuf.omit_message_names') ? '' : 'Scores.V1'), createEmptyInstance: create)
+    ..aInt64(1, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'id')
+    ..aOM<User>(2, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'user', subBuilder: User.create)
+    ..pc<Grade>(3, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'grades', $pb.PbFieldType.PM, subBuilder: Grade.create)
+    ..hasRequiredFields = false
+  ;
+
+  GradeSystem._() : super();
+  factory GradeSystem({
+    $fixnum.Int64? id,
+    User? user,
+    $core.Iterable<Grade>? grades,
+  }) {
+    final _result = create();
+    if (id != null) {
+      _result.id = id;
+    }
+    if (user != null) {
+      _result.user = user;
+    }
+    if (grades != null) {
+      _result.grades.addAll(grades);
+    }
+    return _result;
+  }
+  factory GradeSystem.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
+  factory GradeSystem.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
+  @$core.Deprecated(
+  'Using this can add significant overhead to your binary. '
+  'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
+  'Will be removed in next major version')
+  GradeSystem clone() => GradeSystem()..mergeFromMessage(this);
+  @$core.Deprecated(
+  'Using this can add significant overhead to your binary. '
+  'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
+  'Will be removed in next major version')
+  GradeSystem copyWith(void Function(GradeSystem) updates) => super.copyWith((message) => updates(message as GradeSystem)) as GradeSystem; // ignore: deprecated_member_use
+  $pb.BuilderInfo get info_ => _i;
+  @$core.pragma('dart2js:noInline')
+  static GradeSystem create() => GradeSystem._();
+  GradeSystem createEmptyInstance() => create();
+  static $pb.PbList<GradeSystem> createRepeated() => $pb.PbList<GradeSystem>();
+  @$core.pragma('dart2js:noInline')
+  static GradeSystem getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<GradeSystem>(create);
+  static GradeSystem? _defaultInstance;
 
   @$pb.TagNumber(1)
-  $core.List<Game> get games => $_getList(0);
+  $fixnum.Int64 get id => $_getI64(0);
+  @$pb.TagNumber(1)
+  set id($fixnum.Int64 v) { $_setInt64(0, v); }
+  @$pb.TagNumber(1)
+  $core.bool hasId() => $_has(0);
+  @$pb.TagNumber(1)
+  void clearId() => clearField(1);
+
+  @$pb.TagNumber(2)
+  User get user => $_getN(1);
+  @$pb.TagNumber(2)
+  set user(User v) { setField(2, v); }
+  @$pb.TagNumber(2)
+  $core.bool hasUser() => $_has(1);
+  @$pb.TagNumber(2)
+  void clearUser() => clearField(2);
+  @$pb.TagNumber(2)
+  User ensureUser() => $_ensure(1);
+
+  @$pb.TagNumber(3)
+  $core.List<Grade> get grades => $_getList(2);
+}
+
+class GetProfileResponse extends $pb.GeneratedMessage {
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(const $core.bool.fromEnvironment('protobuf.omit_message_names') ? '' : 'GetProfileResponse', package: const $pb.PackageName(const $core.bool.fromEnvironment('protobuf.omit_message_names') ? '' : 'Scores.V1'), createEmptyInstance: create)
+    ..aOM<User>(1, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'user', subBuilder: User.create)
+    ..a<$core.int>(2, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'subscribersCount', $pb.PbFieldType.O3, protoName: 'subscribersCount')
+    ..a<$core.int>(3, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'subscriptionsCount', $pb.PbFieldType.O3, protoName: 'subscriptionsCount')
+    ..aOS(4, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'info')
+    ..pc<GradedContent>(5, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'userGrades', $pb.PbFieldType.PM, protoName: 'userGrades', subBuilder: GradedContent.create)
+    ..pc<GradeSystem>(6, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'gradeSystem', $pb.PbFieldType.PM, protoName: 'gradeSystem', subBuilder: GradeSystem.create)
+    ..hasRequiredFields = false
+  ;
+
+  GetProfileResponse._() : super();
+  factory GetProfileResponse({
+    User? user,
+    $core.int? subscribersCount,
+    $core.int? subscriptionsCount,
+    $core.String? info,
+    $core.Iterable<GradedContent>? userGrades,
+    $core.Iterable<GradeSystem>? gradeSystem,
+  }) {
+    final _result = create();
+    if (user != null) {
+      _result.user = user;
+    }
+    if (subscribersCount != null) {
+      _result.subscribersCount = subscribersCount;
+    }
+    if (subscriptionsCount != null) {
+      _result.subscriptionsCount = subscriptionsCount;
+    }
+    if (info != null) {
+      _result.info = info;
+    }
+    if (userGrades != null) {
+      _result.userGrades.addAll(userGrades);
+    }
+    if (gradeSystem != null) {
+      _result.gradeSystem.addAll(gradeSystem);
+    }
+    return _result;
+  }
+  factory GetProfileResponse.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
+  factory GetProfileResponse.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
+  @$core.Deprecated(
+  'Using this can add significant overhead to your binary. '
+  'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
+  'Will be removed in next major version')
+  GetProfileResponse clone() => GetProfileResponse()..mergeFromMessage(this);
+  @$core.Deprecated(
+  'Using this can add significant overhead to your binary. '
+  'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
+  'Will be removed in next major version')
+  GetProfileResponse copyWith(void Function(GetProfileResponse) updates) => super.copyWith((message) => updates(message as GetProfileResponse)) as GetProfileResponse; // ignore: deprecated_member_use
+  $pb.BuilderInfo get info_ => _i;
+  @$core.pragma('dart2js:noInline')
+  static GetProfileResponse create() => GetProfileResponse._();
+  GetProfileResponse createEmptyInstance() => create();
+  static $pb.PbList<GetProfileResponse> createRepeated() => $pb.PbList<GetProfileResponse>();
+  @$core.pragma('dart2js:noInline')
+  static GetProfileResponse getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<GetProfileResponse>(create);
+  static GetProfileResponse? _defaultInstance;
+
+  @$pb.TagNumber(1)
+  User get user => $_getN(0);
+  @$pb.TagNumber(1)
+  set user(User v) { setField(1, v); }
+  @$pb.TagNumber(1)
+  $core.bool hasUser() => $_has(0);
+  @$pb.TagNumber(1)
+  void clearUser() => clearField(1);
+  @$pb.TagNumber(1)
+  User ensureUser() => $_ensure(0);
+
+  @$pb.TagNumber(2)
+  $core.int get subscribersCount => $_getIZ(1);
+  @$pb.TagNumber(2)
+  set subscribersCount($core.int v) { $_setSignedInt32(1, v); }
+  @$pb.TagNumber(2)
+  $core.bool hasSubscribersCount() => $_has(1);
+  @$pb.TagNumber(2)
+  void clearSubscribersCount() => clearField(2);
+
+  @$pb.TagNumber(3)
+  $core.int get subscriptionsCount => $_getIZ(2);
+  @$pb.TagNumber(3)
+  set subscriptionsCount($core.int v) { $_setSignedInt32(2, v); }
+  @$pb.TagNumber(3)
+  $core.bool hasSubscriptionsCount() => $_has(2);
+  @$pb.TagNumber(3)
+  void clearSubscriptionsCount() => clearField(3);
+
+  @$pb.TagNumber(4)
+  $core.String get info => $_getSZ(3);
+  @$pb.TagNumber(4)
+  set info($core.String v) { $_setString(3, v); }
+  @$pb.TagNumber(4)
+  $core.bool hasInfo() => $_has(3);
+  @$pb.TagNumber(4)
+  void clearInfo() => clearField(4);
+
+  @$pb.TagNumber(5)
+  $core.List<GradedContent> get userGrades => $_getList(4);
+
+  @$pb.TagNumber(6)
+  $core.List<GradeSystem> get gradeSystem => $_getList(5);
 }
 

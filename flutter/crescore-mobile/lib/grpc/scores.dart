@@ -3,25 +3,24 @@ import 'package:grpc/grpc.dart';
 import 'package:crescore/generated/Scores.pbgrpc.dart';
 
 class ScoresClient {
-  late final ClientChannel channel;
   late final ScoresServiceClient stub;
 
-  ScoresClient() {
-    channel = ClientChannel(
+  ScoresClient({List<ClientInterceptor> interceptors = const []}) {
+    final ClientChannel channelRelease = ClientChannel(
       'scores.grpc.crescore.net',
       port: 443,
       options: const ChannelOptions(credentials: ChannelCredentials.secure()),
     );
-    stub = ScoresServiceClient(channel);
+    final ClientChannel channelDebug = ClientChannel(
+      '192.168.1.2',
+      port: 82,
+      options: const ChannelOptions(credentials: ChannelCredentials.insecure()),
+    );
+    stub = ScoresServiceClient(channelDebug, interceptors: interceptors);
   }
 
-  Future<List<Grade>> getGrades(int number) async {
-    var response = await stub.getScores(GetScoresRequest(count: number));
-    return response.grades;
-  }
-
-  Future<List<Game>> getGames(int number) async {
-    var response = await stub.getGames(GetGamesRequest(count: number));
-    return response.games;
+  Future<GetProfileResponse> getProfile() async{
+    var result = await stub.getProfile(GetProfileRequest());
+    return result;
   }
 }

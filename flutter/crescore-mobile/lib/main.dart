@@ -1,22 +1,34 @@
+import 'package:crescore/clients/firebase/firebase_client.dart';
+import 'package:crescore/grpc/interceptors/firebase_auth_interceptor.dart';
 import 'package:crescore/grpc/scores.dart';
-import 'package:crescore/routes/page_routes.dart';
+import 'package:crescore/pages/login_page.dart';
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
 import 'package:theme_provider/theme_provider.dart';
 
-void main() {
-  setup();
+import 'grpc/moq/scores_moq.dart';
+
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await setup();
   runApp(const MyApp());
 }
 
-void setup(){
-  GetIt.I.registerSingleton<ScoresClient>(ScoresClient());
+Future setup() async {
+  var fc = FirebaseClient();
+  await fc.init();
+  GetIt.I.registerSingleton<FirebaseClient>(fc);
+
+  var interceptor = FirebaseAuthInterceptor(fc);
+  var client = ScoresClient(interceptors: [interceptor]);
+  GetIt.I.registerSingleton<ScoresClient>(client);
+
+  GetIt.I.registerSingleton<ScoresMoq>(ScoresMoq());
 }
 
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
 
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return ThemeProvider(
@@ -24,12 +36,10 @@ class MyApp extends StatelessWidget {
       loadThemeOnInit: true,
       themes: [
         AppTheme.dark(),
-        // This is standard dark theme (id is default_dark_theme)
         AppTheme(
-          id: "custom_theme", // Id(or name) of the theme(Has to be unique)
-          description: "My Custom Theme", // Description of theme
+          id: "custom_theme",
+          description: "My Custom Theme",
           data: ThemeData(
-            // Real theme data
             primaryColor: Colors.black,
             accentColor: Colors.red,
           ),
@@ -40,8 +50,7 @@ class MyApp extends StatelessWidget {
           builder: (themeContext) => MaterialApp(
             theme: ThemeProvider.themeOf(themeContext).data,
             title: 'CreScore',
-            initialRoute: PageRoutes.games,
-            onGenerateRoute: (settings) => PageRoutes.createBuilder(settings),
+            home: const LoginPage(),
           ),
         ),
       ),

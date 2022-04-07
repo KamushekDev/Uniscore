@@ -1,27 +1,22 @@
-using CreScore.Scores.Extensions;
-using Crescore.Scores.Grpc;
-using Crescore.Scores.Grpc.Interceptors;
+using CreScore.Scores.Grpc;
+using CreScore.Scores.Grpc.Interceptors;
+using CreScore.Scores.Infrastructure;
+using CreScore.Shared.Authorization;
+using CreScore.Shared.Hosting;
 using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Diagnostics.HealthChecks;
-using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Server.Kestrel.Core;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Diagnostics.HealthChecks;
 using Microsoft.Extensions.Hosting;
 
 var builder = WebApplication.CreateBuilder(args);
-builder.WebHost.ConfigureKestrel(options =>
-{
-    options.ListenAnyIP(80, o => o.Protocols = HttpProtocols.Http1AndHttp2);
-    options.ListenAnyIP(82, o => o.Protocols = HttpProtocols.Http2);
-    options.ListenAnyIP(84, o => o.Protocols = HttpProtocols.Http1);
-});
+builder.WebHost.ConfigureCustomKestrel(builder.Configuration);
 
-builder.Services.AddGrpc(options => { options.Interceptors.Add<ExceptionInterceptor>(); });
+builder.Services.AddCreScoreHealthChecks();
 
-builder.Services.AddHealthChecks()
-    .AddCheck("live", () => HealthCheckResult.Healthy("live"), tags: new[] { "live" })
-    .AddCheck("health", () => HealthCheckResult.Healthy("health"), tags: new[] { "health" });
+builder.Services.AddCreScoreAuth(builder.Configuration);
+
+builder.Services.AddCustomGrpc(options => { options.Interceptors.Add<ExceptionInterceptor>(); });
+
+builder.Services.AddInfrastructure(builder.Configuration);
+
 
 var app = builder.Build();
 
@@ -31,17 +26,16 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseRouting();
+
+app.UserCustomHealthChecks();
+
+app.UseAuthentication();
+app.UseAuthorization();
+
 app.UseEndpoints(endpoints =>
 {
-    endpoints.MapGrpcService<FakeScoreService>();
-    endpoints.MapHealthChecksWithCancellationSuppression("/live", new HealthCheckOptions
-    {
-        Predicate = check => check.Tags.Contains("live")
-    });
-    endpoints.MapHealthChecksWithCancellationSuppression("/health", new HealthCheckOptions
-    {
-        Predicate = check => check.Tags.Contains("health")
-    });
+    endpoints.MapGrpcService<ScoresService>();
+    endpoints.MapGrpcService<GradesService>();
 });
 
 app.Run();
