@@ -9,7 +9,10 @@ fi
 version="$(date +'%Y.%m.%d')"
 version+=".$BUILD_NUMBER"
 version+="$RUN_ATTEMPT"
-version+="-$suffix"
+if [[ $suffix != "" ]]
+then
+    version+="-$suffix"
+fi
 
 echo $version
 echo ::set-output name=version::$version
