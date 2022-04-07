@@ -6,6 +6,7 @@ metadata:
   annotations:
     # kubernetes.io/ingress.global-static-ip-name: crescore-ip
     kubernetes.io/ingress.class: "nginx"
+    # ingress.kubernetes.io/ssl-redirect: "true"
     # cert-manager.io/cluster-issuer: "letsencrypt-prod"
     # certmanager.k8s.io/acme-http01-edit-in-place: "true"
   labels:
@@ -13,18 +14,29 @@ metadata:
 spec:
   tls:
   - hosts:
-    - "*.crescore.net"
+      - "*.uniscore.ru"
+      - "uniscore.ru"
     secretName: crescore-cert-secret
     # secretName: cert-manager-webhook-ca
   rules:
-  - host: scores.crescore.net
+  - host: scores.uniscore.ru
     http:
       paths:
       - path: /
         pathType: Prefix
         backend:
           service: 
-            name: scores-service
+            name: crescore-scores-service
             port:
               # name: http
+              number: 80
+  - host: uniscore.ru
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: crescore-placeholer-service
+            port:
               number: 80

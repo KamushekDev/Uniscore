@@ -2,36 +2,35 @@
 package Scores.V1;
 option csharp_namespace = "CreScore.Scores";
 
-service ScoresService {
-  rpc GetScores(GetScoresRequest) returns (GetScoresResponse) {}
-  rpc GetGames(GetGamesRequest) returns (GetGamesResponse) {}
+service ScoresApi {
+
 }
 
-message Grade {
-  int64 id = 1;
-  int32 value = 2;
-  string name = 3;
+// -------------------------------------------
+
+service GradesApi {
+  rpc AddGradeVariant(AddGradeVariantRequest) returns (AddGradeVariantResponse);
+  rpc GetGradeVariant(GetGradeVariantRequest) returns (GetGradeVariantResponse);
 }
 
-message Game {
+message GradeVariant {
   int64 id = 1;
   string name = 2;
-  Grade score = 3;
-  double average = 4;
 }
 
-message GetScoresRequest {
-  int32 count = 1;
+message AddGradeVariantRequest
+{
+  string name = 1;
 }
 
-message GetScoresResponse{
-  repeated Grade grades = 1;
+message AddGradeVariantResponse {
+  int64 id = 1;
 }
 
-message GetGamesRequest {
-  int32 count = 1;
+message GetGradeVariantRequest {
+  int64 id = 1;
 }
 
-message GetGamesResponse {
-  repeated Game games = 1;
+message GetGradeVariantResponse {
+  GradeVariant variant = 1;
 }
