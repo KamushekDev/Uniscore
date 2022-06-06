@@ -1,24 +1,24 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: crescore-placeholer
-  namespace: crescore
+  name: placeholer
+  namespace: uniscore
 spec:
   replicas: 1
   revisionHistoryLimit: 3
   selector:
     matchLabels:
-      app: crescore-placeholer
+      app: placeholer
   template:
     metadata:
-      namespace: crescore
+      namespace: uniscore
       labels:
-        app: crescore-placeholer
+        app: placeholer
     spec:
       imagePullSecrets:
       - name: dockerconfigjson-github-com
       containers:
-      - name: crescore-placeholer-container
+      - name: placeholer-container
         image: ghcr.io/kamushekdev/placeholder:{VERSION}
         livenessProbe:
           initialDelaySeconds: 20
@@ -41,14 +41,14 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: crescore-placeholer-service
-  namespace: crescore
+  name: placeholer-service
+  namespace: uniscore
   annotations:
     cloud.google.com/app-protocols: '{"grpc":"HTTP2", "http": "HTTP"}'
     service.alpha.kubernetes.io/app-protocols: '{"grpc":"HTTP2", "http": "HTTP"}'
 spec:
   selector:
-    app: crescore-placeholer
+    app: placeholer
   ports:
   - name: http
     port: 80
