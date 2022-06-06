@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "780559898406",
+    "project_id": "crescore-3b017",
+    "storage_bucket": "crescore-3b017.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:780559898406:android:372ba3ccc980525f05d3e7",
+        "android_client_info": {
+          "package_name": "com.kamushek.crescore"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "780559898406-d3ogf4lc53va58r22arvtj8qcrei5qcp.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAR5-AqwkUtE6IOJOzbSJVPlSpXXv0JCas"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "780559898406-d3ogf4lc53va58r22arvtj8qcrei5qcp.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

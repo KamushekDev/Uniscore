@@ -1,7 +1,5 @@
-import 'package:crescore/grpc/moq/scores_moq.dart';
 import 'package:crescore/widgets/future_page.dart';
 import 'package:flutter/material.dart';
-import 'package:get_it/get_it.dart';
 
 class AddScorePage extends StatefulWidget {
   static const String routeName = '/addScore';

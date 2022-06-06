@@ -1,8 +1,6 @@
-import 'package:crescore/grpc/moq/scores_moq.dart';
-import 'package:crescore/grpc/scores.dart';
-import 'package:crescore/widgets/future_page.dart';
+import 'package:crescore/widgets/bottom_navigation_widget.dart';
+import 'package:double_back_to_close_app/double_back_to_close_app.dart';
 import 'package:flutter/material.dart';
-import 'package:get_it/get_it.dart';
 
 class SearchPage extends StatefulWidget {
   static const String routeName = '/search';
@@ -15,20 +13,25 @@ class SearchPage extends StatefulWidget {
 }
 
 class _SearchPageState extends State<SearchPage> {
-
-  late final ScoresClient _scores;
-
   @override
   void initState() {
     super.initState();
-    _scores = GetIt.I.get<ScoresClient>();
   }
 
   @override
   Widget build(BuildContext context) {
-    return FuturePage(
-      Future.delayed(Duration()),
-      (_) => const Text("To be made."),
+    return const Scaffold(
+      body: DoubleBackToCloseApp(
+        child: SafeArea(
+          child: Center(
+            child: Text("Search"),
+          ),
+        ),
+        snackBar: SnackBar(
+          content: Text('Tap back again to leave'),
+        ),
+      ),
+      bottomNavigationBar: BottomNavigation(1),
     );
   }
 }

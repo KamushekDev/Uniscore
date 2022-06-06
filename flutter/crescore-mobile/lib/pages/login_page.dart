@@ -1,17 +1,12 @@
 import 'package:crescore/clients/firebase/firebase_client.dart';
-import 'package:crescore/generated/Scores.pb.dart';
-import 'package:crescore/grpc/moq/scores_moq.dart';
-import 'package:crescore/grpc/scores.dart';
-import 'package:crescore/pages/main_page.dart';
-import 'package:crescore/widgets/future_page.dart';
+import 'package:crescore/grpc/backendServiceInterface.dart';
+import 'package:crescore/pages/homePage.dart';
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
-import 'package:firebase_auth/firebase_auth.dart';
-import 'package:google_sign_in/google_sign_in.dart';
 
 class LoginPage extends StatefulWidget {
-  static const String routeName = '/profile';
-  static const String name = 'Profile';
+  static const String routeName = '/login';
+  static const String name = 'Login';
 
   const LoginPage({Key? key}) : super(key: key);
 
@@ -20,37 +15,40 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
-  late final FirebaseClient _fb;
-  late final ScoresClient _sc;
+  late final FirebaseClient _fc;
+  late final IBackendService _bs;
 
   void redirectToHome() {
-    Navigator.pushReplacement(
+    Navigator.pushNamedAndRemoveUntil(
       context,
-      MaterialPageRoute(builder: (context) => const MainPage()),
+      HomePage.routeName,
+      (_) => false,
     );
   }
 
   void googleLogin(BuildContext context) async {
-    var userCredentials = await _fb.signInWithGoogle();
+    var userCredentials = await _fc.signInWithGoogle();
     if (userCredentials.user != null) {
-      await _sc.stub.loginEcho(LoginEchoRequest());
+      await _bs.loginEcho();
       redirectToHome();
     }
-
   }
 
   @override
   void initState() {
     super.initState();
-    _fb = GetIt.I.get<FirebaseClient>();
-    _sc = GetIt.I.get<ScoresClient>();
+    _fc = GetIt.I.get<FirebaseClient>();
+    _bs = GetIt.I.get<IBackendService>();
   }
 
   @override
   Widget build(BuildContext context) {
-    if (_fb.isSignedIn()) {
+    var loadingScreen = const Scaffold(
+        body: Center(child: CircularProgressIndicator.adaptive()));
+
+    if (_fc.isSignedIn()) {
       Future.microtask(redirectToHome);
-      return const Center(child: Text("You should be redirected immediately."));
+      return loadingScreen;
     }
 
     return Scaffold(
@@ -59,7 +57,7 @@ class _LoginPageState extends State<LoginPage> {
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
             const Align(
-              child: Text("crescore"),
+              child: Text("UniScore"),
               alignment: Alignment.center,
             ),
             Padding(
