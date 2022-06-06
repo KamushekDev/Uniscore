@@ -15,7 +15,7 @@ flutter pub run flutter_native_splash:create
 
 ## Generate launch icons
 ```
-flutter pub run flutter_launcher_icons:main
+flutter pub run flutter_launcher_icons:main -f flutter_launcher_icons.yaml
 ```
 
 ## Generate proto client

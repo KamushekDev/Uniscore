@@ -2,20 +2,16 @@ import 'package:flutter/material.dart';
 import 'package:theme_provider/theme_provider.dart';
 
 class AppBarWidget extends StatelessWidget implements PreferredSizeWidget {
-  final String? _title;
+  final String _title;
 
-  const AppBarWidget(String? title, {Key? key})
+  const AppBarWidget(String title, {Key? key})
       : _title = title,
         super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    if (_title == null || _title!.isEmpty) {
-      return const SizedBox.shrink();
-    }
-
     return AppBar(
-      title: Text(_title!),
+      title: Text(_title),
       actions: [
         IconButton(
           onPressed: () => ThemeProvider.controllerOf(context).nextTheme(),
