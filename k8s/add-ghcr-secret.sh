@@ -14,6 +14,6 @@ authString+='"}}}'
 kubectl create secret generic dockerconfigjson-github-com \
 	--type=kubernetes.io/dockerconfigjson \
 	--from-literal=.dockerconfigjson=$authString \
-	--namespace=crescore --save-config \
+	--namespace=uniscore --save-config \
 	--dry-run=client -o yaml |
 kubectl apply -f -

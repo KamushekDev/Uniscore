@@ -1,25 +1,25 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: crescore-auth
-  namespace: crescore
+  name: auth
+  namespace: uniscore
 spec:
   replicas: 1
   revisionHistoryLimit: 3
   selector:
     matchLabels:
-      app: crescore-auth
+      app: auth
   template:
     metadata:
-      namespace: crescore
+      namespace: uniscore
       labels:
-        app: crescore-auth
+        app: auth
     spec:
       imagePullSecrets:
       - name: dockerconfigjson-github-com
       containers:
-      - name: crescore-auth-container
-        image: ghcr.io/kamushekdev/crescore-auth:{VERSION}
+      - name: auth-container
+        image: ghcr.io/kamushekdev/auth:{VERSION}
         volumeMounts:
           - name: firebase-admin-sdk
             mountPath: /app/secrets
@@ -58,14 +58,14 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: crescore-auth-service
-  namespace: crescore
+  name: auth-service
+  namespace: uniscore
   annotations:
     cloud.google.com/app-protocols: '{"grpc":"HTTP2", "http": "HTTP"}'
     service.alpha.kubernetes.io/app-protocols: '{"grpc":"HTTP2", "http": "HTTP"}'
 spec:
   selector:
-    app: crescore-auth
+    app: auth
   ports:
   - name: http
     port: 80

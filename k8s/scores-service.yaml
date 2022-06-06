@@ -1,25 +1,25 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: crescore-scores
-  namespace: crescore
+  name: scores
+  namespace: uniscore
 spec:
   replicas: 1
   revisionHistoryLimit: 3
   selector:
     matchLabels:
-      app: crescore-scores
+      app: scores
   template:
     metadata:
-      namespace: crescore
+      namespace: uniscore
       labels:
-        app: crescore-scores
+        app: scores
     spec:
       imagePullSecrets:
       - name: dockerconfigjson-github-com
       containers:
-      - name: crescore-scores-container
-        image: ghcr.io/kamushekdev/crescore-scores:{VERSION}
+      - name: uniscore-scores-container
+        image: ghcr.io/kamushekdev/scores:{VERSION}
         livenessProbe:
           initialDelaySeconds: 20
           periodSeconds: 5
@@ -51,14 +51,14 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: crescore-scores-service
-  namespace: crescore
+  name: scores-service
+  namespace: uniscore
   annotations:
     cloud.google.com/app-protocols: '{"grpc":"HTTP2", "http": "HTTP"}'
     service.alpha.kubernetes.io/app-protocols: '{"grpc":"HTTP2", "http": "HTTP"}'
 spec:
   selector:
-    app: crescore-scores
+    app: scores
   ports:
   - name: http
     port: 80
