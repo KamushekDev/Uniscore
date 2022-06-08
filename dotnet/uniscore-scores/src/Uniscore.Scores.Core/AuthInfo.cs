@@ -1,4 +1,4 @@
-﻿namespace CreScore.Scores.Core;
+﻿namespace Uniscore.Scores.Core;
 
 public record AuthInfo(string UId)
 {

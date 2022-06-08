@@ -3,7 +3,7 @@ using System.Threading.Tasks;
 using Grpc.Core;
 using Grpc.Core.Interceptors;
 
-namespace CreScore.Scores.Grpc.Interceptors
+namespace Uniscore.Scores.Grpc.Interceptors
 {
     public class ExceptionInterceptor : Interceptor
     {

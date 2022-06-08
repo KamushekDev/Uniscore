@@ -1,8 +1,8 @@
-﻿using CreScore.Scores.Infrastructure.Database.Models;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
+using Uniscore.Scores.Infrastructure.Database.Models;
 
-namespace CreScore.Scores.Infrastructure.Database.Configs;
+namespace Uniscore.Scores.Infrastructure.Database.Configs;
 
 public class GradeVariantsConfig : IEntityTypeConfiguration<GradeVariants>
 {

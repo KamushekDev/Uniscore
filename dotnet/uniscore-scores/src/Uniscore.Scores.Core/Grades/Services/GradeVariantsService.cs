@@ -1,9 +1,9 @@
 ﻿using System.Threading;
 using System.Threading.Tasks;
-using CreScore.Scores.Core.Grades.Gateways;
 using Microsoft.Extensions.Logging;
+using Uniscore.Scores.Core.Grades.Gateways;
 
-namespace CreScore.Scores.Core.Grades.Services;
+namespace Uniscore.Scores.Core.Grades.Services;
 
 public class GradeVariantsService
 {

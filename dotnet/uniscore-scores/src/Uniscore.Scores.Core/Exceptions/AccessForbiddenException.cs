@@ -1,4 +1,4 @@
-﻿namespace CreScore.Scores.Core.Exceptions;
+﻿namespace Uniscore.Scores.Core.Exceptions;
 
 public class AccessForbiddenException : DomainException
 {

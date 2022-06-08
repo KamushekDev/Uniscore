@@ -1,9 +1,9 @@
-﻿using CreScore.Scores.Infrastructure.Options;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Options;
+using Uniscore.Scores.Infrastructure.Options;
 
-namespace CreScore.Scores.Infrastructure.Database;
+namespace Uniscore.Scores.Infrastructure.Database;
 
 public static class ServiceCollectionExtensions
 {

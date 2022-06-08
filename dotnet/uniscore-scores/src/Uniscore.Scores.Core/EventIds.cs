@@ -1,6 +1,6 @@
 ﻿using Microsoft.Extensions.Logging;
 
-namespace CreScore.Scores.Core;
+namespace Uniscore.Scores.Core;
 
 public static class EventIds
 {
