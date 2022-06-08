@@ -1,6 +1,6 @@
-using CreScore.Auth.Client.Models;
+using Uniscore.Auth.Client.Models;
 
-namespace CreScore.Auth.Client;
+namespace Uniscore.Auth.Client;
 
 public interface IAuthGateway
 {

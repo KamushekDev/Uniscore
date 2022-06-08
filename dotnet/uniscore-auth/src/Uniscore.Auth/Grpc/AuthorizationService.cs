@@ -1,7 +1,7 @@
-﻿using CreScore.Auth.Core;
-using Grpc.Core;
+﻿using Grpc.Core;
+using Uniscore.Auth.Core;
 
-namespace CreScore.Auth.Grpc;
+namespace Uniscore.Auth.Grpc;
 
 public class AuthorizationService : AuthorizationApi.AuthorizationApiBase
 {

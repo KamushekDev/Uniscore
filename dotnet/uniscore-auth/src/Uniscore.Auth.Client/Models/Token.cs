@@ -1,4 +1,4 @@
-namespace CreScore.Auth.Client.Models;
+namespace Uniscore.Auth.Client.Models;
 
 public record Token(
     string UserId,

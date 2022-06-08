@@ -1,4 +1,4 @@
-﻿namespace CreScore.Auth.Core.Models;
+﻿namespace Uniscore.Auth.Core.Models;
 
 public record UserInfo(
     string Uid,

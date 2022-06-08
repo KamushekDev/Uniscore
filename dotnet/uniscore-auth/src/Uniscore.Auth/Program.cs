@@ -1,6 +1,6 @@
-using CreScore.Auth.Grpc;
-using CreScore.Auth.Infrastructure;
-using CreScore.Shared.Hosting;
+using Uniscore.Auth.Grpc;
+using Uniscore.Auth.Infrastructure;
+using Uniscore.Shared.Hosting;
 
 var builder = WebApplication.CreateBuilder(args);
 builder.WebHost.ConfigureCustomKestrel(builder.Configuration);
