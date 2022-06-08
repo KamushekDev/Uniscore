@@ -19,6 +19,7 @@ COPY src/Uniscore.Auth.Protos/*.csproj src/Uniscore.Auth.Protos/
 COPY src/Uniscore.Auth.Infrastructure/*.csproj src/Uniscore.Auth.Infrastructure/
 COPY src/Uniscore.Auth.Core/*.csproj src/Uniscore.Auth.Core/
 COPY src/Uniscore.Auth.Client/*.csproj src/Uniscore.Auth.Client/
+COPY src/Uniscore.Auth.Provider/*.csproj src/Uniscore.Auth.Provider/
 COPY *.sln .
 
 RUN dotnet restore
