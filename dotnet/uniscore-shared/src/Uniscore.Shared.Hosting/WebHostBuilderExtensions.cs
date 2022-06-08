@@ -1,9 +1,9 @@
-﻿using CreScore.Shared.Common;
-using Microsoft.AspNetCore.Hosting;
+﻿using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Server.Kestrel.Core;
 using Microsoft.Extensions.Configuration;
+using Uniscore.Shared.Common;
 
-namespace CreScore.Shared.Hosting;
+namespace Uniscore.Shared.Hosting;
 
 public static class WebHostBuilderExtensions
 {

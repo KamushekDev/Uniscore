@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Diagnostics.HealthChecks;
 
-namespace CreScore.Shared.Hosting;
+namespace Uniscore.Shared.Hosting;
 
 public static class WebApplicationExtensions
 {

@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Diagnostics.HealthChecks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Routing;
 
-namespace CreScore.Shared.Hosting;
+namespace Uniscore.Shared.Hosting;
 
 public static class EndpointRouteBuilderExtensions
 {
