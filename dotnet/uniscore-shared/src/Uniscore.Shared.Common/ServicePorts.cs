@@ -1,4 +1,4 @@
-﻿namespace CreScore.Shared.Common;
+﻿namespace Uniscore.Shared.Common;
 
 public record ServicePorts(
     int HttpPort,
