@@ -1,13 +1,13 @@
 ﻿using System;
 using System.Threading.Tasks;
-using CreScore.Scores.Core.Exceptions;
-using CreScore.Scores.Core.Grades.Gateways;
-using CreScore.Shared.Authorization;
 using Grpc.Core;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.Extensions.Logging;
+using Uniscore.Auth.Provider;
+using Uniscore.Auth.Provider.Extensions;
+using Uniscore.Scores.Core.Grades.Gateways;
 
-namespace CreScore.Scores.Grpc;
+namespace Uniscore.Scores.Grpc;
 
 public class GradesService : GradesApi.GradesApiBase
 {

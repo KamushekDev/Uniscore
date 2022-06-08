@@ -1,16 +1,18 @@
-using CreScore.Scores.Grpc;
-using CreScore.Scores.Grpc.Interceptors;
 using CreScore.Scores.Infrastructure;
-using CreScore.Shared.Authorization;
-using CreScore.Shared.Hosting;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.Hosting;
+using Uniscore.Auth.Provider.Extensions;
+using Uniscore.Scores.Grpc;
+using Uniscore.Scores.Grpc.Interceptors;
+using Uniscore.Scores.Infrastructure;
+using Uniscore.Shared.Hosting;
 
 var builder = WebApplication.CreateBuilder(args);
 builder.WebHost.ConfigureCustomKestrel(builder.Configuration);
 
 builder.Services.AddCreScoreHealthChecks();
 
+//configuration.GetSection(ServiceUrl.SectionName + ":auth").Get<ServiceUrl>()
 builder.Services.AddCreScoreAuth(builder.Configuration);
 
 builder.Services.AddCustomGrpc(options => { options.Interceptors.Add<ExceptionInterceptor>(); });

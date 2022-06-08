@@ -1,4 +1,4 @@
-﻿namespace CreScore.Scores.Infrastructure.Options;
+﻿namespace Uniscore.Scores.Infrastructure.Options;
 
 public class ConnectionOptions
 {

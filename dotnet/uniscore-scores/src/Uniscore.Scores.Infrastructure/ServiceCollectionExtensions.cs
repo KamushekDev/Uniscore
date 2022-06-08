@@ -1,11 +1,11 @@
-﻿using CreScore.Scores.Core.Grades.Gateways;
-using CreScore.Scores.Infrastructure.Database;
-using CreScore.Scores.Infrastructure.Grades;
-using CreScore.Scores.Infrastructure.Options;
-using Microsoft.Extensions.Configuration;
+﻿using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Uniscore.Scores.Core.Grades.Gateways;
+using Uniscore.Scores.Infrastructure.Database;
+using Uniscore.Scores.Infrastructure.Grades;
+using Uniscore.Scores.Infrastructure.Options;
 
-namespace CreScore.Scores.Infrastructure;
+namespace Uniscore.Scores.Infrastructure;
 
 public static class ServiceCollectionExtensions
 {

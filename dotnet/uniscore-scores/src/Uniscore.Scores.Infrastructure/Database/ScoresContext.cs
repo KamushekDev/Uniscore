@@ -1,7 +1,7 @@
-﻿using CreScore.Scores.Infrastructure.Database.Models;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
+using Uniscore.Scores.Infrastructure.Database.Models;
 
-namespace CreScore.Scores.Infrastructure.Database;
+namespace Uniscore.Scores.Infrastructure.Database;
 
 public class ScoresContext : DbContext
 {

@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-
-namespace CreScore.Scores.Infrastructure.Database.Models;
+﻿namespace Uniscore.Scores.Infrastructure.Database.Models;
 
 public class GradeVariants
 {

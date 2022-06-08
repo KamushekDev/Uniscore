@@ -1,10 +1,10 @@
 ﻿using System.Threading;
 using System.Threading.Tasks;
-using CreScore.Scores.Core.Grades.Gateways;
-using CreScore.Scores.Infrastructure.Database;
-using CreScore.Scores.Infrastructure.Database.Models;
+using Uniscore.Scores.Core.Grades.Gateways;
+using Uniscore.Scores.Infrastructure.Database;
+using Uniscore.Scores.Infrastructure.Database.Models;
 
-namespace CreScore.Scores.Infrastructure.Grades;
+namespace Uniscore.Scores.Infrastructure.Grades;
 
 public class GradeVariantsGateway : IGradeVariantsGateway
 {

@@ -1,4 +1,4 @@
-﻿namespace CreScore.Scores.Infrastructure;
+﻿namespace Uniscore.Scores.Infrastructure;
 
 public interface IInfrastructureAssembly
 {

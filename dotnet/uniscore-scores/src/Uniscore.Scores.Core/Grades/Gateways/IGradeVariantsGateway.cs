@@ -1,7 +1,7 @@
 ﻿using System.Threading;
 using System.Threading.Tasks;
 
-namespace CreScore.Scores.Core.Grades.Gateways;
+namespace Uniscore.Scores.Core.Grades.Gateways;
 
 public interface IGradeVariantsGateway
 {
