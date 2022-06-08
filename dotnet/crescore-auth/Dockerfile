@@ -14,11 +14,11 @@ RUN --mount=type=secret,id=packages_pat,required=true \
     dotnet nuget add source -u KamushekDev -p "$(cat /run/secrets/packages_pat)" --store-password-in-clear-text -n github "https://nuget.pkg.github.com/KamushekDev/index.json"
 
 WORKDIR /source
-COPY src/CreScore.Auth/*.csproj src/CreScore.Auth/
-COPY src/CreScore.Auth.Protos/*.csproj src/CreScore.Auth.Protos/
-COPY src/CreScore.Auth.Infrastructure/*.csproj src/CreScore.Auth.Infrastructure/
-COPY src/CreScore.Auth.Core/*.csproj src/CreScore.Auth.Core/
-COPY src/CreScore.Auth.Client/*.csproj src/CreScore.Auth.Client/
+COPY src/Uniscore.Auth/*.csproj src/Uniscore.Auth/
+COPY src/Uniscore.Auth.Protos/*.csproj src/Uniscore.Auth.Protos/
+COPY src/Uniscore.Auth.Infrastructure/*.csproj src/Uniscore.Auth.Infrastructure/
+COPY src/Uniscore.Auth.Core/*.csproj src/Uniscore.Auth.Core/
+COPY src/Uniscore.Auth.Client/*.csproj src/Uniscore.Auth.Client/
 COPY *.sln .
 
 RUN dotnet restore
@@ -28,12 +28,12 @@ COPY . .
 
 FROM build AS publish
 ARG c
-RUN dotnet publish "CreScore.Auth.sln" -c $c -o /app/publish
+RUN dotnet publish "Uniscore.Auth.sln" -c $c -o /app/publish
 
 
 FROM base AS final
-LABEL org.opencontainers.image.source="https://github.com/KamushekDev/CreScore"
+LABEL org.opencontainers.image.source="https://github.com/KamushekDev/Uniscore"
 
 WORKDIR /app
 COPY --from=publish /app/publish .
-ENTRYPOINT dotnet CreScore.Auth.dll
+ENTRYPOINT dotnet Uniscore.Auth.dll

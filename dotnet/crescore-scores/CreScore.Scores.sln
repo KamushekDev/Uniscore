@@ -8,13 +8,13 @@ ProjectSection(SolutionItems) = preProject
 	.gitignore = .gitignore
 EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CreScore.Scores", "src\CreScore.Scores\CreScore.Scores.csproj", "{F50A93A2-028D-434F-8FD5-247D1C1846C5}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Uniscore.Scores", "src\Uniscore.Scores\Uniscore.Scores.csproj", "{F50A93A2-028D-434F-8FD5-247D1C1846C5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CreScore.Scores.Protos", "src\CreScore.Scores.Protos\CreScore.Scores.Protos.csproj", "{740844EA-0E15-4403-A352-87335C3C9EF4}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Uniscore.Scores.Protos", "src\Uniscore.Scores.Protos\Uniscore.Scores.Protos.csproj", "{740844EA-0E15-4403-A352-87335C3C9EF4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CreScore.Scores.Infrastructure", "src\CreScore.Scores.Infrastructure\CreScore.Scores.Infrastructure.csproj", "{E5A852B3-96AC-45CA-BDC9-AB820F1C5057}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Uniscore.Scores.Infrastructure", "src\Uniscore.Scores.Infrastructure\Uniscore.Scores.Infrastructure.csproj", "{E5A852B3-96AC-45CA-BDC9-AB820F1C5057}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CreScore.Scores.Core", "src\CreScore.Scores.Core\CreScore.Scores.Core.csproj", "{926F8FA1-394C-44F3-A63F-095BEE0105B8}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Uniscore.Scores.Core", "src\Uniscore.Scores.Core\Uniscore.Scores.Core.csproj", "{926F8FA1-394C-44F3-A63F-095BEE0105B8}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "k8s", "k8s", "{02768BEB-0C4E-458F-BB7F-FBDB247B8A9D}"
 ProjectSection(SolutionItems) = preProject

@@ -7,8 +7,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\CreScore.Scores.Infrastructure\CreScore.Scores.Infrastructure.csproj" />
-    <ProjectReference Include="..\CreScore.Scores.Protos\CreScore.Scores.Protos.csproj" />
+    <ProjectReference Include="..\Uniscore.Scores.Infrastructure\Uniscore.Scores.Infrastructure.csproj" />
+    <ProjectReference Include="..\Uniscore.Scores.Protos\Uniscore.Scores.Protos.csproj" />
   </ItemGroup>
 
   <ItemGroup>

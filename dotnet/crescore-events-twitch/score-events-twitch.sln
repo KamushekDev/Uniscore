@@ -1,6 +1,6 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CreScore.Events.Twitch", "src\CreScore.Events.Twitch\CreScore.Events.Twitch.csproj", "{21545AF9-EE3A-4359-8CB7-472D096A5570}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Uniscore.Events.Twitch", "src\Uniscore.Events.Twitch\Uniscore.Events.Twitch.csproj", "{21545AF9-EE3A-4359-8CB7-472D096A5570}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{FC14F127-F714-476F-87B5-313AD89AE2CE}"
 EndProject
@@ -14,15 +14,15 @@ EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "k8s", "k8s", "{79ABAD6E-A560-4CC1-AF48-EAD18F6AC52A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CreScore.Events.Twitch.Infrastructure", "src\CreScore.Events.Twitch.Infrastructure\CreScore.Events.Twitch.Infrastructure.csproj", "{EDD3E342-EC5B-44FD-987D-25B12BE248AD}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Uniscore.Events.Twitch.Infrastructure", "src\Uniscore.Events.Twitch.Infrastructure\Uniscore.Events.Twitch.Infrastructure.csproj", "{EDD3E342-EC5B-44FD-987D-25B12BE248AD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CreScore.Events.Twitch.Contract", "src\CreScore.Events.Twitch.Contract\CreScore.Events.Twitch.Contract.csproj", "{D62D26CD-6681-4178-A68C-35D1C4806726}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Uniscore.Events.Twitch.Contract", "src\Uniscore.Events.Twitch.Contract\Uniscore.Events.Twitch.Contract.csproj", "{D62D26CD-6681-4178-A68C-35D1C4806726}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CreScore.Events.Twitch.Core", "src\CreScore.Events.Twitch.Core\CreScore.Events.Twitch.Core.csproj", "{B6B37279-38D5-48ED-9027-88446A7672FC}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Uniscore.Events.Twitch.Core", "src\Uniscore.Events.Twitch.Core\Uniscore.Events.Twitch.Core.csproj", "{B6B37279-38D5-48ED-9027-88446A7672FC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CreScore.Events.Twitch.Clients", "src\CreScore.Events.Twitch.Clients\CreScore.Events.Twitch.Clients.csproj", "{488D1E88-2F76-430A-B4FE-0B79D934FFC0}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Uniscore.Events.Twitch.Clients", "src\Uniscore.Events.Twitch.Clients\Uniscore.Events.Twitch.Clients.csproj", "{488D1E88-2F76-430A-B4FE-0B79D934FFC0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CreScore.Events.Twitch.Tests", "tests\CreScore.Events.Twitch.Tests\CreScore.Events.Twitch.Tests.csproj", "{58D48EB9-B5F8-4E74-84A6-4344A121DB95}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Uniscore.Events.Twitch.Tests", "tests\Uniscore.Events.Twitch.Tests\Uniscore.Events.Twitch.Tests.csproj", "{58D48EB9-B5F8-4E74-84A6-4344A121DB95}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

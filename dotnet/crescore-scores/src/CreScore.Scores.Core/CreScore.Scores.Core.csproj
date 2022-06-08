@@ -3,7 +3,7 @@
     <PropertyGroup>
         <TargetFramework>net6.0</TargetFramework>
         <Nullable>enable</Nullable>
-        <RootNamespace>CreScore.Scores.Core</RootNamespace>
+        <RootNamespace>Uniscore.Scores.Core</RootNamespace>
     </PropertyGroup>
 
     <ItemGroup>

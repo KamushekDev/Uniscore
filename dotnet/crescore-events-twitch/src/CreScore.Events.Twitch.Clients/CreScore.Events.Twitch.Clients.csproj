@@ -19,7 +19,7 @@
     </ItemGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\CreScore.Events.Twitch.Core\CreScore.Events.Twitch.Core.csproj" />
+      <ProjectReference Include="..\Uniscore.Events.Twitch.Core\Uniscore.Events.Twitch.Core.csproj" />
     </ItemGroup>
 
 </Project>

@@ -14,7 +14,7 @@
     </ItemGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\CreScore.Events.Twitch.Clients\CreScore.Events.Twitch.Clients.csproj" />
+      <ProjectReference Include="..\Uniscore.Events.Twitch.Clients\Uniscore.Events.Twitch.Clients.csproj" />
     </ItemGroup>
 
     <ItemGroup>

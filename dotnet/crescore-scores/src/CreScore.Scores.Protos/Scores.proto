@@ -1,6 +1,6 @@
 ﻿syntax = "proto3";
 package Scores.V1;
-option csharp_namespace = "CreScore.Scores";
+option csharp_namespace = "Uniscore.Scores";
 
 service ScoresApi {
 

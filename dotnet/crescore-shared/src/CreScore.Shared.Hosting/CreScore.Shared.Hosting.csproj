@@ -5,8 +5,8 @@
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
         <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-        <PackageProjectUrl>https://github.com/KamushekDev/CreScore</PackageProjectUrl>
-        <RepositoryUrl>https://github.com/KamushekDev/CreScore</RepositoryUrl>
+        <PackageProjectUrl>https://github.com/KamushekDev/Uniscore</PackageProjectUrl>
+        <RepositoryUrl>https://github.com/KamushekDev/Uniscore</RepositoryUrl>
     </PropertyGroup>
 
     <ItemGroup>
@@ -14,7 +14,7 @@
     </ItemGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\CreScore.Shared.Common\CreScore.Shared.Common.csproj" />
+      <ProjectReference Include="..\Uniscore.Shared.Common\Uniscore.Shared.Common.csproj" />
     </ItemGroup>
 
 </Project>

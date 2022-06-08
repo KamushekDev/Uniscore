@@ -11,7 +11,7 @@
     </ItemGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\CreScore.Auth.Infrastructure\CreScore.Auth.Infrastructure.csproj" />
+      <ProjectReference Include="..\Uniscore.Auth.Infrastructure\Uniscore.Auth.Infrastructure.csproj" />
     </ItemGroup>
 
     <ItemGroup>
