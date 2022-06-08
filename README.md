@@ -1,6 +1,6 @@
-[![Scores](https://github.com/KamushekDev/CreScore/actions/workflows/publish-nugets.yaml/badge.svg)](https://github.com/KamushekDev/CreScore/actions/workflows/publish-nugets.yaml)
-# CreScore
-Creator-score
+[![Scores](https://github.com/KamushekDev/Uniscore/actions/workflows/publish-nugets.yaml/badge.svg)](https://github.com/KamushekDev/Uniscore/actions/workflows/publish-nugets.yaml)
+# Uniscore
+Scores
 
 ## Installation
 * Navigate to k8s folder
