@@ -1,10 +1,10 @@
-﻿using CreScore.Auth.Core;
-using FirebaseAdmin;
+﻿using FirebaseAdmin;
 using Google.Apis.Auth.OAuth2;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Uniscore.Auth.Core;
 
-namespace CreScore.Auth.Infrastructure.Firebase;
+namespace Uniscore.Auth.Infrastructure.Firebase;
 
 public static class ServiceCollectionExtensions
 {

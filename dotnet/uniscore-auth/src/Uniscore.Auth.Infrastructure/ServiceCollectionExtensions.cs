@@ -1,8 +1,8 @@
-﻿using CreScore.Auth.Infrastructure.Firebase;
-using Microsoft.Extensions.Configuration;
+﻿using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Uniscore.Auth.Infrastructure.Firebase;
 
-namespace CreScore.Auth.Infrastructure;
+namespace Uniscore.Auth.Infrastructure;
 
 public static class ServiceCollectionExtensions
 {

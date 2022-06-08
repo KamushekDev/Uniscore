@@ -1,11 +1,10 @@
-﻿using CreScore.Auth.Core;
-using CreScore.Auth.Core.Models;
-using Dawn;
-using FirebaseAdmin;
+﻿using FirebaseAdmin;
 using FirebaseAdmin.Auth;
 using Microsoft.Extensions.Logging;
+using Uniscore.Auth.Core;
+using Uniscore.Auth.Core.Models;
 
-namespace CreScore.Auth.Infrastructure.Firebase;
+namespace Uniscore.Auth.Infrastructure.Firebase;
 
 public class FirebaseAuthService : IAuthService
 {

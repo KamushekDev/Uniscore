@@ -1,6 +1,6 @@
-﻿using CreScore.Auth.Core.Models;
+﻿using Uniscore.Auth.Core.Models;
 
-namespace CreScore.Auth.Core;
+namespace Uniscore.Auth.Core;
 
 public interface IAuthService
 {

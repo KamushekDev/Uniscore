@@ -1,7 +1,7 @@
-using CreScore.Auth.Client.Models;
 using Microsoft.Extensions.Logging;
+using Uniscore.Auth.Client.Models;
 
-namespace CreScore.Auth.Client.Gateway;
+namespace Uniscore.Auth.Client.Gateway;
 
 public class AuthGateway : IAuthGateway
 {
