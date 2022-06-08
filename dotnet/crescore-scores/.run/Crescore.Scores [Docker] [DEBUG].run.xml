@@ -1,8 +1,8 @@
 ﻿<component name="ProjectRunConfigurationManager">
-  <configuration default="false" name="Crescore.Scores [Docker] [DEBUG]" type="docker-deploy" factoryName="dockerfile" server-name="Docker">
+  <configuration default="false" name="Uniscore.Scores [Docker] [DEBUG]" type="docker-deploy" factoryName="dockerfile" server-name="Docker">
     <deployment type="dockerfile">
       <settings>
-        <option name="imageTag" value="crescore-scores" />
+        <option name="imageTag" value="scores" />
         <option name="attachToContainerNeeded" value="true" />
         <option name="buildArgs">
           <list>
@@ -13,8 +13,8 @@
           </list>
         </option>
         <option name="buildCliOptions" value="--target=build" />
-        <option name="containerName" value="crescore-scores" />
-        <option name="entrypoint" value="dotnet /app/build/CreScore.Scores.dll" />
+        <option name="containerName" value="scores" />
+        <option name="entrypoint" value="dotnet /app/build/Uniscore.Scores.dll" />
         <option name="portBindings">
           <list>
             <DockerPortBindingImpl>

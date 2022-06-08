@@ -1,6 +1,6 @@
 syntax = "proto3";
 package Auth.V1;
-option csharp_namespace = "CreScore.Auth";
+option csharp_namespace = "Uniscore.Auth";
 
 import "google/protobuf/wrappers.proto";
 

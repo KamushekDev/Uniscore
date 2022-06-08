@@ -5,11 +5,11 @@ VisualStudioVersion = 16.0.30114.105
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{8C66BBDA-4CAA-4335-9CA7-F11CBF64FFB7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CreScore.Shared.Hosting", "src\CreScore.Shared.Hosting\CreScore.Shared.Hosting.csproj", "{E91B70B4-2DEE-4F6E-B5E6-767CE902544E}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Uniscore.Shared.Hosting", "src\Uniscore.Shared.Hosting\Uniscore.Shared.Hosting.csproj", "{E91B70B4-2DEE-4F6E-B5E6-767CE902544E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CreScore.Shared.Authorization", "src\CreScore.Shared.Authorization\CreScore.Shared.Authorization.csproj", "{284C69EF-0CB8-4E16-92BD-F009792B52B3}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Uniscore.Shared.Authorization", "src\Uniscore.Shared.Authorization\Uniscore.Shared.Authorization.csproj", "{284C69EF-0CB8-4E16-92BD-F009792B52B3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CreScore.Shared.Common", "src\CreScore.Shared.Common\CreScore.Shared.Common.csproj", "{62133C41-FB7A-4CD4-B8A8-D991771D4857}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Uniscore.Shared.Common", "src\Uniscore.Shared.Common\Uniscore.Shared.Common.csproj", "{62133C41-FB7A-4CD4-B8A8-D991771D4857}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

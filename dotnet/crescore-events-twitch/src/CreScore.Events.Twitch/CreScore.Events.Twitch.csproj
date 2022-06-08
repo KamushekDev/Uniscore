@@ -14,9 +14,9 @@
     </ItemGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\CreScore.Events.Twitch.Contract\CreScore.Events.Twitch.Contract.csproj" />
-      <ProjectReference Include="..\CreScore.Events.Twitch.Core\CreScore.Events.Twitch.Core.csproj" />
-      <ProjectReference Include="..\CreScore.Events.Twitch.Infrastructure\CreScore.Events.Twitch.Infrastructure.csproj" />
+      <ProjectReference Include="..\Uniscore.Events.Twitch.Contract\Uniscore.Events.Twitch.Contract.csproj" />
+      <ProjectReference Include="..\Uniscore.Events.Twitch.Core\Uniscore.Events.Twitch.Core.csproj" />
+      <ProjectReference Include="..\Uniscore.Events.Twitch.Infrastructure\Uniscore.Events.Twitch.Infrastructure.csproj" />
     </ItemGroup>
 
 </Project>

@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30114.105
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CreScore.Auth", "src\CreScore.Auth\CreScore.Auth.csproj", "{B95ED54D-10E8-4997-A9D1-C28FD1C9EB35}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Uniscore.Auth", "src\Uniscore.Auth\Uniscore.Auth.csproj", "{B95ED54D-10E8-4997-A9D1-C28FD1C9EB35}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "common", "common", "{6406431F-88A7-4944-86BA-49A37B3539AD}"
 	ProjectSection(SolutionItems) = preProject
@@ -17,15 +17,15 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "k8s", "k8s", "{2E003F9C-3E6
 		.dockerignore = .dockerignore
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CreScore.Auth.Protos", "src\CreScore.Auth.Protos\CreScore.Auth.Protos.csproj", "{B4771DEF-2FAB-4036-A6DC-2ECE8E920F65}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Uniscore.Auth.Protos", "src\Uniscore.Auth.Protos\Uniscore.Auth.Protos.csproj", "{B4771DEF-2FAB-4036-A6DC-2ECE8E920F65}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CreScore.Auth.Infrastructure", "src\CreScore.Auth.Infrastructure\CreScore.Auth.Infrastructure.csproj", "{5F0631D5-D7EA-4F88-936B-9070F1ABCF13}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Uniscore.Auth.Infrastructure", "src\Uniscore.Auth.Infrastructure\Uniscore.Auth.Infrastructure.csproj", "{5F0631D5-D7EA-4F88-936B-9070F1ABCF13}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{B945FDE0-43F2-419D-9B89-9917D05A06FE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CreScore.Auth.Core", "src\CreScore.Auth.Core\CreScore.Auth.Core.csproj", "{9270D550-2B39-4B2A-A4BD-3840205B6FFD}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Uniscore.Auth.Core", "src\Uniscore.Auth.Core\Uniscore.Auth.Core.csproj", "{9270D550-2B39-4B2A-A4BD-3840205B6FFD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CreScore.Auth.Client", "src\CreScore.Auth.Client\CreScore.Auth.Client.csproj", "{66B73678-6107-4C06-803A-97786E34721E}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Uniscore.Auth.Client", "src\Uniscore.Auth.Client\Uniscore.Auth.Client.csproj", "{66B73678-6107-4C06-803A-97786E34721E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

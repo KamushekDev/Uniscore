@@ -1,6 +1,6 @@
 ﻿{
   "profiles": {
-    "Crescore.Scores": {
+    "Uniscore.Scores": {
       "commandName": "Project",
       "dotnetRunMessages": true,
       "launchBrowser": false,

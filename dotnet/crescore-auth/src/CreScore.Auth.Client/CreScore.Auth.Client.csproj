@@ -5,12 +5,12 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <PackageProjectUrl>https://github.com/KamushekDev/CreScore</PackageProjectUrl>
-    <RepositoryUrl>https://github.com/KamushekDev/CreScore</RepositoryUrl>
+    <PackageProjectUrl>https://github.com/KamushekDev/Uniscore</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/KamushekDev/Uniscore</RepositoryUrl>
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\CreScore.Auth.Protos\CreScore.Auth.Protos.csproj" />
+    <ProjectReference Include="..\Uniscore.Auth.Protos\Uniscore.Auth.Protos.csproj" />
   </ItemGroup>
 
 </Project>
