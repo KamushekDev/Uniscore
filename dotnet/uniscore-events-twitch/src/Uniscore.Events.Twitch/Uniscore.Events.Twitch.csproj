@@ -1,0 +1,22 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+    <PropertyGroup>
+        <TargetFramework>net6.0</TargetFramework>
+        <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
+      <UserSecretsId>076347e3-b64a-4dfc-9b41-2abc132a0e9e</UserSecretsId>
+      <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+    <ItemGroup>
+      <Content Update="appsettings.Development.json">
+        <DependentUpon>appsettings.json</DependentUpon>
+      </Content>
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\Uniscore.Events.Twitch.Contract\Uniscore.Events.Twitch.Contract.csproj" />
+      <ProjectReference Include="..\Uniscore.Events.Twitch.Core\Uniscore.Events.Twitch.Core.csproj" />
+      <ProjectReference Include="..\Uniscore.Events.Twitch.Infrastructure\Uniscore.Events.Twitch.Infrastructure.csproj" />
+    </ItemGroup>
+
+</Project>

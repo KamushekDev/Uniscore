@@ -1,6 +1,8 @@
 #!/bin/bash
 
-# ./add-ghcr-secret.sh PersonalAccessToken
+# ./add-cloudflare-secret.sh CLOUDFLARE_PersonalAccessToken
+
+# Got idea from: https://gouthampilla.medium.com/generating-lets-encrypt-wildcard-certs-using-cert-manager-on-gke-25bf454e5904
 
 token=$1
 
