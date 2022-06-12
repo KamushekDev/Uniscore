@@ -18,8 +18,8 @@ spec:
       imagePullSecrets:
       - name: dockerconfigjson-github-com
       containers:
-      - name: uniscore-scores-container
-        image: ghcr.io/kamushekdev/scores:{VERSION}
+      - name: scores-container
+        image: ghcr.io/kamushekdev/uniscore-scores:{VERSION}
         livenessProbe:
           initialDelaySeconds: 20
           periodSeconds: 5
