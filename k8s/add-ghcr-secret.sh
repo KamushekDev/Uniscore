@@ -2,6 +2,8 @@
 
 # ./add-ghcr-secret.sh PersonalAccessToken
 
+# Got idea from: https://stackoverflow.com/a/61912590/10105448
+
 token=$1
 
 auth=$(echo -n KamushekDev:$1 | base64)
