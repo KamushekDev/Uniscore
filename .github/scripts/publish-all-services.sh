@@ -15,6 +15,10 @@ do
         continue
     fi
 
+    if [[ $name != uniscore* ]]; then
+        name="uniscore-${name}"
+    fi
+
     if [[ $file =~ (.*)/Dockerfile ]]; then
         path="${BASH_REMATCH[1]}"
     else

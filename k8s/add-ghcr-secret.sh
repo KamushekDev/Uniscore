@@ -2,6 +2,8 @@
 
 # ./add-ghcr-secret.sh PersonalAccessToken
 
+# Got idea from: https://stackoverflow.com/a/61912590/10105448
+
 token=$1
 
 auth=$(echo -n KamushekDev:$1 | base64)
@@ -14,6 +16,6 @@ authString+='"}}}'
 kubectl create secret generic dockerconfigjson-github-com \
 	--type=kubernetes.io/dockerconfigjson \
 	--from-literal=.dockerconfigjson=$authString \
-	--namespace=crescore --save-config \
+	--namespace=uniscore --save-config \
 	--dry-run=client -o yaml |
 kubectl apply -f -
