@@ -19,7 +19,7 @@ spec:
       - name: dockerconfigjson-github-com
       containers:
       - name: placeholer-container
-        image: ghcr.io/kamushekdev/placeholder:{VERSION}
+        image: ghcr.io/kamushekdev/uniscore-placeholder:{VERSION}
         livenessProbe:
           initialDelaySeconds: 20
           periodSeconds: 5
