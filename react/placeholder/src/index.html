@@ -17,14 +17,14 @@
         <h3 id="auth">-</h3>
         <script>
             fetch("/svs/auth/health")
-                .then(x => x.text())
-                .then(x => document.getElementById("auth").innerHTML = x)
+                // .then(x => x.status())
+                .then(x => document.getElementById("auth").innerHTML = x.status)
         </script>
         <h3 id="scores">-</h3>
         <script>
             fetch("/svs/scores/health")
-                .then(x => x.text())
-                .then(x => document.getElementById("scores").innerHTML = x)
+                // .then(x => x.text())
+                .then(x => document.getElementById("scores").innerHTML = x.status)
         </script>
     </div>
 </body>
