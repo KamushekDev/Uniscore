@@ -3,13 +3,17 @@
     padding: 0;
 }
 
-div {
+body > div {
     width: 100vw;
     height: 100vh;
     display: table-cell;
     vertical-align: middle;
 }
 
-h1 {
+h1,h4,h5 {
     text-align: center
+}
+
+.spacer {
+    height: 3em;
 }
