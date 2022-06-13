@@ -16,6 +16,17 @@ spec:
     secretName: cert-secret
     # secretName: cert-manager-webhook-ca
   rules:
+  - host: auth.uniscore.ru
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service: 
+            name: auth-service
+            port:
+              # name: http
+              number: 80
   - host: scores.uniscore.ru
     http:
       paths:
