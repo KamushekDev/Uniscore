@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <link rel="stylesheet" href="css/styles.css" />
     <link rel="icon" type="image/png" href="images/logo.png" />
-    <title>Unique score</title> 
+    <title>Unique score</title>
 </head>
 
 <body>
@@ -12,6 +12,20 @@
         <h1>
             <разработОЧКА... />
         </h1>
+    </div>
+    <div>
+        <h3 id="auth">-</h3>
+        <script>
+            fetch("/svs/auth/health")
+                .then(x => x.text())
+                .then(x => document.getElementById("auth").innerHTML = x)
+        </script>
+        <h3 id="scores">-</h3>
+        <script>
+            fetch("/svs/scores/health")
+                .then(x => x.text())
+                .then(x => document.getElementById("scores").innerHTML = x)
+        </script>
     </div>
 </body>
 
