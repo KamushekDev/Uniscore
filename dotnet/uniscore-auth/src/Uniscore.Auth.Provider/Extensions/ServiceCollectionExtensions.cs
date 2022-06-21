@@ -39,7 +39,7 @@ public static class ServiceCollectionExtensions
     {
         sc.AddScoped<IAuthenticationHandler, IdTokenAuthenticationHandler>();
 
-        sc.AddAuthentication(options => { options.DefaultScheme = Schemes.UniscoreScheme; })
+        sc.AddAuthentication(options => {  })
             .AddScheme<AuthenticationSchemeOptions, IdTokenAuthenticationHandler>(
                 Schemes.UniscoreScheme,
                 options => { }
