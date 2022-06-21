@@ -5,7 +5,7 @@ namespace Uniscore.Shared.Hosting;
 
 public static class ServiceCollectionExtensions
 {
-    public static void AddCreScoreHealthChecks(this IServiceCollection sc)
+    public static void AddUniscoreHealthChecks(this IServiceCollection sc)
     {
         sc.AddHealthChecks()
             .AddCheck("live", () => HealthCheckResult.Healthy("live"), tags: new[] { "live" })
