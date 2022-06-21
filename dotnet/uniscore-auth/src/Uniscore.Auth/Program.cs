@@ -9,7 +9,7 @@ builder.Services.AddGrpc();
 
 builder.Services.AddInfrastructure(builder.Configuration);
 
-builder.Services.AddCreScoreHealthChecks();
+builder.Services.AddUniscoreHealthChecks();
 
 var app = builder.Build();
 

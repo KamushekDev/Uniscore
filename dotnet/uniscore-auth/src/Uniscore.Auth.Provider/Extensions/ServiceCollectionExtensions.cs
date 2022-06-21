@@ -14,13 +14,13 @@ namespace Uniscore.Auth.Provider.Extensions;
 
 public static class ServiceCollectionExtensions
 {
-    public static IServiceCollection AddCreScoreAuth(this IServiceCollection sc, IConfiguration configuration,
+    public static IServiceCollection AddUniscoreAuth(this IServiceCollection sc, IConfiguration configuration,
         string? authServiceUri = null, int? authServicePort = null)
     {
         sc.AddTransient<IAuthGateway, AuthGateway>();
 
-        sc.AddCreScoreAuthentication(configuration);
-        sc.AddCreScoreAuthorization(configuration);
+        sc.AddUniscoreAuthentication(configuration);
+        sc.AddUniscoreAuthorization(configuration);
 
         sc.AddScoped<ITokenStore, TokenStore>();
 
@@ -35,18 +35,18 @@ public static class ServiceCollectionExtensions
         return sc;
     }
 
-    private static void AddCreScoreAuthentication(this IServiceCollection sc, IConfiguration configuration)
+    private static void AddUniscoreAuthentication(this IServiceCollection sc, IConfiguration configuration)
     {
         sc.AddScoped<IAuthenticationHandler, IdTokenAuthenticationHandler>();
 
-        sc.AddAuthentication(options => { options.DefaultScheme = Schemes.CreScoreScheme; })
+        sc.AddAuthentication(options => { options.DefaultScheme = Schemes.UniscoreScheme; })
             .AddScheme<AuthenticationSchemeOptions, IdTokenAuthenticationHandler>(
-                Schemes.CreScoreScheme,
+                Schemes.UniscoreScheme,
                 options => { }
             );
     }
 
-    private static void AddCreScoreAuthorization(this IServiceCollection sc, IConfiguration configuration)
+    private static void AddUniscoreAuthorization(this IServiceCollection sc, IConfiguration configuration)
     {
         sc.AddTransient<IAuthorizationHandler, ExistingUserAuthorizationHandler>();
 
@@ -56,7 +56,7 @@ public static class ServiceCollectionExtensions
             {
                 policy.RequireAuthenticatedUser();
                 policy.Requirements.Add(new ExistingUserRequirement());
-                policy.AuthenticationSchemes.Add(Schemes.CreScoreScheme);
+                policy.AuthenticationSchemes.Add(Schemes.UniscoreScheme);
             });
             configure.DefaultPolicy = configure.GetPolicy(Policies.ValidUser)!;
         });

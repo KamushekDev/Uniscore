@@ -2,7 +2,7 @@
 
 public static class Schemes
 {
-    public const string CreScoreScheme = "crescore-scheme";
+    public const string UniscoreScheme = "uniscore-scheme";
     
     
     internal const string AuthorizationHeaderName = "Authorization";

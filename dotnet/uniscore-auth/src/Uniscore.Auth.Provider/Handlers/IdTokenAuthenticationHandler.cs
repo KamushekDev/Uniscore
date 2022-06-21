@@ -49,11 +49,11 @@ public class IdTokenAuthenticationHandler : AuthenticationHandler<Authentication
             // }
 
             // todo: username 
-            var userIdentity = new UserIdentity(Schemes.CreScoreScheme, true, response.UserId);
+            var userIdentity = new UserIdentity(Schemes.UniscoreScheme, true, response.UserId);
 
             var claims = new ClaimsPrincipal(userIdentity);
 
-            var ticket = new AuthenticationTicket(claims, Schemes.CreScoreScheme);
+            var ticket = new AuthenticationTicket(claims, Schemes.UniscoreScheme);
             // await AuthenticateAsync();
             return AuthenticateResult.Success(ticket);
         }
