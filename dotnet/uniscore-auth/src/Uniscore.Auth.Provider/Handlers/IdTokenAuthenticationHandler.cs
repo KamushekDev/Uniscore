@@ -30,6 +30,9 @@ public class IdTokenAuthenticationHandler : AuthenticationHandler<Authentication
     {
         try
         {
+            if (Request.Path == "/metrics")
+                return AuthenticateResult.NoResult();
+            
             if (!Request.Headers.TryGetValue(Schemes.AuthorizationHeaderName, out var token))
             {
                 await ChallengeAsync(null);
