@@ -1,4 +1,7 @@
 [![Scores](https://github.com/KamushekDev/Uniscore/actions/workflows/publish-nugets.yaml/badge.svg)](https://github.com/KamushekDev/Uniscore/actions/workflows/publish-nugets.yaml)
+
+# [Issues - Youtrack](https://kamushek.myjetbrains.com)
+
 # Uniscore
 Scores
 
