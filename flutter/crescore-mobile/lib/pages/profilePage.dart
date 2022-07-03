@@ -1,10 +1,10 @@
-import 'package:crescore/grpc/backendServiceInterface.dart';
-import 'package:crescore/models/profile.dart';
-import 'package:crescore/models/user_graded_content.dart';
-import 'package:crescore/utils/assets.dart';
-import 'package:crescore/widgets/bottom_navigation_widget.dart';
-import 'package:crescore/widgets/graded_content_card.dart';
-import 'package:crescore/widgets/something_wrong.dart';
+import 'package:Uniscore/grpc/backendServiceInterface.dart';
+import 'package:Uniscore/models/profile.dart';
+import 'package:Uniscore/models/user_graded_content.dart';
+import 'package:Uniscore/utils/assets.dart';
+import 'package:Uniscore/widgets/bottom_navigation_widget.dart';
+import 'package:Uniscore/widgets/graded_content_card.dart';
+import 'package:Uniscore/widgets/something_wrong.dart';
 import 'package:double_back_to_close_app/double_back_to_close_app.dart';
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';

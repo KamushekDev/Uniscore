@@ -1,4 +1,4 @@
-import 'package:crescore/clients/firebase/firebase_client.dart';
+import 'package:Uniscore/clients/firebase/firebase_client.dart';
 import 'package:grpc/grpc.dart';
 
 class FirebaseAuthInterceptor extends ClientInterceptor {

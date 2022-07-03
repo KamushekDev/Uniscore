@@ -1,6 +1,6 @@
-import 'package:crescore/clients/firebase/firebase_client.dart';
-import 'package:crescore/grpc/backendServiceInterface.dart';
-import 'package:crescore/pages/homePage.dart';
+import 'package:Uniscore/clients/firebase/firebase_client.dart';
+import 'package:Uniscore/grpc/backendServiceInterface.dart';
+import 'package:Uniscore/pages/homePage.dart';
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
 

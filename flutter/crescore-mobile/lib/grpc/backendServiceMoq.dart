@@ -1,11 +1,11 @@
-import 'package:crescore/grpc/backendServiceInterface.dart';
-import 'package:crescore/models/contentType.dart';
-import 'package:crescore/models/grade.dart';
-import 'package:crescore/models/profile.dart';
-import 'package:crescore/models/user.dart';
+import 'package:Uniscore/grpc/backendServiceInterface.dart';
+import 'package:Uniscore/models/contentType.dart';
+import 'package:Uniscore/models/grade.dart';
+import 'package:Uniscore/models/profile.dart';
+import 'package:Uniscore/models/user.dart';
 import 'dart:math';
 
-import 'package:crescore/models/user_graded_content.dart';
+import 'package:Uniscore/models/user_graded_content.dart';
 
 extension RandomListItem<T> on List<T> {
   T random() {
