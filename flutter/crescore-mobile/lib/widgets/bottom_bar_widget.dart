@@ -1,5 +1,5 @@
-import 'package:crescore/clients/firebase/firebase_client.dart';
-import 'package:crescore/widgets/avatar_widget.dart';
+import 'package:Uniscore/clients/firebase/firebase_client.dart';
+import 'package:Uniscore/widgets/avatar_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
 

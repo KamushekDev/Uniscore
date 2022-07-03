@@ -1,5 +1,5 @@
-import 'package:crescore/widgets/app_bar_widget.dart';
-import 'package:crescore/widgets/bottom_navigation_widget.dart';
+import 'package:Uniscore/widgets/app_bar_widget.dart';
+import 'package:Uniscore/widgets/bottom_navigation_widget.dart';
 import 'package:double_back_to_close_app/double_back_to_close_app.dart';
 import 'package:flutter/material.dart';
 

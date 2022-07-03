@@ -1,4 +1,4 @@
-import 'package:crescore/widgets/future_page.dart';
+import 'package:Uniscore/widgets/future_page.dart';
 import 'package:flutter/material.dart';
 
 class AddScorePage extends StatefulWidget {

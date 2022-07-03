@@ -1,6 +1,6 @@
-import 'package:crescore/grpc/backendServiceInterface.dart';
-import 'package:crescore/models/profile.dart';
-import 'package:crescore/models/user_graded_content.dart';
+import 'package:Uniscore/grpc/backendServiceInterface.dart';
+import 'package:Uniscore/models/profile.dart';
+import 'package:Uniscore/models/user_graded_content.dart';
 
 class BackendService extends IBackendService {
 

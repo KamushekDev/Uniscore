@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:crescore/models/user_graded_content.dart';
+import 'package:Uniscore/models/user_graded_content.dart';
 import 'package:intl/intl.dart';
 
 class GradedContentCard extends StatelessWidget {

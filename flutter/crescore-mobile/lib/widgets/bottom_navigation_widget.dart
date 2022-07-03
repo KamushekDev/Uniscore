@@ -1,7 +1,7 @@
-import 'package:crescore/pages/addPage.dart';
-import 'package:crescore/pages/homePage.dart';
-import 'package:crescore/pages/profilePage.dart';
-import 'package:crescore/pages/searchPage.dart';
+import 'package:Uniscore/pages/addPage.dart';
+import 'package:Uniscore/pages/homePage.dart';
+import 'package:Uniscore/pages/profilePage.dart';
+import 'package:Uniscore/pages/searchPage.dart';
 import 'package:flutter/material.dart';
 
 class BottomNavigation extends StatelessWidget {

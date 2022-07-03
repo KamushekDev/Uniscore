@@ -1,7 +1,7 @@
-import 'package:crescore/grpc/backendServiceInterface.dart';
-import 'package:crescore/grpc/moq/moq_models.dart';
-import 'package:crescore/widgets/graded_content_widget.dart';
-import 'package:crescore/widgets/future_page.dart';
+import 'package:Uniscore/grpc/backendServiceInterface.dart';
+import 'package:Uniscore/grpc/moq/moq_models.dart';
+import 'package:Uniscore/widgets/graded_content_widget.dart';
+import 'package:Uniscore/widgets/future_page.dart';
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
 

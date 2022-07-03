@@ -1,6 +1,6 @@
-import 'package:crescore/models/grade.dart';
-import 'package:crescore/models/user.dart';
-import 'package:crescore/models/contentType.dart';
+import 'package:Uniscore/models/grade.dart';
+import 'package:Uniscore/models/user.dart';
+import 'package:Uniscore/models/contentType.dart';
 
 class UserGradedContent {
   final String name;
