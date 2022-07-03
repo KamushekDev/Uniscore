@@ -1,6 +1,7 @@
-using CreScore.Scores.Infrastructure;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.Hosting;
+using Prometheus;
+using Prometheus.HttpMetrics;
 using Uniscore.Auth.Provider.Extensions;
 using Uniscore.Scores.Grpc;
 using Uniscore.Scores.Grpc.Interceptors;
@@ -10,10 +11,10 @@ using Uniscore.Shared.Hosting;
 var builder = WebApplication.CreateBuilder(args);
 builder.WebHost.ConfigureCustomKestrel(builder.Configuration);
 
-builder.Services.AddCreScoreHealthChecks();
+builder.Services.AddUniscoreHealthChecks();
 
 //configuration.GetSection(ServiceUrl.SectionName + ":auth").Get<ServiceUrl>()
-builder.Services.AddCreScoreAuth(builder.Configuration);
+builder.Services.AddUniscoreAuth(builder.Configuration);
 
 builder.Services.AddCustomGrpc(options => { options.Interceptors.Add<ExceptionInterceptor>(); });
 
@@ -28,6 +29,8 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseRouting();
+app.UseGrpcMetrics();
+app.UseHttpMetrics();
 
 app.UserCustomHealthChecks();
 
@@ -38,6 +41,10 @@ app.UseEndpoints(endpoints =>
 {
     endpoints.MapGrpcService<ScoresService>();
     endpoints.MapGrpcService<GradesService>();
+
+    endpoints.MapGrpcService<MetricsService>();
+
+    endpoints.MapMetrics();
 });
 
 app.Run();

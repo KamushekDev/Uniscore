@@ -1,0 +1,13 @@
+﻿syntax = "proto3";
+package Metrics.V1;
+option csharp_namespace = "Uniscore.Scores";
+
+service MetricsApi {
+  rpc Increment(IncrementRequest) returns (IncrementResponse);
+}
+
+message IncrementRequest {
+}
+
+message IncrementResponse {
+}
