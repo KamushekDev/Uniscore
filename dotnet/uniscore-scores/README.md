@@ -1,4 +1,4 @@
-CreScore.Scores
+Uniscore.Scores
 
 # nginx & sert installation
 https://kubernetes.github.io/ingress-nginx/deploy/
@@ -11,13 +11,13 @@ helm install cert-manager jetstack/cert-manager --namespace cert-manager --creat
 # Database
 ## update (from src)
 ```bash
-dotnet ef database update -s CreScore.Scores -p CreScore.Scores.Infrastructure
+dotnet ef database update -s Uniscore.Scores -p Uniscore.Scores.Infrastructure
 ``` 
 ## add migration
 ```bash
-dotnet ef migrations add MigrationName -s CreScore.Scores -p CreScore.Scores.Infrastructure -o Database/Migrations
+dotnet ef migrations add MigrationName -s Uniscore.Scores -p Uniscore.Scores.Infrastructure -o Database/Migrations
 ```
 ## remove migrations from db
 ```bash
-dotnet ef database update 0 -s CreScore.Scores -p CreScore.Scores.Infrastructure
+dotnet ef database update 0 -s Uniscore.Scores -p Uniscore.Scores.Infrastructure
 ```
