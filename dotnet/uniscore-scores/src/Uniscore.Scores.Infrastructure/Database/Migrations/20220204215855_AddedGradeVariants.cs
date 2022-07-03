@@ -3,7 +3,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 #nullable disable
 
-namespace CreScore.Scores.Infrastructure.Database.Migrations
+namespace Uniscore.Scores.Infrastructure.Database.Migrations
 {
     public partial class AddedGradeVariants : Migration
     {
