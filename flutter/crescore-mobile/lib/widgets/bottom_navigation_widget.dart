@@ -1,7 +1,7 @@
-import 'package:Uniscore/pages/addPage.dart';
-import 'package:Uniscore/pages/homePage.dart';
-import 'package:Uniscore/pages/profilePage.dart';
-import 'package:Uniscore/pages/searchPage.dart';
+import 'package:Uniscore/pages/add_page/addPage.dart';
+import 'package:Uniscore/pages/home_page/homePage.dart';
+import 'package:Uniscore/pages/profile_page/profilePage.dart';
+import 'package:Uniscore/pages/search_page/searchPage.dart';
 import 'package:flutter/material.dart';
 
 class BottomNavigation extends StatelessWidget {
@@ -17,7 +17,7 @@ class BottomNavigation extends StatelessWidget {
         BottomNavigationBarItem(icon: Icon(Icons.home), label: "Home"),
         BottomNavigationBarItem(icon: Icon(Icons.search), label: "Search"),
         BottomNavigationBarItem(icon: Icon(Icons.add), label: "Add"),
-        BottomNavigationBarItem(icon: Icon(Icons.ac_unit), label: "Profile")
+        BottomNavigationBarItem(icon: Icon(Icons.account_circle), label: "Profile")
         // BottomNavigationBarItem(icon: AvatarWidget(_fc.getUser().getPhotoUrl(size: 24), 12),
         //   label: "Profile",
         // ),
