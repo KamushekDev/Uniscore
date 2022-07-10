@@ -6,6 +6,7 @@ import 'package:Uniscore/pages/login_page/login_page.dart';
 import 'package:Uniscore/pages/profile_page/Models/profile_head_model.dart';
 import 'package:Uniscore/pages/profile_page/Models/profile_stats_model.dart';
 import 'package:Uniscore/pages/profile_page/Models/profile_tabs_model.dart';
+import 'package:Uniscore/pages/profile_page/extra/rounded_with_cutout_circle_border.dart';
 import 'package:Uniscore/pages/profile_page/widgets/profile_head_widget.dart';
 import 'package:Uniscore/pages/profile_page/widgets/profile_stats_widget.dart';
 import 'package:Uniscore/pages/profile_page/widgets/profile_tabs_widget.dart';
@@ -58,9 +59,26 @@ class _ProfilePageState extends State<ProfilePage> {
 
   @override
   Widget build(BuildContext context) {
+    var appBar = PreferredSize(
+      preferredSize: Size.fromHeight(100),
+      child: AppBar(
+        backgroundColor: Color.fromARGB(100, 255, 0, 0),
+        shape: const RoundedWithCutoutCircleBorder(
+            borderRadius: BorderRadius.only(bottomLeft: Radius.circular(20), bottomRight: Radius.circular(20)),
+            cutoutRadius: 60
+        ),
+      ),
+    );
+
+    var appBarHeight = appBar.preferredSize.height;
+    var bodyPadding = appBarHeight - 52 / 2 - 5.4;
+
     return Scaffold(
+      extendBodyBehindAppBar: true,
+      appBar: appBar,
       body: DoubleBackToCloseApp(
-        child: SafeArea(
+        child: Padding(
+          padding: EdgeInsets.only(top: bodyPadding),
           child: Center(
             child: FutureBuilder(
               future: getProfileAndGrades(),

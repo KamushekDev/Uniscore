@@ -173,7 +173,7 @@ class BackendServiceMoq implements IBackendService {
 
   @override
   Future<Profile> getProfile() async {
-    await Future.delayed(Duration(milliseconds: 100));
+    await Future.delayed(Duration(milliseconds: 1000));
     // return Future.error("df");
     return Future.value(Profile("Kamushek", 69, 1337));
   }
