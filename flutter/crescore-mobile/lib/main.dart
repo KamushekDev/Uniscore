@@ -2,12 +2,13 @@ import 'package:Uniscore/clients/firebase/firebase_client.dart';
 import 'package:Uniscore/grpc/backendServiceInterface.dart';
 import 'package:Uniscore/grpc/backendServiceMoq.dart';
 import 'package:Uniscore/grpc/interceptors/firebase_auth_interceptor.dart';
-import 'package:Uniscore/pages/addPage.dart';
-import 'package:Uniscore/pages/homePage.dart';
-import 'package:Uniscore/pages/login_page.dart';
-import 'package:Uniscore/pages/profilePage.dart';
-import 'package:Uniscore/pages/searchPage.dart';
+import 'package:Uniscore/pages/add_page/addPage.dart';
+import 'package:Uniscore/pages/home_page/homePage.dart';
+import 'package:Uniscore/pages/login_page/login_page.dart';
+import 'package:Uniscore/pages/profile_page/profilePage.dart';
+import 'package:Uniscore/pages/search_page/searchPage.dart';
 import 'package:Uniscore/utils/customPageRoute.dart';
+import 'package:Uniscore/utils/themes.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_launcher_icons/custom_exceptions.dart';
 import 'package:get_it/get_it.dart';
@@ -54,17 +55,7 @@ class MyApp extends StatelessWidget {
     return ThemeProvider(
       saveThemesOnChange: true,
       loadThemeOnInit: true,
-      themes: [
-        AppTheme.dark(),
-        AppTheme(
-          id: "custom_theme",
-          description: "My Custom Theme",
-          data: ThemeData(
-            primaryColor: Colors.black,
-            accentColor: Colors.red,
-          ),
-        ),
-      ],
+      themes: Themes.all,
       child: ThemeConsumer(
         child: Builder(
           builder: (themeContext) => MaterialApp(
@@ -85,7 +76,7 @@ class MyApp extends StatelessWidget {
               throw const InvalidConfigException();
             },
             onGenerateRoute: (route) {
-              switch(route.name){
+              switch (route.name) {
                 case LoginPage.routeName:
                   return CustomPageRoute(builder: (_) => const LoginPage());
                 case HomePage.routeName:
