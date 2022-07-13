@@ -1,14 +1,15 @@
 ﻿using Grpc.Core;
+using Uniscore.Auth.Auth;
 using Uniscore.Auth.Core;
 
 namespace Uniscore.Auth.Grpc;
 
-public class AuthorizationService : AuthorizationApi.AuthorizationApiBase
+public class AuthorizationServiceApi : AuthorizationApi.AuthorizationApiBase
 {
     private readonly IAuthService _auth;
-    private readonly ILogger<AuthorizationService> _logger;
+    private readonly ILogger<AuthorizationServiceApi> _logger;
 
-    public AuthorizationService(IAuthService auth, ILogger<AuthorizationService> logger)
+    public AuthorizationServiceApi(IAuthService auth, ILogger<AuthorizationServiceApi> logger)
     {
         _auth = auth;
         _logger = logger;

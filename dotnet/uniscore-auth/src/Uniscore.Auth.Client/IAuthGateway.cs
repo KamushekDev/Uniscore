@@ -6,5 +6,5 @@ public interface IAuthGateway
 {
     Task<Token> GetUserIdFromToken(string idToken, CancellationToken ct);
 
-    Task<User?> GetUser(string userId, CancellationToken ct);
+    Task<UserToken?> GetUser(string userId, CancellationToken ct);
 }
