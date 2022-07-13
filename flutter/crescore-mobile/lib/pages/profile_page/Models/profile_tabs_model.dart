@@ -1,7 +1,11 @@
-import 'package:Uniscore/models/user_graded_content.dart';
+import 'package:Uniscore/pages/profile_page/Models/profile_grade_variants_tab_model.dart';
+import 'package:Uniscore/pages/profile_page/Models/profile_grades_tab_model.dart';
+import 'package:Uniscore/pages/profile_page/Models/profile_information_tab_model.dart';
 
 class ProfileTabsModel {
-  final List<UserGradedContent> grades;
+  ProfileTabsModel(this.gradesTab, this.informationTab, this.gradeVariantsTab);
 
-  ProfileTabsModel(this.grades);
+  final ProfileGradesTabModel gradesTab;
+  final ProfileInformationTabModel informationTab;
+  final ProfileGradeVariantsTabModel gradeVariantsTab;
 }

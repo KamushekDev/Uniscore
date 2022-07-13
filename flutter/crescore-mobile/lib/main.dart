@@ -7,7 +7,8 @@ import 'package:Uniscore/pages/home_page/homePage.dart';
 import 'package:Uniscore/pages/login_page/login_page.dart';
 import 'package:Uniscore/pages/profile_page/profilePage.dart';
 import 'package:Uniscore/pages/search_page/searchPage.dart';
-import 'package:Uniscore/utils/customPageRoute.dart';
+import 'package:Uniscore/utils/custom_router.dart';
+import 'package:Uniscore/utils/instantPageRoute.dart';
 import 'package:Uniscore/utils/themes.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_launcher_icons/custom_exceptions.dart';
@@ -71,25 +72,11 @@ class MyApp extends StatelessWidget {
             // },
             onGenerateInitialRoutes: (route) {
               if (route == LoginPage.routeName) {
-                return [CustomPageRoute(builder: (_) => const LoginPage())];
+                return [InstantPageRoute(builder: (_) => const LoginPage())];
               }
               throw const InvalidConfigException();
             },
-            onGenerateRoute: (route) {
-              switch (route.name) {
-                case LoginPage.routeName:
-                  return CustomPageRoute(builder: (_) => const LoginPage());
-                case HomePage.routeName:
-                  return CustomPageRoute(builder: (_) => const HomePage());
-                case SearchPage.routeName:
-                  return CustomPageRoute(builder: (_) => const SearchPage());
-                case AddPage.routeName:
-                  return CustomPageRoute(builder: (_) => const AddPage());
-                case ProfilePage.routeName:
-                  return CustomPageRoute(builder: (_) => const ProfilePage());
-              }
-              throw const InvalidConfigException();
-            },
+            onGenerateRoute: CustomRouter.generateRoute,
           ),
         ),
       ),

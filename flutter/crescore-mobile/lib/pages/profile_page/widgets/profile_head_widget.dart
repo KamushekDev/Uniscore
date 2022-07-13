@@ -7,14 +7,16 @@ class ProfileHead extends StatelessWidget {
 
   const ProfileHead(this._model, {Key? key}) : super(key: key);
 
+  static const int _avatarRadius = 50;
+
   @override
   Widget build(BuildContext context) {
     return Column(
       children: [
-        const UserAvatar(50, null),
+        UserAvatar(_avatarRadius, _model.avatarUri),
         Text(
           _model.username,
-          style: Theme.of(context).textTheme.headline6,
+          style: Theme.of(context).textTheme.headlineMedium,
         ),
       ],
     );

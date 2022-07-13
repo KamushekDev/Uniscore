@@ -1,4 +1,5 @@
 import 'package:Uniscore/grpc/backendServiceInterface.dart';
+import 'package:Uniscore/models/gradable_content.dart';
 import 'package:Uniscore/models/profile.dart';
 import 'package:Uniscore/models/user_graded_content.dart';
 
@@ -17,6 +18,12 @@ class BackendService extends IBackendService {
   @override
   Future<List<UserGradedContent>> getUserGrades(int offset, int length) {
     // TODO: implement getUserGrades
+    throw UnimplementedError();
+  }
+
+  @override
+  Future<GradableContent> getContent(int id) {
+    // TODO: implement getContent
     throw UnimplementedError();
   }
 

@@ -33,7 +33,7 @@ class GradedContentCard extends StatelessWidget {
             const SizedBox(height: 16, width: double.infinity),
             Align(
               child: Text(
-                _content.name,
+                _content.title,
                 style: Theme.of(context).textTheme.headline6,
               ),
               alignment: Alignment.centerLeft,

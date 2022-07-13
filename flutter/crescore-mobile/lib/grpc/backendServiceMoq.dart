@@ -1,5 +1,6 @@
 import 'package:Uniscore/grpc/backendServiceInterface.dart';
 import 'package:Uniscore/models/contentType.dart';
+import 'package:Uniscore/models/gradable_content.dart';
 import 'package:Uniscore/models/grade.dart';
 import 'package:Uniscore/models/profile.dart';
 import 'package:Uniscore/models/user.dart';
@@ -14,7 +15,7 @@ extension RandomListItem<T> on List<T> {
 }
 
 class BackendServiceMoq implements IBackendService {
-  static const String _userId = "";
+  static const String _userId = "Kamushek";
 
   final List<GradeVariant> _gradeVariants = <GradeVariant>[
     GradeVariant(1, "ka", <Grade>[
@@ -28,133 +29,154 @@ class BackendServiceMoq implements IBackendService {
 
   final List<UserGradedContent> _grades = <UserGradedContent>[
     UserGradedContent(
+      1,
       "Test1",
       ContentType.Game,
       Grade(2, 1, "Мне не интересно", "Описание 2", 21, 40, _userId, (40 + 21) / 2.0, 40 - 21 + 1),
       User(_userId, "Kamushek"),
     ),
     UserGradedContent(
-      "Test1",
+      2,
+      "Test2",
       ContentType.Game,
       Grade(2, 1, "Мне не интересно", "Описание 2", 21, 40, _userId, (40 + 21) / 2.0, 40 - 21 + 1),
       User(_userId, "Kamushek"),
     ),
     UserGradedContent(
-      "Test1",
+      3,
+      "Test3",
       ContentType.Game,
       Grade(2, 1, "Мне не интересно", "Описание 2", 21, 40, _userId, (40 + 21) / 2.0, 40 - 21 + 1),
       User(_userId, "Kamushek"),
     ),
     UserGradedContent(
-      "Test1",
+      4,
+      "Test4",
       ContentType.Game,
       Grade(2, 1, "Мне не интересно", "Описание 2", 21, 40, _userId, (40 + 21) / 2.0, 40 - 21 + 1),
       User(_userId, "Kamushek"),
     ),
     UserGradedContent(
-      "Test1",
+      5,
+      "Test5",
       ContentType.Game,
       Grade(2, 1, "Мне не интересно", "Описание 2", 21, 40, _userId, (40 + 21) / 2.0, 40 - 21 + 1),
       User(_userId, "Kamushek"),
     ),
     UserGradedContent(
-      "Test1",
+      6,
+      "Test6",
       ContentType.Game,
       Grade(2, 1, "Мне не интересно", "Описание 2", 21, 40, _userId, (40 + 21) / 2.0, 40 - 21 + 1),
       User(_userId, "Kamushek"),
     ),
     UserGradedContent(
-      "Test1",
+      7,
+      "Test7",
       ContentType.Game,
       Grade(2, 1, "Мне не интересно", "Описание 2", 21, 40, _userId, (40 + 21) / 2.0, 40 - 21 + 1),
       User(_userId, "Kamushek"),
     ),
     UserGradedContent(
-      "Test1",
+      8,
+      "Test8",
       ContentType.Game,
       Grade(2, 1, "Мне не интересно", "Описание 2", 21, 40, _userId, (40 + 21) / 2.0, 40 - 21 + 1),
       User(_userId, "Kamushek"),
     ),
     UserGradedContent(
-      "Test1",
+      9,
+      "Test9",
       ContentType.Game,
       Grade(2, 1, "Мне не интересно", "Описание 2", 21, 40, _userId, (40 + 21) / 2.0, 40 - 21 + 1),
       User(_userId, "Kamushek"),
     ),
     UserGradedContent(
-      "Test1",
+      10,
+      "Test10",
       ContentType.Game,
       Grade(2, 1, "Мне не интересно", "Описание 2", 21, 40, _userId, (40 + 21) / 2.0, 40 - 21 + 1),
       User(_userId, "Kamushek"),
     ),
     UserGradedContent(
-      "Test1",
+      11,
+      "Test11",
       ContentType.Game,
       Grade(2, 1, "Мне не интересно", "Описание 2", 21, 40, _userId, (40 + 21) / 2.0, 40 - 21 + 1),
       User(_userId, "Kamushek"),
     ),
     UserGradedContent(
-      "Test1",
+      12,
+      "Test12",
       ContentType.Game,
       Grade(2, 1, "Мне не интересно", "Описание 2", 21, 40, _userId, (40 + 21) / 2.0, 40 - 21 + 1),
       User(_userId, "Kamushek"),
     ),
     UserGradedContent(
-      "Test1",
+      13,
+      "Test13",
+      ContentType.Game,
+      Grade(2, 1, "Мне не интересно", "Описание 2", 21, 40, _userId, (40 + 21) / 2.0, 40 - 21 + 1),
+      User(_userId, "Kamushek"),
+    ),
+    UserGradedContent(14,
+      "Test14",
       ContentType.Game,
       Grade(2, 1, "Мне не интересно", "Описание 2", 21, 40, _userId, (40 + 21) / 2.0, 40 - 21 + 1),
       User(_userId, "Kamushek"),
     ),
     UserGradedContent(
-      "Test1",
+      15,
+      "Test15",
       ContentType.Game,
       Grade(2, 1, "Мне не интересно", "Описание 2", 21, 40, _userId, (40 + 21) / 2.0, 40 - 21 + 1),
       User(_userId, "Kamushek"),
     ),
     UserGradedContent(
-      "Test1",
+      16,
+      "Test16",
       ContentType.Game,
       Grade(2, 1, "Мне не интересно", "Описание 2", 21, 40, _userId, (40 + 21) / 2.0, 40 - 21 + 1),
       User(_userId, "Kamushek"),
     ),
     UserGradedContent(
-      "Test1",
+      17,
+      "Test17",
       ContentType.Game,
       Grade(2, 1, "Мне не интересно", "Описание 2", 21, 40, _userId, (40 + 21) / 2.0, 40 - 21 + 1),
       User(_userId, "Kamushek"),
     ),
     UserGradedContent(
-      "Test1",
+      18,
+      "Test18",
       ContentType.Game,
       Grade(2, 1, "Мне не интересно", "Описание 2", 21, 40, _userId, (40 + 21) / 2.0, 40 - 21 + 1),
       User(_userId, "Kamushek"),
     ),
     UserGradedContent(
-      "Test1",
+      19,
+      "Test19",
       ContentType.Game,
       Grade(2, 1, "Мне не интересно", "Описание 2", 21, 40, _userId, (40 + 21) / 2.0, 40 - 21 + 1),
       User(_userId, "Kamushek"),
     ),
     UserGradedContent(
-      "Test1",
+      20,
+      "Test20",
       ContentType.Game,
       Grade(2, 1, "Мне не интересно", "Описание 2", 21, 40, _userId, (40 + 21) / 2.0, 40 - 21 + 1),
       User(_userId, "Kamushek"),
     ),
     UserGradedContent(
-      "Test1",
+      21,
+      "Test21",
       ContentType.Game,
       Grade(2, 1, "Мне не интересно", "Описание 2", 21, 40, _userId, (40 + 21) / 2.0, 40 - 21 + 1),
       User(_userId, "Kamushek"),
     ),
     UserGradedContent(
-      "Test1",
-      ContentType.Game,
-      Grade(2, 1, "Мне не интересно", "Описание 2", 21, 40, _userId, (40 + 21) / 2.0, 40 - 21 + 1),
-      User(_userId, "Kamushek"),
-    ),
-    UserGradedContent(
-      "Test1",
+      22,
+      "Test22",
       ContentType.Game,
       Grade(2, 1, "Мне не интересно", "Описание 2", 21, 40, _userId, (40 + 21) / 2.0, 40 - 21 + 1),
       User(_userId, "Kamushek"),
@@ -173,7 +195,7 @@ class BackendServiceMoq implements IBackendService {
 
   @override
   Future<Profile> getProfile() async {
-    await Future.delayed(Duration(milliseconds: 1000));
+    await Future.delayed(Duration(milliseconds: 100));
     // return Future.error("df");
     return Future.value(Profile("Kamushek", 69, 1337));
   }
@@ -255,4 +277,15 @@ class BackendServiceMoq implements IBackendService {
     "Ваша шкала",
     "Типа шкала",
   ];
+
+  @override
+  Future<GradableContent> getContent(int id) async {
+    await Future.delayed(Duration(milliseconds: 300));
+
+    var mini = _grades.firstWhere((element) => element.id == id);
+
+    var desc = "Новое слово в нише канонизированных экшен-шутеров с упором на многопользовательский сегмент и непродолжительные повторяющиеся баталии. Первое, на что обращаешь внимание при знакомстве с игрой – это, конечно же графика. От 1.6 новая версия ушла значительно далеко, даже дальше чем CS Source. Косметические изменения скрываются в окне закупки, которую надо проводить перед каждым началом раунда. Меню приобретения оружия стало круглым, а каждое оружие обзавелось отображением характеристик.";
+
+    return Future.value(GradableContent(mini.title, description: desc*mini.id));
+  }
 }
