@@ -1,4 +1,5 @@
 using Microsoft.Extensions.Logging;
+using Uniscore.Auth.Auth;
 using Uniscore.Auth.Client.Models;
 
 namespace Uniscore.Auth.Client.Gateway;
@@ -21,7 +22,7 @@ public class AuthGateway : IAuthGateway
         return new Token(response.UserId, response.Issuer, response.Subject, response.Audience, response.TenantId);
     }
 
-    public async Task<User?> GetUser(string userId, CancellationToken ct)
+    public async Task<UserToken?> GetUser(string userId, CancellationToken ct)
     {
         try
         {
@@ -36,7 +37,7 @@ public class AuthGateway : IAuthGateway
 
             var userInfo = response.UserInfo;
 
-            var user = new User()
+            var user = new UserToken()
             {
                 Disable = userInfo.Disable,
                 DisplayName = userInfo.DisplayName,

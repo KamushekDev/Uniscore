@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Uniscore.Auth.Auth;
 using Uniscore.Auth.Client;
 using Uniscore.Auth.Client.Gateway;
 using Uniscore.Auth.Provider.Handlers;
