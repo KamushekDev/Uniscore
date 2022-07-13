@@ -8,52 +8,48 @@ class ProfileStats extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var edgeBox = const SizedBox(width: 40);
-    var middleGap = const SizedBox(width: 16);
+    const edgeBox = SizedBox(width: 40);
+    const middleGap = SizedBox(width: 16);
 
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         edgeBox,
-        Expanded(
-          child: Card(
-            child: Padding(
-              padding: const EdgeInsets.symmetric(vertical: 12.0, horizontal: 16),
-              child: Column(children: [
-                Text(
-                  _stats.subscribersCount.toString(),
-                  style: Theme.of(context).textTheme.bodyText1,
-                ),
-                const SizedBox(height: 4),
-                Text(
-                  "Подписчиков",
-                  style: Theme.of(context).textTheme.bodyText1,
-                )
-              ]),
-            ),
-          ),
-        ),
+        _StatCard(_stats.subscribersCount, "Подписчиков"),
         middleGap,
-        Expanded(
-          child: Card(
-            child: Padding(
-              padding: const EdgeInsets.symmetric(vertical: 12.0, horizontal: 16),
-              child: Column(children: [
-                Text(
-                  _stats.subscriptionsCount.toString(),
-                  style: Theme.of(context).textTheme.bodyText1,
-                ),
-                const SizedBox(height: 4),
-                Text(
-                  "Подписок",
-                  style: Theme.of(context).textTheme.bodyText1,
-                )
-              ]),
-            ),
-          ),
-        ),
+        _StatCard(_stats.subscriptionsCount, "Подписок"),
         edgeBox,
       ],
+    );
+  }
+}
+
+class _StatCard extends StatelessWidget {
+
+  const _StatCard(this.statValue, this.statLabel);
+
+  final int statValue;
+  final String statLabel;
+
+  @override
+  Widget build(BuildContext context) {
+    return Expanded(
+      child: Card(
+        child: Padding(
+          padding: const EdgeInsets.symmetric(vertical: 12.0, horizontal: 16),
+          child: Column(children: [
+            Text(
+              statValue.toString(),
+              style: Theme.of(context).textTheme.titleLarge,
+            ),
+            const SizedBox(height: 4),
+            Text(
+              statLabel,
+              style: Theme.of(context).textTheme.titleSmall,
+            )
+          ]),
+        ),
+      ),
     );
   }
 }

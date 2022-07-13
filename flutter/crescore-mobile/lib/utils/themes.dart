@@ -3,14 +3,17 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:theme_provider/theme_provider.dart';
 
 class Themes {
+  static String darkId = "dark";
+  static String lightId = "light";
+
   static List<AppTheme> all = [
     AppTheme(
-      id: "light",
+      id: lightId,
       description: "light theme",
       data: getLightTheme(),
     ),
     AppTheme(
-      id: "dark",
+      id: darkId,
       description: "Dark theme",
       data: getDarkTheme(),
     ),
@@ -19,7 +22,10 @@ class Themes {
   static ThemeData getLightTheme() {
     var theme = ThemeData.light();
 
-    return _applyText(theme);
+    var colorScheme = theme.colorScheme.copyWith(background: Color.fromARGB(255, 250, 250, 250));
+    var coloredTheme = theme.copyWith(colorScheme: colorScheme);
+
+    return _applyText(coloredTheme);
   }
 
   static ThemeData getDarkTheme() {

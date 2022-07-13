@@ -3,16 +3,13 @@ import 'package:Uniscore/grpc/backendServiceInterface.dart';
 import 'package:Uniscore/models/profile.dart';
 import 'package:Uniscore/models/user_graded_content.dart';
 import 'package:Uniscore/pages/login_page/login_page.dart';
-import 'package:Uniscore/pages/profile_page/Models/profile_head_model.dart';
-import 'package:Uniscore/pages/profile_page/Models/profile_stats_model.dart';
-import 'package:Uniscore/pages/profile_page/Models/profile_tabs_model.dart';
-import 'package:Uniscore/pages/profile_page/extra/rounded_with_cutout_circle_border.dart';
-import 'package:Uniscore/pages/profile_page/widgets/profile_head_widget.dart';
-import 'package:Uniscore/pages/profile_page/widgets/profile_stats_widget.dart';
-import 'package:Uniscore/pages/profile_page/widgets/profile_tabs_widget.dart';
+import 'package:Uniscore/pages/profile_page/Models/profile_landing_model.dart';
+import 'package:Uniscore/pages/profile_page/widgets/profile_end_drawer_widget.dart';
+import 'package:Uniscore/pages/profile_page/widgets/profile_landing_widget.dart';
 import 'package:Uniscore/widgets/bottom_navigation_widget.dart';
 import 'package:Uniscore/widgets/async_snapshot_landing_widget.dart';
 import 'package:double_back_to_close_app/double_back_to_close_app.dart';
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
 import 'package:tuple/tuple.dart';
@@ -59,32 +56,19 @@ class _ProfilePageState extends State<ProfilePage> {
 
   @override
   Widget build(BuildContext context) {
-    var appBar = PreferredSize(
-      preferredSize: Size.fromHeight(100),
-      child: AppBar(
-        backgroundColor: Color.fromARGB(100, 255, 0, 0),
-        shape: const RoundedWithCutoutCircleBorder(
-            borderRadius: BorderRadius.only(bottomLeft: Radius.circular(20), bottomRight: Radius.circular(20)),
-            cutoutRadius: 60
-        ),
-      ),
-    );
-
-    var appBarHeight = appBar.preferredSize.height;
-    var bodyPadding = appBarHeight - 52 / 2 - 5.4;
-
     return Scaffold(
       extendBodyBehindAppBar: true,
-      appBar: appBar,
+      endDrawer: ProfileEndDrawer(_signOut),
       body: DoubleBackToCloseApp(
-        child: Padding(
-          padding: EdgeInsets.only(top: bodyPadding),
-          child: Center(
-            child: FutureBuilder(
-              future: getProfileAndGrades(),
-              builder: (context, AsyncSnapshot snapshot) => AsyncSnapshotLanding(
-                snapshot,
-                (Tuple2<Profile, List<UserGradedContent>> data) => _ProfilePageLanding(data.item1, data.item2, _signOut),
+        child: Center(
+          child: FutureBuilder(
+            future: getProfileAndGrades(),
+            builder: (context, AsyncSnapshot snapshot) => AsyncSnapshotLanding(
+              snapshot,
+              (Tuple2<Profile, List<UserGradedContent>> data) => Builder(
+                builder: (context) {
+                  return ProfileLanding(ProfileLandingModel.fromData(data), openSettingsDrawer: () => Scaffold.of(context).openEndDrawer(),);
+                }
               ),
             ),
           ),
@@ -94,32 +78,6 @@ class _ProfilePageState extends State<ProfilePage> {
         ),
       ),
       bottomNavigationBar: const BottomNavigation(3),
-    );
-  }
-}
-
-class _ProfilePageLanding extends StatelessWidget {
-  final Profile _profile;
-  final List<UserGradedContent> _grades;
-  final Future Function()? _logout;
-
-  const _ProfilePageLanding(this._profile, this._grades, this._logout, {Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      children: [
-        ProfileHead(ProfileHeadModel(_profile.username, null)),
-        ProfileStats(ProfileStatsModel(_profile.subscribersCount, _profile.subscriptionsCount)),
-        OutlinedButton(
-          child: Text(
-            "Sign out",
-            style: Theme.of(context).textTheme.bodyLarge,
-          ),
-          onPressed: _logout,
-        ),
-        ProfileTabs(ProfileTabsModel(_grades)),
-      ],
     );
   }
 }

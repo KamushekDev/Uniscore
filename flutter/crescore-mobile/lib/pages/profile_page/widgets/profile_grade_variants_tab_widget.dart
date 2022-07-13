@@ -1,7 +1,10 @@
+import 'package:Uniscore/pages/profile_page/Models/profile_grade_variants_tab_model.dart';
 import 'package:flutter/material.dart';
 
 class ProfileGradeVariantsTab extends StatelessWidget {
-  const ProfileGradeVariantsTab({Key? key}) : super(key: key);
+  const ProfileGradeVariantsTab(this._model, {Key? key}) : super(key: key);
+
+  final ProfileGradeVariantsTabModel _model;
 
   @override
   Widget build(BuildContext context) {
@@ -9,5 +12,4 @@ class ProfileGradeVariantsTab extends StatelessWidget {
       child: Text("Lol"),
     );
   }
-
 }

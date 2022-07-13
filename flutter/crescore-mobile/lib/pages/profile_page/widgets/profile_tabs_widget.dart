@@ -18,24 +18,22 @@ class ProfileTabs extends StatelessWidget {
         child: Column(
           children: [
             TabBar(
+              padding: EdgeInsets.zero,
               tabs: const [
                 Tab(text: "Мои оценки"),
                 Tab(text: "Инфо"),
                 Tab(text: "Моя система"),
               ],
-              labelColor: Theme.of(context).textTheme.bodyText1?.color,
-              labelStyle: Theme.of(context).textTheme.bodyText1,
+              labelColor: Theme.of(context).textTheme.labelLarge?.color,
+              labelStyle: Theme.of(context).textTheme.labelLarge,
             ),
             Expanded(
-              child: Padding(
-                padding: const EdgeInsets.only(left: 12, right: 12, top: 12),
-                child: TabBarView(
-                  children: [
-                    ProfileGradesTab(ProfileGradesTabModel(_model.grades)),
-                    const ProfileInformationTab(),
-                    const ProfileGradeVariantsTab(),
-                  ],
-                ),
+              child: TabBarView(
+                children: [
+                  ProfileGradesTab(_model.gradesTab),
+                  ProfileInformationTab(_model.informationTab),
+                  ProfileGradeVariantsTab(_model.gradeVariantsTab),
+                ],
               ),
             ),
           ],

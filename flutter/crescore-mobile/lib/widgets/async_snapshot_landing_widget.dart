@@ -11,7 +11,7 @@ class AsyncSnapshotLanding<TData> extends StatelessWidget {
   Widget build(BuildContext context) {
     switch (_snapshot.connectionState) {
       case ConnectionState.waiting:
-        return const CircularProgressIndicator.adaptive();
+        return const Center(child: CircularProgressIndicator.adaptive());
       case ConnectionState.done:
         {
           if (_snapshot.hasData) {

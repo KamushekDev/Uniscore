@@ -12,12 +12,6 @@ class AppBarWidget extends StatelessWidget implements PreferredSizeWidget {
   Widget build(BuildContext context) {
     return AppBar(
       title: Text(_title),
-      actions: [
-        IconButton(
-          onPressed: () => ThemeProvider.controllerOf(context).nextTheme(),
-          icon: const Icon(Icons.wb_sunny_outlined),
-        ),
-      ],
     );
   }
 
