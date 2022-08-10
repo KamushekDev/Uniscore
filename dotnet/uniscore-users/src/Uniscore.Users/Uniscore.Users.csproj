@@ -7,11 +7,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.2.3" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <ProjectReference Include="..\Uniscore.Auth.Infrastructure\Uniscore.Auth.Infrastructure.csproj" />
+    <ProjectReference Include="..\Uniscore.Users.Infrastructure\Uniscore.Users.Infrastructure.csproj" />
+    <ProjectReference Include="..\Uniscore.Users.Protos\Uniscore.Users.Protos.csproj" />
   </ItemGroup>
 
   <ItemGroup>

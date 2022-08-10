@@ -1,4 +1,4 @@
-﻿namespace Uniscore.Auth.Contract.Users;
+﻿namespace Uniscore.Users.Contract;
 
 public record User(
     string Id,

@@ -1,0 +1,19 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Uniscore.Auth.Provider" Version="2022.7.3.1011" />
+    <PackageReference Include="Uniscore.Shared.Hosting" Version="2022.7.3.1011" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Uniscore.Users.Core\Uniscore.Users.Core.csproj" />
+    <ProjectReference Include="..\Uniscore.Users.Protos\Uniscore.Users.Protos.csproj" />
+  </ItemGroup>
+
+</Project>

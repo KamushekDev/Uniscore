@@ -1,5 +1,6 @@
 ﻿using FirebaseAdmin;
 using FirebaseAdmin.Auth;
+using Grpc.Core;
 using Microsoft.Extensions.Logging;
 using Uniscore.Auth.Core;
 using Uniscore.Auth.Core.Models;
@@ -45,12 +46,20 @@ public class FirebaseAuthService : IAuthService
 
     public async Task<Core.Models.UserInfo> GetUserById(string userId, CancellationToken ct)
     {
-        var user = await _auth.GetUserAsync(userId, ct);
+        try
+        {
+            var user = await _auth.GetUserAsync(userId, ct);
 
-        var contactInfo = new ContactInfo(user.Email, user.EmailVerified, user.PhoneNumber);
-        var userInfo = new Core.Models.UserInfo(user.Uid, user.DisplayName, user.PhotoUrl, user.Disabled, user.TenantId,
-            contactInfo, user.ProviderId);
+            var contactInfo = new ContactInfo(user.Email, user.EmailVerified, user.PhoneNumber);
+            var userInfo = new Core.Models.UserInfo(user.Uid, user.DisplayName, user.PhotoUrl, user.Disabled,
+                user.TenantId,
+                contactInfo, user.ProviderId);
 
-        return userInfo;
+            return userInfo;
+        }
+        catch (FirebaseAuthException authException)
+        {
+            throw new RpcException(new Status(StatusCode.NotFound, authException.Message));
+        }
     }
 }
