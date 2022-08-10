@@ -1,28 +1,30 @@
-using Uniscore.Auth.Grpc;
-using Uniscore.Auth.Infrastructure;
+using Uniscore.Auth.Provider.Extensions;
 using Uniscore.Shared.Hosting;
+using Uniscore.Users.Grpc;
+using Uniscore.Users.Infrastructure;
 
 var builder = WebApplication.CreateBuilder(args);
+
 builder.WebHost.ConfigureCustomKestrel(builder.Configuration);
-
-builder.Services.AddGrpc();
-
-builder.Services.AddInfrastructure(builder.Configuration);
 
 builder.Services.AddUniscoreHealthChecks();
 
-var app = builder.Build();
+builder.Services.AddInfrastructure(builder.Configuration);
 
-if (app.Environment.IsDevelopment())
-    app.UseDeveloperExceptionPage();
+builder.Services.AddCustomGrpc(x => { });
+
+var app = builder.Build();
 
 app.UseRouting();
 
 app.UserCustomHealthChecks();
 
+app.UseAuthentication();
+app.UseAuthorization();
+
 app.UseEndpoints(endpoints =>
 {
-    endpoints.MapGrpcService<AuthorizationServiceApi>();
+    endpoints.MapGrpcService<UsersServiceApi>();
 });
 
 app.Run();

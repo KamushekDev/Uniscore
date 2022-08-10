@@ -1,5 +1,5 @@
 ﻿using Grpc.Core;
-using Uniscore.Auth.Auth;
+using Uniscore.Auth.Api;
 using Uniscore.Auth.Core;
 
 namespace Uniscore.Auth.Grpc;
@@ -36,32 +36,5 @@ public class AuthorizationServiceApi : AuthorizationApi.AuthorizationApiBase
             var status = new Status(StatusCode.Unauthenticated, e.Message);
             throw new RpcException(status);
         }
-    }
-
-    public override async Task<GetFirebaseUserResponse> GetFirebaseUser(GetFirebaseUserRequest request,
-        ServerCallContext context)
-    {
-        var result = await _auth.GetUserById(request.UserId, context.CancellationToken);
-
-        if (result is null)
-            throw new Exception("User wasn't found");
-
-        var userInfo = new UserInfo()
-        {
-            Disable = result.Disabled,
-            Uid = result.Uid,
-            DisplayName = result.DisplayName,
-            PhotoUrl = result.PhotoUrl,
-            ProviderId = result.ProviderId,
-            TenantId = result.TenantId,
-            Email = result.ContactInfo.Email,
-            EmailConfirmed = result.ContactInfo.EmailVerified,
-            PhoneNumber = result.ContactInfo.PhoneNumber
-        };
-
-        return new GetFirebaseUserResponse()
-        {
-            Success = true, UserInfo = userInfo
-        };
     }
 }

@@ -2,13 +2,12 @@ syntax = "proto3";
 
 package Auth.V1;
 
-option csharp_namespace = "Uniscore.Auth.Auth";
+option csharp_namespace = "Uniscore.Auth.Api";
 
 import "google/protobuf/wrappers.proto";
 
 service AuthorizationApi {
-    rpc AuthorizeFirebaseToken(AuthRequest) returns (AuthResponse);
-    rpc GetFirebaseUser(GetFirebaseUserRequest) returns (GetFirebaseUserResponse);
+    rpc AuthorizeFirebaseToken (AuthRequest) returns (AuthResponse);
 }
 
 message AuthRequest {
@@ -21,25 +20,4 @@ message AuthResponse {
     google.protobuf.StringValue subject = 3;
     google.protobuf.StringValue audience = 4;
     google.protobuf.StringValue tenant_id = 5;
-}
-
-message GetFirebaseUserRequest {
-    string user_id = 1;
-}
-
-message GetFirebaseUserResponse {
-    bool success = 1;
-    UserInfo user_info = 2;
-}
-
-message UserInfo {
-    string uid = 1;
-    google.protobuf.StringValue display_name = 2;
-    google.protobuf.StringValue photo_url = 3;
-    bool disable = 4;
-    google.protobuf.StringValue tenant_id = 5;
-    string provider_id = 6;
-    google.protobuf.StringValue email = 7;
-    bool email_confirmed = 8;
-    google.protobuf.StringValue phone_number = 9;
 }

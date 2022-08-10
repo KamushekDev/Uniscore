@@ -1,15 +1,16 @@
 ﻿using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Uniscore.Auth.Infrastructure.Firebase;
+using Uniscore.Users.Core.Users;
+using Uniscore.Users.Infrastructure.Users;
 
-namespace Uniscore.Auth.Infrastructure;
+namespace Uniscore.Users.Infrastructure;
 
 public static class ServiceCollectionExtensions
 {
     public static IServiceCollection AddInfrastructure(this IServiceCollection sc, IConfiguration configuration)
     {
-        sc.AddFirebase(configuration);
-
+        sc.AddTransient<IUsersService, UsersService>();
+        
         return sc;
     }
 }
