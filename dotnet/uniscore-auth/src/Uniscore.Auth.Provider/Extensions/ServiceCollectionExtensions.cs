@@ -2,22 +2,41 @@
 using Grpc.Net.ClientFactory;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
 using Uniscore.Auth.Api;
 using Uniscore.Auth.Client;
 using Uniscore.Auth.Client.Gateway;
+using Uniscore.Auth.Infrastructure.Options;
 using Uniscore.Auth.Provider.Handlers;
 using Uniscore.Auth.Provider.Requirements;
-using Uniscore.Shared.Common;
 
 namespace Uniscore.Auth.Provider.Extensions;
 
 public static class ServiceCollectionExtensions
 {
     public static IServiceCollection AddUniscoreAuth(this IServiceCollection sc, IConfiguration configuration,
-        string? authServiceUri = null, int? authServicePort = null)
+        IWebHostEnvironment environment,
+        Uri? authUri = null, UniscoreAuthorizationOptions? options = null)
     {
+        options ??= new UniscoreAuthorizationOptions();
+        authUri ??= new Uri("http://auth-service.uniscore:82");
+
+
+        if (options.Status == AuthorizationStatus.Disabled)
+            return sc;
+
+        if (options.Status == AuthorizationStatus.DisabledOnDevelopment && environment.IsDevelopment())
+            return sc;
+
+        if (options.Status == AuthorizationStatus.EnabledOnPod &&
+            string.IsNullOrEmpty(Environment.GetEnvironmentVariable("HOSTNAME")))
+            return sc;
+
+        sc.AddSingleton(options);
+
         sc.AddTransient<IAuthGateway, AuthGateway>();
 
         sc.AddUniscoreAuthentication(configuration);
@@ -25,13 +44,8 @@ public static class ServiceCollectionExtensions
 
         sc.AddScoped<ITokenStore, TokenStore>();
 
-        var uri = authServiceUri ?? "auth-service.uniscore";
-        var port = authServicePort ?? 82;
-
-        var authServiceUrl = new ServiceUriOptions(uri, port);
-
         sc.AddGrpcClient<AuthorizationApi.AuthorizationApiClient>("Uniscore Auth service",
-            options => { options.Address = new Uri(authServiceUrl.Uri); });
+            o => { o.Address = authUri; });
 
         return sc;
     }
@@ -40,7 +54,7 @@ public static class ServiceCollectionExtensions
     {
         sc.AddScoped<IAuthenticationHandler, IdTokenAuthenticationHandler>();
 
-        sc.AddAuthentication(options => {  })
+        sc.AddAuthentication(options => { })
             .AddScheme<AuthenticationSchemeOptions, IdTokenAuthenticationHandler>(
                 Schemes.UniscoreScheme,
                 options => { }
