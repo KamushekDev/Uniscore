@@ -31,7 +31,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Uniscore.Auth.Provider", "s
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Uniscore.Auth.Contract", "src\Uniscore.Auth.Contract\Uniscore.Auth.Contract.csproj", "{915CF994-1425-45DC-9503-C1FC3C0A02B3}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "clients", "clients", "{D23A7776-A7CE-4FE6-A3C8-5F765C7031DC}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "external", "external", "{D23A7776-A7CE-4FE6-A3C8-5F765C7031DC}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
