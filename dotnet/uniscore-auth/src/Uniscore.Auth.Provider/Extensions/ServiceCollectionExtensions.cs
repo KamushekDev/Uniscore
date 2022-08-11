@@ -9,8 +9,8 @@ using Microsoft.Extensions.Hosting;
 using Uniscore.Auth.Api;
 using Uniscore.Auth.Client;
 using Uniscore.Auth.Client.Gateway;
-using Uniscore.Auth.Infrastructure.Options;
 using Uniscore.Auth.Provider.Handlers;
+using Uniscore.Auth.Provider.Options;
 using Uniscore.Auth.Provider.Requirements;
 
 namespace Uniscore.Auth.Provider.Extensions;
