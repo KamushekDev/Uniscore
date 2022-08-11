@@ -11,7 +11,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Uniscore.Auth.Client\Uniscore.Auth.Client.csproj" />
-    <ProjectReference Include="..\Uniscore.Auth.Infrastructure\Uniscore.Auth.Infrastructure.csproj" />
   </ItemGroup>
 
   <ItemGroup>
