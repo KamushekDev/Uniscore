@@ -22,20 +22,14 @@ public static class ServiceCollectionExtensions
         Uri? authUri = null, UniscoreAuthorizationOptions? options = null)
     {
         options ??= new UniscoreAuthorizationOptions();
+
         authUri ??= new Uri("http://auth-service.uniscore:82");
 
+        var config = ParseConfig(environment, options);
+        sc.AddSingleton(config);
 
-        if (options.Status == AuthorizationStatus.Disabled)
+        if (!config.IsEnabled)
             return sc;
-
-        if (options.Status == AuthorizationStatus.DisabledOnDevelopment && environment.IsDevelopment())
-            return sc;
-
-        if (options.Status == AuthorizationStatus.EnabledOnPod &&
-            string.IsNullOrEmpty(Environment.GetEnvironmentVariable("HOSTNAME")))
-            return sc;
-
-        sc.AddSingleton(options);
 
         sc.AddTransient<IAuthGateway, AuthGateway>();
 
@@ -48,6 +42,27 @@ public static class ServiceCollectionExtensions
             o => { o.Address = authUri; });
 
         return sc;
+    }
+
+    private static AuthorizationConfig ParseConfig(
+        IWebHostEnvironment environment,
+        UniscoreAuthorizationOptions options)
+    {
+        var isAuthorizationEnabled = options.Status switch
+        {
+            AuthorizationStatus.Disabled => false,
+            AuthorizationStatus.DisabledOnDevelopment when environment.IsDevelopment() => false,
+            AuthorizationStatus.EnabledOnPod when string.IsNullOrEmpty(Environment.GetEnvironmentVariable("HOSTNAME"))
+                => false,
+            _ => true
+        };
+
+        var configuration = new AuthorizationConfig()
+        {
+            IsEnabled = isAuthorizationEnabled
+        };
+
+        return configuration;
     }
 
     private static void AddUniscoreAuthentication(this IServiceCollection sc, IConfiguration configuration)
