@@ -18,12 +18,9 @@ namespace Uniscore.Auth.Provider.Extensions;
 public static class ServiceCollectionExtensions
 {
     public static IServiceCollection AddUniscoreAuth(this IServiceCollection sc, IConfiguration configuration,
-        IWebHostEnvironment environment,
-        Uri? authUri = null, UniscoreAuthorizationOptions? options = null)
+        IWebHostEnvironment environment, UniscoreAuthorizationOptions? options = null)
     {
         options ??= new UniscoreAuthorizationOptions();
-
-        authUri ??= new Uri("http://auth-service.uniscore:82");
 
         var config = ParseConfig(environment, options);
         sc.AddSingleton(config);
@@ -39,7 +36,7 @@ public static class ServiceCollectionExtensions
         sc.AddScoped<ITokenStore, TokenStore>();
 
         sc.AddGrpcClient<AuthorizationApi.AuthorizationApiClient>("Uniscore Auth service",
-            o => { o.Address = authUri; });
+            o => { o.Address = options.AuthServiceUri; });
 
         return sc;
     }
