@@ -1,4 +1,3 @@
-using CreScore.Scores.Infrastructure;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.Hosting;
 using Uniscore.Auth.Provider.Extensions;

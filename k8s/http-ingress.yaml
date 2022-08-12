@@ -38,6 +38,17 @@ spec:
             port:
               # name: http
               number: 80
+  - host: users.uniscore.ru
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service: 
+            name: users-service
+            port:
+              # name: http
+              number: 80
   - host: uniscore.ru
     http:
       paths:

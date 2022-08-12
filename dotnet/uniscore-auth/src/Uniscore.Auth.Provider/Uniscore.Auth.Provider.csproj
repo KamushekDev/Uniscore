@@ -14,7 +14,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Uniscore.Shared.Common" Version="2022.6.21.981" />
+    <PackageReference Include="Uniscore.Shared.Common" Version="2022.8.12.1101-UN-7" />
   </ItemGroup>
 
 </Project>

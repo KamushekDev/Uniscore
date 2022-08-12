@@ -15,20 +15,64 @@
         <div class="spacer"></div>
         <div>
             <h4>Service's health:</h3>
-            <h5>Auth: <span id="auth">-</span></h5>
-            <h5>Scores: <span id="scores">-</span></h4>
-                <script>
-                    fetch("/svs/scores/health")
-                        .then(x => document.getElementById("scores").innerHTML = x.status == 200 ? "OK" : "NOT OK")
-                        .catch(x => document.getElementById("scores").innerHTML = "NOT OK (e)")
-                </script>
-                <script>
-                    fetch("/svs/auth/health")
-                        .then(x => document.getElementById("auth").innerHTML = x.status == 200 ? "OK" : "NOT OK")
-                        .catch(x => document.getElementById("auth").innerHTML = "NOT OK (e)")
-                </script>
+                <h5>Auth: <span id="auth">-</span></h5>
+                <h5>Scores: <span id="scores">-</span>
+            </h4>
+            <script>
+                fetch("/svs/scores/health")
+                    .then(x => document.getElementById("scores").innerHTML = x.status == 200 ? "OK" : "NOT OK")
+                    .catch(x => document.getElementById("scores").innerHTML = "NOT OK (e)")
+            </script>
+            <script>
+                fetch("/svs/auth/health")
+                    .then(x => document.getElementById("auth").innerHTML = x.status == 200 ? "OK" : "NOT OK")
+                    .catch(x => document.getElementById("auth").innerHTML = "NOT OK (e)")
+            </script>
+        </div>
+        <div class="spacer"></div>
+        <div>
+            <button id="copyTokenButton">Copy test user token</button>
         </div>
     </div>
+    <script type="module">
+        // Import the functions you need from the SDKs you need
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.9.2/firebase-app.js";
+        import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.9.2/firebase-analytics.js";
+        import { getAuth, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/9.9.2/firebase-auth.js";
+        // TODO: Add SDKs for Firebase products that you want to use
+        // https://firebase.google.com/docs/web/setup#available-libraries
+
+        // Your web app's Firebase configuration
+        // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+        const firebaseConfig = {
+            apiKey: "AIzaSyB_U5gQh6wA5ARGUqpDmwZxSItUcrxurQw",
+            authDomain: "unique-score.firebaseapp.com",
+            projectId: "unique-score",
+            storageBucket: "unique-score.appspot.com",
+            messagingSenderId: "1070089009017",
+            appId: "1:1070089009017:web:bd2fb06d552eea737de1a8",
+            measurementId: "G-7CQ4SK4W1N"
+        };
+
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const analytics = getAnalytics(app);
+        const auth = getAuth(app);
+        document.getElementById("copyTokenButton").addEventListener("click", copyUserToken)
+
+        async function copyUserToken() {
+            console.log("df");
+            try {
+                let credentials = await signInWithEmailAndPassword(auth, "test@test.test", "123123");
+                let user = credentials.user;
+                let idToken = await user.getIdToken();
+
+                await navigator.clipboard.writeText(idToken);
+            } catch (e) {
+                alert(e.message);
+            }
+        }
+    </script>
 </body>
 
 </html>
