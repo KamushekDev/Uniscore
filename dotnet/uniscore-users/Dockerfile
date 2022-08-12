@@ -20,7 +20,7 @@ COPY src/Uniscore.Users.Core/*.csproj src/Uniscore.Users.Core/
 COPY src/Uniscore.Users.Infrastructure/*.csproj src/Uniscore.Users.Infrastructure/
 COPY src/Uniscore.Users.Protos/*.csproj src/Uniscore.Users.Protos/
 
-COPY tests/Uniscore.Users.Tests/*.csproj tests/Uniscore.Users.Tests
+COPY tests/Uniscore.Users.Tests/*.csproj tests/Uniscore.Users.Tests/
 COPY *.sln .
 
 RUN dotnet restore
