@@ -22,7 +22,7 @@ public class FirebaseAuthService : IAuthService
     {
         if (token == "TESTUSER")
             return new TokenInfo(
-                "LXgai0tkhShcmJPvWIl1ezvegXR2",
+                "SHCvlOY2HBQYUfDzjDqmJiatuKh1",
                 null,
                 null,
                 null,

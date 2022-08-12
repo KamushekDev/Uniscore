@@ -1,6 +1,6 @@
 ﻿namespace Uniscore.Auth.Infrastructure.ContextMetadata;
 
-public interface IContextMetadataService
+public interface IContextMetadataExtractor
 {
     
 }
