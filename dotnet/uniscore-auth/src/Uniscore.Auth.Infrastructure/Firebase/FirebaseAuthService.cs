@@ -22,13 +22,12 @@ public class FirebaseAuthService : IAuthService
     {
         if (token == "TESTUSER")
             return new TokenInfo(
-                "SHCvlOY2HBQYUfDzjDqmJiatuKh1",
+                "gofEZmnOg0cieWJq4p5W5MH5Ykb2",
                 null,
                 null,
                 null,
                 null
             );
-
 
         var firebaseToken = await _auth.VerifyIdTokenAsync(token, ct);
 

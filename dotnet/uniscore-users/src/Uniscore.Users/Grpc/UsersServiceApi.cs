@@ -1,4 +1,7 @@
 ﻿using Grpc.Core;
+using Microsoft.AspNetCore.Authorization;
+using Uniscore.Auth.Provider;
+using Uniscore.Auth.Provider.ContextMetadata;
 using Uniscore.Users.Api;
 using Uniscore.Users.Core.Users;
 using Uniscore.Users.Infrastructure.Mappings;
@@ -8,18 +11,20 @@ namespace Uniscore.Users.Grpc;
 public class UsersServiceApi : UsersApi.UsersApiBase
 {
     private readonly IUsersService _usersService;
+    private readonly IContextMetadataExtractor _extractor;
 
-    public UsersServiceApi(IUsersService usersService)
+    public UsersServiceApi(IUsersService usersService, IContextMetadataExtractor extractor)
     {
         _usersService = usersService;
+        _extractor = extractor;
     }
 
+    [Authorize(Policies.ValidUser)]
     public override async Task<GetCurrentUserResponse> GetCurrentUser(GetCurrentUserRequest request,
         ServerCallContext context)
     {
-        // todo: get current user id from context
-        var currentUserId = "test";
-        
+        var currentUserId = _extractor.GetUserId(context)!;
+
         var user = await _usersService.GetUser(currentUserId);
 
         var response = Mapper.MapTo_GetCurrentUserResponse(user);

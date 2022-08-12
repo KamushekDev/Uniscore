@@ -1,4 +1,5 @@
-﻿using Uniscore.Users.Api;
+﻿using FirebaseAdmin.Auth;
+using Uniscore.Users.Api;
 using Uniscore.Users.Contract;
 
 namespace Uniscore.Users.Infrastructure.Mappings;
@@ -34,5 +35,16 @@ public class Mapper
                 PhotoUrl = user.PhotoUrl
             }
         };
+    }
+
+    public static User MapTo_User(UserRecord user)
+    {
+        return new User(
+            user.Uid,
+            user.DisplayName,
+            user.Email,
+            user.PhoneNumber,
+            user.PhotoUrl
+        );
     }
 }

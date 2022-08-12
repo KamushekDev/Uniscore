@@ -7,24 +7,16 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.WebHost.ConfigureCustomKestrel(builder.Configuration);
 
-builder.Services.AddUniscoreHealthChecks();
+builder.Services.AddInfrastructure(builder.Configuration, builder.Environment);
 
-builder.Services.AddInfrastructure(builder.Configuration);
-
-builder.Services.AddCustomGrpc(x => { });
+builder.Services.AddCustomGrpc(_ => { });
 
 var app = builder.Build();
 
 app.UseRouting();
 
-app.UserCustomHealthChecks();
+app.UseInfrastructure();
 
-app.UseAuthentication();
-app.UseAuthorization();
-
-app.UseEndpoints(endpoints =>
-{
-    endpoints.MapGrpcService<UsersServiceApi>();
-});
+app.UseEndpoints(endpoints => { endpoints.MapGrpcService<UsersServiceApi>(); });
 
 app.Run();
