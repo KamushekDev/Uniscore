@@ -13,10 +13,10 @@ service UsersApi {
 
 message UserMessage {
     string user_id = 1;
-    string display_name = 2;
-    string email = 3;
-    string phone_number = 4;
-    string photo_url = 5;
+    google.protobuf.StringValue display_name = 2;
+    google.protobuf.StringValue email = 3;
+    google.protobuf.StringValue phone_number = 4;
+    google.protobuf.StringValue photo_url = 5;
 }
 
 message GetCurrentUserRequest {
