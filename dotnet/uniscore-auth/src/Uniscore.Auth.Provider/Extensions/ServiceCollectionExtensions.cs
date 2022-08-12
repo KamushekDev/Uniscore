@@ -9,6 +9,7 @@ using Microsoft.Extensions.Hosting;
 using Uniscore.Auth.Api;
 using Uniscore.Auth.Client;
 using Uniscore.Auth.Client.Gateway;
+using Uniscore.Auth.Provider.ContextMetadata;
 using Uniscore.Auth.Provider.Handlers;
 using Uniscore.Auth.Provider.Options;
 using Uniscore.Auth.Provider.Requirements;
@@ -34,6 +35,8 @@ public static class ServiceCollectionExtensions
         sc.AddUniscoreAuthorization(configuration);
 
         sc.AddScoped<ITokenStore, TokenStore>();
+
+        sc.AddSingleton<IContextMetadataExtractor, ContextMetadataExtractor>();
 
         sc.AddGrpcClient<AuthorizationApi.AuthorizationApiClient>("Uniscore Auth service",
             o => { o.Address = options.AuthServiceUri; });

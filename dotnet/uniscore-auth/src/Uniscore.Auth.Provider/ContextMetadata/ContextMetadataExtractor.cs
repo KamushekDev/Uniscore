@@ -2,7 +2,7 @@
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Http;
 
-namespace Uniscore.Auth.Infrastructure.ContextMetadata;
+namespace Uniscore.Auth.Provider.ContextMetadata;
 
 public sealed class ContextMetadataExtractor : IContextMetadataExtractor
 {
