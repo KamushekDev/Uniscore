@@ -2,21 +2,33 @@
 using Grpc.Net.ClientFactory;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
+using Uniscore.Auth.Api;
 using Uniscore.Auth.Client;
 using Uniscore.Auth.Client.Gateway;
+using Uniscore.Auth.Provider.ContextMetadata;
 using Uniscore.Auth.Provider.Handlers;
+using Uniscore.Auth.Provider.Options;
 using Uniscore.Auth.Provider.Requirements;
-using Uniscore.Shared.Common;
 
 namespace Uniscore.Auth.Provider.Extensions;
 
 public static class ServiceCollectionExtensions
 {
     public static IServiceCollection AddUniscoreAuth(this IServiceCollection sc, IConfiguration configuration,
-        string? authServiceUri = null, int? authServicePort = null)
+        IWebHostEnvironment environment, UniscoreAuthorizationOptions? options = null)
     {
+        options ??= new UniscoreAuthorizationOptions();
+
+        var config = ParseConfig(environment, options);
+        sc.AddSingleton(config);
+
+        if (!config.IsEnabled)
+            return sc;
+
         sc.AddTransient<IAuthGateway, AuthGateway>();
 
         sc.AddUniscoreAuthentication(configuration);
@@ -24,22 +36,40 @@ public static class ServiceCollectionExtensions
 
         sc.AddScoped<ITokenStore, TokenStore>();
 
-        var uri = authServiceUri ?? "auth-service.uniscore";
-        var port = authServicePort ?? 82;
-
-        var authServiceUrl = new ServiceUriOptions(uri, port);
+        sc.AddSingleton<IContextMetadataExtractor, ContextMetadataExtractor>();
 
         sc.AddGrpcClient<AuthorizationApi.AuthorizationApiClient>("Uniscore Auth service",
-            options => { options.Address = new Uri(authServiceUrl.Uri); });
+            o => { o.Address = options.AuthServiceUri; });
 
         return sc;
+    }
+
+    private static AuthorizationConfig ParseConfig(
+        IWebHostEnvironment environment,
+        UniscoreAuthorizationOptions options)
+    {
+        var isAuthorizationEnabled = options.Status switch
+        {
+            AuthorizationStatus.Disabled => false,
+            AuthorizationStatus.DisabledOnDevelopment when environment.IsDevelopment() => false,
+            AuthorizationStatus.EnabledOnPod when string.IsNullOrEmpty(Environment.GetEnvironmentVariable("HOSTNAME"))
+                => false,
+            _ => true
+        };
+
+        var configuration = new AuthorizationConfig()
+        {
+            IsEnabled = isAuthorizationEnabled
+        };
+
+        return configuration;
     }
 
     private static void AddUniscoreAuthentication(this IServiceCollection sc, IConfiguration configuration)
     {
         sc.AddScoped<IAuthenticationHandler, IdTokenAuthenticationHandler>();
 
-        sc.AddAuthentication(options => {  })
+        sc.AddAuthentication(options => { })
             .AddScheme<AuthenticationSchemeOptions, IdTokenAuthenticationHandler>(
                 Schemes.UniscoreScheme,
                 options => { }

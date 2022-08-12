@@ -9,22 +9,15 @@ builder.Services.AddGrpc();
 
 builder.Services.AddInfrastructure(builder.Configuration);
 
-builder.Services.AddUniscoreHealthChecks();
-
 var app = builder.Build();
 
 if (app.Environment.IsDevelopment())
-{
     app.UseDeveloperExceptionPage();
-}
 
 app.UseRouting();
 
-app.UserCustomHealthChecks();
+app.UseInfrastructure();
 
-app.UseEndpoints(endpoints =>
-{
-    endpoints.MapGrpcService<AuthorizationService>();
-});
+app.UseEndpoints(endpoints => { endpoints.MapGrpcService<AuthorizationServiceApi>(); });
 
 app.Run();

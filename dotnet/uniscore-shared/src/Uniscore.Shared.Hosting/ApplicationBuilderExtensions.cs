@@ -3,15 +3,15 @@ using Microsoft.AspNetCore.Diagnostics.HealthChecks;
 
 namespace Uniscore.Shared.Hosting;
 
-public static class WebApplicationExtensions
+public static class ApplicationBuilderExtensions
 {
-    public static void UserCustomHealthChecks(this WebApplication app)
+    public static void UseCustomHealthChecks(this IApplicationBuilder builder)
     {
-        app.UseHealthChecks("/live", new HealthCheckOptions()
+        builder.UseHealthChecks("/live", new HealthCheckOptions()
         {
             Predicate = reg => reg.Tags.Contains("live")
         });
-        app.UseHealthChecks("/health", new HealthCheckOptions()
+        builder.UseHealthChecks("/health", new HealthCheckOptions()
         {
             Predicate = reg => reg.Tags.Contains("health")
         });

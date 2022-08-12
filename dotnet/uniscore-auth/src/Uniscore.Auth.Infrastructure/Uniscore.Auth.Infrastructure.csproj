@@ -1,19 +1,19 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
-    <PropertyGroup>
-        <TargetFramework>net6.0</TargetFramework>
-        <ImplicitUsings>enable</ImplicitUsings>
-        <Nullable>enable</Nullable>
-    </PropertyGroup>
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
 
-    <ItemGroup>
-      <ProjectReference Include="..\Uniscore.Auth.Core\Uniscore.Auth.Core.csproj" />
-      <ProjectReference Include="..\Uniscore.Auth.Protos\Uniscore.Auth.Protos.csproj" />
-    </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Uniscore.Auth.Core\Uniscore.Auth.Core.csproj" />
+    <ProjectReference Include="..\Uniscore.Auth.Protos\Uniscore.Auth.Protos.csproj" />
+  </ItemGroup>
 
-    <ItemGroup>
-      <PackageReference Include="Uniscore.Shared.Hosting" Version="2022.6.21.981" />
-      <PackageReference Include="FirebaseAdmin" Version="2.2.0" />
-    </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Uniscore.Shared.Hosting" Version="2022.8.12.1101-UN-7" />
+    <PackageReference Include="FirebaseAdmin" Version="2.2.0" />
+  </ItemGroup>
 
 </Project>

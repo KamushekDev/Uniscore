@@ -37,3 +37,14 @@ spec:
             port:
               # name: grpc
               number: 82
+  - host: users-grpc.uniscore.ru
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service: 
+            name: users-service
+            port:
+              # name: grpc
+              number: 82
