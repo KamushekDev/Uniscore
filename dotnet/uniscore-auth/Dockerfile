@@ -14,12 +14,13 @@ RUN --mount=type=secret,id=packages_pat,required=true \
     dotnet nuget add source -u KamushekDev -p "$(cat /run/secrets/packages_pat)" --store-password-in-clear-text -n github "https://nuget.pkg.github.com/KamushekDev/index.json"
 
 WORKDIR /source
-COPY src/Uniscore.Auth/*.csproj src/Uniscore.Auth/
-COPY src/Uniscore.Auth.Protos/*.csproj src/Uniscore.Auth.Protos/
-COPY src/Uniscore.Auth.Infrastructure/*.csproj src/Uniscore.Auth.Infrastructure/
-COPY src/Uniscore.Auth.Core/*.csproj src/Uniscore.Auth.Core/
 COPY src/Uniscore.Auth.Client/*.csproj src/Uniscore.Auth.Client/
 COPY src/Uniscore.Auth.Provider/*.csproj src/Uniscore.Auth.Provider/
+COPY src/Uniscore.Auth/*.csproj src/Uniscore.Auth/
+COPY src/Uniscore.Auth.Contract/*.csproj src/Uniscore.Auth.Contract/
+COPY src/Uniscore.Auth.Core/*.csproj src/Uniscore.Auth.Core/
+COPY src/Uniscore.Auth.Infrastructure/*.csproj src/Uniscore.Auth.Infrastructure/
+COPY src/Uniscore.Auth.Protos/*.csproj src/Uniscore.Auth.Protos/
 COPY *.sln .
 
 RUN dotnet restore
