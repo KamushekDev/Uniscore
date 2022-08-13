@@ -1,0 +1,12 @@
+{
+  "details": {
+    "methodFqn": "Auth.V1.AuthorizationApi.AuthorizeFirebaseToken"
+  },
+  "requests": [
+    {
+      "location": "AuthorizeFirebaseToken-request.json"
+    }
+  ],
+  "operationType": "unary",
+  "invokerName": "grpc"
+}

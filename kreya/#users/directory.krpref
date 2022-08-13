@@ -1,0 +1,12 @@
+{
+  "settings": [
+    {
+      "environmentId": "4f291748-5892-43d8-b43c-97504d7a62f8",
+      "options": {
+        "grpc": {
+          "endpoint": "https://users-grpc.uniscore.ru"
+        }
+      }
+    }
+  ]
+}
