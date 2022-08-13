@@ -12,6 +12,9 @@ public static class ApplicationBuilderExtensions
 
         builder.UseCustomHealthChecks();
 
-        builder.UseUniscoreAuthorization();
+        builder.UseAuthentication();
+        builder.UseAuthorization();
+
+        //builder.UseUniscoreAuthorization();
     }
 }
