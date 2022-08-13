@@ -67,7 +67,12 @@
                 let user = credentials.user;
                 let idToken = await user.getIdToken();
 
-                await navigator.clipboard.writeText(idToken);
+                console.log(idToken);
+                let permissionResult = await navigator.permissions.query({name: "clipboard-write"});
+                if (permissionResult.state === "granted" || permissionResult.state === "prompt" )
+                    await navigator.clipboard.writeText(idToken);
+                else
+                    alert("Не было получено разрешение");
             } catch (e) {
                 alert(e.message);
             }
