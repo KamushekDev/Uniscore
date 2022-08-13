@@ -1,0 +1,12 @@
+{
+  "details": {
+    "methodFqn": "Scores.V1.GradesApi.GetGradeVariant"
+  },
+  "requests": [
+    {
+      "location": "GetGradeVariant-request.json"
+    }
+  ],
+  "operationType": "unary",
+  "invokerName": "grpc"
+}
