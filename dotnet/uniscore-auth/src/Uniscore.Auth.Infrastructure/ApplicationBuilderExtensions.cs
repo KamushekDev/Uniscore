@@ -7,6 +7,6 @@ public static class ApplicationBuilderExtensions
 {
     public static void UseInfrastructure(this IApplicationBuilder builder)
     {
-        builder.UseCustomHealthChecks();
+        builder.UseUniscoreHealthChecks();
     }
 }
