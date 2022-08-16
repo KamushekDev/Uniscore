@@ -4,7 +4,6 @@ using Microsoft.Extensions.DependencyInjection;
 using Uniscore.Shared.Auth.Extensions;
 using Uniscore.Shared.Auth.Options;
 using Uniscore.Shared.Hosting;
-using Uniscore.Users.Core.Users;
 using Uniscore.Users.Infrastructure.Firebase;
 using Uniscore.Users.Infrastructure.Users;
 
@@ -20,11 +19,11 @@ public static class ServiceCollectionExtensions
 
         sc.AddAuth(configuration, environment);
 
-        sc.AddUniscoreGrpc(_ => { });
+        sc.AddUniscoreGrpc();
 
         sc.AddFirebase(configuration);
 
-        sc.AddTransient<IUsersService, UsersService>();
+        sc.AddUsers();
 
         return sc;
     }
