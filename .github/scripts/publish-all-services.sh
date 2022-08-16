@@ -1,7 +1,7 @@
 #!/bin/bash
 set -e
 trap 'last_command=$current_command; current_command=$BASH_COMMAND' DEBUG
-trap 'if [[$? != 0]]; then echo "\"${last_command}\" command filed with exit code $?."; fi' EXIT
+trap 'status_code=$?; end_command=$last_command; if [[ $status_code != 0 ]]; then echo "\"${end_command}\" command filed with exit code $status_code."; fi' EXIT
 
 echo $PACKAGES_PAT > ./PACKAGES_PAT
 
