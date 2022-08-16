@@ -22,11 +22,11 @@ runs:
   steps:
     - run: suffix="df"
       shell: bash
-    - run: echo "$suffix"
+    - run: echo $suffix
       shell: bash          
     - run: export SUF="df2"
       shell: bash
-    - run: echo "$SUF"
+    - run: echo $SUF
       shell: bash    
-    - run: suffi="3" | echo "$suffi"
+    - run: suffi="3" | echo $suffi
       shell: bash
