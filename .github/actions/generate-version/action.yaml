@@ -28,3 +28,5 @@ runs:
       shell: bash
     - run: echo "$SUF"
       shell: bash    
+    - run: suffi="3" | echo "$suffi"
+      shell: bash
