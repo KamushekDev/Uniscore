@@ -1,4 +1,4 @@
-﻿namespace Uniscore.Auth.Provider;
+﻿namespace Uniscore.Auth.Provider.Options;
 
 public class AuthorizationConfig
 {
