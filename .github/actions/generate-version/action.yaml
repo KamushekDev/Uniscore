@@ -1,0 +1,30 @@
+name: 'Generate version'
+description: 'Generate version for current workflow'
+inputs:
+  branch: 
+    description: 'Branch name'
+    required: true
+    default: 'master'
+  build-number:
+    description: 'Number of current workflow run'
+    required: true
+    default: '1'
+  run-attempt:
+    description: 'Number of attempt of executing current worflow'
+    required: true
+    default: '1'
+outputs:
+  version:
+    description: "Generated version for workflow"
+    value: ${{ steps.random-number-generator.outputs.random-number }}
+runs:
+  using: "composite"
+  steps:
+    - run: suffix="df"
+      shell: bash
+    - run: echo "$suffix"
+      shell: bash          
+    - run: $SUF="df2"
+      shell: bash
+    - run: echo "$SUF"
+      shell: bash    

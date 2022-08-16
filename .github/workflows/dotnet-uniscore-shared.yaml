@@ -5,7 +5,19 @@ on:
       - '.github/**'
       - 'dotnet/uniscore-shared/**'
 jobs:
-  test:
+  init:
     runs-on: ubuntu-latest
     steps:
-    - run: echo lol
+    - name: Cancel Previous Runs
+      uses: styfle/cancel-workflow-action@0.9.1
+      with:
+        access_token: ${{ github.token }}
+    - name: Checkout
+      uses: actions/checkout@v1
+    - name: Generate version
+      id: version
+      uses: actions/generate-version@v1
+      with: 
+        branch: ${{github.ref_name}}
+        build-number: ${{github.run_number}}
+        run-attempt: ${{github.run_attempt}}
