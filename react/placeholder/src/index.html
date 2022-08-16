@@ -17,6 +17,7 @@
             <h4>Service's health:</h3>
                 <h5>Auth: <span id="auth">-</span></h5>
                 <h5>Scores: <span id="scores">-</span>
+                <h5>Users: <span id="users">-</span>
             </h4>
             <script>
                 fetch("/svs/scores/health")
@@ -27,6 +28,11 @@
                 fetch("/svs/auth/health")
                     .then(x => document.getElementById("auth").innerHTML = x.status == 200 ? "OK" : "NOT OK")
                     .catch(x => document.getElementById("auth").innerHTML = "NOT OK (e)")
+            </script>
+             <script>
+                fetch("/svs/users/health")
+                    .then(x => document.getElementById("users").innerHTML = x.status == 200 ? "OK" : "NOT OK")
+                    .catch(x => document.getElementById("users").innerHTML = "NOT OK (e)")
             </script>
         </div>
         <div class="spacer"></div>
