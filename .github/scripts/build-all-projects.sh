@@ -6,7 +6,6 @@ trap 'status_code=$?; end_command=$last_command; if [[ $status_code != 0 ]]; the
 solutions=$(find . -type f -name "*.sln")
 # echo "$solutions"
 
-BUILD_VERSION="2022.08.16-test"
 echo "build version: $BUILD_VERSION"
 for solution in $solutions
 do
