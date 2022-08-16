@@ -16,4 +16,9 @@ public static class ApplicationBuilderExtensions
             Predicate = reg => reg.Tags.Contains("health")
         });
     }
+
+    public static void UseUniscoreAuthorization()
+    {
+        
+    }
 }
