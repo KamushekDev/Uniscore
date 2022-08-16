@@ -17,7 +17,7 @@ WORKDIR /source
 COPY src/Uniscore.Users/*.csproj src/Uniscore.Users/
 COPY src/Uniscore.Users.Contract/*.csproj src/Uniscore.Users.Contract/
 COPY src/Uniscore.Users.Core/*.csproj src/Uniscore.Users.Core/
-COPY src/Uniscore.Users.Infrastructure/*.csproj src/Uniscore.Users.Infrastructure/
+#COPY src/Uniscore.Users.Infrastructure/*.csproj src/Uniscore.Users.Infrastructure/
 COPY src/Uniscore.Users.Protos/*.csproj src/Uniscore.Users.Protos/
 
 COPY tests/Uniscore.Users.Tests/*.csproj tests/Uniscore.Users.Tests/
