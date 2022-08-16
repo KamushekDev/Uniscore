@@ -1,6 +1,6 @@
-﻿namespace Uniscore.Auth.Provider;
+﻿namespace Uniscore.Shared.Auth.AuthStore;
 
-internal class TokenStore : ITokenStore
+internal class AuthStore : IAuthStore
 {
     private string? _token;
 
@@ -11,7 +11,7 @@ internal class TokenStore : ITokenStore
         return _token;
     }
 
-    public void SetToken(string token)
+    public void SetAuthorization(string token)
     {
         if (_token is not null)
             throw new InvalidOperationException("Token is already set.");

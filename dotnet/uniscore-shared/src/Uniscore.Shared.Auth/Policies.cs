@@ -1,4 +1,4 @@
-﻿namespace Uniscore.Auth.Provider;
+﻿namespace Uniscore.Shared.Auth;
 
 public static class Policies
 {

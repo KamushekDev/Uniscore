@@ -1,7 +1,8 @@
 ﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
+using Uniscore.Shared.Auth.Options;
 
-namespace Uniscore.Auth.Provider.Extensions;
+namespace Uniscore.Shared.Auth.Extensions;
 
 public static class ApplicationBuilderExtensions
 {

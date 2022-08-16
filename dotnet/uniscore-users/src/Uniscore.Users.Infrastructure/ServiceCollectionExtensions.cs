@@ -1,11 +1,9 @@
 ﻿using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
-using Uniscore.Auth.Provider.Extensions;
-using Uniscore.Auth.Provider.Options;
+using Uniscore.Shared.Auth.Extensions;
+using Uniscore.Shared.Auth.Options;
 using Uniscore.Shared.Hosting;
-using Uniscore.Users.Core.Users;
 using Uniscore.Users.Infrastructure.Firebase;
 using Uniscore.Users.Infrastructure.Users;
 
@@ -21,9 +19,11 @@ public static class ServiceCollectionExtensions
 
         sc.AddAuth(configuration, environment);
 
+        sc.AddUniscoreGrpc();
+
         sc.AddFirebase(configuration);
 
-        sc.AddTransient<IUsersService, UsersService>();
+        sc.AddUsers();
 
         return sc;
     }
@@ -31,15 +31,10 @@ public static class ServiceCollectionExtensions
     private static void AddAuth(this IServiceCollection sc, IConfiguration configuration,
         IWebHostEnvironment environment)
     {
-        var uriString = configuration.GetSection("AuthorizationServiceUri").Get<string>();
-
-        
         var options = new UniscoreAuthorizationOptions()
         {
             Status = AuthorizationStatus.Enabled,
         };
-        if (uriString is not null)
-            options.AuthServiceUri = new Uri(uriString);
 
         sc.AddUniscoreAuth(configuration, environment, options: options);
     }

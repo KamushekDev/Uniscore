@@ -2,7 +2,7 @@
 using Uniscore.Shared.Auth.Extensions;
 using Uniscore.Shared.Hosting;
 
-namespace Uniscore.Users.Infrastructure;
+namespace Uniscore.Scores.Infrastructure;
 
 public static class ApplicationBuilderExtensions
 {
@@ -11,7 +11,7 @@ public static class ApplicationBuilderExtensions
         builder.UseRouting();
 
         builder.UseUniscoreHealthChecks();
-
+        
         builder.UseUniscoreAuthorization();
     }
 }

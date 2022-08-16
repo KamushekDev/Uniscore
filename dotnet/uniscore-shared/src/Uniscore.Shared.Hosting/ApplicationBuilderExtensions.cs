@@ -5,7 +5,7 @@ namespace Uniscore.Shared.Hosting;
 
 public static class ApplicationBuilderExtensions
 {
-    public static void UseCustomHealthChecks(this IApplicationBuilder builder)
+    public static void UseUniscoreHealthChecks(this IApplicationBuilder builder)
     {
         builder.UseHealthChecks("/live", new HealthCheckOptions()
         {

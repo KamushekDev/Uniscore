@@ -15,7 +15,6 @@ RUN --mount=type=secret,id=packages_pat,required=true \
 
 WORKDIR /source
 COPY src/Uniscore.Auth.Client/*.csproj src/Uniscore.Auth.Client/
-COPY src/Uniscore.Auth.Provider/*.csproj src/Uniscore.Auth.Provider/
 COPY src/Uniscore.Auth/*.csproj src/Uniscore.Auth/
 COPY src/Uniscore.Auth.Contract/*.csproj src/Uniscore.Auth.Contract/
 COPY src/Uniscore.Auth.Core/*.csproj src/Uniscore.Auth.Core/

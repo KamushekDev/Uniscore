@@ -1,5 +1,5 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 
-namespace Uniscore.Auth.Provider.Requirements;
+namespace Uniscore.Shared.Auth.Requirements;
 
 public class ExistingUserRequirement : IAuthorizationRequirement { }
