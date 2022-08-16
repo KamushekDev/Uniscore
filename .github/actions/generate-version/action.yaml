@@ -24,7 +24,7 @@ runs:
       shell: bash
     - run: echo "$suffix"
       shell: bash          
-    - run: $SUF="df2"
+    - run: export SUF="df2"
       shell: bash
     - run: echo "$SUF"
       shell: bash    
