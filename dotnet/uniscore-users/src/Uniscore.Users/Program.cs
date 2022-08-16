@@ -4,7 +4,7 @@ using Uniscore.Users.Infrastructure;
 
 var builder = WebApplication.CreateBuilder(args);
 
-builder.WebHost.ConfigureCustomKestrel(builder.Configuration);
+builder.WebHost.ConfigureUniscoreKestrel(builder.Configuration);
 
 builder.Services.AddInfrastructure(builder.Configuration, builder.Environment);
 

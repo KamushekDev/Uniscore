@@ -23,7 +23,7 @@ public class GradeVariantsGateway : IGradeVariantsGateway
             OwnerUserId = ownerUserId
         };
 
-        var result = await _context.GradeVariants.AddAsync(variant, token);
+        var result = _context.GradeVariants.Add(variant);
 
         await _context.SaveChangesAsync(token);
 
