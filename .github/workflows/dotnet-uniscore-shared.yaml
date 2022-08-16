@@ -1,0 +1,11 @@
+name: dotnet - Uniscore.Shared
+on:
+  push:
+    paths:
+      - '.github/**'
+      - 'dotnet/uniscore-shared/**'
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+    - run: echo lol
