@@ -4,7 +4,7 @@ metadata:
   name: auth
   namespace: uniscore
 spec:
-  replicas: 1
+  replicas: 0
   revisionHistoryLimit: 3
   selector:
     matchLabels:

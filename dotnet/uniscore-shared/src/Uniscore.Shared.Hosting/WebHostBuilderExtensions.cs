@@ -7,7 +7,7 @@ namespace Uniscore.Shared.Hosting;
 
 public static class WebHostBuilderExtensions
 {
-    public static void ConfigureCustomKestrel(this IWebHostBuilder builder, IConfiguration configuration)
+    public static void ConfigureUniscoreKestrel(this IWebHostBuilder builder, IConfiguration configuration)
     {
         var ports = configuration.GetSection(ServicePorts.SectionName).Get<ServicePorts>() ??
                     new ServicePorts(80, 82, 84);

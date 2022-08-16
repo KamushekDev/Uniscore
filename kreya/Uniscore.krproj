@@ -8,7 +8,7 @@
       "createMissingOperations": true,
       "options": {
         "files": [
-          "../../../Repos/Uniscore/dotnet/uniscore-users/src/Uniscore.Users.Protos"
+          "../dotnet/uniscore-users/src/Uniscore.Users.Protos"
         ],
         "importPaths": []
       }
@@ -20,7 +20,7 @@
       "createMissingOperations": true,
       "options": {
         "files": [
-          "../../../Repos/Uniscore/dotnet/uniscore-auth/src/Uniscore.Auth.Protos"
+          "../dotnet/uniscore-auth/src/Uniscore.Auth.Protos"
         ],
         "importPaths": []
       }
@@ -32,7 +32,7 @@
       "createMissingOperations": true,
       "options": {
         "files": [
-          "../../../Repos/Uniscore/dotnet/uniscore-scores/src/Uniscore.Scores.Protos"
+          "../dotnet/uniscore-scores/src/Uniscore.Scores.Protos"
         ],
         "importPaths": []
       }

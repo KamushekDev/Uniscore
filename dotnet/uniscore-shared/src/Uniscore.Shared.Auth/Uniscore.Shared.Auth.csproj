@@ -10,11 +10,12 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Uniscore.Auth.Client\Uniscore.Auth.Client.csproj" />
+    <PackageReference Include="Grpc.Core.Api" Version="2.44.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="6.0.8" />
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Uniscore.Shared.Common" Version="2022.8.12.1101-UN-7" />
+    <ProjectReference Include="..\Uniscore.Shared.Common\Uniscore.Shared.Common.csproj" />
   </ItemGroup>
 
 </Project>
