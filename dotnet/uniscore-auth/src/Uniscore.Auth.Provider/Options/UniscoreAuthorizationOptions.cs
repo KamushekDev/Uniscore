@@ -3,8 +3,6 @@
 public class UniscoreAuthorizationOptions
 {
     public AuthorizationStatus Status { get; set; } = AuthorizationStatus.Enabled;
-
-    public Uri AuthServiceUri { get; set; } = new Uri("http://auth-service.uniscore:82");
 }
 
 public enum AuthorizationStatus

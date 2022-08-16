@@ -1,10 +1,12 @@
-﻿using Grpc.Core;
-using Microsoft.AspNetCore.Http;
+﻿using System.Security.Claims;
 
 namespace Uniscore.Auth.Provider.ContextMetadata;
 
 public interface IContextMetadataExtractor
 {
-    string? GetUserId(ServerCallContext context);
-    string? GetUserId(HttpContext context);
+    string? GetUserIdOrDefault(ClaimsPrincipal claims);
+    string GetUserId(ClaimsPrincipal claims);
+    string? GetFirebaseInfoOrDefault(ClaimsPrincipal claims);
+    string GetFirebaseInfo(ClaimsPrincipal claims);
+    string? GetClaimByTypeOrDefault(ClaimsPrincipal claims, string claimType);
 }

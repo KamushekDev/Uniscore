@@ -1,25 +1,27 @@
 ﻿using Microsoft.AspNetCore.Authorization;
-using Microsoft.Extensions.Logging;
-using Uniscore.Auth.Client;
+using Uniscore.Auth.Provider.ContextMetadata;
 using Uniscore.Auth.Provider.Requirements;
 
 namespace Uniscore.Auth.Provider.Handlers;
 
 public class ExistingUserAuthorizationHandler : AuthorizationHandler<ExistingUserRequirement>
 {
-    private readonly IAuthGateway _gateway;
-    private readonly ILogger<ExistingUserAuthorizationHandler> _logger;
+    private readonly IContextMetadataExtractor _extractor;
 
-    public ExistingUserAuthorizationHandler(IAuthGateway gateway, ILogger<ExistingUserAuthorizationHandler> logger)
+    public ExistingUserAuthorizationHandler(IContextMetadataExtractor extractor)
     {
-        _gateway = gateway;
-        _logger = logger;
+        _extractor = extractor;
     }
 
     protected override Task HandleRequirementAsync(AuthorizationHandlerContext context,
         ExistingUserRequirement requirement)
     {
-        context.Succeed(requirement);
+        var userId = _extractor.GetUserIdOrDefault(context.User);
+
+        if (userId is not null)
+            context.Succeed(requirement);
+        else
+            context.Fail(new AuthorizationFailureReason(this, "UserId wasn't provided"));
         return Task.CompletedTask;
     }
 }
