@@ -20,9 +20,9 @@ outputs:
 runs:
   using: "composite"
   steps:
-    - run: suffix="df"
+    - run: env.suf="df"
       shell: bash
-    - run: echo $suffix
+    - run: echo $env.suf
       shell: bash          
     - run: export SUF="df2"
       shell: bash
