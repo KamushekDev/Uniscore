@@ -3,7 +3,7 @@ using Uniscore.Auth.Infrastructure;
 using Uniscore.Shared.Hosting;
 
 var builder = WebApplication.CreateBuilder(args);
-builder.WebHost.ConfigureCustomKestrel(builder.Configuration);
+builder.WebHost.ConfigureUniscoreKestrel(builder.Configuration);
 
 builder.Services.AddGrpc();
 
