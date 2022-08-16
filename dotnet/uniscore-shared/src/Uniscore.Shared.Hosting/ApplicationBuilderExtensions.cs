@@ -5,7 +5,7 @@ namespace Uniscore.Shared.Hosting;
 
 public static class ApplicationBuilderExtensions
 {
-    public static void UseCustomHealthChecks(this IApplicationBuilder builder)
+    public static void UseUniscoreHealthChecks(this IApplicationBuilder builder)
     {
         builder.UseHealthChecks("/live", new HealthCheckOptions()
         {
@@ -15,10 +15,5 @@ public static class ApplicationBuilderExtensions
         {
             Predicate = reg => reg.Tags.Contains("health")
         });
-    }
-
-    public static void UseUniscoreAuthorization()
-    {
-        
     }
 }
