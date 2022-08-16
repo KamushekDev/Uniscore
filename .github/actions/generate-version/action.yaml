@@ -30,3 +30,5 @@ runs:
       shell: bash    
     - run: suffi="3" | echo $suffi
       shell: bash
+    - run: echo lol
+      shell: bash
