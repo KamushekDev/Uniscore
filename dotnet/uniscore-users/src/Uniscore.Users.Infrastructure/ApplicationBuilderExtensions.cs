@@ -1,5 +1,5 @@
 ﻿using Microsoft.AspNetCore.Builder;
-using Uniscore.Auth.Provider.Extensions;
+using Uniscore.Shared.Auth.Extensions;
 using Uniscore.Shared.Hosting;
 
 namespace Uniscore.Users.Infrastructure;
@@ -12,9 +12,6 @@ public static class ApplicationBuilderExtensions
 
         builder.UseCustomHealthChecks();
 
-        builder.UseAuthentication();
-        builder.UseAuthorization();
-
-        //builder.UseUniscoreAuthorization();
+        builder.UseUniscoreAuthorization();
     }
 }
