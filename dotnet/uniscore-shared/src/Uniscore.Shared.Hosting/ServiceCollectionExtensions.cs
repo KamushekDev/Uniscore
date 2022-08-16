@@ -16,7 +16,8 @@ public static class ServiceCollectionExtensions
             .AddCheck("health", () => HealthCheckResult.Healthy("health"), tags: new[] { "health" });
     }
 
-    public static IGrpcServerBuilder AddUniscoreGrpc(this IServiceCollection sc, Action<GrpcServiceOptions>? configure)
+    public static IGrpcServerBuilder AddUniscoreGrpc(this IServiceCollection sc,
+        Action<GrpcServiceOptions>? configure = null)
     {
         sc.TryAddTransient<GrpcAuthInterceptor>();
 
@@ -28,7 +29,7 @@ public static class ServiceCollectionExtensions
     }
 
     public static IHttpClientBuilder AddUniscoreGrpcClient<TClient>(this IServiceCollection sc, string serviceName,
-        Action<GrpcClientFactoryOptions>? configure)
+        Action<GrpcClientFactoryOptions>? configure = null)
         where TClient : class
     {
         sc.TryAddTransient<GrpcAuthInterceptor>();
