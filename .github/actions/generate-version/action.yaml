@@ -30,5 +30,5 @@ runs:
         version="$(date +'%Y.%m.%d')${{ env.suffix }}" \
           && echo "version=$version" >> $GITHUB_ENV
       shell: bash          
-    - run: echo ${{ env.version }}
+    - run: echo "::set-output name=version::$(echo ${{ env.version }})"
       shell: bash
