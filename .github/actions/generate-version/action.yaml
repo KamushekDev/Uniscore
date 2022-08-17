@@ -21,9 +21,10 @@ runs:
   using: "composite"
   steps:
   # [[ $VERBOSE == 1 ]] && V="YES" || V="NO"
-    - run: [[ ${{ inputs.branch }} != 'master' ]] 
-        && suf="-${{ inputs.branch }}" 
-        && "suffix=$suf" >> $GITHUB_ENV
+    - run: |
+        [[ ${{ inputs.branch }} != 'master' ]] \
+          && suf="-${{ inputs.branch }}" \
+          && "suffix=$suf" >> $GITHUB_ENV
       shell: bash
     - run: echo $env.suf
       shell: bash          
