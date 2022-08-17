@@ -1,11 +1,11 @@
-name: 'Build all .NET solutions'
-description: 'Build all .NET solutions under specific folder'
+name: "Build all .NET solutions"
+description: "Build all .NET solutions under specific folder"
 inputs:
   folder:
-    description: 'Root folder for scanning for solutions'
+    description: "Root folder for scanning for solutions"
     required: true
   version:
-    description: 'Version'
+    description: "Version"
     required: true
 runs:
   using: "composite"
@@ -19,4 +19,5 @@ runs:
       uses: actions/upload-artifact@v3
       with:
         name: nugets
-        path: "${{ inputs.folder }}/**/*.nupkg"
+        path: "*${{ inputs.folder }}/**/*.nupkg"
+        retention-days: 1
