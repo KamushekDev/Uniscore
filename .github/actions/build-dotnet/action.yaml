@@ -15,9 +15,14 @@ runs:
         solutions=$(find ${{ inputs.folder }} -type f -name "*.sln") \
         && for solution in $solutions; do echo $solution; dotnet publish -c Release /p:Version=${{ inputs.version }} $solution; done
       shell: bash
-    - name: Upload all nugets to artifacts
+    - name: Locate all nuget files
       id: nugets
       run: |
         nugets=$(find ${{ inputs.folder }} -type f -name "*.nupkg") \
-        && for nuget in $nugets; do echo $nuget; done
+        && echo "::set-output name=nuget-files::$(echo $nugets)"
       shell: bash
+    - name: Upload all nugets to artifacts
+      uses: actions/upload-artifact@v3
+      with:
+        name: nugets
+        path: ${{ steps.nugets.outputs.nuget-files }}
