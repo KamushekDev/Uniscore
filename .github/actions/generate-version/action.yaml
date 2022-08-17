@@ -26,13 +26,9 @@ runs:
           && suf="-${{ inputs.branch }}" \
           && echo "suffix=$suf" >> $GITHUB_ENV
       shell: bash
-    - run: echo ${{ env.suffix }}
+    - run: |
+        version="$(date +'%Y.%m.%d')${{ env.suffix }}" \
+          && echo "version=$version" >> GITHUB_ENV
       shell: bash          
-    - run: export SUF="df2"
-      shell: bash
-    - run: echo $SUF
-      shell: bash    
-    - run: suffi="3" | echo $suffi
-      shell: bash
-    - run: echo lol
+    - run: echo ${{ env.version }}
       shell: bash
