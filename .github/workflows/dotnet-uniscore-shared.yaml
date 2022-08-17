@@ -5,7 +5,7 @@ on:
       - '.github/**'
       - 'dotnet/uniscore-shared/**'
 jobs:
-  Init:
+  init:
     runs-on: ubuntu-latest
     steps:
     - name: Cancel Previous Runs
@@ -17,7 +17,3 @@ jobs:
     - name: Generate version
       id: version
       uses: ./.github/actions/generate-version
-      with: 
-        branch: ${{github.ref_name}}
-        build-number: ${{github.run_number}}
-        run-attempt: ${{github.run_attempt}}
