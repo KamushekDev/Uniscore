@@ -20,7 +20,10 @@ outputs:
 runs:
   using: "composite"
   steps:
-    - run: env.suf="df"
+  # [[ $VERBOSE == 1 ]] && V="YES" || V="NO"
+    - run: [[ ${{ inputs.branch }} != 'master' ]] 
+        && suf="-${{ inputs.branch }}" 
+        && "suffix=$suf" >> $GITHUB_ENV
       shell: bash
     - run: echo $env.suf
       shell: bash          
