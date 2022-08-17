@@ -25,3 +25,8 @@ jobs:
     steps:
       - name: Test
         run: echo ${{ needs.init.outputs.version }}
+      - name: Build
+        uses: ./.github/actions/build-dotnet
+        with: 
+          folder: './dotnet/uniscore-shared'
+          version: ${{ needs.init.outputs.version }}
