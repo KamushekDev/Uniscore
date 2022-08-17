@@ -19,5 +19,5 @@ runs:
       uses: actions/upload-artifact@v3
       with:
         name: nugets
-        path: "**${{ inputs.folder }}/**/*.nupkg"
+        path: "**/${{ inputs.folder }}/**/*.nupkg"
         retention-days: 1
