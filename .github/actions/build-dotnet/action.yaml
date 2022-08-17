@@ -10,7 +10,14 @@ inputs:
 runs:
   using: "composite"
   steps:
-    - run: |
-        solutions=$(find ${{ env.folder }} -type f -name "*.sln") \
+    - name: Build all solutions
+      run: |
+        solutions=$(find ${{ inputs.folder }} -type f -name "*.sln") \
         && for solution in $solutions; do echo $solution; dotnet publish -c Release /p:Version=${{ inputs.version }} $solution; done
+      shell: bash
+    - name: Upload all nugets to artifacts
+      id: nugets
+      run: |
+        nugets=$(find ${{ inputs.folder }} -type f -name "*.nupkg") \
+        && for nuget in $nugets; do echo $nuget; done
       shell: bash
