@@ -33,3 +33,9 @@ jobs:
         with: 
           folder: ${{ env.folder }}
           version: ${{ needs.init.outputs.version }}
+
+  publish-nugets:
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - name: Add source
