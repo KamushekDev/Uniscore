@@ -29,6 +29,8 @@ runs:
     - run: |
         version="$(date +'%Y.%m.%d')${{ env.suffix }}" \
           && echo "version=$version" >> $GITHUB_ENV
-      shell: bash          
+      shell: bash 
+    - run: echo "Generated version = ${{ env.version }}"
+      shell: bash         
     - run: echo "::set-output name=version::$(echo ${{ env.version }})"
       shell: bash
