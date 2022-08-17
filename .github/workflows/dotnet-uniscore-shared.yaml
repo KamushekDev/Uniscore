@@ -2,24 +2,20 @@ name: dotnet - Uniscore.Shared
 on:
   push:
     paths:
-      - '.github/**'
-      - 'dotnet/uniscore-shared/**'
+      - ".github/**"
+      - "dotnet/uniscore-shared/**"
 jobs:
   init:
     runs-on: ubuntu-latest
     outputs:
       version: ${{ steps.version.outputs.version }}
     steps:
-    - name: Cancel Previous Runs
-      uses: styfle/cancel-workflow-action@0.9.1
-      with:
-        access_token: ${{ github.token }}
-    - name: Checkout
-      uses: actions/checkout@v1
-    - name: Generate version
-      id: version
-      uses: ./.github/actions/generate-version
-    - name: Test
-      run: echo ${{ steps.version.outputs.version }}
-    - name: Output version
-      run: echo "::set-output name=generated-version::${{ steps.version.outputs.version }}"
+      - name: Cancel Previous Runs
+        uses: styfle/cancel-workflow-action@0.9.1
+        with:
+          access_token: ${{ github.token }}
+      - name: Checkout
+        uses: actions/checkout@v1
+      - name: Generate version
+        id: version
+        uses: ./.github/actions/generate-version
