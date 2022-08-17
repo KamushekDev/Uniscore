@@ -1,0 +1,16 @@
+name: 'Build all .NET solutions'
+description: 'Build all .NET solutions under specific folder'
+inputs:
+  folder:
+    description: 'Root folder for scanning for solutions'
+    required: true
+  version:
+    description: 'Version'
+    required: true
+runs:
+  using: "composite"
+  steps:
+    - run: |
+        solutions=$(find ${{ inputs.folder }} -type f -name "*.sln") \
+        && for solution in solutions; do dotnet publish -c Release /p:Version=${{ inputs.version }} $solution; done
+      shell: bash
