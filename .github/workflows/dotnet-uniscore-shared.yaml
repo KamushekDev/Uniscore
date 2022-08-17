@@ -7,6 +7,8 @@ on:
 jobs:
   init:
     runs-on: ubuntu-latest
+    outputs:
+      version: ${{}}
     steps:
     - name: Cancel Previous Runs
       uses: styfle/cancel-workflow-action@0.9.1
@@ -17,3 +19,7 @@ jobs:
     - name: Generate version
       id: version
       uses: ./.github/actions/generate-version
+    - name: Test
+      run: echo ${{ steps.version.outputs.version }}
+    - name: Output version
+      run: echo "::set-output name=generated-version::${{  }}"
