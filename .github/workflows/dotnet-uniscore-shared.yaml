@@ -22,4 +22,4 @@ jobs:
     - name: Test
       run: echo ${{ steps.version.outputs.version }}
     - name: Output version
-      run: echo "::set-output name=generated-version::${{  }}"
+      run: echo "::set-output name=generated-version::${{ steps.version.outputs.version }}"
