@@ -26,7 +26,7 @@ runs:
           && suf="-${{ inputs.branch }}" \
           && echo "suffix=$suf" >> $GITHUB_ENV
       shell: bash
-    - run: echo $env.suf
+    - run: echo $env.suffix
       shell: bash          
     - run: export SUF="df2"
       shell: bash
