@@ -24,7 +24,7 @@ runs:
     - run: |
         [[ ${{ inputs.branch }} != 'master' ]] \
           && suf="-${{ inputs.branch }}" \
-          && "suffix=$suf" >> $GITHUB_ENV
+          && echo "suffix=$suf" >> $GITHUB_ENV
       shell: bash
     - run: echo $env.suf
       shell: bash          
