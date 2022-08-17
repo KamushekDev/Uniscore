@@ -1,36 +1,23 @@
 name: 'Generate version'
 description: 'Generate version for current workflow'
-inputs:
-  branch: 
-    description: 'Branch name'
-    required: true
-    default: 'master'
-  build-number:
-    description: 'Number of current workflow run'
-    required: true
-    default: '1'
-  run-attempt:
-    description: 'Number of attempt of executing current worflow'
-    required: true
-    default: '1'
 outputs:
   version:
     description: "Generated version for workflow"
-    value: ${{ steps.random-number-generator.outputs.random-number }}
+    value: ${{ steps.output-step.outputs.version }}
 runs:
   using: "composite"
   steps:
-  # [[ $VERBOSE == 1 ]] && V="YES" || V="NO"
     - run: |
-        [[ ${{ inputs.branch }} != 'master' ]] \
-          && suf="-${{ inputs.branch }}" \
+        [[ ${{ github.ref_name }} != 'master' ]] \
+          && suf="-${{ github.ref_name }}" \
           && echo "suffix=$suf" >> $GITHUB_ENV
       shell: bash
     - run: |
-        version="$(date +'%Y.%m.%d')${{ env.suffix }}" \
+        version="$(date +'%Y.%m.%d').${{ github.run_number }}${{ github.run_attempt }}${{ env.suffix }}" \
           && echo "version=$version" >> $GITHUB_ENV
       shell: bash 
     - run: echo "Generated version = ${{ env.version }}"
       shell: bash         
-    - run: echo "::set-output name=version::$(echo ${{ env.version }})"
+    - id: output-step
+      run: echo "::set-output name=version::$(echo ${{ env.version }})"
       shell: bash
