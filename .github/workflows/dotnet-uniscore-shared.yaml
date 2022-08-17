@@ -19,3 +19,9 @@ jobs:
       - name: Generate version
         id: version
         uses: ./.github/actions/generate-version
+  build:
+    runs-on: ubuntu-latest
+    needs: init
+    steps:
+      - name: Test
+        run: echo ${{ needs.init.outputs.version }}
