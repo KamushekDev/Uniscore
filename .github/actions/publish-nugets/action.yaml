@@ -1,0 +1,23 @@
+name: "Publish all nugets"
+description: "Publish all nugets"
+inputs:
+  nuget-source-name:
+    description: "Name of a nuget source to upload"
+    required: true
+    default: "github"
+  token:
+    description: "Token to publish nugets"
+    required: true
+    default: ${{ github.token }}
+runs:
+  using: "composite"
+  steps:
+    - name: Download nugets
+      id: download
+      uses: actions/download-artifact@v3
+      with:
+        name: nuget
+        path: ./.temp/nugets
+    - name: Publish downloaded nugets
+      run: dotnet nuget push "${{ steps.download.outputs.download-path }}/**/*.nupkg" --api-key ${{ inputs.token }} --source ${{ inputs.nuget-source-name }}
+      shell: bash
