@@ -6,6 +6,9 @@ on:
       - "dotnet/uniscore-shared/**"
 env:
   folder: "./dotnet/uniscore-shared"
+  DOTNET_NOLOGO: 1
+  DOTNET_CLI_TELEMETRY_OPTOUT: 1
+  DOTNET_SKIP_FIRST_TIME_EXPERIENCE: 1
 jobs:
   init:
     runs-on: ubuntu-latest
@@ -28,11 +31,16 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v3
+      - name: Setup dotnet
+        uses: xt0rted/setup-dotnet@v1
+        with:
+          dotnet-version: |
+            6.0.303
       - name: Cache nuget
         uses: actions/cache@v1
         with:
           path: ~/.nuget/packages
-          key: nuget-${{ runner.os }}-${{ env.folder }}-${{ hashFiles('**/*.csproj') }} #hash of project files
+          key: nuget-${{ runner.os }}-${{ env.folder }}-${{ hashFiles('**/*.csproj') }}
           restore-keys: |
             nuget-${{ runner.os }}-${{ env.folder }}-
             nuget-${{ runner.os }}-
@@ -53,3 +61,18 @@ jobs:
       - name: Publish nugets
         uses: ./.github/actions/publish-nugets
 
+  tests:
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Setup dotnet
+        uses: xt0rted/setup-dotnet@v1
+        with:
+          dotnet-version: |
+            6.0.303
+      - name: Tests
+        uses: ./.github/actions/test-dotnet
+        with:
+          folder: ${{ env.folder }}
