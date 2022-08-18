@@ -1,0 +1,23 @@
+name: "Test all .NET solutions"
+description: "Test all .NET solutions under specific folder"
+inputs:
+  folder:
+    description: "Root folder for scanning for solutions"
+    required: true
+runs:
+  using: "composite"
+  steps:
+    # todo: Separate tests to unit tests + integration tests
+    # --filter parameter
+    - name: Test all solutions
+      run: |
+        solutions=$(find ${{ inputs.folder }} -type f -name "*.sln") \
+        && for solution in $solutions; do echo $solution; dotnet test $solution --collect:"XPlat Code Coverage" -r ./coverage; done
+      shell: bash
+    - name: Upload tests to codecov
+      uses: codecov/codecov-action@v3
+      with: 
+        token: ${{ secrets.CODECOV_TOKEN }}
+        files: ./coverage
+        flags: shared
+        fail_ci_if_error: true
