@@ -66,8 +66,11 @@ jobs:
         uses: ./.github/actions/test-dotnet
         with:
           folder: ${{ env.folder }}
+      - name: Upload tests
+        uses: ./.github/actions/upload-to-codecov
+        with: 
           codecov-token: ${{ secrets.CODECOV_TOKEN }}
-          name: ${{ inputs.name }}
+          name: ${{ inputs.name }}          
 
   publish-nugets:
     runs-on: ubuntu-latest
