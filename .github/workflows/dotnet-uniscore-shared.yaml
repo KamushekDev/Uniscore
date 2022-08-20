@@ -65,6 +65,7 @@ jobs:
         uses: ./.github/actions/test-dotnet
         with:
           folder: ${{ env.folder }}
+          codecov-token: ${{ secrets.CODECOV_TOKEN }}
 
   publish-nugets:
     runs-on: ubuntu-latest

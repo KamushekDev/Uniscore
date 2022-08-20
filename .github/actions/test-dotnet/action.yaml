@@ -4,6 +4,9 @@ inputs:
   folder:
     description: "Root folder for scanning for solutions"
     required: true
+  codecov-token:
+    description: "Token to upload test results"
+    required: true
 runs:
   using: "composite"
   steps:
@@ -17,7 +20,7 @@ runs:
     - name: Upload tests to codecov
       uses: codecov/codecov-action@v3
       with: 
-        token: ${{ secrets.CODECOV_TOKEN }}
+        token: ${{ inputs.codecov-token }}
         files: ./coverage
-        flags: shared
+        flags: ${{ inputs.folder }}
         fail_ci_if_error: true
