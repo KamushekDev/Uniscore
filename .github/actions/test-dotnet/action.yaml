@@ -21,6 +21,6 @@ runs:
       uses: codecov/codecov-action@v3
       with: 
         token: ${{ inputs.codecov-token }}
-        files: ./coverage
+        directory: ./coverage
         flags: ${{ inputs.folder }}
         fail_ci_if_error: true
