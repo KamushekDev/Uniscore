@@ -15,11 +15,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{0F9A1EA4
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Uniscore.Shared.Auth.Tests", "tests\Uniscore.Shared.Auth.Tests\Uniscore.Shared.Auth.Tests.csproj", "{9780A1A2-16F4-4438-A375-D5D438F7A629}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "common", "common", "{121114C0-5262-44AF-BBAC-A5580EA1FC8F}"
-	ProjectSection(SolutionItems) = preProject
-		coverlet.runsettings = coverlet.runsettings
-	EndProjectSection
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
