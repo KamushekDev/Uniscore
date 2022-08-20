@@ -4,26 +4,24 @@ inputs:
   folder:
     description: "Root folder for scanning for solutions"
     required: true
-  name:
-    description: "Name of the project that will be passed as flag"
-    required: true
-  codecov-token:
-    description: "Token to upload test results"
-    required: true
 runs:
   using: "composite"
   steps:
     # todo: Separate tests to unit tests + integration tests
     # --filter parameter
-    - name: Test all solutions
+    - name: Run all unit tests
       run: |
         solutions=$(find ${{ inputs.folder }} -type f -name "*.sln") \
-        && for solution in $solutions; do echo $solution; dotnet test $solution --collect:"XPlat Code Coverage" -r ./coverage; done
+        && for solution in $solutions; do echo $solution; dotnet test $solution --collect:"XPlat Code Coverage" -r ./coverage/integrations --filter "FullyQualifiedName!~IntegrationTests"; done
       shell: bash
-    - name: Upload tests to codecov
-      uses: codecov/codecov-action@v3
-      with: 
-        token: ${{ inputs.codecov-token }}
-        directory: ./coverage
-        flags: ${{ inputs.flags }}
-        fail_ci_if_error: true
+    - name: Run all integration tests
+      run: |
+        solutions=$(find ${{ inputs.folder }} -type f -name "*.sln") \
+        && for solution in $solutions; do echo $solution; dotnet test $solution --collect:"XPlat Code Coverage" -r ./coverage/units --filter "FullyQualifiedName~IntegrationTests"; done
+      shell: bash
+    - name: Upload coverage results to artifacts
+      uses: actions/upload-artifact@v3
+      with:
+        name: test-coverage
+        path: "./coverage"
+        retention-days: 30
