@@ -37,6 +37,8 @@ jobs:
         with:
           dotnet-version: |
             6.0.303
+      - name: Add source
+        uses: ./.github/actions/add-github-source
       - name: Cache nuget
         uses: actions/cache@v1
         with:
