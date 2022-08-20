@@ -22,6 +22,6 @@ runs:
     - name: Upload coverage results to artifacts
       uses: actions/upload-artifact@v3
       with:
-        name: test-coverage
+        name: test-results
         path: "./coverage"
         retention-days: 30
