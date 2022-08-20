@@ -64,7 +64,9 @@ jobs:
         with:
           dotnet-version: |
             6.0.303
-      - name: Tests
+      - name: Add source
+        uses: ./.github/actions/add-github-source
+      - name: Run tests
         uses: ./.github/actions/test-dotnet
         with:
           folder: ${{ env.folder }}        
