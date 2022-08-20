@@ -4,6 +4,9 @@ inputs:
   folder:
     description: "Root folder for scanning for solutions"
     required: true
+  name:
+    description: "Name of the project that will be passed as flag"
+    required: true
   codecov-token:
     description: "Token to upload test results"
     required: true
@@ -22,5 +25,5 @@ runs:
       with: 
         token: ${{ inputs.codecov-token }}
         directory: ./coverage
-        flags: ${{ inputs.folder }}
+        flags: ${{ inputs.flags }}
         fail_ci_if_error: true

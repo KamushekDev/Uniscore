@@ -6,6 +6,7 @@ on:
       - "dotnet/uniscore-shared/**"
 env:
   folder: "./dotnet/uniscore-shared"
+  name: "uniscore-shared"
   DOTNET_NOLOGO: 1
   DOTNET_CLI_TELEMETRY_OPTOUT: 1
   DOTNET_SKIP_FIRST_TIME_EXPERIENCE: 1
@@ -66,6 +67,7 @@ jobs:
         with:
           folder: ${{ env.folder }}
           codecov-token: ${{ secrets.CODECOV_TOKEN }}
+          name: ${{ inputs.name }}
 
   publish-nugets:
     runs-on: ubuntu-latest
