@@ -75,6 +75,8 @@ jobs:
     runs-on: ubuntu-latest
     needs: init
     steps:
+      - name: Checkout
+        uses: actions/checkout@v3
       - name: Build dockerfile
         uses: ./.github/actions/build-dockerfile
         with:
