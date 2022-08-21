@@ -1,0 +1,39 @@
+name: "Create and build dockerfile"
+description: "Create and build dockerfile"
+inputs:
+  repository-owner-name:
+    description: "Name of a respository owner"
+    required: true
+    default: ${{ github.repository_owner }}
+  folder:
+    description: "Root folder for scanning for solutions"
+    required: true
+runs:
+  using: "composite"
+  steps:
+    - name: Get COPY lines
+      run: |
+        (cd ${{ inputs.folder }} \
+        && files=$(find . -type f -name "*.csproj" -o -name "*.sln") \
+        && for file in $files; do echo "COPY $file $file" >> .copy_lines; done) \
+        && mv "${{ inputs.folder }}/.copy_lines" .
+      shell: bash
+    - name: Get startup dll
+      run: |
+        (cd ${{ inputs.folder }} \
+        && sln=$(find . -type f -name "*.sln") \
+        && echo "::set-output name=startup-dll::$(echo ${sln[0]})")
+      shell: bash
+    - name: Generate dockerfile from a template
+      run: |
+        sed -e "s/_REPOSITORY_OWNER_NAME_/KamushekDev/g" \
+          -e "s/_STARTUP_DLL_/Uniscore.Users.dll/g" \
+          -e "/_COPY_CSPROJS_SLN_/{r .tmp" -e "d}" \
+          .github/templates/Dockerfile.template > dotnet/uniscore-users/Dockerfile
+      shell: bash
+    - name: Upload dockerfile to artifacts
+      uses: actions/upload-artifact@v3
+      with:
+        name: dockerfile
+        path: ${{inputs.folder}}/Dockerfile
+        retention-days: 7
