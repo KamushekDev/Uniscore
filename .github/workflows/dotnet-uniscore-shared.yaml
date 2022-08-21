@@ -92,4 +92,4 @@ jobs:
         uses: ./.github/actions/upload-to-codecov
         with: 
           codecov-token: ${{ secrets.CODECOV_TOKEN }}
-          name: ${{ inputs.name }}  
+          name: ${{ env.name }}  

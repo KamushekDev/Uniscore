@@ -21,9 +21,7 @@ runs:
       with: 
         token: ${{ inputs.codecov-token }}
         directory: ./.temp/coverage/units
-        flags: |
-          ${{ inputs.name }}
-          units
+        flags: ${{ inputs.name }},units
         fail_ci_if_error: true
     - name: Upload integration tests to codecov
       uses: codecov/codecov-action@v3
