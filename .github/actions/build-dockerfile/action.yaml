@@ -28,7 +28,7 @@ runs:
       run: |
         sed -e "s/_REPOSITORY_OWNER_NAME_/KamushekDev/g" \
           -e "s/_STARTUP_DLL_/Uniscore.Users.dll/g" \
-          -e "/_COPY_CSPROJS_SLN_/{r .tmp" -e "d}" \
+          -e "/_COPY_CSPROJS_SLN_/{r .copy_lines" -e "d}" \
           .github/templates/Dockerfile.template > dotnet/uniscore-users/Dockerfile
       shell: bash
     - name: Upload dockerfile to artifacts
