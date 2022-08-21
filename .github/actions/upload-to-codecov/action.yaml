@@ -30,7 +30,5 @@ runs:
       with: 
         token: ${{ inputs.codecov-token }}
         directory: ./.temp/coverage/integrations
-        flags: |
-          ${{ inputs.name }}
-          integrations
+        flags: ${{ inputs.name }},integrations
         fail_ci_if_error: true
