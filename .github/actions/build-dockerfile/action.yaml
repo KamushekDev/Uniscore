@@ -13,7 +13,6 @@ inputs:
   folder:
     description: "Root folder for scanning for solutions"
     required: true
-    default: ${{ env.folder }}
   username:
     description: "username to login into container registry"
     required: true
