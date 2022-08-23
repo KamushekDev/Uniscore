@@ -84,6 +84,8 @@ jobs:
         uses: ./.github/actions/create-dockerfile
         with:
           folder: ${{ env.folder }}
+          version: ${{ needs.init.outputs.version }}
+          name: ${{ env.name }}
 
   publish-nugets:
     runs-on: ubuntu-latest

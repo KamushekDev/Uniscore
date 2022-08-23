@@ -1,25 +1,23 @@
 name: "Create dockerfile"
 description: "Create dockerfile and publish to artifacts"
 inputs:
-  repository-owner-name:
-    description: "Name of a respository owner"
-    required: true
-    default: ${{ github.repository_owner }}
   folder:
     description: "Root folder for scanning for solutions"
+    required: true
+  version: 
+    description: "Version to use"
+    required: true
+  name: 
+    description: "Name to use"
     required: true
   registry:
     description: "Registry to use"
     required: true
     default: "ghcr.io"
-  version: 
-    description: "Version to use"
+  repository-owner-name:
+    description: "Name of a respository owner"
     required: true
-    default: ${{env.version}}
-  name: 
-    description: "Name to use"
-    required: true
-    default: ${{env.name}}
+    default: ${{ github.repository_owner }}
 outputs:
   tag:
     description: "Tag that should be used for building dockerfile"
