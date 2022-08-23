@@ -31,7 +31,7 @@ runs:
     - name: Check whether should build
       id: check
       run: |
-        if files=$(find dotnet/uniscore-shared -type f -name "*.csproj") \
+        if files=$(find ${{ inputs.folder }} -type f -name "*.csproj") \
             && grep "Microsoft.NET.Sdk.Web" $files; \
           then echo "::set-output name=should-build::true"; \
           else echo "::set-output name=should-build::false"; \
