@@ -1,39 +1,47 @@
-name: "Create and build dockerfile"
-description: "Create and build dockerfile"
+name: "Build dockerfile"
+description: "Download dockerfile from artifacts and build it"
 inputs:
-  repository-owner-name:
-    description: "Name of a respository owner"
+  password:
+    description: "Password to login into container registry"
     required: true
-    default: ${{ github.repository_owner }}
+  tag:
+    description: "Tag of dockerfile to build and publish"
+    required: true
+  packages-pat:
+    description: "Token for nuget source"
+    required: true
   folder:
     description: "Root folder for scanning for solutions"
     required: true
+    default: ${{ env.folder }}
+  username:
+    description: "username to login into container registry"
+    required: true
+    default: ${{ github.repository_owner }}
 runs:
   using: "composite"
   steps:
-    - name: Get COPY lines
-      run: |
-        (cd ${{ inputs.folder }} \
-        && files=$(find . -type f -name "*.csproj" -o -name "*.sln") \
-        && for file in $files; do echo "COPY $file $file" >> .copy_lines; done) \
-        && mv "${{ inputs.folder }}/.copy_lines" .
-      shell: bash
-    - name: Get startup dll
-      run: |
-        (cd ${{ inputs.folder }} \
-        && sln=$(find . -type f -name "*.sln") \
-        && echo "::set-output name=startup-dll::$(echo ${sln[0]})")
-      shell: bash
-    - name: Generate dockerfile from a template
-      run: |
-        sed -e "s/_REPOSITORY_OWNER_NAME_/KamushekDev/g" \
-          -e "s/_STARTUP_DLL_/Uniscore.Users.dll/g" \
-          -e "/_COPY_CSPROJS_SLN_/{r .copy_lines" -e "d}" \
-          .github/templates/Dockerfile.template > dotnet/uniscore-users/Dockerfile
-      shell: bash
-    - name: Upload dockerfile to artifacts
-      uses: actions/upload-artifact@v3
+    - name: Download dockerfile
+      id: download
+      uses: actions/download-artifact@v3
       with:
         name: dockerfile
-        path: ${{inputs.folder}}/Dockerfile
-        retention-days: 7
+        path: ${{inputs.folder}}
+    - uses: win-t/gh-action-docker-state@v1
+      continue-on-error: true
+    - name: Log in to the Container registry
+      uses: docker/login-action@f054a8b539a109f9f41c372932f1ae047eff08c9
+      with:
+        registry: ghcr.io
+        username: ${{ inputs.username }}
+        password: ${{ inputs.password }}
+    - name: Save pat to file
+      run: echo ${{ inputs.packages-pat }} > ./PACKAGES_PAT
+      shell: bash
+    - name: Build dockerfile
+      run: |
+        export DOCKER_BUILDKIT=1 \
+        && echo ${{inputs.tag}} \
+        && docker build -t ${{inputs.tag}} --secret id=packages_pat,src=./PACKAGES_PAT ${{inputs.folder}} \
+        && docker push ${{inputs.tag}}
+      shell: bash
