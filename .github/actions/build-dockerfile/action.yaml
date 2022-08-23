@@ -44,6 +44,9 @@ runs:
         && docker build -t ${{inputs.tag}} --secret id=packages_pat,src=./PACKAGES_PAT ${{inputs.folder}} \
         && docker push ${{inputs.tag}}
       shell: bash
+    - name: Print images
+      run: echo $(docker images ls -a)
+      shell: bash
     - name: Reduce docker cache
       run: docker rmi $(docker images -f "dangling=true" -q)
       shell: bash
