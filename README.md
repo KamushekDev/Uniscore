@@ -2,6 +2,8 @@
 
 # [Issues - Youtrack](https://kamushek.myjetbrains.com)
 
+[![codecov](https://codecov.io/gh/KamushekDev/Uniscore/branch/master/graph/badge.svg?token=KVIZEJSKAI)](https://codecov.io/gh/KamushekDev/Uniscore)
+
 # Uniscore
 Scores
 
