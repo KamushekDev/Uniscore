@@ -116,6 +116,8 @@ jobs:
     needs: [prepare-service-builder, tests]
     if: ${{needs.prepare-service-builder.outputs.should-build}} == "true"
     steps:
+      - name: Test
+        run: echo ${{needs.prepare-service-builder.outputs.should-build}}
       - name: Checkout
         uses: actions/checkout@v3
       - name: Build dockerfile
