@@ -38,6 +38,7 @@ runs:
         fi
       shell: bash
     - name: Get COPY lines
+      if: steps.check.outputs.should-build == 'true'
       run: |
         (cd ${{ inputs.folder }} \
         && files=$(find . -type f -name "*.csproj" -o -name "*.sln") \
@@ -45,12 +46,14 @@ runs:
         && mv "${{ inputs.folder }}/.copy_lines" .
       shell: bash
     - name: Get startup dll
+      if: steps.check.outputs.should-build == 'true'
       run: |
         (cd ${{ inputs.folder }} \
         && sln=$(find . -type f -name "*.sln") \
         && echo "::set-output name=startup-dll::$(echo ${sln[0]})")
       shell: bash
     - name: Generate dockerfile from a template
+      if: steps.check.outputs.should-build == 'true'
       run: |
         sed -e "s/_REPOSITORY_OWNER_NAME_/KamushekDev/g" \
           -e "s/_STARTUP_DLL_/Uniscore.Users.dll/g" \
@@ -58,12 +61,14 @@ runs:
           .github/templates/Dockerfile.template > dotnet/uniscore-users/Dockerfile
       shell: bash
     - name: Upload dockerfile to artifacts
+      if: steps.check.outputs.should-build == 'true'
       uses: actions/upload-artifact@v3
       with:
         name: dockerfile
         path: ${{inputs.folder}}/Dockerfile
         retention-days: 7
     - name: Create tag
+      if: steps.check.outputs.should-build == 'true'
       id: tag
       run: |
         version=${{ inputs.version }} \
