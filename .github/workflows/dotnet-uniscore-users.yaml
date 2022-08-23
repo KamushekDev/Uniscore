@@ -122,3 +122,4 @@ jobs:
           tag: ${{ needs.prepare-service-builder.outputs.tag }}
           password: ${{ secrets.GITHUB_TOKEN }}
           packages-pat: ${{ secrets.PACKAGES_PAT }}
+          folder: ${{env.folder}}
