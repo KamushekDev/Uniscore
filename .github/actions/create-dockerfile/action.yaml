@@ -22,9 +22,21 @@ outputs:
   tag:
     description: "Tag that should be used for building dockerfile"
     value: ${{ steps.tag.outputs.tag }}
+  should-build:
+    description: "Indicates whether service image should be created"
+    value: ${{ steps.check.outputs.should-build}}
 runs:
   using: "composite"
   steps:
+    - name: Check whether should build
+      id: check
+      run: |
+        if files=$(find dotnet/uniscore-shared -type f -name "*.csproj") \
+            && grep "Microsoft.NET.Sdk.Web" $files; \
+          then echo "::set-output name=should-build::true"; \
+          else echo "::set-output name=should-build::false"; \
+        fi
+      shell: bash
     - name: Get COPY lines
       run: |
         (cd ${{ inputs.folder }} \
