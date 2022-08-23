@@ -66,10 +66,27 @@ jobs:
             6.0.303
       - name: Add source
         uses: ./.github/actions/add-github-source
-      - name: Tests
+      - name: Run tests
         uses: ./.github/actions/test-dotnet
         with:
           folder: ${{ env.folder }}        
+
+  prepare-service-builder:
+    runs-on: ubuntu-latest
+    needs: init
+    outputs:
+      tag: ${{ steps.build.outputs.tag }}
+      should-build: ${{ steps.build.outputs.should-build }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Create dockerfile
+        id: build
+        uses: ./.github/actions/create-dockerfile
+        with:
+          folder: ${{ env.folder }}
+          version: ${{ needs.init.outputs.version }}
+          name: ${{ env.name }}
 
   publish-nugets:
     runs-on: ubuntu-latest
@@ -93,3 +110,18 @@ jobs:
         with: 
           codecov-token: ${{ secrets.CODECOV_TOKEN }}
           name: ${{ env.name }}  
+
+  build-service-image:
+    runs-on: ubuntu-latest
+    needs: [prepare-service-builder, tests]
+    if: ${{needs.prepare-service-builder.outputs.should-build}} == "true"
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Build dockerfile
+        uses: ./.github/actions/build-dockerfile
+        with:
+          tag: ${{ needs.prepare-service-builder.outputs.tag }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+          packages-pat: ${{ secrets.PACKAGES_PAT }}
+          folder: ${{env.folder}}
