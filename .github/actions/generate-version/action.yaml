@@ -26,14 +26,3 @@ runs:
     - id: output-step
       run: echo "::set-output name=version::$(echo ${{ env.version }})"
       shell: bash
-    - name: Create release tag
-      if: github.ref_name == 'master'
-      uses: actions/github-script@v6
-      with:
-        script: |
-          github.rest.git.createRef({
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              ref: 'refs/tags/${{ inputs.name }}/${{ steps.output-step.outputs.version }}',
-              sha: context.sha
-            })
