@@ -1,8 +1,9 @@
-[![Scores](https://github.com/KamushekDev/Uniscore/actions/workflows/publish-nugets.yaml/badge.svg)](https://github.com/KamushekDev/Uniscore/actions/workflows/publish-nugets.yaml)
-
-# [Issues - Youtrack](https://kamushek.myjetbrains.com)
+[![dotnet - Uniscore.Shared](https://github.com/KamushekDev/Uniscore/actions/workflows/dotnet-uniscore-shared.yaml/badge.svg?branch=master&event=push)](https://github.com/KamushekDev/Uniscore/actions/workflows/dotnet-uniscore-shared.yaml)
+[![dotnet - Uniscore.Users](https://github.com/KamushekDev/Uniscore/actions/workflows/dotnet-uniscore-users.yaml/badge.svg?branch=master&event=push)](https://github.com/KamushekDev/Uniscore/actions/workflows/dotnet-uniscore-users.yaml)
 
 [![codecov](https://codecov.io/gh/KamushekDev/Uniscore/branch/master/graph/badge.svg?token=KVIZEJSKAI)](https://codecov.io/gh/KamushekDev/Uniscore)
+
+# [Issues - Youtrack](https://kamushek.myjetbrains.com)
 
 # Uniscore
 Scores
