@@ -31,6 +31,8 @@ jobs:
   build:
     runs-on: ubuntu-latest
     needs: init
+    outputs:
+      has-nugets: ${{ steps.build.outputs.has-nuget }}
     steps:
       - name: Checkout
         uses: actions/checkout@v3
@@ -50,6 +52,7 @@ jobs:
             nuget-${{ runner.os }}-${{ env.folder }}-
             nuget-${{ runner.os }}-
       - name: Build
+        id: build
         uses: ./.github/actions/dotnet/build-dotnet
         with: 
           folder: ${{ env.folder }}
