@@ -1,12 +1,12 @@
-name: dotnet - Uniscore.Users
+name: dotnet - Uniscore.Events.Twitch
 on:
   push:
     paths:
       - ".github/**"
-      - "dotnet/uniscore-users/**"
+      - "dotnet/uniscore-events-twitch/**"
 env:
-  folder: "./dotnet/uniscore-users"
-  name: "uniscore-users"
+  folder: "./dotnet/uniscore-events-twitch"
+  name: "uniscore-events-twitch"
   DOTNET_NOLOGO: 1
   DOTNET_CLI_TELEMETRY_OPTOUT: 1
   DOTNET_SKIP_FIRST_TIME_EXPERIENCE: 1
