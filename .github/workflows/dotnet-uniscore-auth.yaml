@@ -150,6 +150,8 @@ jobs:
       (needs.publish-nugets.result == 'success' || needs.publish-nugets.result == 'skipped') &&
       !(needs.build-service-image.result == 'skipped' && needs.publish-nugets.result == 'skipped')
     steps:
+      - name: Checkout
+        uses: actions/checkout@v3
       - name: Push tag
         uses: ./github/actions/create-git-tag
         with:

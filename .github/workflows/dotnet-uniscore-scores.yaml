@@ -139,3 +139,21 @@ jobs:
           password: ${{ secrets.GITHUB_TOKEN }}
           packages-pat: ${{ secrets.PACKAGES_PAT }}
           folder: ${{env.folder}}
+
+  push-git-tag:
+    runs-on: ubuntu-latest
+    needs: [init, build-service-image, publish-nugets]
+    if: |
+      always() &&
+      needs.init.result == 'success' &&
+      (needs.build-service-image.result == 'success' || needs.build-service-image.result == 'skipped')&&
+      (needs.publish-nugets.result == 'success' || needs.publish-nugets.result == 'skipped') &&
+      !(needs.build-service-image.result == 'skipped' && needs.publish-nugets.result == 'skipped')
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Push tag
+        uses: ./github/actions/create-git-tag
+        with:
+          name: ${{env.name}}
+          version: ${{needs.init.outputs.version}}
