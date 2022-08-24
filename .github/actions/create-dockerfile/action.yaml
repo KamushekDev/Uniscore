@@ -58,7 +58,7 @@ runs:
         sed -e "s/_REPOSITORY_OWNER_NAME_/KamushekDev/g" \
           -e "s/_STARTUP_DLL_/Uniscore.Users.dll/g" \
           -e "/_COPY_CSPROJS_SLN_/{r .copy_lines" -e "d}" \
-          .github/templates/Dockerfile.template > dotnet/uniscore-users/Dockerfile
+          .github/templates/Dockerfile.template > .github/templates/Dockerfile
       shell: bash
     - name: Upload dockerfile to artifacts
       if: steps.check.outputs.should-build == 'true'
@@ -66,9 +66,10 @@ runs:
       with:
         name: dockerfile
         path: |
-          ${{inputs.folder}}/Dockerfile
+          .github/templates/Dockerfile
           .github/templates/.dockerignore
         retention-days: 7
+        if-no-files-found: error
     - name: Create tag
       if: steps.check.outputs.should-build == 'true'
       id: tag
