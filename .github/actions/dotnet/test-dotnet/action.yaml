@@ -34,5 +34,5 @@ runs:
       if: steps.check.outputs.contains-tests == 'true'
       with:
         name: test-results
-        path: ".coverage"
+        path: "./coverage"
         retention-days: 7
