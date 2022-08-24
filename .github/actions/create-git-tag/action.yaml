@@ -1,0 +1,23 @@
+name: 'Create git tag on current sha'
+description: 'Creates git tag on current sha'
+inputs:
+  name:
+    description: "Service name"
+    required: true
+  version:
+    description: "Version to include in tag"
+    required: true
+runs:
+  using: "composite"
+  steps:        
+    - name: Create release tag
+      if: github.ref_name == 'master'
+      uses: actions/github-script@v6
+      with:
+        script: |
+          github.rest.git.createRef({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              ref: 'refs/tags/${{ inputs.name }}/${{ inputs.version }}',
+              sha: context.sha
+            })
