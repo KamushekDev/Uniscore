@@ -73,10 +73,9 @@ runs:
     - name: Create tag
       if: steps.check.outputs.should-build == 'true'
       id: tag
-      run: |
-        version=${{ inputs.version }} \
-        && name=${{ inputs.name }} \
-        && rep=$(echo ${{ inputs.repository-owner-name }} | tr '[:upper:]' '[:lower:]') \
-        && registry=${{ inputs.registry }} \
-        && echo "::set-output name=tag::$(echo $registry/$rep/$name:$version)"
-      shell: bash
+      uses: ./.github/actions/create-tag
+      with:
+        version: ${{inputs.version}}
+        name: ${{inputs.name}}
+        repository-owner-name: ${{inputs.repository-owner-name}}
+        registry: ${{inputs.registry}}
