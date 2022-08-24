@@ -12,10 +12,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "common", "common", "{640643
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "k8s", "k8s", "{2E003F9C-3E68-43FF-BD03-27BD7E8586CF}"
-	ProjectSection(SolutionItems) = preProject
-		Dockerfile = Dockerfile
-		.dockerignore = .dockerignore
-	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Uniscore.Auth.Protos", "src\Uniscore.Auth.Protos\Uniscore.Auth.Protos.csproj", "{B4771DEF-2FAB-4036-A6DC-2ECE8E920F65}"
 EndProject

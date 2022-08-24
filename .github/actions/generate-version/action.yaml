@@ -1,5 +1,9 @@
 name: 'Generate version'
 description: 'Generate version for current workflow'
+inputs:
+  name: 
+    description: "Application name"
+    required: true
 outputs:
   version:
     description: "Generated version for workflow"
@@ -22,3 +26,9 @@ runs:
     - id: output-step
       run: echo "::set-output name=version::$(echo ${{ env.version }})"
       shell: bash
+    - name: Create release tag
+      if: github.ref_name == 'master'
+      uses: mathieudutour/github-tag-action@v6.0
+      with: 
+        github_token: ${{ github.token }}
+        custom_tag: ${{ inputs.name }}:${{ steps.output-step.outputs.version }}
