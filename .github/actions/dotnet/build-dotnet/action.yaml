@@ -7,6 +7,10 @@ inputs:
   version:
     description: "Version"
     required: true
+outputs:
+  has-nuget: 
+    description: "Indicates whether project contains nuget packages or not"
+    value: ${{ steps.check.outputs.has-nuget }}
 runs:
   using: "composite"
   steps:
@@ -14,6 +18,14 @@ runs:
       run: |
         solutions=$(find ${{ inputs.folder }} -type f -name "*.sln") \
         && for solution in $solutions; do echo $solution; dotnet publish -c Release /p:Version=${{ inputs.version }} $solution; done
+      shell: bash
+    - name: Check nuget packages
+      id: check
+      run: |
+        if [[ $(find ./coverage -type f -name "*.nupkg" | wc -l) > 0 ]]; \
+          then echo "::set-output name=has-nuget::true"; \
+          else echo "::set-output name=has-nuget::false"; \
+        fi
       shell: bash
     - name: Upload all nugets to artifacts
       uses: actions/upload-artifact@v3

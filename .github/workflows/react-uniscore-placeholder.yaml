@@ -1,4 +1,4 @@
-name: dotnet - Uniscore.Users
+name: react - uniscore-placeholder
 on:
   push:
     paths:
