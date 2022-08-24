@@ -23,9 +23,6 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Uniscore.Users.Tests", "tests\Uniscore.Users.Tests\Uniscore.Users.Tests.csproj", "{11837A73-0CF8-4CF8-84D0-E4A856C28A93}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "k8s", "k8s", "{D9C0AEA3-7FE9-42B4-A241-6D9A2A5B92F6}"
-	ProjectSection(SolutionItems) = preProject
-		.dockerignore = .dockerignore
-	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -17,10 +17,6 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Uniscore.Scores.Core", "src\Uniscore.Scores.Core\Uniscore.Scores.Core.csproj", "{926F8FA1-394C-44F3-A63F-095BEE0105B8}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "k8s", "k8s", "{02768BEB-0C4E-458F-BB7F-FBDB247B8A9D}"
-ProjectSection(SolutionItems) = preProject
-	Dockerfile = Dockerfile
-	.dockerignore = .dockerignore
-EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
