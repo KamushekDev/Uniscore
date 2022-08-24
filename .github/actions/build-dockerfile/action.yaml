@@ -17,6 +17,10 @@ inputs:
     description: "username to login into container registry"
     required: true
     default: ${{ github.repository_owner }}
+  registry:
+    description: "Registry to use"
+    required: true
+    default: "ghcr.io"
 runs:
   using: "composite"
   steps:
@@ -29,12 +33,10 @@ runs:
     - name: Save pat to file
       run: echo ${{ inputs.packages-pat }} > ./PACKAGES_PAT
       shell: bash
-    # - uses: win-t/gh-action-docker-state@v1
-    #   continue-on-error: true
     - name: Log in to the Container registry
       uses: docker/login-action@f054a8b539a109f9f41c372932f1ae047eff08c9
       with:
-        registry: ghcr.io
+        registry: ${{ inputs.registry }}
         username: ${{ inputs.username }}
         password: ${{ inputs.password }}
     - name: Set up Docker Buildx
@@ -42,23 +44,8 @@ runs:
     - name: Build and push
       uses: docker/build-push-action@v3
       with:
-        context: ${{inputs.folder}}
+        context: ${{ inputs.folder }}
         push: true
-        tags: ${{inputs.tag}}
+        tags: ${{ inputs.tag }}
         secret-files: |
            "packages_pat=./PACKAGES_PAT"
-    
-    # todo: https://github.com/docker/build-push-action
-    # - name: Build dockerfile
-    #   run: |
-    #     export DOCKER_BUILDKIT=1 \
-    #     && echo ${{inputs.tag}} \
-    #     && docker build -t ${{inputs.tag}} --secret id=packages_pat,src=./PACKAGES_PAT ${{inputs.folder}} \
-    #     && docker push ${{inputs.tag}}
-    #   shell: bash
-    # - name: Print images
-    #   run: echo $(docker images ls -a)
-    #   shell: bash
-    # - name: Reduce docker cache
-    #   run: docker rmi $(docker images -f "dangling=true" -q)
-    #   shell: bash

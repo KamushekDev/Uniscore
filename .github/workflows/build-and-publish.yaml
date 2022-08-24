@@ -1,8 +1,9 @@
 name: Build and publish everything
 on:
-  push:
-   branches:    
-     - 'master'
+  workflow_dispatch
+#  push:
+#   branches:    
+#     - 'master'
 #      - 'test'
 jobs:
   Build-Publish:
