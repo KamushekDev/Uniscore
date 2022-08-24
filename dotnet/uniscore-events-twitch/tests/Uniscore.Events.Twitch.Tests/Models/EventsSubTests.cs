@@ -15,8 +15,6 @@ namespace CreScore.Events.Twitch.Tests.Models
     {
         public static IEnumerable<object[]> GetExampleJsonData()
         {
-            // todo: Тест ломается на CI (скорее всего из-за слешей)
-            // System.IO.DirectoryNotFoundException : Could not find a part of the path '/home/runner/work/Uniscore/Uniscore/dotnet/uniscore-events-twitch/tests/Uniscore.Events.Twitch.Tests/bin/Debug/net6.0/Models\Examples\'.
             var files = Directory.GetFiles(Path.Combine("Models", "Examples"),"*.json");
 
             return files.Select(s =>
