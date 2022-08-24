@@ -34,6 +34,6 @@ runs:
           github.rest.git.createRef({
               owner: context.repo.owner,
               repo: context.repo.repo,
-              ref: 'refs/tags/${{ inputs.name }}:${{ steps.output-step.outputs.version }}',
+              ref: 'refs/tags/${{ inputs.name }}/${{ steps.output-step.outputs.version }}',
               sha: context.sha
             })
