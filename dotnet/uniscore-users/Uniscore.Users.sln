@@ -24,7 +24,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Uniscore.Users.Tests", "tes
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "k8s", "k8s", "{D9C0AEA3-7FE9-42B4-A241-6D9A2A5B92F6}"
 	ProjectSection(SolutionItems) = preProject
-		Dockerfile = Dockerfile
 		.dockerignore = .dockerignore
 	EndProjectSection
 EndProject

@@ -1,0 +1,31 @@
+name: 'Create docker tag'
+description: 'Creates docker tag'
+inputs:
+  version:
+    description: "Service version"
+    required: true
+  name:
+    description: "Service name"
+    required: true
+  repository-owner-name:
+    description: "Username of a registry owner"
+    required: true
+  registry:
+    description: "Registry to include in the tag"
+    required: true
+outputs:
+  tag:
+    description: "Tag"
+    value: ${{ steps.tag.outputs.tag }}
+runs:
+  using: "composite"
+  steps:        
+    - name: Create tag
+      id: tag
+      run: |
+        version=${{ inputs.version }} \
+        && name=${{ inputs.name }} \
+        && rep=$(echo ${{ inputs.repository-owner-name }} | tr '[:upper:]' '[:lower:]') \
+        && registry=${{ inputs.registry }} \
+        && echo "::set-output name=tag::$(echo $registry/$rep/$name:$version)"
+      shell: bash

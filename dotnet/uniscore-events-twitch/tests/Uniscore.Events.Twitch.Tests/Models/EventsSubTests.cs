@@ -15,11 +15,11 @@ namespace CreScore.Events.Twitch.Tests.Models
     {
         public static IEnumerable<object[]> GetExampleJsonData()
         {
-            var files = Directory.GetFiles("Models\\Examples\\", "*.json");
+            var files = Directory.GetFiles(Path.Combine("Models", "Examples"),"*.json");
 
             return files.Select(s =>
             {
-                var typeName = s.Split('\\').Last().Split('.').First();
+                var typeName = Path.GetFileNameWithoutExtension(s).Split('.').First();
                 var transportFullName = typeof(Transport).FullName;
                 var lastDot = transportFullName!.LastIndexOf('.');
                 var namespaceString = transportFullName[..lastDot];

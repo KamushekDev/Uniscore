@@ -1,0 +1,42 @@
+name: "Test all .NET solutions"
+description: "Test all .NET solutions under specific folder"
+inputs:
+  folder:
+    description: "Root folder for scanning for solutions"
+    required: true
+outputs:
+  contains-tests:
+    description: "Does project have runable tests"
+    value: ${{ steps.check.outputs.contains-tests }}
+runs:
+  using: "composite"
+  steps:
+    - name: Run all unit tests
+      run: |
+        (cd ${{inputs.folder}} \
+          && solutions=$(find . -type f -name "*.sln") \
+          && for solution in $solutions; do echo $solution; dotnet test $solution --collect:"XPlat Code Coverage" -r ./coverage/integrations --filter "FullyQualifiedName!~IntegrationTests"; done \
+        )
+      shell: bash
+    - name: Run all integration tests
+      run: |
+        (cd ${{inputs.folder}} \
+          && solutions=$(find . -type f -name "*.sln") \
+          && for solution in $solutions; do echo $solution; dotnet test $solution --collect:"XPlat Code Coverage" -r ./coverage/units --filter "FullyQualifiedName~IntegrationTests"; done \
+        )
+      shell: bash
+    - name: Check tests
+      id: check
+      run: |
+        if [[ $(find ./coverage -type f | wc -l) > 0 ]]; \
+          then echo "::set-output name=contains-tests::true"; \
+          else echo "::set-output name=contains-tests::false"; \
+        fi
+      shell: bash
+    - name: Upload coverage results to artifacts
+      uses: actions/upload-artifact@v3
+      if: steps.check.outputs.contains-tests == 'true'
+      with:
+        name: test-results
+        path: "./coverage"
+        retention-days: 7

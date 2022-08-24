@@ -11,6 +11,12 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Uniscore.Shared.Common", "s
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Uniscore.Shared.Auth", "src\Uniscore.Shared.Auth\Uniscore.Shared.Auth.csproj", "{4963AB8B-3CF7-4A9B-9B33-B56164623011}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{0F9A1EA4-DB88-43AC-B2A8-F15DF2F5D769}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Uniscore.Shared.Auth.Tests", "tests\Uniscore.Shared.Auth.Tests\Uniscore.Shared.Auth.Tests.csproj", "{9780A1A2-16F4-4438-A375-D5D438F7A629}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Uniscore.Shared.IntegrationTests", "tests\Uniscore.Shared.IntegrationTests\Uniscore.Shared.IntegrationTests.csproj", "{6E81C460-D6E9-4665-AA9A-8C0F7B49B174}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -23,6 +29,8 @@ Global
 		{E91B70B4-2DEE-4F6E-B5E6-767CE902544E} = {8C66BBDA-4CAA-4335-9CA7-F11CBF64FFB7}
 		{62133C41-FB7A-4CD4-B8A8-D991771D4857} = {8C66BBDA-4CAA-4335-9CA7-F11CBF64FFB7}
 		{4963AB8B-3CF7-4A9B-9B33-B56164623011} = {8C66BBDA-4CAA-4335-9CA7-F11CBF64FFB7}
+		{9780A1A2-16F4-4438-A375-D5D438F7A629} = {0F9A1EA4-DB88-43AC-B2A8-F15DF2F5D769}
+		{6E81C460-D6E9-4665-AA9A-8C0F7B49B174} = {0F9A1EA4-DB88-43AC-B2A8-F15DF2F5D769}
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{E91B70B4-2DEE-4F6E-B5E6-767CE902544E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
@@ -37,5 +45,13 @@ Global
 		{4963AB8B-3CF7-4A9B-9B33-B56164623011}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4963AB8B-3CF7-4A9B-9B33-B56164623011}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4963AB8B-3CF7-4A9B-9B33-B56164623011}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9780A1A2-16F4-4438-A375-D5D438F7A629}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9780A1A2-16F4-4438-A375-D5D438F7A629}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9780A1A2-16F4-4438-A375-D5D438F7A629}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9780A1A2-16F4-4438-A375-D5D438F7A629}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6E81C460-D6E9-4665-AA9A-8C0F7B49B174}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6E81C460-D6E9-4665-AA9A-8C0F7B49B174}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6E81C460-D6E9-4665-AA9A-8C0F7B49B174}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6E81C460-D6E9-4665-AA9A-8C0F7B49B174}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

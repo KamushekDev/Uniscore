@@ -1,9 +1,16 @@
-[![Scores](https://github.com/KamushekDev/Uniscore/actions/workflows/publish-nugets.yaml/badge.svg)](https://github.com/KamushekDev/Uniscore/actions/workflows/publish-nugets.yaml)
+[![dotnet - Uniscore.Auth](https://github.com/KamushekDev/Uniscore/actions/workflows/dotnet-uniscore-auth.yaml/badge.svg?branch=master&event=push)](https://github.com/KamushekDev/Uniscore/actions/workflows/dotnet-uniscore-auth.yaml)
+[![dotnet - Uniscore.Shared](https://github.com/KamushekDev/Uniscore/actions/workflows/dotnet-uniscore-shared.yaml/badge.svg?branch=master&event=push)](https://github.com/KamushekDev/Uniscore/actions/workflows/dotnet-uniscore-shared.yaml)
+[![dotnet - Uniscore.Users](https://github.com/KamushekDev/Uniscore/actions/workflows/dotnet-uniscore-users.yaml/badge.svg?branch=master&event=push)](https://github.com/KamushekDev/Uniscore/actions/workflows/dotnet-uniscore-users.yaml)
+[![dotnet - Uniscore.Events.Twitch](https://github.com/KamushekDev/Uniscore/actions/workflows/dotnet-uniscore-events-twitch.yaml/badge.svg?branch=master&event=push)](https://github.com/KamushekDev/Uniscore/actions/workflows/dotnet-uniscore-events-twitch.yaml)
+[![dotnet - Uniscore.Scores](https://github.com/KamushekDev/Uniscore/actions/workflows/dotnet-uniscore-scores.yaml/badge.svg?branch=master&event=push)](https://github.com/KamushekDev/Uniscore/actions/workflows/dotnet-uniscore-scores.yaml)
 
-# [Issues - Youtrack](https://kamushek.myjetbrains.com)
+[![react - uniscore-placeholder](https://github.com/KamushekDev/Uniscore/actions/workflows/react-uniscore-placeholder.yaml/badge.svg?branch=master&event=push)](https://github.com/KamushekDev/Uniscore/actions/workflows/react-uniscore-placeholder.yaml)
+
+[![codecov](https://codecov.io/gh/KamushekDev/Uniscore/branch/master/graph/badge.svg?token=KVIZEJSKAI)](https://codecov.io/gh/KamushekDev/Uniscore)
+
+# [Issues - Youtrack](https://kamushek.myjetbrains.com/youtrack/issues/UN)
 
 # Uniscore
-Scores
 
 ## Project Installation
 * Navigate to k8s folder

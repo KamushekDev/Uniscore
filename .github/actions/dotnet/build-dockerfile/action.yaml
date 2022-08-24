@@ -1,0 +1,51 @@
+name: "Build dockerfile"
+description: "Download dockerfile from artifacts and build it"
+inputs:
+  password:
+    description: "Password to login into container registry"
+    required: true
+  tag:
+    description: "Tag of dockerfile to build and publish"
+    required: true
+  packages-pat:
+    description: "Token for nuget source"
+    required: true
+  folder:
+    description: "Root folder for scanning for solutions"
+    required: true
+  username:
+    description: "username to login into container registry"
+    required: true
+    default: ${{ github.repository_owner }}
+  registry:
+    description: "Registry to use"
+    required: true
+    default: "ghcr.io"
+runs:
+  using: "composite"
+  steps:
+    - name: Download dockerfile
+      id: download
+      uses: actions/download-artifact@v3
+      with:
+        name: dockerfile
+        path: ${{inputs.folder}}
+    - name: Save pat to file
+      run: echo ${{ inputs.packages-pat }} > ./PACKAGES_PAT
+      shell: bash
+    - name: Log in to the Container registry
+      uses: docker/login-action@f054a8b539a109f9f41c372932f1ae047eff08c9
+      with:
+        registry: ${{ inputs.registry }}
+        username: ${{ inputs.username }}
+        password: ${{ inputs.password }}
+    - name: Set up Docker Buildx
+      uses: docker/setup-buildx-action@v2
+    - name: Build and push
+      uses: docker/build-push-action@v3
+      with:
+        context: ${{ inputs.folder }}
+        push: true
+        tags: ${{ inputs.tag }}
+        secret-files: |
+           "packages_pat=./PACKAGES_PAT"
