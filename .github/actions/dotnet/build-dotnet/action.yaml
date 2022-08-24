@@ -29,7 +29,9 @@ runs:
       shell: bash
     - name: Upload all nugets to artifacts
       uses: actions/upload-artifact@v3
+      if: steps.check.outputs.has-nuget == 'true'
       with:
         name: nugets
         path: "${{ inputs.folder }}/**/*.nupkg"
         retention-days: 1
+        if-no-files-found: error
