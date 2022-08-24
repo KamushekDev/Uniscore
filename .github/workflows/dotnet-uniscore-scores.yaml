@@ -59,7 +59,7 @@ jobs:
     runs-on: ubuntu-latest
     needs: init
     outputs:
-      contains-tests: ${{ steps.tests.outputs.contains-tests }}
+      contains-tests: ${{ steps.test-runner.outputs.contains-tests }}
     steps:
       - name: Checkout
         uses: actions/checkout@v3
@@ -71,7 +71,7 @@ jobs:
       - name: Add source
         uses: ./.github/actions/dotnet/add-github-source
       - name: Run tests
-        id: tests
+        id: test-runner
         uses: ./.github/actions/dotnet/test-dotnet
         with:
           folder: ${{ env.folder }}        
