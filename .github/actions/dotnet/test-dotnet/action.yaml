@@ -13,22 +13,18 @@ runs:
   steps:
     - name: Run all unit tests
       run: |
-        (cd ${{inputs.folder}} \
-          && solutions=$(find . -type f -name "*.sln") \
-          && for solution in $solutions; do echo $solution; dotnet test $solution --collect:"XPlat Code Coverage" -r ./coverage/integrations --filter "FullyQualifiedName!~IntegrationTests"; done \
-        )
+        solutions=$(find ${{ inputs.folder }} -type f -name "*.sln") \
+          && for solution in $solutions; do echo $solution; dotnet test $solution --collect:"XPlat Code Coverage" -r ./coverage/integrations --filter "FullyQualifiedName!~IntegrationTests"; done
       shell: bash
     - name: Run all integration tests
       run: |
-        (cd ${{inputs.folder}} \
-          && solutions=$(find . -type f -name "*.sln") \
-          && for solution in $solutions; do echo $solution; dotnet test $solution --collect:"XPlat Code Coverage" -r ./coverage/units --filter "FullyQualifiedName~IntegrationTests"; done \
-        )
+          solutions=$(find ${{ inputs.folder }} -type f -name "*.sln") \
+          && for solution in $solutions; do echo $solution; dotnet test $solution --collect:"XPlat Code Coverage" -r ./coverage/units --filter "FullyQualifiedName~IntegrationTests"; done
       shell: bash
     - name: Check tests
       id: check
       run: |
-        if [[ $(find ${{ inputs.folder }}/coverage -type f | wc -l) > 0 ]]; \
+        if [[ $(find ./coverage -type f | wc -l) > 0 ]]; \
           then echo "::set-output name=contains-tests::true"; \
           else echo "::set-output name=contains-tests::false"; \
         fi
@@ -38,5 +34,5 @@ runs:
       if: steps.check.outputs.contains-tests == 'true'
       with:
         name: test-results
-        path: ${{ inputs.folder }}
+        path: ".coverage"
         retention-days: 7
