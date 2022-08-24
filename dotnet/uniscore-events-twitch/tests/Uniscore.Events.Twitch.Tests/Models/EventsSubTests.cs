@@ -21,7 +21,7 @@ namespace CreScore.Events.Twitch.Tests.Models
 
             return files.Select(s =>
             {
-                var typeName = s.Split('\\').Last().Split('.').First();
+                var typeName = Path.GetFileNameWithoutExtension(s).Split('.').First();
                 var transportFullName = typeof(Transport).FullName;
                 var lastDot = transportFullName!.LastIndexOf('.');
                 var namespaceString = transportFullName[..lastDot];
