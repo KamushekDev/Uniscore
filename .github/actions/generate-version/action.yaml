@@ -8,9 +8,10 @@ runs:
   using: "composite"
   steps:
     - run: |
-        [[ ${{ github.ref_name }} != 'master' ]] \
-          && suf="-${{ github.ref_name }}" \
-          && echo "suffix=$suf" >> $GITHUB_ENV
+        if [[ ${{ github.ref_name }} != 'master' ]]; \
+          then suf="-${{ github.ref_name }}"; \
+        fi \
+        && echo "suffix=$suf" >> $GITHUB_ENV
       shell: bash
     - run: |
         version="$(date +'%Y.%m.%d').${{ github.run_number }}${{ github.run_attempt }}${{ env.suffix }}" \
