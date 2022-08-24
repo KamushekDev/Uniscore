@@ -1,0 +1,81 @@
+name: "Create dockerfile"
+description: "Create dockerfile and publish to artifacts"
+inputs:
+  folder:
+    description: "Root folder for scanning for solutions"
+    required: true
+  version: 
+    description: "Version to use"
+    required: true
+  name: 
+    description: "Name to use"
+    required: true
+  registry:
+    description: "Registry to use"
+    required: true
+    default: "ghcr.io"
+  repository-owner-name:
+    description: "Name of a respository owner"
+    required: true
+    default: ${{ github.repository_owner }}
+outputs:
+  tag:
+    description: "Tag that should be used for building dockerfile"
+    value: ${{ steps.tag.outputs.tag }}
+  should-build:
+    description: "Indicates whether service image should be created"
+    value: ${{ steps.check.outputs.should-build}}
+runs:
+  using: "composite"
+  steps:
+    - name: Check whether should build
+      id: check
+      run: |
+        if files=$(find ${{ inputs.folder }} -type f -name "*.csproj") \
+            && grep "Microsoft.NET.Sdk.Web" $files; \
+          then echo "::set-output name=should-build::true"; \
+          else echo "::set-output name=should-build::false"; \
+        fi
+      shell: bash
+    - name: Get COPY lines
+      if: steps.check.outputs.should-build == 'true'
+      run: |
+        (cd ${{ inputs.folder }} \
+        && files=$(find . -type f -name "*.csproj" -o -name "*.sln") \
+        && for file in $files; do echo "COPY $file $file" >> .copy_lines; done) \
+        && mv "${{ inputs.folder }}/.copy_lines" .
+      shell: bash
+    - name: Get startup dll
+      if: steps.check.outputs.should-build == 'true'
+      run: |
+        (cd ${{ inputs.folder }} \
+        && sln=$(find . -type f -name "*.sln") \
+        && echo "::set-output name=startup-dll::$(echo ${sln[0]})")
+      shell: bash
+    - name: Generate dockerfile from a template
+      if: steps.check.outputs.should-build == 'true'
+      run: |
+        sed -e "s/_REPOSITORY_OWNER_NAME_/KamushekDev/g" \
+          -e "s/_STARTUP_DLL_/Uniscore.Users.dll/g" \
+          -e "/_COPY_CSPROJS_SLN_/{r .copy_lines" -e "d}" \
+          .github/templates/Dockerfile.template > .github/templates/Dockerfile
+      shell: bash
+    - name: Upload dockerfile to artifacts
+      if: steps.check.outputs.should-build == 'true'
+      uses: actions/upload-artifact@v3
+      with:
+        name: dockerfile
+        path: |
+          .github/templates/Dockerfile
+          .github/templates/.dockerignore
+        retention-days: 7
+        if-no-files-found: error
+    - name: Create tag
+      if: steps.check.outputs.should-build == 'true'
+      id: tag
+      uses: ./.github/actions/create-tag
+      with:
+        version: ${{inputs.version}}
+        name: ${{inputs.name}}
+        repository-owner-name: ${{inputs.repository-owner-name}}
+        registry: ${{inputs.registry}}

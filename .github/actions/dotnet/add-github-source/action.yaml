@@ -1,0 +1,21 @@
+name: "Add github packages"
+description: "Add github packages to nuget sources"
+inputs:
+  username:
+    description: "Github username"
+    required: true
+    default: ${{ github.repository_owner }}
+  token:
+    description: "Token to upload package"
+    required: true
+    default: ${{ github.token }}
+  nuget-source-name:
+    description: "Name of a registered source"
+    required: false
+    default: "github"
+runs:
+  using: "composite"
+  steps:
+    - name: Add source
+      run: 'dotnet nuget add source --username ${{ inputs.username }} --password ${{ inputs.token }} --store-password-in-clear-text --name ${{ inputs.nuget-source-name }} "https://nuget.pkg.github.com/${{ github.repository_owner }}/index.json"'
+      shell: bash

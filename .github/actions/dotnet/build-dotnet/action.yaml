@@ -1,0 +1,35 @@
+name: "Build all .NET solutions"
+description: "Build all .NET solutions under specific folder"
+inputs:
+  folder:
+    description: "Root folder for scanning for solutions"
+    required: true
+  version:
+    description: "Version"
+    required: true
+outputs:
+  has-nuget: 
+    description: "Indicates whether project contains nuget packages or not"
+    value: ${{ steps.check.outputs.has-nuget }}
+runs:
+  using: "composite"
+  steps:
+    - name: Build all solutions
+      run: |
+        solutions=$(find ${{ inputs.folder }} -type f -name "*.sln") \
+        && for solution in $solutions; do echo $solution; dotnet publish -c Release /p:Version=${{ inputs.version }} $solution; done
+      shell: bash
+    - name: Check nuget packages
+      id: check
+      run: |
+        if [[ $(find ${{ inputs.folder }} -type f -name "*.nupkg" | wc -l) > 0 ]]; \
+          then echo "::set-output name=has-nuget::true"; \
+          else echo "::set-output name=has-nuget::false"; \
+        fi
+      shell: bash
+    - name: Upload all nugets to artifacts
+      uses: actions/upload-artifact@v3
+      with:
+        name: nugets
+        path: "${{ inputs.folder }}/**/*.nupkg"
+        retention-days: 1
