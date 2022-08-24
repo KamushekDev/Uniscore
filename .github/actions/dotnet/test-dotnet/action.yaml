@@ -28,7 +28,7 @@ runs:
     - name: Check tests
       id: check
       run: |
-        if [[ $(find ./coverage -type f | wc -l) > 0 ]]; \
+        if [[ $(find ${{ inputs.folder }}./coverage -type f | wc -l) > 0 ]]; \
           then echo "::set-output name=contains-tests::true"; \
           else echo "::set-output name=contains-tests::false"; \
         fi
@@ -38,5 +38,5 @@ runs:
       if: steps.check.outputs.contains-tests == 'true'
       with:
         name: test-results
-        path: "./coverage"
+        path: ${{ inputs.folder }}
         retention-days: 7
