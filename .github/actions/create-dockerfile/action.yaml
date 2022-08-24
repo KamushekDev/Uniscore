@@ -65,7 +65,9 @@ runs:
       uses: actions/upload-artifact@v3
       with:
         name: dockerfile
-        path: ${{inputs.folder}}/Dockerfile
+        path: |
+          ${{inputs.folder}}/Dockerfile
+          .github/templates/.dockerignore
         retention-days: 7
     - name: Create tag
       if: steps.check.outputs.should-build == 'true'
