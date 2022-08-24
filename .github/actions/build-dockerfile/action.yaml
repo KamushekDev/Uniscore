@@ -27,7 +27,7 @@ runs:
         name: dockerfile
         path: ${{inputs.folder}}
     - name: Save pat to file
-      run: echo ${{ inputs.packages-pat }} > ${{inputs.folder}}/PACKAGES_PAT
+      run: echo ${{ inputs.packages-pat }} > ./PACKAGES_PAT
       shell: bash
     # - uses: win-t/gh-action-docker-state@v1
     #   continue-on-error: true
