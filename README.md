@@ -24,3 +24,9 @@
   * https://kubernetes.github.io/ingress-nginx/deploy/#bare-metal-clusters
 * `kubectl create secret generic -n uniscore firebase-admin-sdk-json --from-file=./adminsdk.json`
 * `./apply-all.sh LAST_PACKAGES_VERSION`
+
+
+Add kube metrics to prometheus
+* git clone https://github.com/devopscube/kube-state-metrics-configs.git
+* kubectl apply -f kube-state-metrics-configs/
+* kubectl get deployments kube-state-metrics -n kube-system
