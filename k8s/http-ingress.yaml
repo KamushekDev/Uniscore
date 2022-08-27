@@ -5,16 +5,12 @@ metadata:
   namespace: uniscore
   annotations:
     kubernetes.io/ingress.class: "nginx"
-    # ingress.kubernetes.io/ssl-redirect: "true"
-    # cert-manager.io/cluster-issuer: "letsencrypt-prod"
-    # certmanager.k8s.io/acme-http01-edit-in-place: "true"
 spec:
   tls:
   - hosts:
       - "*.uniscore.ru"
       - "uniscore.ru"
     secretName: cert-secret
-    # secretName: cert-manager-webhook-ca
   rules:
   - host: auth.uniscore.ru
     http:
@@ -25,7 +21,6 @@ spec:
           service: 
             name: auth-service
             port:
-              # name: http
               number: 80
   - host: scores.uniscore.ru
     http:
@@ -36,7 +31,6 @@ spec:
           service: 
             name: scores-service
             port:
-              # name: http
               number: 80
   - host: users.uniscore.ru
     http:
@@ -47,7 +41,6 @@ spec:
           service: 
             name: users-service
             port:
-              # name: http
               number: 80
   - host: uniscore.ru
     http:
