@@ -30,3 +30,7 @@ Add kube metrics to prometheus
 * git clone https://github.com/devopscube/kube-state-metrics-configs.git
 * kubectl apply -f kube-state-metrics-configs/
 * kubectl get deployments kube-state-metrics -n kube-system
+
+Add longhorn
+* kubectl apply -f https://raw.githubusercontent.com/longhorn/longhorn/master/deploy/longhorn.yaml
+* create storageClass with needed amount of replicas
