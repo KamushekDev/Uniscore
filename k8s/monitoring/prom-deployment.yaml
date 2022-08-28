@@ -15,6 +15,9 @@ spec:
       labels:
         app: prometheus-server
     spec:
+      securityContext:
+        runAsUser: 1000
+        fsGroup: 2000
       containers:
         - name: prometheus
           image: prom/prometheus
@@ -43,4 +46,5 @@ spec:
             name: prometheus-server-conf
   
         - name: prometheus-storage-volume
-          emptyDir: {}
+          persistentVolumeClaim:
+            claimName: prom-data-pvc
