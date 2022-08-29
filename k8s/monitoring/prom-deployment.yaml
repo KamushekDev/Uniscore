@@ -7,6 +7,8 @@ metadata:
     app: prometheus-server
 spec:
   replicas: 1
+  strategy:
+    type: Recreate
   selector:
     matchLabels:
       app: prometheus-server
@@ -22,7 +24,7 @@ spec:
         - name: prometheus
           image: prom/prometheus
           args:
-            - "--storage.tsdb.retention.time=12h"
+            - "--storage.tsdb.retention.time=5d"
             - "--config.file=/etc/prometheus/prometheus.yml"
             - "--storage.tsdb.path=/prometheus/"
           ports:
@@ -30,10 +32,10 @@ spec:
           resources:
             requests:
               cpu: 500m
-              memory: 500M
+              memory: 1Gi
             limits:
               cpu: 1
-              memory: 1Gi
+              memory: 2Gi
           volumeMounts:
             - name: prometheus-config-volume
               mountPath: /etc/prometheus/
