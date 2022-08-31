@@ -160,6 +160,10 @@ jobs:
             
   update-badge:
     runs-on: ubuntu-latest
+    if: |
+      always() &&
+      needs.init.result == 'success' &&
+      needs.push-git-tag.result == 'success'
     needs: [init, push-git-tag]
     steps:
       - name: Update badge
