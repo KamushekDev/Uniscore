@@ -1,10 +1,10 @@
 [![dotnet - Uniscore.Auth](https://byob.yarr.is/KamushekDev/Uniscore/uniscore-auth)](https://github.com/KamushekDev/Uniscore/actions/workflows/dotnet-uniscore-auth.yaml)
-[![dotnet - Uniscore.Shared](https://github.com/KamushekDev/Uniscore/actions/workflows/dotnet-uniscore-shared.yaml/badge.svg?branch=master&event=push)](https://github.com/KamushekDev/Uniscore/actions/workflows/dotnet-uniscore-shared.yaml)
-[![dotnet - Uniscore.Users](https://github.com/KamushekDev/Uniscore/actions/workflows/dotnet-uniscore-users.yaml/badge.svg?branch=master&event=push)](https://github.com/KamushekDev/Uniscore/actions/workflows/dotnet-uniscore-users.yaml)
-[![dotnet - Uniscore.Events.Twitch](https://github.com/KamushekDev/Uniscore/actions/workflows/dotnet-uniscore-events-twitch.yaml/badge.svg?branch=master&event=push)](https://github.com/KamushekDev/Uniscore/actions/workflows/dotnet-uniscore-events-twitch.yaml)
-[![dotnet - Uniscore.Scores](https://github.com/KamushekDev/Uniscore/actions/workflows/dotnet-uniscore-scores.yaml/badge.svg?branch=master&event=push)](https://github.com/KamushekDev/Uniscore/actions/workflows/dotnet-uniscore-scores.yaml)
+[![dotnet - Uniscore.Shared](https://byob.yarr.is/KamushekDev/Uniscore/uniscore-shared)](https://github.com/KamushekDev/Uniscore/actions/workflows/dotnet-uniscore-shared.yaml)
+[![dotnet - Uniscore.Users](https://byob.yarr.is/KamushekDev/Uniscore/uniscore-users)](https://github.com/KamushekDev/Uniscore/actions/workflows/dotnet-uniscore-users.yaml)
+[![dotnet - Uniscore.Events.Twitch](https://byob.yarr.is/KamushekDev/Uniscore/uniscore-events-twitch)](https://github.com/KamushekDev/Uniscore/actions/workflows/dotnet-uniscore-events-twitch.yaml)
+[![dotnet - Uniscore.Scores](https://byob.yarr.is/KamushekDev/Uniscore/uniscore-scores)](https://github.com/KamushekDev/Uniscore/actions/workflows/dotnet-uniscore-scores.yaml)
 
-[![react - uniscore-placeholder](https://github.com/KamushekDev/Uniscore/actions/workflows/react-uniscore-placeholder.yaml/badge.svg?branch=master&event=push)](https://github.com/KamushekDev/Uniscore/actions/workflows/react-uniscore-placeholder.yaml)
+[![react - uniscore-placeholder](https://byob.yarr.is/KamushekDev/Uniscore/uniscore-placeholder)](https://github.com/KamushekDev/Uniscore/actions/workflows/react-uniscore-placeholder.yaml)
 
 [![codecov](https://codecov.io/gh/KamushekDev/Uniscore/branch/master/graph/badge.svg?token=KVIZEJSKAI)](https://codecov.io/gh/KamushekDev/Uniscore)
 
