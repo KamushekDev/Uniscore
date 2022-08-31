@@ -1,4 +1,4 @@
-[![dotnet - Uniscore.Auth](https://github.com/KamushekDev/Uniscore/actions/workflows/dotnet-uniscore-auth.yaml/badge.svg?branch=master&event=push)](https://github.com/KamushekDev/Uniscore/actions/workflows/dotnet-uniscore-auth.yaml)
+[![dotnet - Uniscore.Auth](https://byob.yarr.is/KamushekDev/Uniscore/uniscore-auth)](https://github.com/KamushekDev/Uniscore/actions/workflows/dotnet-uniscore-auth.yaml)
 [![dotnet - Uniscore.Shared](https://github.com/KamushekDev/Uniscore/actions/workflows/dotnet-uniscore-shared.yaml/badge.svg?branch=master&event=push)](https://github.com/KamushekDev/Uniscore/actions/workflows/dotnet-uniscore-shared.yaml)
 [![dotnet - Uniscore.Users](https://github.com/KamushekDev/Uniscore/actions/workflows/dotnet-uniscore-users.yaml/badge.svg?branch=master&event=push)](https://github.com/KamushekDev/Uniscore/actions/workflows/dotnet-uniscore-users.yaml)
 [![dotnet - Uniscore.Events.Twitch](https://github.com/KamushekDev/Uniscore/actions/workflows/dotnet-uniscore-events-twitch.yaml/badge.svg?branch=master&event=push)](https://github.com/KamushekDev/Uniscore/actions/workflows/dotnet-uniscore-events-twitch.yaml)
