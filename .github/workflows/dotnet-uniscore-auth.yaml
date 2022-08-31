@@ -166,7 +166,7 @@ jobs:
         uses: RubbaBoy/BYOB@v1.2.1
         with:
           NAME: ${{ env.name }}
-          LABEL: ${{ env.name }}
+          LABEL: dotnet - ${{ env.name }}
           STATUS: ${{ needs.init.outputs.version }}
           COLOR: green
           GITHUB_TOKEN: ${{ github.token }}
