@@ -20,13 +20,6 @@ runs:
       uses: codecov/codecov-action@v3
       with: 
         token: ${{ inputs.codecov-token }}
-        directory: ./.temp/coverage/units
-        flags: ${{ inputs.name }},units
-        fail_ci_if_error: true
-    - name: Upload integration tests to codecov
-      uses: codecov/codecov-action@v3
-      with: 
-        token: ${{ inputs.codecov-token }}
-        directory: ./.temp/coverage/integrations
-        flags: ${{ inputs.name }},integrations
+        directory: ./.temp/coverage
+        flags: ${{inputs.name}}
         fail_ci_if_error: true
