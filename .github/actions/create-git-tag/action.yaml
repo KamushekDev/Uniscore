@@ -14,6 +14,7 @@ runs:
       if: github.ref_name == 'master'
       uses: actions/github-script@v6
       with:
+        github-token: ${{ github.token }}
         script: |
           github.rest.git.createRef({
               owner: context.repo.owner,
