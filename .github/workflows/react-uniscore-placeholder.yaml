@@ -4,7 +4,7 @@ on:
     paths:
       - ".github/**"
       - "!.github/workflows/**"
-      - ".github/workflows/dotnet-uniscore-placeholder.yaml"
+      - ".github/workflows/react-uniscore-placeholder.yaml"
       - "react/placeholder/**"
 env:
   folder: "./react/placeholder"
