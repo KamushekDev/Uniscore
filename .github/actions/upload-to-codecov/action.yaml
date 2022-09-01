@@ -1,5 +1,5 @@
 name: "Upload test results"
-description: "Upload all test results to Codecov"
+description: "Upload all test results to Codecov with project name as carryforward flag"
 inputs:
   name:
     description: "Name of the project that will be passed as flag"
