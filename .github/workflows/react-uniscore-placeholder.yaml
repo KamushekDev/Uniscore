@@ -96,7 +96,7 @@ jobs:
         uses: RubbaBoy/BYOB@v1.2.1
         with:
           NAME: ${{ env.name }}
-          LABEL: react - ${{ env.name }}
+          LABEL: latest success version
           STATUS: ${{ needs.init.outputs.version }}
           COLOR: green
           GITHUB_TOKEN: ${{ github.token }}

@@ -1,12 +1,24 @@
-[![dotnet - Uniscore.Auth](https://byob.yarr.is/KamushekDev/Uniscore/uniscore-auth)](https://github.com/KamushekDev/Uniscore/actions/workflows/dotnet-uniscore-auth.yaml)
-[![dotnet - Uniscore.Shared](https://byob.yarr.is/KamushekDev/Uniscore/uniscore-shared)](https://github.com/KamushekDev/Uniscore/actions/workflows/dotnet-uniscore-shared.yaml)
-[![dotnet - Uniscore.Users](https://byob.yarr.is/KamushekDev/Uniscore/uniscore-users)](https://github.com/KamushekDev/Uniscore/actions/workflows/dotnet-uniscore-users.yaml)
-[![dotnet - Uniscore.Events.Twitch](https://byob.yarr.is/KamushekDev/Uniscore/uniscore-events-twitch)](https://github.com/KamushekDev/Uniscore/actions/workflows/dotnet-uniscore-events-twitch.yaml)
-[![dotnet - Uniscore.Scores](https://byob.yarr.is/KamushekDev/Uniscore/uniscore-scores)](https://github.com/KamushekDev/Uniscore/actions/workflows/dotnet-uniscore-scores.yaml)
+# Summary
+## Services:
 
-[![react - uniscore-placeholder](https://byob.yarr.is/KamushekDev/Uniscore/uniscore-placeholder)](https://github.com/KamushekDev/Uniscore/actions/workflows/react-uniscore-placeholder.yaml)
+### .NET:
+[![dotnet - Uniscore.Auth](https://github.com/KamushekDev/Uniscore/actions/workflows/dotnet-uniscore-auth.yaml/badge.svg?branch=master&event=push)](https://github.com/KamushekDev/Uniscore/actions/workflows/dotnet-uniscore-auth.yaml) [![latest success](https://byob.yarr.is/KamushekDev/Uniscore/uniscore-auth)](https://github.com/KamushekDev/Uniscore/actions/workflows/dotnet-uniscore-auth.yaml) [![codecov](https://codecov.io/gh/KamushekDev/Uniscore/branch/master/graph/badge.svg?token=KVIZEJSKAI&precision=1&flag=uniscore-auth)](https://codecov.io/gh/KamushekDev/Uniscore)
 
-[![codecov](https://codecov.io/gh/KamushekDev/Uniscore/branch/master/graph/badge.svg?token=KVIZEJSKAI)](https://codecov.io/gh/KamushekDev/Uniscore)
+[![dotnet - Uniscore.Users](https://github.com/KamushekDev/Uniscore/actions/workflows/dotnet-uniscore-users.yaml/badge.svg?branch=master&event=push)](https://github.com/KamushekDev/Uniscore/actions/workflows/dotnet-uniscore-users.yaml) [![latest success](https://byob.yarr.is/KamushekDev/Uniscore/uniscore-users)](https://github.com/KamushekDev/Uniscore/actions/workflows/dotnet-uniscore-users.yaml) [![codecov](https://codecov.io/gh/KamushekDev/Uniscore/branch/master/graph/badge.svg?token=KVIZEJSKAI&precision=1&flag=uniscore-users)](https://codecov.io/gh/KamushekDev/Uniscore)
+
+[![dotnet - Uniscore.Events.Twitch](https://github.com/KamushekDev/Uniscore/actions/workflows/dotnet-uniscore-events-twitch.yaml/badge.svg?branch=master&event=push)](https://github.com/KamushekDev/Uniscore/actions/workflows/dotnet-uniscore-events-twitch.yaml) [![latest success](https://byob.yarr.is/KamushekDev/Uniscore/uniscore-events-twitch)](https://github.com/KamushekDev/Uniscore/actions/workflows/dotnet-uniscore-events-twitch.yaml) [![codecov](https://codecov.io/gh/KamushekDev/Uniscore/branch/master/graph/badge.svg?token=KVIZEJSKAI&precision=1&flag=uniscore-events-twitch)](https://codecov.io/gh/KamushekDev/Uniscore)
+
+[![dotnet - Uniscore.Scores](https://github.com/KamushekDev/Uniscore/actions/workflows/dotnet-uniscore-scores.yaml/badge.svg?branch=master&event=push)](https://github.com/KamushekDev/Uniscore/actions/workflows/dotnet-uniscore-scores.yaml) [![latest success](https://byob.yarr.is/KamushekDev/Uniscore/uniscore-scores)](https://github.com/KamushekDev/Uniscore/actions/workflows/dotnet-uniscore-scores.yaml) [![codecov](https://codecov.io/gh/KamushekDev/Uniscore/branch/master/graph/badge.svg?token=KVIZEJSKAI&precision=1&flag=uniscore-scores)](https://codecov.io/gh/KamushekDev/Uniscore)
+
+### React:
+[![react - Uniscore.Placeholder](https://github.com/KamushekDev/Uniscore/actions/workflows/react-uniscore-placeholder.yaml/badge.svg?branch=master&event=push)](https://github.com/KamushekDev/Uniscore/actions/workflows/react-uniscore-placeholder.yaml) [![latest success](https://byob.yarr.is/KamushekDev/Uniscore/uniscore-placeholder)](https://github.com/KamushekDev/Uniscore/actions/workflows/react-uniscore-placeholder.yaml) [![codecov](https://codecov.io/gh/KamushekDev/Uniscore/branch/master/graph/badge.svg?token=KVIZEJSKAI&precision=1&flag=uniscore-placeholder)](https://codecov.io/gh/KamushekDev/Uniscore)
+
+## Libraries:  
+
+### .NET:
+[![dotnet - Uniscore.Shared](https://github.com/KamushekDev/Uniscore/actions/workflows/dotnet-uniscore-shared.yaml/badge.svg?branch=master&event=push)](https://github.com/KamushekDev/Uniscore/actions/workflows/dotnet-uniscore-shared.yaml) [![latest success](https://byob.yarr.is/KamushekDev/Uniscore/uniscore-shared)](https://github.com/KamushekDev/Uniscore/actions/workflows/dotnet-uniscore-shared.yaml) [![codecov](https://codecov.io/gh/KamushekDev/Uniscore/branch/master/graph/badge.svg?token=KVIZEJSKAI&precision=1&flag=uniscore-shared)](https://codecov.io/gh/KamushekDev/Uniscore)
+
+---
 
 # [Issues - Youtrack](https://kamushek.myjetbrains.com/youtrack/issues/UN)
 
