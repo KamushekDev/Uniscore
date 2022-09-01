@@ -3,6 +3,8 @@ on:
   push:
     paths:
       - ".github/**"
+      - "!.github/workflows/**"
+      - ".github/workflows/dotnet-uniscore-placeholder.yaml"
       - "react/placeholder/**"
 env:
   folder: "./react/placeholder"
