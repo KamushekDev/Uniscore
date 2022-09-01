@@ -1,0 +1,7 @@
+# Integration with Issue Tracker
+#
+# (note that '\' need to be escaped).
+
+[issuetracker "Issue Tracker Rule"]
+  regex = "(UN-\\d+)"
+  url = "https://kamushek.myjetbrains.com/youtrack/issue/$1"

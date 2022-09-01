@@ -3,6 +3,8 @@ on:
   push:
     paths:
       - ".github/**"
+      - "!.github/workflows/**"
+      - ".github/workflows/dotnet-uniscore-users.yaml"
       - "dotnet/uniscore-users/**"
 env:
   folder: "./dotnet/uniscore-users"

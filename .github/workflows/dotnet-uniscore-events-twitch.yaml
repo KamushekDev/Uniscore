@@ -3,6 +3,8 @@ on:
   push:
     paths:
       - ".github/**"
+      - "!.github/workflows/**"
+      - ".github/workflows/dotnet-uniscore-events-twitch.yaml"
       - "dotnet/uniscore-events-twitch/**"
 env:
   folder: "./dotnet/uniscore-events-twitch"
