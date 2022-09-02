@@ -81,6 +81,7 @@ jobs:
       - name: Push tag
         uses: ./.github/actions/create-git-tag
         with:
+          github-token: ${{ github.token }}
           name: ${{env.name}}
           version: ${{needs.init.outputs.version}}
             
