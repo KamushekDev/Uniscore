@@ -15,7 +15,7 @@ inputs:
     required: true
 outputs:
   tag:
-    description: "Tag"
+    description: "Current version and latest tags"
     value: ${{ steps.tag.outputs.tag }}
 runs:
   using: "composite"
@@ -27,5 +27,5 @@ runs:
         && name=${{ inputs.name }} \
         && rep=$(echo ${{ inputs.repository-owner-name }} | tr '[:upper:]' '[:lower:]') \
         && registry=${{ inputs.registry }} \
-        && echo "::set-output name=tag::$(echo $registry/$rep/$name:$version)"
+        && echo "::set-output name=tag::$(echo $registry/$rep/$name:$version),$(echo $registry/$rep/$name:latest)"
       shell: bash
