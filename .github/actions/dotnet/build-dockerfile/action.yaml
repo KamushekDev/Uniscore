@@ -47,5 +47,6 @@ runs:
         context: ${{ inputs.folder }}
         push: true
         tags: ${{ inputs.tag }},latest
+        github-token: ${{ github.token }}
         secret-files: |
            "packages_pat=./PACKAGES_PAT"
