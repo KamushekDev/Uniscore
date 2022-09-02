@@ -70,7 +70,7 @@ jobs:
         with:
           context: ${{ env.folder }}
           push: true
-          tags: ${{ needs.prepare-service-builder.outputs.tag }}
+          tags: ${{ needs.prepare-service-builder.outputs.tag }},latest
           
   push-git-tag:
     runs-on: ubuntu-latest
