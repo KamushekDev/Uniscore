@@ -19,7 +19,7 @@ spec:
       - name: dockerconfigjson-github-com
       containers:
       - name: users-container
-        image: ghcr.io/kamushekdev/uniscore-users:{VERSION}
+        image: ghcr.io/kamushekdev/uniscore-users:latest
         volumeMounts:
           - name: firebase-admin-sdk
             mountPath: /app/secrets

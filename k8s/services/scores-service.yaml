@@ -19,7 +19,7 @@ spec:
       - name: dockerconfigjson-github-com
       containers:
       - name: scores-container
-        image: ghcr.io/kamushekdev/uniscore-scores:{VERSION}
+        image: ghcr.io/kamushekdev/uniscore-scores:latest
         livenessProbe:
           initialDelaySeconds: 20
           periodSeconds: 5
