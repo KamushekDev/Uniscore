@@ -15,6 +15,7 @@ spec:
       labels:
         app: placeholder
     spec:
+      imagePullPolicy: Always
       imagePullSecrets:
       - name: dockerconfigjson-github-com
       containers:
