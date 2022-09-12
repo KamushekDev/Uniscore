@@ -50,7 +50,7 @@ runs:
       if: steps.check.outputs.should-build == 'true'
       run: |
         (cd ${{ inputs.folder }} \
-        && sln=$(find . -type f -name "*.sln") \
+        && sln=$(find . -type f -name basename "*.sln") \
         && echo "::set-output name=startup-dll::$(echo ${sln[0]} | sed "s/sln/dll/")")
       shell: bash
     - name: Generate dockerfile from a template
