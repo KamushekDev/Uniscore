@@ -1,24 +1,24 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: placeholer
+  name: placeholder
   namespace: uniscore
 spec:
   replicas: 1
   revisionHistoryLimit: 3
   selector:
     matchLabels:
-      app: placeholer
+      app: placeholder
   template:
     metadata:
       namespace: uniscore
       labels:
-        app: placeholer
+        app: placeholder
     spec:
       imagePullSecrets:
       - name: dockerconfigjson-github-com
       containers:
-      - name: placeholer-container
+      - name: placeholder-container
         image: ghcr.io/kamushekdev/uniscore-placeholder:latest
         livenessProbe:
           initialDelaySeconds: 20
@@ -41,14 +41,14 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: placeholer-service
+  name: placeholder-service
   namespace: uniscore
   annotations:
     cloud.google.com/app-protocols: '{"grpc":"HTTP2", "http": "HTTP"}'
     service.alpha.kubernetes.io/app-protocols: '{"grpc":"HTTP2", "http": "HTTP"}'
 spec:
   selector:
-    app: placeholer
+    app: placeholder
   ports:
   - name: http
     port: 80
