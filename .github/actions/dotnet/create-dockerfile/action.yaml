@@ -46,17 +46,18 @@ runs:
         && mv "${{ inputs.folder }}/.copy_lines" .
       shell: bash
     - name: Get startup dll
+      id: dll
       if: steps.check.outputs.should-build == 'true'
       run: |
         (cd ${{ inputs.folder }} \
         && sln=$(find . -type f -name "*.sln") \
-        && echo "::set-output name=startup-dll::$(echo ${sln[0]})")
+        && echo "::set-output name=startup-dll::$(echo ${sln[0]} | sed "s/sln/dll/")")
       shell: bash
     - name: Generate dockerfile from a template
       if: steps.check.outputs.should-build == 'true'
       run: |
-        sed -e "s/_REPOSITORY_OWNER_NAME_/KamushekDev/g" \
-          -e "s/_STARTUP_DLL_/Uniscore.Users.dll/g" \
+        sed -e "s/_REPOSITORY_OWNER_NAME_/${{ inputs.repository-owner-name }}/g" \
+          -e "s/_STARTUP_DLL_/${{steps.dll.outputs.startup-dll}}/g" \
           -e "/_COPY_CSPROJS_SLN_/{r .copy_lines" -e "d}" \
           .github/templates/Dockerfile.template > .github/templates/Dockerfile
       shell: bash
