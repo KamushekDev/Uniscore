@@ -15,11 +15,11 @@ spec:
       labels:
         app: auth
     spec:
-      imagePullPolicy: Always
       imagePullSecrets:
       - name: dockerconfigjson-github-com
       containers:
       - name: auth-container
+        imagePullPolicy: Always
         image: ghcr.io/kamushekdev/uniscore-auth:latest
         volumeMounts:
           - name: firebase-admin-sdk

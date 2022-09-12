@@ -15,11 +15,11 @@ spec:
       labels:
         app: placeholder
     spec:
-      imagePullPolicy: Always
       imagePullSecrets:
       - name: dockerconfigjson-github-com
       containers:
       - name: placeholder-container
+        imagePullPolicy: Always
         image: ghcr.io/kamushekdev/uniscore-placeholder:latest
         livenessProbe:
           initialDelaySeconds: 20

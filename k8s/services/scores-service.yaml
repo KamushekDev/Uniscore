@@ -15,11 +15,11 @@ spec:
       labels:
         app: scores
     spec:
-      imagePullPolicy: Always
       imagePullSecrets:
       - name: dockerconfigjson-github-com
       containers:
       - name: scores-container
+        imagePullPolicy: Always
         image: ghcr.io/kamushekdev/uniscore-scores:latest
         livenessProbe:
           initialDelaySeconds: 20
