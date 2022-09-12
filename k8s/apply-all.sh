@@ -12,6 +12,7 @@ for file in $files
 do
     echo $file
     # sed "s/{VERSION}/$version/" $file > current.yaml.temp
+
     # echo $(cat current.yaml.temp)
     # kubectl apply -f current.yaml.temp
     kubectl apply -f $file
