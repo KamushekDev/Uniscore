@@ -18,4 +18,18 @@ do
     kubectl apply -f $file
 done
 
+kubectl rollout restart -f ./services/
+
+# deployments=$(kubectl get deploy -A -o name)
+# for deploy in $deployments
+# do
+#     echo "Restarting $deploy"
+#     # sed "s/{VERSION}/$version/" $file > current.yaml.temp
+
+#     # echo $(cat current.yaml.temp)
+#     # kubectl apply -f current.yaml.temp
+#     kubectl rollout restart $deploy -A
+#     kubectl rollout restart $deploy -A
+    
+# done
 # rm current.yaml.temp

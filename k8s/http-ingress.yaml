@@ -49,6 +49,6 @@ spec:
         pathType: Prefix
         backend:
           service:
-            name: placeholer-service
+            name: placeholder-service
             port:
               number: 80
