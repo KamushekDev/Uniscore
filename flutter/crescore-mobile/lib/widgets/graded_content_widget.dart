@@ -1,4 +1,4 @@
-import 'package:crescore/grpc/moq/moq_models.dart';
+import 'package:Uniscore/grpc/moq/moq_models.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 

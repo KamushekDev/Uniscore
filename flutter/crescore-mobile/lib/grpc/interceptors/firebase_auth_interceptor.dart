@@ -1,4 +1,4 @@
-import 'package:crescore/clients/firebase/firebase_client.dart';
+import 'package:Uniscore/clients/firebase/firebase_client.dart';
 import 'package:grpc/grpc.dart';
 
 class FirebaseAuthInterceptor extends ClientInterceptor {
@@ -10,10 +10,11 @@ class FirebaseAuthInterceptor extends ClientInterceptor {
   @override
   ResponseFuture<R> interceptUnary<Q, R>(
       ClientMethod<Q, R> method, Q request, CallOptions options, invoker) {
+    var idToken = _fc.getToken();
     var newOptions = options.mergedWith(
       CallOptions(
         metadata: <String, String>{
-          authHeaderName: _fc.getToken(),
+          authHeaderName: idToken,
         },
       ),
     );
