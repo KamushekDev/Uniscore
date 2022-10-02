@@ -8,7 +8,14 @@ class AppBarClipper extends CustomClipper<Path> {
 
   @override
   Path getClip(Size size) {
-    var rect = Path()..addRRect(RRect.fromRectAndRadius(Rect.fromLTWH(0, 0, size.width, size.height), Radius.circular(cornerRadius)));
+    var rect = Path()
+      ..addRRect(
+        RRect.fromRectAndCorners(
+          Rect.fromLTWH(0, 0, size.width, size.height),
+          bottomLeft: Radius.circular(cornerRadius),
+          bottomRight: Radius.circular(cornerRadius),
+        ),
+      );
 
     var rSize = rect.getBounds();
 

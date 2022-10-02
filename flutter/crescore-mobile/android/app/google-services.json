@@ -1,34 +1,41 @@
 {
   "project_info": {
-    "project_number": "780559898406",
-    "project_id": "crescore-3b017",
-    "storage_bucket": "crescore-3b017.appspot.com"
+    "project_number": "1070089009017",
+    "project_id": "unique-score",
+    "storage_bucket": "unique-score.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:780559898406:android:372ba3ccc980525f05d3e7",
+        "mobilesdk_app_id": "1:1070089009017:android:1164422472d429377de1a8",
         "android_client_info": {
           "package_name": "com.kamushek.crescore"
         }
       },
       "oauth_client": [
         {
-          "client_id": "780559898406-d3ogf4lc53va58r22arvtj8qcrei5qcp.apps.googleusercontent.com",
+          "client_id": "1070089009017-cpick4hqqfgsgtmbcbh19d0fem99euc6.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyAR5-AqwkUtE6IOJOzbSJVPlSpXXv0JCas"
+          "current_key": "AIzaSyAxoqR6rj1y0Jq-u0IBHa3cuPRzAHmNzPU"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "780559898406-d3ogf4lc53va58r22arvtj8qcrei5qcp.apps.googleusercontent.com",
+              "client_id": "1070089009017-cpick4hqqfgsgtmbcbh19d0fem99euc6.apps.googleusercontent.com",
               "client_type": 3
+            },
+            {
+              "client_id": "1070089009017-gvkm5aclu415mblivlhehoeve0vn4rei.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.kamushek.crescore"
+              }
             }
           ]
         }

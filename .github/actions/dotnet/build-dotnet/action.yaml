@@ -16,7 +16,7 @@ runs:
   steps:
     - name: Build all solutions
       run: |
-        solutions=$(find ${{ inputs.folder }} -type f -name "*.sln") \
+        solutions=$(find ${{ inputs.folder }} -type f -name "*.sln" -path "*/src/*") \
         && for solution in $solutions; do echo $solution; dotnet publish -c Release /p:Version=${{ inputs.version }} $solution; done
       shell: bash
     - name: Check nuget packages

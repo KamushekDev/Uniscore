@@ -1,6 +1,5 @@
 import 'package:Uniscore/pages/profile_page/extra/app_bar_clipper.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 
 class ProfileAppBar extends StatelessWidget {
   const ProfileAppBar(this.height, {Key? key, this.cornerRadius = 0, this.cutoutRadius = 0, this.onMenuButtonPressed}) : super(key: key);
@@ -27,11 +26,13 @@ class ProfileAppBar extends StatelessWidget {
                   child: ClipOval(
                     child: Container(
                       padding: EdgeInsets.zero,
-                      color: Theme.of(context).colorScheme.surfaceVariant,
+                      color: Theme.of(context).colorScheme.tertiary,
                       child: IconButton(
-                        icon: Icon(Icons.more_vert),
+                        color: Theme.of(context).colorScheme.onTertiary,
+                        icon: Icon(Icons.more_vert_outlined),
                         onPressed: onMenuButtonPressed,
                         splashRadius: 16,
+                        splashColor: Theme.of(context).colorScheme.onTertiaryContainer,
                       ),
                     ),
                   )),
