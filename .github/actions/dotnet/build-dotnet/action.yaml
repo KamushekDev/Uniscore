@@ -23,8 +23,8 @@ runs:
       id: check
       run: |
         if [[ $(find ${{ inputs.folder }} -type f -name "*.nupkg" | wc -l) > 0 ]]; \
-          then echo "::set-output name=has-nuget::true"; \
-          else echo "::set-output name=has-nuget::false"; \
+          then echo "has-nuget=true" >> $GITHUB_OUTPUT; \
+          else echo "has-nuget=false" >> $GITHUB_OUTPUT; \
         fi
       shell: bash
     - name: Upload all nugets to artifacts

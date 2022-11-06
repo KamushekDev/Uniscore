@@ -33,8 +33,8 @@ runs:
       run: |
         if files=$(find ${{ inputs.folder }} -type f -name "*.csproj" -path "*/src/*") \
             && grep "Microsoft.NET.Sdk.Web" $files; \
-          then echo "::set-output name=should-build::true"; \
-          else echo "::set-output name=should-build::false"; \
+          then echo "should-build=true" >> $GITHUB_OUTPUT; \
+          else echo "should-build=false" >> $GITHUB_OUTPUT; \
         fi
       shell: bash
     - name: Get COPY lines
@@ -51,7 +51,7 @@ runs:
       run: |
         (cd ${{ inputs.folder }} \
         && sln=$(find . -type f -name "*.sln" -printf "%f") \
-        && echo "::set-output name=startup-dll::$(echo ${sln[0]} | sed "s/sln/dll/")")
+        && echo "startup-dll=$(echo ${sln[0]} | sed "s/sln/dll/")" >> $GITHUB_OUTPUT)
       shell: bash
     - name: Generate dockerfile from a template
       if: steps.check.outputs.should-build == 'true'

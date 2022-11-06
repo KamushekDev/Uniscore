@@ -24,5 +24,5 @@ runs:
     - run: echo "Generated version = ${{ env.version }}"
       shell: bash         
     - id: output-step
-      run: echo "::set-output name=version::$(echo ${{ env.version }})"
+      run: echo "version=$(echo ${{ env.version }})" >> $GITHUB_OUTPUT
       shell: bash
