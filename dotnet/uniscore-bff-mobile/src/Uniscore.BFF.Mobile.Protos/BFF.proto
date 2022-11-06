@@ -47,7 +47,6 @@ message GetUserProfileResponse {
         google.protobuf.StringValue profile_information = 8;
         reserved 9; // вкладка моя система
         bool is_user_subscribed = 10;
-        bool is_subscribed_to_user = 11;
     }
 
     message Grade {

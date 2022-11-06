@@ -1,8 +1,6 @@
-﻿using Uniscore.Users.Contract;
-
-namespace Uniscore.Users.Core.Users;
+﻿namespace Uniscore.Users.Core.Users;
 
 public interface IUsersService
 {
-    Task<User> GetUser(string userId);
+    Task<UserDto> GetUser(string userId, string currentUserId, CancellationToken token);
 }

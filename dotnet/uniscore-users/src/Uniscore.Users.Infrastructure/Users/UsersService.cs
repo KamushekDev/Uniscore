@@ -1,6 +1,4 @@
-﻿using Uniscore.Users.Contract;
-using Uniscore.Users.Core.Users;
-using Uniscore.Users.Infrastructure.Mappings;
+﻿using Uniscore.Users.Core.Users;
 
 namespace Uniscore.Users.Infrastructure.Users;
 
@@ -13,12 +11,8 @@ public class UsersService : IUsersService
         _gateway = gateway;
     }
 
-    public async Task<User> GetUser(string userId)
+    public async Task<UserDto> GetUser(string userId, string currentUserId, CancellationToken token)
     {
-        var user = await _gateway.GetUser(userId);
-
-        var result = Mapper.MapTo_User(user);
-
-        return result;
+        return await _gateway.GetUser(userId, token);
     }
 }

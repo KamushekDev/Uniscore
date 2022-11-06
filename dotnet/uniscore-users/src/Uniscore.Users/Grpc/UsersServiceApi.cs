@@ -1,13 +1,12 @@
 ﻿using Grpc.Core;
 using Microsoft.AspNetCore.Authorization;
-using Uniscore.Shared.Auth;
 using Uniscore.Shared.Auth.ContextMetadata;
 using Uniscore.Users.Api;
 using Uniscore.Users.Core.Users;
-using Uniscore.Users.Infrastructure.Mappings;
 
 namespace Uniscore.Users.Grpc;
 
+[Authorize]
 public class UsersServiceApi : UsersApi.UsersApiBase
 {
     private readonly IUsersService _usersService;
@@ -19,25 +18,28 @@ public class UsersServiceApi : UsersApi.UsersApiBase
         _extractor = extractor;
     }
 
-    [Authorize(Policies.ValidUser)]
-    public override async Task<GetCurrentUserResponse> GetCurrentUser(GetCurrentUserRequest request,
-        ServerCallContext context)
-    {
-        var userId = _extractor.GetUserId(context.GetHttpContext().User);
-
-        var user = await _usersService.GetUser(userId);
-
-        var response = Mapper.MapTo_GetCurrentUserResponse(user);
-
-        return response;
-    }
-
     public override async Task<GetUserResponse> GetUser(GetUserRequest request, ServerCallContext context)
     {
-        var user = await _usersService.GetUser(request.UserId);
+        var currentUserId = _extractor.GetUserId(context.GetHttpContext().User);
 
-        var response = Mapper.MapTo_GetUserResponse(user);
+        var shortUser = await _usersService.GetUser(request.UserId, currentUserId, context.CancellationToken);
 
+
+        var response = MapResponse(shortUser);
         return response;
+
+        GetUserResponse MapResponse(UserDto user)
+        {
+            return new GetUserResponse()
+            {
+                Id = user.Id,
+                Disabled = user.Disabled,
+                Email = user.Email,
+                EmailVerified = user.EmailVerified,
+                DisplayName = user.DisplayName,
+                PhoneNumber = user.PhoneNumber,
+                PhotoUrl = user.PhotoUrl
+            };
+        }
     }
 }
