@@ -10,17 +10,17 @@ inputs:
 outputs:
   has-nuget: 
     description: "Indicates whether project contains nuget packages or not"
-    value: ${{ steps.check.outputs.has-nuget }}
+    value: ${{ steps.check-nuget.outputs.has-nuget }}
 runs:
   using: "composite"
   steps:
     - name: Build all solutions
       run: |
-        solutions=$(find ${{ inputs.folder }} -type f -name "*.sln" -path "*/src/*") \
+        solutions=$(find ${{ inputs.folder }} -type f -name "*.sln") \
         && for solution in $solutions; do echo $solution; dotnet publish -c Release /p:Version=${{ inputs.version }} $solution; done
       shell: bash
     - name: Check nuget packages
-      id: check
+      id: check-nuget
       run: |
         if [[ $(find ${{ inputs.folder }} -type f -name "*.nupkg" | wc -l) > 0 ]]; \
           then echo "has-nuget=true" >> $GITHUB_OUTPUT; \
@@ -29,7 +29,7 @@ runs:
       shell: bash
     - name: Upload all nugets to artifacts
       uses: actions/upload-artifact@v3
-      if: steps.check.outputs.has-nuget == 'true'
+      if: steps.check-nuget.outputs.has-nuget == 'true'
       with:
         name: nugets
         path: "${{ inputs.folder }}/**/*.nupkg"
