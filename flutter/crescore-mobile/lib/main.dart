@@ -1,12 +1,10 @@
 import 'package:Uniscore/clients/firebase/firebase_client.dart';
+import 'package:Uniscore/generated/BFF.pbgrpc.dart';
+import 'package:Uniscore/grpc/backendService.dart';
 import 'package:Uniscore/grpc/backendServiceInterface.dart';
 import 'package:Uniscore/grpc/backendServiceMoq.dart';
 import 'package:Uniscore/grpc/interceptors/firebase_auth_interceptor.dart';
-import 'package:Uniscore/pages/add_page/addPage.dart';
-import 'package:Uniscore/pages/home_page/homePage.dart';
 import 'package:Uniscore/pages/login_page/login_page.dart';
-import 'package:Uniscore/pages/profile_page/profilePage.dart';
-import 'package:Uniscore/pages/search_page/searchPage.dart';
 import 'package:Uniscore/utils/custom_router.dart';
 import 'package:Uniscore/utils/instantPageRoute.dart';
 import 'package:Uniscore/utils/themes.dart';
@@ -26,15 +24,20 @@ Future setup() async {
   var fc = FirebaseClient();
   await fc.init();
   GetIt.I.registerSingleton<FirebaseClient>(fc);
+  var authInterceptor = FirebaseAuthInterceptor(fc);
 
-  var interceptor = FirebaseAuthInterceptor(fc);
+  var bffClient = getBffClient(authInterceptor);
 
-  GetIt.I.registerSingleton<IBackendService>(BackendServiceMoq());
+  GetIt.I.registerSingleton<MobileBffApiClient>(bffClient);
+
+  // GetIt.I.registerSingleton<IBackendService>(BackendServiceMoq());
+  GetIt.I.registerSingleton<IBackendService>(BackendService());
 }
 
-void setupChannel() {
+MobileBffApiClient getBffClient(ClientInterceptor interceptor) {
   var debugChannel = ClientChannel(
-    '192.168.1.2',
+    // '192.168.1.2', // real
+    '10.0.2.2', //emulator
     port: 82,
     options: const ChannelOptions(credentials: ChannelCredentials.insecure()),
   );
@@ -45,7 +48,7 @@ void setupChannel() {
     options: const ChannelOptions(credentials: ChannelCredentials.secure()),
   );
 
-  GetIt.I.registerSingleton<ClientChannel>(debugChannel);
+  return MobileBffApiClient(debugChannel, interceptors: [interceptor]);
 }
 
 class MyApp extends StatelessWidget {
@@ -61,15 +64,8 @@ class MyApp extends StatelessWidget {
         child: Builder(
           builder: (themeContext) => MaterialApp(
             theme: ThemeProvider.themeOf(themeContext).data,
-            title: 'CreScore',
+            title: 'Uniscore',
             initialRoute: LoginPage.routeName,
-            // routes: {
-            //   LoginPage.routeName: (context) => const LoginPage(),
-            //   HomePage.routeName: (context) => const HomePage(),
-            //   SearchPage.routeName: (context) => const SearchPage(),
-            //   AddPage.routeName: (context) => const AddPage(),
-            //   ProfilePage.routeName: (context) => const ProfilePage(),
-            // },
             onGenerateInitialRoutes: (route) {
               if (route == LoginPage.routeName) {
                 return [InstantPageRoute(builder: (_) => const LoginPage())];

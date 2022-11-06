@@ -25,8 +25,8 @@ runs:
       id: check
       run: |
         if [[ $(find ./coverage -type f | wc -l) > 0 ]]; \
-          then echo "::set-output name=contains-tests::true"; \
-          else echo "::set-output name=contains-tests::false"; \
+          then echo "contains-tests=true" >> $GITHUB_OUTPUT; \
+          else echo "contains-tests=false" >> $GITHUB_OUTPUT; \
         fi
       shell: bash
     - name: Upload coverage results to artifacts

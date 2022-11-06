@@ -7,24 +7,7 @@ option csharp_namespace = "Uniscore.Users.Api";
 import "google/protobuf/wrappers.proto";
 
 service UsersApi {
-    rpc GetCurrentUser (GetCurrentUserRequest) returns (GetCurrentUserResponse);
     rpc GetUser (GetUserRequest) returns (GetUserResponse);
-}
-
-message UserMessage {
-    string user_id = 1;
-    google.protobuf.StringValue display_name = 2;
-    google.protobuf.StringValue email = 3;
-    google.protobuf.StringValue phone_number = 4;
-    google.protobuf.StringValue photo_url = 5;
-}
-
-message GetCurrentUserRequest {
-
-}
-
-message GetCurrentUserResponse {
-    UserMessage user = 1;
 }
 
 message GetUserRequest {
@@ -32,5 +15,11 @@ message GetUserRequest {
 }
 
 message GetUserResponse {
-    UserMessage user = 1;
+    string id = 1;
+    google.protobuf.StringValue email = 2;
+    bool email_verified = 3;
+    google.protobuf.StringValue phone_number = 4;
+    google.protobuf.StringValue display_name = 5;
+    google.protobuf.StringValue photo_url = 6;
+    bool disabled = 7;
 }

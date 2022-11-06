@@ -46,10 +46,10 @@ class _ProfilePageState extends State<ProfilePage> {
 
   Future<Tuple2<Profile, List<UserGradedContent>>> getProfileAndGrades() async {
     var profileTask = _bs.getProfile();
-    var gradesTask = _bs.getUserGrades(0, 10);
+    var gradesTask = <UserGradedContent>[];
 
     var profile = await profileTask;
-    var grades = await gradesTask;
+    var grades = <UserGradedContent>[];
 
     return Tuple2(profile, grades);
   }
@@ -60,6 +60,9 @@ class _ProfilePageState extends State<ProfilePage> {
       extendBodyBehindAppBar: true,
       endDrawer: ProfileEndDrawer(_signOut),
       body: DoubleBackToCloseApp(
+        snackBar: const SnackBar(
+          content: Text('Tap back again to leave'),
+        ),
         child: Center(
           child: FutureBuilder(
             future: getProfileAndGrades(),
@@ -72,9 +75,6 @@ class _ProfilePageState extends State<ProfilePage> {
               ),
             ),
           ),
-        ),
-        snackBar: const SnackBar(
-          content: Text('Tap back again to leave'),
         ),
       ),
       bottomNavigationBar: const BottomNavigation(3),

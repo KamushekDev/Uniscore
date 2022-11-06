@@ -12,9 +12,15 @@ class UserAvatar extends StatelessWidget {
       radius: radius + 2,
       backgroundColor: Theme.of(context).colorScheme.secondary,
       child: CircleAvatar(
-        child: Icon(Icons.account_circle, size: radius.toDouble() * 2),
-        //foregroundImage: const AssetImage(Assets.emptyAvatar),
         radius: radius.toDouble(),
+        child:
+        ClipOval(
+          clipBehavior: Clip.hardEdge,
+          child: imageUri?.isEmpty ?? true
+              ? Icon(Icons.account_circle, size: radius.toDouble() * 2)
+              : Image(image: NetworkImage(imageUri!)),
+        )
+        ,
       ),
     );
   }

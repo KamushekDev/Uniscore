@@ -10,16 +10,13 @@ import 'package:tuple/tuple.dart';
 
 class ProfileLandingModel {
   ProfileLandingModel.fromData(Tuple2<Profile, List<UserGradedContent>> data)
-      : this.profileInformation = "Your information, you selfish piece of shit!",
-        this.profileHead = ProfileHeadModel("Lamushek", null),
-        this.profileStats = ProfileStatsModel(1337, 69),
+      : this.profileHead = ProfileHeadModel(data.item1.username, data.item1.photoUrl),
+        this.profileStats = ProfileStatsModel(data.item1.subscribersCount, data.item1.subscriptionsCount),
         this.profileTabs = ProfileTabsModel(
           ProfileGradesTabModel(data.item2),
-          ProfileInformationTabModel("Your information, you selfish piece of shit!"),
+          ProfileInformationTabModel(data.item1.info ?? "<--No profile information-->"),
           ProfileGradeVariantsTabModel(),
         );
-
-  final String profileInformation;
 
   final ProfileHeadModel profileHead;
   final ProfileStatsModel profileStats;

@@ -1,0 +1,70 @@
+﻿syntax = "proto3";
+
+package BFF.Mobile.V1;
+
+option csharp_namespace = "Uniscore.BFF.Mobile.Grpc";
+
+import "google/protobuf/wrappers.proto";
+import "google/protobuf/timestamp.proto";
+
+service MobileBffApi {
+    rpc GetUserProfile (GetUserProfileRequest) returns (GetUserProfileResponse);
+    rpc GetUserGrades (GetUserGradesRequest) returns (GetUserGradesResponse);
+}
+
+message GetUserProfileRequest {
+    // empty = for current user
+    google.protobuf.StringValue user_id = 1;
+}
+
+message GetUserProfileResponse {
+    oneof profile {
+        SelfProfile self_profile = 1;
+        OtherProfile other_profile = 2;
+    }
+
+    message SelfProfile {
+        string id = 1;
+        string display_name = 2;
+        int32 followers = 3;
+        int32 following = 4;
+        google.protobuf.StringValue photo_url = 5;
+        google.protobuf.StringValue background_photo_url = 6;
+        repeated Grade recent_grades = 7;
+        google.protobuf.StringValue profile_information = 8;
+        reserved 9 ; // вкладка моя система
+        reserved 10 to 11; // чтобы сохранить нумерацию с OtherProfile
+    }
+
+    message OtherProfile {
+        string id = 1;
+        string display_name = 2;
+        int32 followers = 3;
+        int32 following = 4;
+        google.protobuf.StringValue photo_url = 5;
+        google.protobuf.StringValue background_photo_url = 6;
+        repeated Grade recent_grades = 7;
+        google.protobuf.StringValue profile_information = 8;
+        reserved 9; // вкладка моя система
+        bool is_user_subscribed = 10;
+    }
+
+    message Grade {
+        string id = 1;
+        google.protobuf.Timestamp created_at = 2;
+        string name = 3;
+        string type = 4;
+    }
+}
+
+
+
+message GetUserGradesRequest {
+    // empty = for current user
+    google.protobuf.StringValue user_id = 1;
+    int32 offset = 2;
+}
+
+message GetUserGradesResponse {
+
+}
