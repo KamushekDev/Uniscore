@@ -7,6 +7,10 @@ inputs:
   version:
     description: "Version"
     required: true
+  repository-url:
+    description: "Repository url"
+    required: false
+    default: "https://github.com/KamushekDev/Uniscore"
 outputs:
   has-nuget: 
     description: "Indicates whether project contains nuget packages or not"
@@ -17,7 +21,7 @@ runs:
     - name: Build all solutions
       run: |
         solutions=$(find ${{ inputs.folder }} -type f -name "*.sln") \
-        && for solution in $solutions; do echo $solution; dotnet publish -c Release /p:Version=${{ inputs.version }} $solution; done
+        && for solution in $solutions; do echo $solution; dotnet publish -c Release /p:Version=${{ inputs.version }} /p:RepositoryUrl=${{ inputs.repository-url }} $solution; done
       shell: bash
     - name: Check nuget packages
       id: check-nuget
