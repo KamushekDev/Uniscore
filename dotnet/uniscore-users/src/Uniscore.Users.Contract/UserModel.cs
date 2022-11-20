@@ -1,14 +1,12 @@
-﻿namespace Uniscore.Users.Core.Users;
+﻿namespace Uniscore.Users.Contract;
 
-public record UserDto(
+public sealed record UserModel(
     string Id,
     string? Email,
-    string? PhoneNumber,
     bool EmailVerified,
+    string? PhoneNumber,
     string? DisplayName,
     string? PhotoUrl,
     bool Disabled,
     DateTime? CreatedAt
-    // metadata
-    // customClaims
 );

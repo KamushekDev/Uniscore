@@ -5,6 +5,7 @@ package Users.V1;
 option csharp_namespace = "Uniscore.Users.Api";
 
 import "google/protobuf/wrappers.proto";
+import "google/protobuf/timestamp.proto";
 
 service UsersApi {
     rpc GetUser (GetUserRequest) returns (GetUserResponse);
@@ -22,4 +23,12 @@ message GetUserResponse {
     google.protobuf.StringValue display_name = 5;
     google.protobuf.StringValue photo_url = 6;
     bool disabled = 7;
+    TimestampValue created_at = 8;
+}
+
+message TimestampValue {
+    oneof Timestamp {
+        google.protobuf.Timestamp timestamp_value = 1;
+        bool timestamp_is_null = 2;
+    }
 }

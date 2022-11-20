@@ -38,7 +38,8 @@ public class UsersGateway : IUsersGateway
                 user.EmailVerified,
                 user.DisplayName,
                 user.PhotoUrl,
-                user.Disabled
+                user.Disabled,
+                user.UserMetaData?.CreationTimestamp
             );
             return result;
         }
