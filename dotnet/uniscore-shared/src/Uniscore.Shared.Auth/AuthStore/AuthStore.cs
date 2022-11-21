@@ -1,4 +1,6 @@
-﻿namespace Uniscore.Shared.Auth.AuthStore;
+﻿using System.Diagnostics.CodeAnalysis;
+
+namespace Uniscore.Shared.Auth.AuthStore;
 
 internal class AuthStore : IAuthStore
 {
@@ -6,6 +8,7 @@ internal class AuthStore : IAuthStore
 
     public bool IsTokenSet => _token != null;
 
+    [MemberNotNullWhen(true, nameof(IsTokenSet))]
     public string? GetToken()
     {
         return _token;

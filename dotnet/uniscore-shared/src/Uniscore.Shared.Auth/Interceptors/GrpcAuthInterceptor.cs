@@ -1,5 +1,6 @@
 using Grpc.Core;
 using Grpc.Core.Interceptors;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Uniscore.Shared.Auth.AuthStore;
 
@@ -7,12 +8,12 @@ namespace Uniscore.Shared.Auth.Interceptors;
 
 public class GrpcAuthInterceptor : Interceptor
 {
-    private readonly IAuthStore _store;
+    private readonly IServiceProvider _serviceProvider;
     private readonly ILogger<GrpcAuthInterceptor> _logger;
 
-    public GrpcAuthInterceptor(IAuthStore store, ILogger<GrpcAuthInterceptor> logger)
+    public GrpcAuthInterceptor(IServiceProvider serviceProvider, ILogger<GrpcAuthInterceptor> logger)
     {
-        _store = store;
+        _serviceProvider = serviceProvider;
         _logger = logger;
     }
 
@@ -20,8 +21,10 @@ public class GrpcAuthInterceptor : Interceptor
 
     private void AddAuthorizationIfSet(Metadata? headers)
     {
-        if (_store.IsTokenSet)
-            headers?.Add(Constants.AuthorizationHeader, _store.GetToken()!);
+        var store = _serviceProvider.GetRequiredService<IAuthStore>();
+        
+        if (store.IsTokenSet)
+            headers?.Add(Constants.AuthorizationHeader, store.GetToken()!);
         else
             _logger.LogWarning("Token for a request wasn't set");
     }
@@ -72,7 +75,8 @@ public class GrpcAuthInterceptor : Interceptor
 
     private void SetTokenIfProvided(Metadata? headers)
     {
-        if (_store.IsTokenSet)
+        var store = _serviceProvider.GetRequiredService<IAuthStore>();
+        if (store.IsTokenSet)
             _logger.LogWarning("Token for a request was already set");
         else
         {
@@ -81,7 +85,7 @@ public class GrpcAuthInterceptor : Interceptor
             if (authHeaderValue is null)
                 _logger.LogWarning("Token for a request wasn't provided by the client");
             else
-                _store.SetAuthorization(authHeaderValue);
+                store.SetAuthorization(authHeaderValue);
         }
     }
 

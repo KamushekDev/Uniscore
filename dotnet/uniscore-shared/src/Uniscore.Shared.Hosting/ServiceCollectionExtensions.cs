@@ -21,7 +21,7 @@ public static class ServiceCollectionExtensions
     public static IGrpcServerBuilder AddUniscoreGrpc(this IServiceCollection sc,
         Action<GrpcServiceOptions>? configure = null)
     {
-        sc.TryAddTransient<GrpcAuthInterceptor>();
+        sc.TryAddSingleton<GrpcAuthInterceptor>();
 
         return sc.AddGrpc(x =>
         {
@@ -36,7 +36,7 @@ public static class ServiceCollectionExtensions
         Action<GrpcClientFactoryOptions>? configure = null)
         where TClient : class
     {
-        sc.TryAddTransient<GrpcAuthInterceptor>();
+        sc.TryAddSingleton<GrpcAuthInterceptor>();
 
         var config = configuration.GetSection($"{serviceName}_GrpcOptions").Get<GrpcClientOptions>();
 
