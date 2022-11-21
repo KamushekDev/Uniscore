@@ -19,9 +19,10 @@ public static class ServiceCollectionExtensions
     }
 
     public static IGrpcServerBuilder AddUniscoreGrpc(this IServiceCollection sc,
+        IConfiguration configuration,
         Action<GrpcServiceOptions>? configure = null)
     {
-        sc.TryAddSingleton<GrpcAuthInterceptor>();
+        sc.RegisterSharedGrpc(configuration);
 
         return sc.AddGrpc(x =>
         {
@@ -36,7 +37,7 @@ public static class ServiceCollectionExtensions
         Action<GrpcClientFactoryOptions>? configure = null)
         where TClient : class
     {
-        sc.TryAddSingleton<GrpcAuthInterceptor>();
+        sc.RegisterSharedGrpc(configuration);
 
         var config = configuration.GetSection($"{serviceName}_GrpcOptions").Get<GrpcClientOptions>();
 
@@ -48,6 +49,11 @@ public static class ServiceCollectionExtensions
                 x.Address = new Uri(uri);
                 configure?.Invoke(x);
             })
-            .AddInterceptor<GrpcAuthInterceptor>();
+            .AddInterceptor<GrpcAuthInterceptor>(InterceptorScope.Client);
+    }
+
+    private static void RegisterSharedGrpc(this IServiceCollection sc, IConfiguration configuration)
+    {
+        sc.TryAddTransient<GrpcAuthInterceptor>();
     }
 }

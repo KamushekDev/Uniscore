@@ -1,6 +1,5 @@
 using Grpc.Core;
 using Grpc.Core.Interceptors;
-using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Uniscore.Shared.Auth.AuthStore;
 
@@ -8,12 +7,12 @@ namespace Uniscore.Shared.Auth.Interceptors;
 
 public class GrpcAuthInterceptor : Interceptor
 {
-    private readonly IServiceProvider _serviceProvider;
+    private readonly IAuthStore _store;
     private readonly ILogger<GrpcAuthInterceptor> _logger;
 
-    public GrpcAuthInterceptor(IServiceProvider serviceProvider, ILogger<GrpcAuthInterceptor> logger)
+    public GrpcAuthInterceptor(IAuthStore store, ILogger<GrpcAuthInterceptor> logger)
     {
-        _serviceProvider = serviceProvider;
+        _store = store;
         _logger = logger;
     }
 
@@ -21,10 +20,8 @@ public class GrpcAuthInterceptor : Interceptor
 
     private void AddAuthorizationIfSet(Metadata? headers)
     {
-        var store = _serviceProvider.GetRequiredService<IAuthStore>();
-        
-        if (store.IsTokenSet)
-            headers?.Add(Constants.AuthorizationHeader, store.GetToken()!);
+        if (_store.IsTokenSet)
+            headers?.Add(Constants.AuthorizationHeader, _store.GetToken()!);
         else
             _logger.LogWarning("Token for a request wasn't set");
     }
@@ -75,18 +72,15 @@ public class GrpcAuthInterceptor : Interceptor
 
     private void SetTokenIfProvided(Metadata? headers)
     {
-        var store = _serviceProvider.GetRequiredService<IAuthStore>();
-        if (store.IsTokenSet)
-            _logger.LogWarning("Token for a request was already set");
-        else
-        {
-            var authHeaderValue = headers?.Get(Constants.AuthorizationHeader)?.Value;
+        var authHeaderValue = headers?.Get(Constants.AuthorizationHeader)?.Value;
 
-            if (authHeaderValue is null)
-                _logger.LogWarning("Token for a request wasn't provided by the client");
-            else
-                store.SetAuthorization(authHeaderValue);
-        }
+        if (authHeaderValue is null)
+            _logger.LogInformation("Token for a request wasn't provided by the client");
+
+        var tokenUpdated = _store.SetAuthorization(authHeaderValue);
+
+        if (tokenUpdated)
+            _logger.LogInformation("Token in a store was updated");
     }
 
     public override Task<TResponse> UnaryServerHandler<TRequest, TResponse>(TRequest request, ServerCallContext context,

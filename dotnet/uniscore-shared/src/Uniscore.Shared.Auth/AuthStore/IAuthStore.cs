@@ -4,5 +4,5 @@ public interface IAuthStore
 {
     bool IsTokenSet { get; }
     string? GetToken();
-    void SetAuthorization(string token);
+    bool SetAuthorization(string? token);
 }

@@ -14,11 +14,11 @@ internal class AuthStore : IAuthStore
         return _token;
     }
 
-    public void SetAuthorization(string token)
+    public bool SetAuthorization(string? token)
     {
-        if (_token is not null)
-            throw new InvalidOperationException("Token is already set.");
-        
-        _token = token ?? throw new ArgumentNullException();
+        var result = _token == token;
+        _token = token;
+
+        return result;
     }
 }
