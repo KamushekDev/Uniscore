@@ -10,6 +10,8 @@ public static class ServiceCollectionExtensions
 {
     public static void AddUserApiClient(this IServiceCollection sc, IConfiguration configuration, string serviceName = "users",Action<GrpcClientFactoryOptions>? configure = null)
     {
+        sc.AddTransient<IUserApiClient, UserApiClient>();
+        
         sc.AddUniscoreGrpcClient<UsersApi.UsersApiClient>(serviceName, configuration, configure);
     }
 }
