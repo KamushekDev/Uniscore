@@ -29,6 +29,7 @@ RUN dotnet publish -c $c -o /app/publish
 FROM base AS final
 LABEL org.opencontainers.image.source="https://github.com/_REPOSITORY_OWNER_NAME_/Uniscore"
 
+ENV DOTNET_HOSTBUILDER__RELOADCONFIGONCHANGE=false
 WORKDIR /app
 COPY --from=publish /app/publish .
 ENTRYPOINT dotnet _STARTUP_DLL_
