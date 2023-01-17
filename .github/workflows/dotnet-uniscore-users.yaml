@@ -10,7 +10,7 @@ env:
   folder: "./dotnet/uniscore-users"
   name: "uniscore-users"
   dotnet_sdk_version: 7.0.102
-  dockerfile-template-path: ${{ env.folder }}/Dockerfile.template
+  dockerfile-template-path: "./dotnet/uniscore-users/Dockerfile.template"
 
   DOTNET_NOLOGO: 1
   DOTNET_CLI_TELEMETRY_OPTOUT: 1
