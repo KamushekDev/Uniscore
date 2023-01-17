@@ -14,12 +14,12 @@ runs:
     - name: Run all unit tests
       run: |
         solutions=$(find ${{ inputs.folder }} -type f -name "*.sln") \
-          && for solution in $solutions; do echo $solution; dotnet test $solution --collect:"XPlat Code Coverage" -o ./coverage/integrations --filter "FullyQualifiedName!~IntegrationTests"; done
+          && for solution in $solutions; do echo $solution; dotnet test $solution --collect:"XPlat Code Coverage" --results-directory ./coverage/integrations --filter "FullyQualifiedName!~IntegrationTests"; done
       shell: bash
     - name: Run all integration tests
       run: |
           solutions=$(find ${{ inputs.folder }} -type f -name "*.sln") \
-          && for solution in $solutions; do echo $solution; dotnet test $solution --collect:"XPlat Code Coverage" -o ./coverage/units --filter "FullyQualifiedName~IntegrationTests"; done
+          && for solution in $solutions; do echo $solution; dotnet test $solution --collect:"XPlat Code Coverage" ---results-directory ./coverage/units --filter "FullyQualifiedName~IntegrationTests"; done
       shell: bash
     - name: Check tests
       id: check
