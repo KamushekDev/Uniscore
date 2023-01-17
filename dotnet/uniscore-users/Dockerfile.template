@@ -1,0 +1,35 @@
+ARG c=Release
+
+FROM mcr.microsoft.com/dotnet/aspnet:7.0-alpine-arm64v8 AS base
+EXPOSE 80
+EXPOSE 82
+EXPOSE 84
+WORKDIR /app
+
+
+FROM mcr.microsoft.com/dotnet/sdk:7.0 AS build
+ARG c
+
+RUN --mount=type=secret,id=packages_pat,required=true \
+    dotnet nuget add source -u _REPOSITORY_OWNER_NAME_ -p "$(cat /run/secrets/packages_pat)" --store-password-in-clear-text -n github_packages "https://nuget.pkg.github.com/_REPOSITORY_OWNER_NAME_/index.json"
+
+WORKDIR /source
+_COPY_CSPROJS_SLN_
+
+RUN dotnet restore
+
+COPY . .
+
+
+FROM build AS publish
+ARG c
+RUN dotnet publish -c $c -o /app/publish
+
+
+FROM base AS final
+LABEL org.opencontainers.image.source="https://github.com/_REPOSITORY_OWNER_NAME_/Uniscore"
+
+ENV DOTNET_HOSTBUILDER__RELOADCONFIGONCHANGE=false
+WORKDIR /app
+COPY --from=publish /app/publish .
+ENTRYPOINT dotnet _STARTUP_DLL_
