@@ -23,6 +23,14 @@ runs:
         solutions=$(find ${{ inputs.folder }} -type f -name "*.sln") \
         && for solution in $solutions; do echo $solution; dotnet publish -c Release /p:Version=${{ inputs.version }} /p:RepositoryUrl=${{ inputs.repository-url }} $solution; done
       shell: bash
+    - name: Find all nuget packages
+      run: |
+        if files=$(find ${{ inputs.folder }} -type f -name "*.csproj" -path "*/src/*") \
+            && grep "Microsoft.NET.Sdk.Web" $files; \
+          then echo "should-build=true" >> $GITHUB_OUTPUT; \
+          else echo "should-build=false" >> $GITHUB_OUTPUT; \
+        fi
+      shell: bash
     - name: Check nuget packages
       id: check-nuget
       run: |

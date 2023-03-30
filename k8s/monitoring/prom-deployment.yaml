@@ -24,6 +24,7 @@ spec:
         - name: prometheus
           image: prom/prometheus
           args:
+            - "--storage.tsdb.retention.time=90d"
             - "--storage.tsdb.retention.size=14GB"
             - "--config.file=/etc/prometheus/prometheus.yml"
             - "--storage.tsdb.path=/prometheus/"
