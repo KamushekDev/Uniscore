@@ -19,7 +19,7 @@ public static class ServiceCollectionExtensions
 
         sc.AddAuth(configuration, environment);
 
-        sc.AddUniscoreGrpc();
+        sc.AddUniscoreGrpc(configuration);
 
         sc.AddFirebase(configuration);
 

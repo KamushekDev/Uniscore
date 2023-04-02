@@ -18,27 +18,42 @@ public class GrpcAuthInterceptor : Interceptor
 
     #region Client
 
-    private void AddAuthorizationIfSet(Metadata? headers)
+    private Metadata GetHeadersWithAuthorizationIfSet(Metadata? headers)
     {
+        headers ??= new Metadata();
+
         if (_store.IsTokenSet)
-            headers?.Add(Constants.AuthorizationHeader, _store.GetToken()!);
+            headers.Add(Constants.AuthorizationHeader, _store.GetToken());
         else
             _logger.LogWarning("Token for a request wasn't set");
+
+        return headers;
     }
 
     public override AsyncUnaryCall<TResponse> AsyncUnaryCall<TRequest, TResponse>(TRequest request,
         ClientInterceptorContext<TRequest, TResponse> context,
         AsyncUnaryCallContinuation<TRequest, TResponse> continuation)
     {
-        AddAuthorizationIfSet(context.Options.Headers);
-        return base.AsyncUnaryCall(request, context, continuation);
+        // You can't just set a header in context.
+        // https://github.com/grpc/grpc-dotnet/issues/1255#issuecomment-811635583
+        
+        // todo: should change this to something cool
+        // https://learn.microsoft.com/en-us/aspnet/core/grpc/clientfactory?view=aspnetcore-6.0#call-credentials
+        
+        var newHeaders = GetHeadersWithAuthorizationIfSet(context.Options.Headers);
+
+        var newOptions = context.Options.WithHeaders(newHeaders);
+
+        var newContext = new ClientInterceptorContext<TRequest, TResponse>(context.Method, context.Host, newOptions);
+
+        return base.AsyncUnaryCall(request, newContext, continuation);
     }
 
     public override TResponse BlockingUnaryCall<TRequest, TResponse>(TRequest request,
         ClientInterceptorContext<TRequest, TResponse> context,
         BlockingUnaryCallContinuation<TRequest, TResponse> continuation)
     {
-        AddAuthorizationIfSet(context.Options.Headers);
+        GetHeadersWithAuthorizationIfSet(context.Options.Headers);
         return base.BlockingUnaryCall(request, context, continuation);
     }
 
@@ -46,7 +61,7 @@ public class GrpcAuthInterceptor : Interceptor
         ClientInterceptorContext<TRequest, TResponse> context,
         AsyncClientStreamingCallContinuation<TRequest, TResponse> continuation)
     {
-        AddAuthorizationIfSet(context.Options.Headers);
+        GetHeadersWithAuthorizationIfSet(context.Options.Headers);
         return base.AsyncClientStreamingCall(context, continuation);
     }
 
@@ -54,7 +69,7 @@ public class GrpcAuthInterceptor : Interceptor
         ClientInterceptorContext<TRequest, TResponse> context,
         AsyncDuplexStreamingCallContinuation<TRequest, TResponse> continuation)
     {
-        AddAuthorizationIfSet(context.Options.Headers);
+        GetHeadersWithAuthorizationIfSet(context.Options.Headers);
         return base.AsyncDuplexStreamingCall(context, continuation);
     }
 
@@ -62,7 +77,7 @@ public class GrpcAuthInterceptor : Interceptor
         ClientInterceptorContext<TRequest, TResponse> context,
         AsyncServerStreamingCallContinuation<TRequest, TResponse> continuation)
     {
-        AddAuthorizationIfSet(context.Options.Headers);
+        GetHeadersWithAuthorizationIfSet(context.Options.Headers);
         return base.AsyncServerStreamingCall(request, context, continuation);
     }
 
@@ -72,17 +87,15 @@ public class GrpcAuthInterceptor : Interceptor
 
     private void SetTokenIfProvided(Metadata? headers)
     {
-        if (_store.IsTokenSet)
-            _logger.LogWarning("Token for a request was already set");
-        else
-        {
-            var authHeaderValue = headers?.Get(Constants.AuthorizationHeader)?.Value;
+        var authHeaderValue = headers?.Get(Constants.AuthorizationHeader)?.Value;
 
-            if (authHeaderValue is null)
-                _logger.LogWarning("Token for a request wasn't provided by the client");
-            else
-                _store.SetAuthorization(authHeaderValue);
-        }
+        if (authHeaderValue is null)
+            _logger.LogInformation("Token for a request wasn't provided by the client");
+
+        var tokenUpdated = _store.SetAuthorization(authHeaderValue);
+
+        if (tokenUpdated)
+            _logger.LogInformation("Token in a store was updated");
     }
 
     public override Task<TResponse> UnaryServerHandler<TRequest, TResponse>(TRequest request, ServerCallContext context,

@@ -12,6 +12,6 @@ var app = builder.Build();
 
 app.UseInfrastructure();
 
-app.UseEndpoints(endpoints => { endpoints.MapGrpcService<UsersServiceApi>(); });
+app.MapGrpcService<UsersServiceApi>();
 
 app.Run();

@@ -1,9 +1,11 @@
 ﻿using Grpc.AspNetCore.Server;
 using Grpc.Net.ClientFactory;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
 using Microsoft.Extensions.Diagnostics.HealthChecks;
 using Uniscore.Shared.Auth.Interceptors;
+using Uniscore.Shared.Hosting.Options;
 
 namespace Uniscore.Shared.Hosting;
 
@@ -17,9 +19,10 @@ public static class ServiceCollectionExtensions
     }
 
     public static IGrpcServerBuilder AddUniscoreGrpc(this IServiceCollection sc,
+        IConfiguration configuration,
         Action<GrpcServiceOptions>? configure = null)
     {
-        sc.TryAddTransient<GrpcAuthInterceptor>();
+        sc.RegisterSharedGrpc(configuration);
 
         return sc.AddGrpc(x =>
         {
@@ -28,17 +31,29 @@ public static class ServiceCollectionExtensions
         });
     }
 
-    public static IHttpClientBuilder AddUniscoreGrpcClient<TClient>(this IServiceCollection sc, string serviceName,
+    public static IHttpClientBuilder AddUniscoreGrpcClient<TClient>(this IServiceCollection sc,
+        string serviceName,
+        IConfiguration configuration,
         Action<GrpcClientFactoryOptions>? configure = null)
         where TClient : class
     {
-        sc.TryAddTransient<GrpcAuthInterceptor>();
+        sc.RegisterSharedGrpc(configuration);
+
+        var config = configuration.GetSection($"{serviceName}_GrpcOptions").Get<GrpcClientOptions>();
+
+        var uri = config?.Host ?? $"http://{serviceName}-service.uniscore:82";
+
 
         return sc.AddGrpcClient<TClient>(x =>
             {
-                x.Address = new Uri($"http://{serviceName}-service.uniscore:82");
+                x.Address = new Uri(uri);
                 configure?.Invoke(x);
             })
-            .AddInterceptor<GrpcAuthInterceptor>();
+            .AddInterceptor<GrpcAuthInterceptor>(InterceptorScope.Client);
+    }
+
+    private static void RegisterSharedGrpc(this IServiceCollection sc, IConfiguration configuration)
+    {
+        sc.TryAddTransient<GrpcAuthInterceptor>();
     }
 }

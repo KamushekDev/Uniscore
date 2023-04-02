@@ -53,7 +53,7 @@ public class BffService : MobileBffApi.MobileBffApiBase
                     "There's your profile information. Take it or leave it. Why are you still reading this, arrogant piece of shit.",
                 RecentGrades = { GenerateGrades(6) },
                 IsUserSubscribed = false,
-                IsSubscribedToUser = false
+                //IsSubscribedToUser = false
             }
         };
 

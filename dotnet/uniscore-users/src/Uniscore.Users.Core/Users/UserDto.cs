@@ -7,7 +7,8 @@ public record UserDto(
     bool EmailVerified,
     string? DisplayName,
     string? PhotoUrl,
-    bool Disabled
+    bool Disabled,
+    DateTime? CreatedAt
     // metadata
     // customClaims
 );

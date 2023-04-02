@@ -1,6 +1,6 @@
-# crescore
+# uniscore
 
-Creator Score
+Unique score
 
 # Wireless debug
 ```

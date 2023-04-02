@@ -1,8 +1,13 @@
-﻿namespace Uniscore.Shared.Auth.AuthStore;
+﻿using System.Diagnostics.CodeAnalysis;
+
+namespace Uniscore.Shared.Auth.AuthStore;
 
 public interface IAuthStore
 {
     bool IsTokenSet { get; }
+
+    [MemberNotNullWhen(true, nameof(IsTokenSet))]
     string? GetToken();
-    void SetAuthorization(string token);
+
+    bool SetAuthorization(string? token);
 }

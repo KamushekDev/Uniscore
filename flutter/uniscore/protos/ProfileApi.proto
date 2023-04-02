@@ -1,0 +1,23 @@
+﻿syntax = "proto3";
+
+package BFF.Mobile.ProfileApi.V1;
+
+option csharp_namespace = "Uniscore.BFF.Mobile.Profile.Grpc";
+
+import "google/protobuf/wrappers.proto";
+import "google/protobuf/timestamp.proto";
+
+service ProfileApi {
+    rpc GetUserProfile (GetUserProfileRequest) returns (GetUserProfileResponse);
+}
+
+message GetUserProfileRequest {
+    string user_id = 1;
+}
+
+message GetUserProfileResponse {
+    string user_id = 1;
+    google.protobuf.StringValue display_name = 2;
+    google.protobuf.StringValue photo_url = 3;
+    bool disabled = 4;
+}

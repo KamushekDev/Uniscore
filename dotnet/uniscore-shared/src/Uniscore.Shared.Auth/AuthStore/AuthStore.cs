@@ -1,4 +1,6 @@
-﻿namespace Uniscore.Shared.Auth.AuthStore;
+﻿using System.Diagnostics.CodeAnalysis;
+
+namespace Uniscore.Shared.Auth.AuthStore;
 
 internal class AuthStore : IAuthStore
 {
@@ -6,16 +8,17 @@ internal class AuthStore : IAuthStore
 
     public bool IsTokenSet => _token != null;
 
+    [MemberNotNullWhen(true, nameof(IsTokenSet))]
     public string? GetToken()
     {
         return _token;
     }
 
-    public void SetAuthorization(string token)
+    public bool SetAuthorization(string? token)
     {
-        if (_token is not null)
-            throw new InvalidOperationException("Token is already set.");
-        
-        _token = token ?? throw new ArgumentNullException();
+        var result = _token == token;
+        _token = token;
+
+        return result;
     }
 }

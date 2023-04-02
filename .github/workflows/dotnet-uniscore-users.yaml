@@ -9,6 +9,9 @@ on:
 env:
   folder: "./dotnet/uniscore-users"
   name: "uniscore-users"
+  dotnet_sdk_version: 7.0.102
+  dockerfile-template-path: "./dotnet/uniscore-users/Dockerfile.template"
+
   DOTNET_NOLOGO: 1
   DOTNET_CLI_TELEMETRY_OPTOUT: 1
   DOTNET_SKIP_FIRST_TIME_EXPERIENCE: 1
@@ -41,12 +44,15 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
       - name: Setup dotnet
-        uses: xt0rted/setup-dotnet@v1
+        uses: actions/setup-dotnet@v3
         with:
           dotnet-version: |
-            6.0.303
-      - name: Add source
-        uses: ./.github/actions/dotnet/add-github-source
+            ${{env.dotnet_sdk_version}}
+          source-url: https://nuget.pkg.github.com/${{ github.repository_owner }}/index.json
+        env:
+          NUGET_AUTH_TOKEN: ${{github.token}}
+      # - name: Add source
+      #   uses: ./.github/actions/dotnet/add-github-source
       - name: Cache nuget
         uses: actions/cache@v1
         with:
@@ -71,12 +77,15 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
       - name: Setup dotnet
-        uses: xt0rted/setup-dotnet@v1
+        uses: actions/setup-dotnet@v3
         with:
           dotnet-version: |
-            6.0.303
-      - name: Add source
-        uses: ./.github/actions/dotnet/add-github-source
+            ${{env.dotnet_sdk_version}}
+          source-url: https://nuget.pkg.github.com/${{ github.repository_owner }}/index.json
+        env:
+          NUGET_AUTH_TOKEN: ${{github.token}}
+      # - name: Add source
+      #   uses: ./.github/actions/dotnet/add-github-source
       - name: Run tests
         id: test-runner
         uses: ./.github/actions/dotnet/test-dotnet
@@ -99,6 +108,7 @@ jobs:
           folder: ${{ env.folder }}
           version: ${{ needs.init.outputs.version }}
           name: ${{ env.name }}
+          dockerfile-template-path: ${{ env.dockerfile-template-path }}
 
   publish-nugets:
     runs-on: ubuntu-latest

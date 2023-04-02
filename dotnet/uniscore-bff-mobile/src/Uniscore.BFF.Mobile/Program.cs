@@ -15,6 +15,7 @@ app.UseInfrastructure();
 app.UseEndpoints(endpoints =>
 {
     endpoints.MapGrpcService<BffService>();
+    endpoints.MapGrpcService<ProfileApiService>();
 });
 
 app.Run();
