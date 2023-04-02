@@ -1,0 +1,98 @@
+{
+  "project_info": {
+    "project_number": "1070089009017",
+    "project_id": "unique-score",
+    "storage_bucket": "unique-score.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1070089009017:android:1164422472d429377de1a8",
+        "android_client_info": {
+          "package_name": "com.kamushek.crescore"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1070089009017-44801d07bs5ggjd2g2114a70insa6k8l.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.kamushek.crescore",
+            "certificate_hash": "3f6d57df8bf9048be3fe8064e3b803768976aee8"
+          }
+        },
+        {
+          "client_id": "1070089009017-4ohenct8nfs900anou7er1sbahr8smuo.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.kamushek.crescore",
+            "certificate_hash": "201006ff5edd0c140c32a0b1bce89015177da79b"
+          }
+        },
+        {
+          "client_id": "1070089009017-cpick4hqqfgsgtmbcbh19d0fem99euc6.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAxoqR6rj1y0Jq-u0IBHa3cuPRzAHmNzPU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1070089009017-cpick4hqqfgsgtmbcbh19d0fem99euc6.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "1070089009017-gvkm5aclu415mblivlhehoeve0vn4rei.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.kamushek.crescore"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1070089009017:android:89f155212d32b3367de1a8",
+        "android_client_info": {
+          "package_name": "com.kamushek.uniscore"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1070089009017-cpick4hqqfgsgtmbcbh19d0fem99euc6.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAxoqR6rj1y0Jq-u0IBHa3cuPRzAHmNzPU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1070089009017-cpick4hqqfgsgtmbcbh19d0fem99euc6.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "1070089009017-gvkm5aclu415mblivlhehoeve0vn4rei.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.kamushek.crescore"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

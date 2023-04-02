@@ -1,0 +1,73 @@
+name: uniscore
+description: UniScore modile app
+
+publish_to: 'none'
+
+version: 0.1.0+1
+
+environment:
+  sdk: '>=2.18.6 <3.0.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+  cupertino_icons: ^1.0.2
+  theme_provider: ^0.5.0
+  google_fonts: ^3.0.1
+  go_router: ^6.0.0
+  double_back_to_close_app: ^2.1.0
+  firebase_auth: ^4.2.4
+  firebase_core: ^2.4.1
+  google_sign_in: ^5.4.2
+  grpc: ^3.0.0
+  async: ^2.8.1
+  protobuf: ^2.0.0
+  get_it: ^7.2.0
+  provider: ^6.0.5
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+  flutter_lints: ^2.0.1
+  flutter_native_splash: ^2.2.16
+  flutter_launcher_icons: ^0.11.0
+
+
+flutter:
+  uses-material-design: true
+  assets:
+    - assets/images/
+
+flutter_native_splash:
+  color: "#42a5f5"
+  image: assets/images/logo.png
+  #branding: assets/dart.png
+  #branding_mode: bottom
+
+  image_dark: assets/images/logo.png
+  color_dark: "#03124d"
+  #background_image_dark: "assets/dark-background.png"
+  #branding_dark: assets/dart_dark.png
+
+  android_12:
+    color: "#42a5f5"
+    image: assets/images/logo.png
+    #icon_background_color: "#111111"
+    #branding: assets/dart.png
+
+    image_dark: assets/images/logo.png
+    color_dark: "#03124d"
+    #icon_background_color_dark: "#eeeeee"
+  #android: false
+  #ios: false
+  #web: false
+  #android_gravity: center
+  #ios_content_mode: center
+  #web_image_mode: center
+  #android_screen_orientation: sensorLandscape
+  #fullscreen: true
+  #info_plist_files:
+  #  - 'ios/Runner/Info-Debug.plist'
+  #  - 'ios/Runner/Info-Release.plist'

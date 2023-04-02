@@ -28,6 +28,7 @@ class _BottomBarWidgetState extends State<BottomBarWidget> {
 
   @override
   Widget build(BuildContext context) {
+    // todo: заменить на NovigationBar, который поддерживает Marial3
     return BottomNavigationBar(
       type: BottomNavigationBarType.fixed,
       items: [
