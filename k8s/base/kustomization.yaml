@@ -1,0 +1,29 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+resources:
+- certificate.yaml
+- grpc-ingress.yaml
+- http-ingress.yaml
+- issuers.yaml
+- namespace.yaml
+- nginx-config.yaml
+- nginx-ingress-class.yaml
+- \monitoring\clusterRole.yaml
+- \monitoring\config-map.yaml
+- \monitoring\daemonset.yaml
+- \monitoring\grafana-datasource-config.yaml
+- \monitoring\grafana-deployment.yaml
+- \monitoring\grafana-pvc.yaml
+- \monitoring\grafana-service.yaml
+- \monitoring\http-ingress.yaml
+- \monitoring\namespace.yaml
+- \monitoring\prom-deployment.yaml
+- \monitoring\prom-pvc.yaml
+- \monitoring\prom-service.yaml
+- \services\auth-service.yaml
+- \services\placeholder-service.yaml
+- \services\scores-service.yaml
+- \services\users-service.yaml
+- \storage\http-ingress.yaml
+- \storage\storageClass.yaml
