@@ -17,10 +17,11 @@ jobs:
     runs-on: ubuntu-latest
     environment: ${{ inputs.environment }}
     env:
-      OvpnCofigFile: "config.ovpn"
+      OvpnConfigFileDir: "/data/OpenVpn"
+      OvpnConfigFile: "config.ovpn"
     steps:
       - name: OpenVPN-ConfigFile-Download
-        run: echo "${{ secrets.VPN_CONFIG }}" > ${{ env.OvpnCofigFile }}
+        run: mkdir ${{ env.OvpnConfigFileDir }} && echo "${{ secrets.VPN_CONFIG }}" > ${{ env.OvpnConfigFileDir }}/${{ env.OvpnConfigFile }}
       - name: OpenVPN-Connect
         uses: kota65535/github-openvpn-connect-action@v2.0.2
         with:
