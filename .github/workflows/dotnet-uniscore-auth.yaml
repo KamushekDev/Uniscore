@@ -1,11 +1,14 @@
 name: dotnet - Uniscore.Auth
 on:
   push:
+    branches:
+      - 'master'
     paths:
       - ".github/**"
       - "!.github/workflows/**"
       - ".github/workflows/dotnet-uniscore-auth.yaml"
       - "dotnet/uniscore-auth/**"
+  workflow_call:
 env:
   folder: "./dotnet/uniscore-auth"
   name: "uniscore-auth"

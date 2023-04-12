@@ -1,6 +1,8 @@
 name: dotnet - Uniscore.BFF.Mobile
 on:
   push:
+    branches:
+      - 'master'
     paths:
       - ".github/**"
       - "!.github/workflows/**"

@@ -1,0 +1,9 @@
+- op: replace
+  path: /spec/rules/0/host
+  value: auth-grpc.stg.uniscore.ru
+- op: replace
+  path: /spec/rules/1/host
+  value: scores-grpc.stg.uniscore.ru
+- op: replace
+  path: /spec/rules/2/host
+  value: users-grpc.stg.uniscore.ru
