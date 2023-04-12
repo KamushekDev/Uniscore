@@ -20,8 +20,14 @@ jobs:
       OvpnConfigFileDir: "OpenVpn"
       OvpnConfigFile: "config.ovpn"
     steps:
+      - name: Install OpenVPN
+        run: |
+          sudo apt update
+          sudo apt install -y openvpn openvpn-systemd-resolved
       - name: OpenVPN-ConfigFile-Download
-        run: mkdir ${{ env.OvpnConfigFileDir }} && echo "${{ secrets.VPN_CONFIG }}" > ${{ env.OvpnConfigFileDir }}/${{ env.OvpnConfigFile }}
+        run: |
+          mkdir ${{ env.OvpnConfigFileDir }}
+          echo "${{ secrets.VPN_CONFIG }}" > ${{ env.OvpnConfigFileDir }}/${{ env.OvpnConfigFile }}
       - name: OpenVPN-Connect
         uses: kota65535/github-openvpn-connect-action@v2.0.2
         with:
