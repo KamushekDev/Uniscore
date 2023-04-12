@@ -35,8 +35,5 @@ jobs:
           config_file: ${{ env.OvpnConfigFileDir }}/${{ env.OvpnConfigFile }}
           username: ${{ secrets.VPN_USERNAME }}
           password: ${{ secrets.VPN_PASSWORD }}
-      - name: Check logs
-        if: always()
-        run: cat openvpn.log
       - name: PingPcInLocalHost
         run: ping 192.168.1.10 
