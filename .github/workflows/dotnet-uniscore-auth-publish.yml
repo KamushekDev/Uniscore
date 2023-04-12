@@ -1,13 +1,21 @@
 name: dotnet - Unicsore.Auth - Publish
 on:
   workflow_dispatch:
-
+    inputs:
+      environment:
+        description: 'Environment to be deployed'
+        required: true
+        type: choice
+        options:
+        - Production
+        - Staging
 jobs:
   #uses-dotnet-uniscore-auth:
     #uses: ./.github/workflows/dotnet-uniscore-auth.yaml
   
   connect-vpn:
     runs-on: ubuntu-latest
+    environment: ${{ inputs.environment }}
     env:
       OvpnCofigFile: "/data/OpenVpn/config.ovpn"
     steps:
