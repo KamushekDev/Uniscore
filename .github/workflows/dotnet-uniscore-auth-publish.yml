@@ -1,4 +1,4 @@
-name: dotnet-auth-publish
+name: dotnet - Unicsore.Auth - Publish
 on:
   workflow_dispatch:
 
