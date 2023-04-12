@@ -20,7 +20,7 @@ jobs:
       OvpnCofigFile: "/data/OpenVpn/config.ovpn"
     steps:
       - name: OpenVPN-ConfigFile-Download
-        run: echo ${{ secrets.VPN_CONFIG }} > ${{ env.OvpnCofigFile }}
+        run: echo "${{ secrets.VPN_CONFIG }}" > ${{ env.OvpnCofigFile }}
       - name: OpenVPN-Connect
         uses: kota65535/github-openvpn-connect-action@v2.0.2
         with:
