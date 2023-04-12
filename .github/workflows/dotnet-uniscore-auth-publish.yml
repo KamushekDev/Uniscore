@@ -35,5 +35,7 @@ jobs:
           config_file: ${{ env.OvpnConfigFileDir }}/${{ env.OvpnConfigFile }}
           username: ${{ secrets.VPN_USERNAME }}
           password: ${{ secrets.VPN_PASSWORD }}
-      - name: PingPcInLocalHost
-        run: ping 192.168.1.10 
+          
+  publish:
+    runs-on: ubuntu-latest
+    environment: ${{ inputs.environment }}
