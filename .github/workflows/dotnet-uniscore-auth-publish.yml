@@ -1,0 +1,24 @@
+name: dotnet - Unicsore.Auth - Publish
+on:
+  workflow_dispatch:
+
+jobs:
+  #uses-dotnet-uniscore-auth:
+    #uses: ./.github/workflows/dotnet-uniscore-auth.yaml
+  
+  connect-vpn:
+    runs-on: ubuntu-latest
+    env:
+      OvpnCofigFile: "/data/OpenVpn/config.ovpn"
+    steps:
+      - name: OpenVPN-ConfigFile-Download
+        run: echo ${{ vars.VPN_CONFIG }} > ${{ env.OvpnCofigFile }}
+      - name: OpenVPN-Connect
+        uses: kota65535/github-openvpn-connect-action@v2.0.2
+        with:
+          # how to choose environment of variables? 
+          config_file: ${{ env.OvpnCofigFile }}
+          username: ${{ vars.VPN_USERNAME }}
+          password: ${{ vars.VPN_PASSWORD }}
+      - name: PingPcInLocalHost
+        run: ping 192.168.1.10 
