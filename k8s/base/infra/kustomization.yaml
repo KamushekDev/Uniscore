@@ -19,9 +19,5 @@ resources:
 - monitoring/prom-deployment.yaml
 - monitoring/prom-pvc.yaml
 - monitoring/prom-service.yaml
-- services/auth-service.yaml
-- services/placeholder-service.yaml
-- services/scores-service.yaml
-- services/users-service.yaml
 - storage/http-ingress.yaml
 - storage/storageClass.yaml
