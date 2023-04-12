@@ -3,8 +3,8 @@ on:
   workflow_dispatch:
 
 jobs:
-  uses-dotnet-uniscore-auth:
-    uses: ./.github/workflows/dotnet-uniscore-auth.yaml
+  #uses-dotnet-uniscore-auth:
+    #uses: ./.github/workflows/dotnet-uniscore-auth.yaml
   
   connect-vpn:
     runs-on: ubuntu-latest
@@ -20,4 +20,5 @@ jobs:
           config_file: ${{ env.OvpnCofigFile }}
           username: ${{ vars.VPN_USERNAME }}
           password: ${{ vars.VPN_PASSWORD }}
-   
+      - name: PingPcInLocalHost
+        run: ping 192.168.1.10 
