@@ -10,12 +10,12 @@ on:
         - Production
         - Staging
 jobs:
-#   uses-dotnet-uniscore-auth:
-#     uses: ./.github/workflows/dotnet-uniscore-auth.yaml
-#     secrets: inherit
+  uses-dotnet-uniscore-auth:
+    uses: ./.github/workflows/dotnet-uniscore-auth.yaml
+    secrets: inherit
   
   publish:
-#     needs: uses-dotnet-uniscore-auth
+    needs: uses-dotnet-uniscore-auth
     runs-on: ubuntu-latest
     environment: ${{ inputs.environment }}
     env:
@@ -47,10 +47,8 @@ jobs:
           mkdir ${{ env.KubeCtlConfigFileDir }}
           echo "${{ secrets.KUBE_CONFIG }}" >  ${{ env.KubeCtlConfigFileDir }}/${{ env.KubeCtlConfigFile }}
           echo "KUBECONFIG=`pwd`/${{ env.KubeCtlConfigFileDir }}/${{ env.KubeCtlConfigFile }}" >> $GITHUB_ENV
-      #TODO: get path from build workflow
       - name: SetUp Kustomize
         run: |
-          cd ./k8s/overlays/production/services/uniscore-auth
+          cd ./k8s/overlays/${{ inputs.environment }}/services/${{ needs.uses-dotnet-uniscore-auth.outputs.project_name }}
           kubectl diff -k ./
-
     
