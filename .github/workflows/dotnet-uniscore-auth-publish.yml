@@ -46,11 +46,12 @@ jobs:
         run: |
           mkdir ${{ env.KubeCtlConfigFileDir }}
           echo "${{ secrets.KUBE_CONFIG }}" >  ${{ env.KubeCtlConfigFileDir }}/${{ env.KubeCtlConfigFile }}
-          export KUBECONFIG=$HOME/${{ env.KubeCtlConfigFileDir }}/${{ env.KubeCtlConfigFile }}
+          echo "KUBECONFIG=$HOME/${{ env.KubeCtlConfigFileDir }}/${{ env.KubeCtlConfigFile }}" >> $GITHUB_ENV
       #TODO: get path from build workflow
       - name: SetUp Kustomize
         run: |
           echo $KUBECONFIG
+          cat $KUBECONFIG
           cd ./k8s/overlays/production/services/uniscore-auth
           kubectl diff -k ./
 
