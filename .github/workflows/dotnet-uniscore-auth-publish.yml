@@ -7,8 +7,8 @@ on:
         required: true
         type: choice
         options:
-        - Production
-        - Staging
+        - production
+        - staging
 jobs:
   uses-dotnet-uniscore-auth:
     uses: ./.github/workflows/dotnet-uniscore-auth.yaml
