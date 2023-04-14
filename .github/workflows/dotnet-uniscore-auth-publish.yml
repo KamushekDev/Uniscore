@@ -46,7 +46,7 @@ jobs:
         run: |
           mkdir ${{ env.KubeCtlConfigFileDir }}
           echo "${{ secrets.KUBE_CONFIG }}" >  ${{ env.KubeCtlConfigFileDir }}/${{ env.KubeCtlConfigFile }}
-          export KUBECONFIG=$(PWD)/${{ env.KubeCtlConfigFileDir }}/${{ env.KubeCtlConfigFile }}
+          export KUBECONFIG=$HOME/${{ env.KubeCtlConfigFileDir }}/${{ env.KubeCtlConfigFile }}
       #TODO: get path from build workflow
       - name: SetUp Kustomize
         run: |
