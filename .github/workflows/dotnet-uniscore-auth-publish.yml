@@ -45,7 +45,7 @@ jobs:
       - name: Replace kubectl config
         run: |
           mkdir ${{ env.KubeCtlConfigFileDir }}
-          echo ${{ secrets.KUBE_CONFIG }} >  ${{ env.KubeCtlConfigFileDir }}/${{ env.KubeCtlConfigFile }}
+          echo "${{ secrets.KUBE_CONFIG }}" >  ${{ env.KubeCtlConfigFileDir }}/${{ env.KubeCtlConfigFile }}
           export KUBECONFIG=$(PWD)/${{ env.KubeCtlConfigFileDir }}/${{ env.KubeCtlConfigFile }}
       - name: SetUp-Kustomize
         run: |
