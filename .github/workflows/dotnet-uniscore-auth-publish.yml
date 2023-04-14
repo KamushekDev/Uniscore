@@ -50,6 +50,7 @@ jobs:
       #TODO: get path from build workflow
       - name: SetUp Kustomize
         run: |
+          echo $KUBECONFIG
           cd ./k8s/overlays/production/services/uniscore-auth
           kubectl diff -k ./
 
