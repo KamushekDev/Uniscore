@@ -10,17 +10,19 @@ on:
         - Production
         - Staging
 jobs:
-  uses-dotnet-uniscore-auth:
-    uses: ./.github/workflows/dotnet-uniscore-auth.yaml
-    secrets: inherit
+#   uses-dotnet-uniscore-auth:
+#     uses: ./.github/workflows/dotnet-uniscore-auth.yaml
+#     secrets: inherit
   
   publish:
-    needs: uses-dotnet-uniscore-auth
+#     needs: uses-dotnet-uniscore-auth
     runs-on: ubuntu-latest
     environment: ${{ inputs.environment }}
     env:
       OvpnConfigFileDir: "OpenVpn"
       OvpnConfigFile: "config.ovpn"
+      KubeCtlConfigFileDir: "Kube"
+      KubeCtlConfigFile: "config"
     steps:
       - name: OpenVPN-ConfigFile-Download
         run: |
@@ -42,11 +44,12 @@ jobs:
         uses: Azure/setup-kubectl@v3
       - name: Replace kubectl config
         run: |
-          cd $HOME/.kube
-          cat ${{ secrets.KUBE_CONFIG }} > config
+          mkdir ${{ env.KubeCtlConfigFileDir }}
+          echo ${{ secrets.KUBE_CONFIG }} >  ${{ env.KubeCtlConfigFileDir }}/${{ env.KubeCtlConfigFile }}
+          export KUBECONFIG=$(PWD)/${{ env.KubeCtlConfigFileDir }}/${{ env.KubeCtlConfigFile }}
       - name: SetUp-Kustomize
         run: |
-          cd ./k8s/overlays/${{ inputs.environment }}/services/${{ env.folder }}
+          cd ./k8s/overlays/production/services/uniscore-auth
           dir
 
     
