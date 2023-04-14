@@ -9,6 +9,10 @@ on:
       - ".github/workflows/dotnet-uniscore-auth.yaml"
       - "dotnet/uniscore-auth/**"
   workflow_call:
+    outputs:
+      project_name:
+        description: "Name of the project"
+        value: ${{ env.name}}
 env:
   folder: "./dotnet/uniscore-auth"
   name: "uniscore-auth"
