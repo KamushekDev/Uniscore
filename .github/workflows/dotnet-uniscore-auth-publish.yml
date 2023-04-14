@@ -12,6 +12,7 @@ on:
 jobs:
   uses-dotnet-uniscore-auth:
     uses: ./.github/workflows/dotnet-uniscore-auth.yaml
+    secrets: inherit
   
   publish:
     needs: uses-dotnet-uniscore-auth
