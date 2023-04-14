@@ -10,10 +10,11 @@ on:
         - Production
         - Staging
 jobs:
-  #uses-dotnet-uniscore-auth:
-    #uses: ./.github/workflows/dotnet-uniscore-auth.yaml
+  uses-dotnet-uniscore-auth:
+    uses: ./.github/workflows/dotnet-uniscore-auth.yaml
   
-  connect-vpn:
+  publish:
+    needs: uses-dotnet-uniscore-auth
     runs-on: ubuntu-latest
     environment: ${{ inputs.environment }}
     env:
@@ -31,11 +32,20 @@ jobs:
       - name: OpenVPN-Connect
         uses: kota65535/github-openvpn-connect-action@v2.0.2
         with:
-          # how to choose environment of variables? 
           config_file: ${{ env.OvpnConfigFileDir }}/${{ env.OvpnConfigFile }}
           username: ${{ secrets.VPN_USERNAME }}
           password: ${{ secrets.VPN_PASSWORD }}
-          
-  publish:
-    runs-on: ubuntu-latest
-    environment: ${{ inputs.environment }}
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Kubectl tool installer
+        uses: Azure/setup-kubectl@v3
+      - name: Replace kubectl config
+        run: |
+          cd $HOME/.kube
+          cat ${{ secrets.KUBE_CONFIG }} > config
+      - name: SetUp-Kustomize
+        run: |
+          cd ./k8s/overlays/${{ inputs.environment }}/services/${{ env.folder }}
+          dir
+
+    
