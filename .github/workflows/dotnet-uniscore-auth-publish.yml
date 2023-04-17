@@ -1,4 +1,4 @@
-name: dotnet - Unicsore.Auth - Publish
+name: dotnet - Unicsore.Auth - Deploy
 on:
   workflow_dispatch:
     inputs:
@@ -10,24 +10,23 @@ on:
         - production
         - staging
 jobs:
-  uses-dotnet-uniscore-auth:
+  deploy-prep:
     uses: ./.github/workflows/dotnet-uniscore-auth.yaml
     secrets: inherit
   
   publish:
-    needs: uses-dotnet-uniscore-auth
+    needs: deploy-prep
     runs-on: ubuntu-latest
     environment: ${{ inputs.environment }}
     env:
-      OvpnConfigFileDir: "OpenVpn"
+      ConfigFileDir: "configs"
       OvpnConfigFile: "config.ovpn"
-      KubeCtlConfigFileDir: "Kube"
-      KubeCtlConfigFile: "config"
+      KubeCtlConfigFile: "kubeConfig"
     steps:
       - name: OpenVPN-ConfigFile-Download
         run: |
           mkdir ${{ env.OvpnConfigFileDir }}
-          echo "${{ secrets.VPN_CONFIG }}" > ${{ env.OvpnConfigFileDir }}/${{ env.OvpnConfigFile }}
+          echo "${{ secrets.VPN_CONFIG }}" > ${{ env.ConfigFileDir }}/${{ env.OvpnConfigFile }}
       - name: Install OpenVPN
         run: |
           sudo apt update
@@ -35,7 +34,7 @@ jobs:
       - name: OpenVPN-Connect
         uses: kota65535/github-openvpn-connect-action@v2.0.2
         with:
-          config_file: ${{ env.OvpnConfigFileDir }}/${{ env.OvpnConfigFile }}
+          config_file: ${{ env.ConfigFileDir }}/${{ env.OvpnConfigFile }}
           username: ${{ secrets.VPN_USERNAME }}
           password: ${{ secrets.VPN_PASSWORD }}
       - name: Checkout
@@ -45,10 +44,13 @@ jobs:
       - name: Setup kubectl config
         run: |
           mkdir ${{ env.KubeCtlConfigFileDir }}
-          echo "${{ secrets.KUBE_CONFIG }}" >  ${{ env.KubeCtlConfigFileDir }}/${{ env.KubeCtlConfigFile }}
-          echo "KUBECONFIG=`pwd`/${{ env.KubeCtlConfigFileDir }}/${{ env.KubeCtlConfigFile }}" >> $GITHUB_ENV
+          echo "${{ secrets.KUBE_CONFIG }}" >  ${{ env.ConfigFileDir }}/${{ env.KubeCtlConfigFile }}
+          echo "KUBECONFIG=`pwd`/${{ env.ConfigFileDir }}/${{ env.KubeCtlConfigFile }}" >> $GITHUB_ENV
       - name: SetUp Kustomize
         run: |
-          cd ./k8s/overlays/${{ inputs.environment }}/services/${{ needs.uses-dotnet-uniscore-auth.outputs.project_name }}
+          cd ./k8s/overlays/${{ inputs.environment }}/services/${{ needs.deploy-prep.outputs.project_name }}
           kubectl apply -k ./
+      - name: Restart service
+        run: |
+          kubectl rollout restart -f ./k8s/overlays/${{ inputs.environment }}/services/${{ needs.deploy-prep.outputs.project_name }}
     
