@@ -1,26 +1,31 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: scores
+  name: users
   namespace: uniscore
 spec:
   replicas: 1
   revisionHistoryLimit: 3
+  strategy:
+    type: Recreate
   selector:
     matchLabels:
-      app: scores
+      app: users
   template:
     metadata:
       namespace: uniscore
       labels:
-        app: scores
+        app: users
     spec:
       imagePullSecrets:
       - name: dockerconfigjson-github-com
       containers:
-      - name: scores-container
+      - name: users-container
         imagePullPolicy: Always
-        image: ghcr.io/kamushekdev/uniscore-scores:latest
+        image: ghcr.io/kamushekdev/uniscore-users:latest
+        volumeMounts:
+          - name: firebase-admin-sdk
+            mountPath: /app/secrets
         livenessProbe:
           initialDelaySeconds: 20
           periodSeconds: 5
@@ -48,25 +53,7 @@ spec:
           limits:
             memory: "128Mi"
             cpu: "300m"
----
-apiVersion: v1
-kind: Service
-metadata:
-  name: scores-service
-  namespace: uniscore
-  annotations:
-    cloud.google.com/app-protocols: '{"grpc":"HTTP2", "http": "HTTP"}'
-    service.alpha.kubernetes.io/app-protocols: '{"grpc":"HTTP2", "http": "HTTP"}'
-spec:
-  selector:
-    app: scores
-  ports:
-  - name: http
-    port: 80
-    targetPort: 80
-    protocol: TCP
-  - name: grpc
-    port: 82
-    targetPort: 82
-    protocol: TCP
-  type: NodePort
+      volumes:
+        - name: firebase-admin-sdk
+          secret:
+            secretName: firebase-admin-sdk-json
