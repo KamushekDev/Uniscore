@@ -25,7 +25,7 @@ jobs:
     steps:
       - name: OpenVPN-ConfigFile-Download
         run: |
-          mkdir ${{ env.OvpnConfigFileDir }}
+          mkdir ${{ env.ConfigFileDir }}
           echo "${{ secrets.VPN_CONFIG }}" > ${{ env.ConfigFileDir }}/${{ env.OvpnConfigFile }}
       - name: Install OpenVPN
         run: |
@@ -43,7 +43,7 @@ jobs:
         uses: Azure/setup-kubectl@v3
       - name: Setup kubectl config
         run: |
-          mkdir ${{ env.KubeCtlConfigFileDir }}
+          mkdir ${{ env.ConfigFileDir }}
           echo "${{ secrets.KUBE_CONFIG }}" >  ${{ env.ConfigFileDir }}/${{ env.KubeCtlConfigFile }}
           echo "KUBECONFIG=`pwd`/${{ env.ConfigFileDir }}/${{ env.KubeCtlConfigFile }}" >> $GITHUB_ENV
       - name: SetUp Kustomize
