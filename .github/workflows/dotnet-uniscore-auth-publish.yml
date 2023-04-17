@@ -50,5 +50,5 @@ jobs:
       - name: SetUp Kustomize
         run: |
           cd ./k8s/overlays/${{ inputs.environment }}/services/${{ needs.uses-dotnet-uniscore-auth.outputs.project_name }}
-          kubectl diff -k ./
+          kubectl apply -k ./
     
