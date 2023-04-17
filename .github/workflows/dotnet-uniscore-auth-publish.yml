@@ -52,5 +52,5 @@ jobs:
           kubectl apply -k ./
       - name: Restart service
         run: |
-          kubectl rollout restart -f ./k8s/overlays/${{ inputs.environment }}/services/${{ needs.deploy-prep.outputs.project_name }}/deployment.yaml
+          kubectl rollout restart -f ./k8s/base/services/${{ needs.deploy-prep.outputs.project_name }}/deployment.yaml
     
