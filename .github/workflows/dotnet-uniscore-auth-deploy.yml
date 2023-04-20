@@ -23,21 +23,21 @@ jobs:
         uses: actions/checkout@v3
       - name: OpenVpn setup
         uses: ./.github/actions/deploy/openVpn-setup
-          with: 
-            openVpnConfig: ${{ secrets.VPN_CONFIG }}
-            openVpnUserName: ${{ secrets.VPN_USERNAME }}
-            openVpnUserPassword: ${{ secrets.VPN_PASSWORD }}
+        with: 
+          openVpnConfig: ${{ secrets.VPN_CONFIG }}
+          openVpnUserName: ${{ secrets.VPN_USERNAME }}
+          openVpnUserPassword: ${{ secrets.VPN_PASSWORD }}
       - name: Kubectl setup
         uses: Azure/setup-kubectl@v3
       - name: Setup kubectl config
         uses: ./.github/actions/deploy/kubectl-setup
-          with: 
-            kubeConfig: ${{ secrets.KUBE_CONFIG }}
+        with: 
+          kubeConfig: ${{ secrets.KUBE_CONFIG }}
       - name: Deploy service
         uses: ./.github/actions/deploy/deploy-resources
-          with: 
-            environment: ${{ inputs.environment }}
-            resourcePath: "services/${{ needs.deploy-prep.outputs.project_name }}"
+        with: 
+          environment: ${{ inputs.environment }}
+          resourcePath: "services/${{ needs.deploy-prep.outputs.project_name }}"
       - name: Restart service
         run: |
           kubectl rollout restart -f ./k8s/base/services/${{ needs.deploy-prep.outputs.project_name }}/deployment.yaml
