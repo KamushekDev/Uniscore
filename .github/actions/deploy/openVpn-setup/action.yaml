@@ -23,7 +23,7 @@ runs:
   steps:        
   - name: OpenVPN-ConfigFile-Download
     run: |
-      mkdir ${{ inputs.configFilesDirectory }}
+      mkdir -p ${{ inputs.configFilesDirectory }}
       echo "${{ inputs.openVpnConfig }}" > ${{ inputs.configFilesDirectory }}/${{ inputs.ovpnConfigFile }}
     shell: bash
   - name: Install OpenVPN
