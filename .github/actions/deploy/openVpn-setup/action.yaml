@@ -10,16 +10,21 @@ inputs:
   openVpnUserPassword:
     description: 'OpenVpn user password'
     required: true
-env:
-  ConfigFileDir: "configs"
-  OvpnConfigFile: "config.ovpn"
+  configFilesDirectory:
+    description: 'Directory for config files'
+    required: false
+    default: "configs"
+  ovpnConfigFile:
+    descritpion: 'Ovpn config file name'
+    required: false
+    default: "config.ovpn"
 runs:
   using: "composite"
   steps:        
   - name: OpenVPN-ConfigFile-Download
     run: |
-      mkdir ${{ env.ConfigFileDir }}
-      echo "${{ inputs.openVpnConfig }}" > ${{ env.ConfigFileDir }}/${{ env.OvpnConfigFile }}
+      mkdir ${{ inputs.configFilesDirectory }}
+      echo "${{ inputs.openVpnConfig }}" > ${{ inputs.configFilesDirectory }}/${{ inputs.ovpnConfigFile }}
     shell: bash
   - name: Install OpenVPN
     run: |
@@ -29,6 +34,6 @@ runs:
   - name: OpenVPN-Connect
     uses: kota65535/github-openvpn-connect-action@v2.0.2
     with:
-      config_file: ${{ env.ConfigFileDir }}/${{ env.OvpnConfigFile }}
+      config_file: ${{ inputs.configFilesDirectory }}/${{ inputs.ovpnConfigFile }}
       username: ${{ inputs.openVpnUserName }}
       password: ${{ inputs.openVpnUserPassword }}

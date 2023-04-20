@@ -17,6 +17,10 @@ jobs:
   deploy:
     needs: deploy-prep
     runs-on: ubuntu-latest
+    env:
+      ConfigFileDir: "configs"
+      OvpnConfigFile: "config.ovpn"
+      KubeCtlConfigFile: "kubeConfig"
     environment: ${{ inputs.environment }}
     steps:
       - name: Checkout
