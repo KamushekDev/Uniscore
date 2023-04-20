@@ -1,0 +1,16 @@
+name: 'Kubectl Setup '
+description: 'Setups kubectl'
+inputs:
+  kubeConfig:
+    description: 'Kubernetus conifg file content'
+    required: true
+runs:
+  using: "composite"
+  steps:
+  - name: Kubectl tool installer
+    uses: Azure/setup-kubectl@v3
+  - name: Setup kubectl config
+    run: |
+      mkdir ${{ env.ConfigFileDir }}
+      echo "${{ inputs.kubeConfig }}" >  ${{ env.ConfigFileDir }}/${{ env.KubeCtlConfigFile }}
+      echo "KUBECONFIG=`pwd`/${{ env.ConfigFileDir }}/${{ env.KubeCtlConfigFile }}" >> $GITHUB_ENV
