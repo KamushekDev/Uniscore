@@ -6,6 +6,9 @@ inputs:
     required: true
 runs:
   using: "composite"
+  env:
+      ConfigFileDir: "configs"
+      KubeCtlConfigFile: "kubeConfig"
   steps:
   - name: Kubectl tool installer
     uses: Azure/setup-kubectl@v3

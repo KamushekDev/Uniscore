@@ -12,6 +12,9 @@ inputs:
     required: true
 runs:
   using: "composite"
+  env:
+      ConfigFileDir: "configs"
+      OvpnConfigFile: "config.ovpn"
   steps:        
   - name: OpenVPN-ConfigFile-Download
     run: |
