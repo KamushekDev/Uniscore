@@ -1,0 +1,17 @@
+name: dotnet - Unicsore.Auth - Deploy
+on:
+  workflow_dispatch:
+    inputs:
+      environment:
+        description: 'Environment to be deployed'
+        required: true
+        type: choice
+        options:
+        - production
+        - staging
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: test
+        run: echo "kekw"
