@@ -10,11 +10,11 @@ inputs:
   openVpnUserPassword:
     description: 'OpenVpn user password'
     required: true
+env:
+    ConfigFileDir: "configs"
+    OvpnConfigFile: "config.ovpn"
 runs:
   using: "composite"
-  env:
-      ConfigFileDir: "configs"
-      OvpnConfigFile: "config.ovpn"
   steps:        
   - name: OpenVPN-ConfigFile-Download
     run: |

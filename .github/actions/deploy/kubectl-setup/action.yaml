@@ -4,11 +4,11 @@ inputs:
   kubeConfig:
     description: 'Kubernetus conifg file content'
     required: true
+env:
+    ConfigFileDir: "configs"
+    KubeCtlConfigFile: "kubeConfig"
 runs:
   using: "composite"
-  env:
-      ConfigFileDir: "configs"
-      KubeCtlConfigFile: "kubeConfig"
   steps:
   - name: Kubectl tool installer
     uses: Azure/setup-kubectl@v3
