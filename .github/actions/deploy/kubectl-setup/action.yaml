@@ -14,3 +14,4 @@ runs:
       mkdir ${{ env.ConfigFileDir }}
       echo "${{ inputs.kubeConfig }}" >  ${{ env.ConfigFileDir }}/${{ env.KubeCtlConfigFile }}
       echo "KUBECONFIG=`pwd`/${{ env.ConfigFileDir }}/${{ env.KubeCtlConfigFile }}" >> $GITHUB_ENV
+    shell: bash

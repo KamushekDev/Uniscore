@@ -12,3 +12,4 @@ runs:
   steps:
   - name: SetUp Kustomize
     run: kubectl apply -k ./k8s/overlays/${{ inputs.environment }}/${{ inputs.resourcePath }}}
+    shell: bash

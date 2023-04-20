@@ -17,10 +17,12 @@ runs:
     run: |
       mkdir ${{ env.ConfigFileDir }}
       echo "${{ inputs.openVpnConfig }}" > ${{ env.ConfigFileDir }}/${{ env.OvpnConfigFile }}
+    shell: bash
   - name: Install OpenVPN
     run: |
       sudo apt update
       sudo apt install -y openvpn openvpn-systemd-resolved
+    shell: bash
   - name: OpenVPN-Connect
     uses: kota65535/github-openvpn-connect-action@v2.0.2
     with:
