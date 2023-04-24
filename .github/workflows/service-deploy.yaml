@@ -1,4 +1,5 @@
 name: Service - Deploy
+run-name: Deploy ${{ inputs.service }} to @${{ inputs.environment }}
 on:
   workflow_dispatch:
     inputs:
@@ -19,20 +20,25 @@ on:
         - production
         - staging
 jobs:
-  deploy-prep:
-    runs-on: ubuntu-latest
+  deploy-uniscore-auth:
+    if: ${{ inputs.service }} == 'uniscore-auth'
+    uses: ./.github/workflows/dotnet-uniscore-auth.yaml
     secrets: inherit
-    steps:
-      - uses: ./.github/workflows/dotnet-uniscore-auth.yaml
-        if: ${{ inputs.service }} == 'uniscore-auth'
-      - uses: ./.github/workflows/dotnet-uniscore-scores.yaml
-        if: ${{ inputs.service }} == 'uniscore-scores'
-      - uses: ./.github/workflows/dotnet-uniscore-users.yaml
-        if: ${{ inputs.service }} == 'uniscore-users'
-      - uses: ./.github/workflows/react-uniscore-placeholder.yaml
-        if: ${{ inputs.service }} == 'uniscore-placeholder'
+  deploy-uniscore-scores:
+    if: ${{ inputs.service }} == 'uniscore-scores'
+    uses: ./.github/workflows/dotnet-uniscore-scores.yaml
+    secrets: inherit
+  deploy-uniscore-users:
+    if: ${{ inputs.service }} == 'uniscore-users'
+    uses: ./.github/workflows/dotnet-uniscore-users.yaml
+    secrets: inherit
+  deploy-uniscore-placeholder:
+    if: ${{ inputs.service }} == 'uniscore-placeholder'
+    uses: ./.github/workflows/react-uniscore-placeholder.yaml
+    secrets: inherit
+        
   deploy:
-    needs: deploy-prep
+    needs: [deploy-uniscore-auth, deploy-uniscore-scores, deploy-uniscore-users, deploy-uniscore-placeholder]
     runs-on: ubuntu-latest
     env:
       ConfigFileDir: "configs"
