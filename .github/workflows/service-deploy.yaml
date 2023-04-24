@@ -22,13 +22,17 @@ jobs:
   deploy-prep:
     runs-on: ubuntu-latest
     steps:
-      - name: React build
-        uses: ./.github/workflows/react-${{ inputs.service }}.yaml
-        if: ${{ inputs.service }} == 'uniscore-placeholder
+      - uses: ./.github/workflows/dotnet-uniscore-auth.yaml
+        if: ${{ inputs.service }} == 'uniscore-auth'
         secrets: inherit
-      - name: Dotnet build
-        uses: ./.github/workflows/dotnet-${{ inputs.service }}.yaml
-        if: ${{ inputs.service }} != 'uniscore-placeholder
+      - uses: ./.github/workflows/dotnet-uniscore-scores.yaml
+        if: ${{ inputs.service }} == 'uniscore-scores'
+        secrets: inherit
+      - uses: ./.github/workflows/dotnet-uniscore-users.yaml
+        if: ${{ inputs.service }} == 'uniscore-users'
+        secrets: inherit
+      - uses: ./.github/workflows/react-uniscore-placeholder.yaml
+        if: ${{ inputs.service }} == 'uniscore-placeholder'
         secrets: inherit
   deploy:
     needs: deploy-prep
