@@ -26,7 +26,7 @@ jobs:
         uses: ./.github/workflows/react-${{ inputs.service }}.yaml
         if: ${{ inputs.service }} == 'uniscore-placeholder
         secrets: inherit
-      - name Dotnet build
+      - name: Dotnet build
         uses: ./.github/workflows/dotnet-${{ inputs.service }}.yaml
         if: ${{ inputs.service }} != 'uniscore-placeholder
         secrets: inherit
