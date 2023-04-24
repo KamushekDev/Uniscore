@@ -21,19 +21,16 @@ on:
 jobs:
   deploy-prep:
     runs-on: ubuntu-latest
+    secrets: inherit
     steps:
       - uses: ./.github/workflows/dotnet-uniscore-auth.yaml
         if: ${{ inputs.service }} == 'uniscore-auth'
-        secrets: inherit
       - uses: ./.github/workflows/dotnet-uniscore-scores.yaml
         if: ${{ inputs.service }} == 'uniscore-scores'
-        secrets: inherit
       - uses: ./.github/workflows/dotnet-uniscore-users.yaml
         if: ${{ inputs.service }} == 'uniscore-users'
-        secrets: inherit
       - uses: ./.github/workflows/react-uniscore-placeholder.yaml
         if: ${{ inputs.service }} == 'uniscore-placeholder'
-        secrets: inherit
   deploy:
     needs: deploy-prep
     runs-on: ubuntu-latest
