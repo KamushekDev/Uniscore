@@ -9,10 +9,6 @@ on:
       - ".github/workflows/dotnet-uniscore-auth.yaml"
       - "dotnet/uniscore-auth/**"
   workflow_call:
-    outputs:
-      project_name:
-        description: "Name of the project"
-        value: ${{ jobs.init.outputs.project-name}}
 env:
   folder: "./dotnet/uniscore-auth"
   name: "uniscore-auth"
@@ -26,7 +22,6 @@ jobs:
     runs-on: ubuntu-latest
     outputs:
       version: ${{ steps.version.outputs.version }}
-      project-name: ${{ env.name }}
     steps:
       - name: Cancel Previous Runs
         uses: styfle/cancel-workflow-action@0.9.1

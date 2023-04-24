@@ -8,6 +8,7 @@ on:
       - "!.github/workflows/**"
       - ".github/workflows/dotnet-uniscore-users.yaml"
       - "dotnet/uniscore-users/**"
+  workflow_call:
 env:
   folder: "./dotnet/uniscore-users"
   name: "uniscore-users"

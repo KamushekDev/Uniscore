@@ -8,6 +8,7 @@ on:
       - "!.github/workflows/**"
       - ".github/workflows/react-uniscore-placeholder.yaml"
       - "react/placeholder/**"
+  workflow_call:
 env:
   folder: "./react/placeholder"
   name: "uniscore-placeholder"
