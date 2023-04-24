@@ -39,6 +39,10 @@ jobs:
         
   deploy:
     needs: [deploy-uniscore-auth, deploy-uniscore-scores, deploy-uniscore-users, deploy-uniscore-placeholder]
+    if : |
+      always()
+      && contains(needs.*.result, 'success')
+      && !contains(needs.*.result, 'failure')
     runs-on: ubuntu-latest
     env:
       ConfigFileDir: "configs"
@@ -68,4 +72,3 @@ jobs:
       - name: Restart service
         run: |
           kubectl rollout restart -f ./k8s/base/services/${{ needs.deploy-prep.outputs.project_name }}/deployment.yaml
-    
