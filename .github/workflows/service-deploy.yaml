@@ -21,19 +21,19 @@ on:
         - staging
 jobs:
   deploy-uniscore-auth:
-    if: ${{ inputs.service }} == 'uniscore-auth'
+    if: inputs.service == 'uniscore-auth'
     uses: ./.github/workflows/dotnet-uniscore-auth.yaml
     secrets: inherit
   deploy-uniscore-scores:
-    if: ${{ inputs.service }} == 'uniscore-scores'
+    if: inputs.service == 'uniscore-scores'
     uses: ./.github/workflows/dotnet-uniscore-scores.yaml
     secrets: inherit
   deploy-uniscore-users:
-    if: ${{ inputs.service }} == 'uniscore-users'
+    if: inputs.service == 'uniscore-users'
     uses: ./.github/workflows/dotnet-uniscore-users.yaml
     secrets: inherit
   deploy-uniscore-placeholder:
-    if: ${{ inputs.service }} == 'uniscore-placeholder'
+    if: inputs.service == 'uniscore-placeholder'
     uses: ./.github/workflows/react-uniscore-placeholder.yaml
     secrets: inherit
         
