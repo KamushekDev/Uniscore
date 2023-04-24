@@ -1,5 +1,5 @@
 name: Service - Deploy
-run-name: Deploy ${{ inputs.service }} to @${{ inputs.environment }}
+run-name: Deploy ${{ inputs.service }} to ${{ inputs.environment }}
 on:
   workflow_dispatch:
     inputs:
