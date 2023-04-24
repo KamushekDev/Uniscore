@@ -1,0 +1,26 @@
+name: Service - Deploy
+on:
+  workflow_dispatch:
+    inputs:
+      service:
+        description: 'Service to be deployed'
+        required: true
+        type: choice
+        options:
+        - uniscore-auth
+        - uniscore-scores
+        - uniscore-users
+        - uniscore-placeholder
+      environment:
+        description: 'Environment to be deployed on'
+        required: true
+        type: choice
+        options:
+        - production
+        - staging
+jobs:
+  deploy-prep:
+    runs-on: ubuntu-latest
+    steps:
+      - name: test
+        run: echo "kekw"
