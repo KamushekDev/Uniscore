@@ -38,14 +38,12 @@ jobs:
           environment: ${{ inputs.environment }}
           resourcePath: "infra"
 
-    deploy-services;
-      strategy:
-        matrix:
-          service: ['uniscore-auth', 'uniscore-scores', 'uniscore-users', 'uniscore-placeholder']
-      uses: ./.github/workflows/service-deploy.yaml
-      with:
-        service: ${{ matrix.service }}
-        environment: ${{ inputs.environment }}
-      secrets: inherit
-      
-      
+  deploy-services:
+    strategy:
+      matrix:
+        service: ['uniscore-auth', 'uniscore-scores', 'uniscore-users', 'uniscore-placeholder']
+    uses: ./.github/workflows/service-deploy.yaml
+    with:
+      service: ${{ matrix.service }}
+      environment: ${{ inputs.environment }}
+    secrets: inherit
