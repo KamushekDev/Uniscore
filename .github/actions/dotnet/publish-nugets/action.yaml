@@ -1,6 +1,9 @@
 name: "Publish all nugets"
 description: "Publish all nugets"
 inputs:
+  folder:
+    description: "Name of a folder to download nugets into"
+    required: true
   nuget-source-name:
     description: "Name of a nuget source to upload"
     required: true
@@ -17,7 +20,7 @@ runs:
       uses: actions/download-artifact@v3
       with:
         name: nugets
-        path: ./.temp/nugets
+        path: ${{ inputs.folder }}/temp
     - name: Publish downloaded nugets
       run: dotnet nuget push "${{ steps.download.outputs.download-path }}/**/*.nupkg" --api-key ${{ inputs.token }} --source ${{ inputs.nuget-source-name }}
       shell: bash

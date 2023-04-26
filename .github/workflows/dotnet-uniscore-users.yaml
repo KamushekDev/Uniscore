@@ -124,6 +124,8 @@ jobs:
         uses: ./.github/actions/dotnet/add-github-source
       - name: Publish nugets
         uses: ./.github/actions/dotnet/publish-nugets
+        with:
+          folder: ${{ env.folder }}
 
   upload-test-results:
     runs-on: ubuntu-latest
@@ -135,6 +137,7 @@ jobs:
       - name: Upload tests
         uses: ./.github/actions/upload-to-codecov
         with: 
+          folder: ${{ env.folder }}
           codecov-token: ${{ secrets.CODECOV_TOKEN }}
           name: ${{ env.name }}  
 

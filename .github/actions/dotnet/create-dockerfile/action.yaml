@@ -46,8 +46,7 @@ runs:
       run: |
         (cd ${{ inputs.folder }} \
         && files=$(find . -type f -name "*.csproj" -o -name "*.sln") \
-        && for file in $files; do echo "COPY $file $file" >> .copy_lines; done) \
-        && mv "${{ inputs.folder }}/.copy_lines" .
+        && for file in $files; do echo "COPY $file $file" >> .copy_lines; done)
       shell: bash
     - name: Get startup dll
       id: dll
@@ -62,8 +61,8 @@ runs:
       run: |
         sed -e "s/_REPOSITORY_OWNER_NAME_/${{ inputs.repository-owner-name }}/g" \
           -e "s/_STARTUP_DLL_/${{steps.dll.outputs.startup-dll}}/g" \
-          -e "/_COPY_CSPROJS_SLN_/{r .copy_lines" -e "d}" \
-          ${{ inputs.dockerfile-template-path }} > .github/templates/Dockerfile
+          -e "/_COPY_CSPROJS_SLN_/{r ${{ inputs.folder }}/.copy_lines" -e "d}" \
+          ${{ inputs.dockerfile-template-path }} > ${{ inputs.folder }}/Dockerfile
       shell: bash
     - name: Upload dockerfile to artifacts
       if: steps.check.outputs.should-build == 'true'
@@ -71,7 +70,7 @@ runs:
       with:
         name: dockerfile
         path: |
-          .github/templates/Dockerfile
+          ${{ inputs.folder }}/Dockerfile
           .github/templates/.dockerignore
         retention-days: 7
         if-no-files-found: error

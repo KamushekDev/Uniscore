@@ -1,6 +1,9 @@
 name: "Upload test results"
 description: "Upload all test results to Codecov with project name as carryforward flag"
 inputs:
+  folder:
+    description: "Name of a folder to download test results into"
+    required: true
   name:
     description: "Name of the project that will be passed as flag"
     required: true
@@ -15,11 +18,11 @@ runs:
       uses: actions/download-artifact@v3
       with:
         name: test-results
-        path: ./.temp/coverage
+        path: ${{ inputs.folder }}/temp/coverage
     - name: Upload unit tests to codecov
       uses: codecov/codecov-action@v3
       with: 
         token: ${{ inputs.codecov-token }}
-        directory: ./.temp/coverage
+        directory: ${{ steps.download.outputs.download-path }}
         flags: ${{ inputs.name }}
         fail_ci_if_error: true

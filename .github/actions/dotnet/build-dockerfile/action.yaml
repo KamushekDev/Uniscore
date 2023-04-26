@@ -31,7 +31,7 @@ runs:
         name: dockerfile
         path: ${{inputs.folder}}
     - name: Save pat to file
-      run: echo ${{ inputs.packages-pat }} > ./PACKAGES_PAT
+      run: echo ${{ inputs.packages-pat }} > ${{ inputs.folder }}/temp/PACKAGES_PAT
       shell: bash
     - name: Log in to the Container registry
       uses: docker/login-action@f054a8b539a109f9f41c372932f1ae047eff08c9
@@ -48,4 +48,4 @@ runs:
         push: true
         tags: ${{ inputs.tag }}
         secret-files: |
-           "packages_pat=./PACKAGES_PAT"
+           "packages_pat=${{ inputs.folder }}/temp/PACKAGES_PAT"
