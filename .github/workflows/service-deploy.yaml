@@ -19,6 +19,24 @@ on:
         options:
         - production
         - staging
+  workflow_call:
+    inputs:
+      service:
+        description: 'Service to be deployed'
+        required: true
+        type: choice
+        options:
+        - uniscore-auth
+        - uniscore-scores
+        - uniscore-users
+        - uniscore-placeholder
+      environment:
+        description: 'Environment to be deployed on'
+        required: true
+        type: choice
+        options:
+        - production
+        - staging
 jobs:
   deploy-uniscore-auth:
     if: inputs.service == 'uniscore-auth'
