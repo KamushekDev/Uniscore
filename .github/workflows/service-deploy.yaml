@@ -24,19 +24,11 @@ on:
       service:
         description: 'Service to be deployed'
         required: true
-        type: choice
-        options:
-        - uniscore-auth
-        - uniscore-scores
-        - uniscore-users
-        - uniscore-placeholder
+        type: string
       environment:
         description: 'Environment to be deployed on'
         required: true
-        type: choice
-        options:
-        - production
-        - staging
+        type: string
 jobs:
   deploy-uniscore-auth:
     if: inputs.service == 'uniscore-auth'
