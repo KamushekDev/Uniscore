@@ -39,6 +39,7 @@ jobs:
           resourcePath: "infra"
 
   deploy-services:
+    needs: deploy-infa
     strategy:
       matrix:
         service: ['uniscore-auth', 'uniscore-scores', 'uniscore-users', 'uniscore-placeholder']
