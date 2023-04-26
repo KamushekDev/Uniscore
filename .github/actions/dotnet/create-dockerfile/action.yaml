@@ -60,6 +60,7 @@ runs:
       if: steps.check.outputs.should-build == 'true'
       run: |
         mkdir ${{ inputs.folder }}/temp
+        cp .github/templates/.dockerignore ${{ inputs.folder }}/temp/.dockerignore
         sed -e "s/_REPOSITORY_OWNER_NAME_/${{ inputs.repository-owner-name }}/g" \
           -e "s/_STARTUP_DLL_/${{steps.dll.outputs.startup-dll}}/g" \
           -e "/_COPY_CSPROJS_SLN_/{r ${{ inputs.folder }}/.copy_lines" -e "d}" \
@@ -69,10 +70,10 @@ runs:
       if: steps.check.outputs.should-build == 'true'
       uses: actions/upload-artifact@v3
       with:
-        name: dockerfile
+        name: dockerfile_${{ inputs.name }}
         path: |
           ${{ inputs.folder }}/temp/Dockerfile
-          .github/templates/.dockerignore
+          ${{ inputs.folder }}/temp/.dockerignore
         retention-days: 7
         if-no-files-found: error
     - name: Create tag

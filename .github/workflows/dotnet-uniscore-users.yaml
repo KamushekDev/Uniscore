@@ -69,6 +69,7 @@ jobs:
         uses: ./.github/actions/dotnet/build-dotnet
         with: 
           folder: ${{ env.folder }}
+          name: ${{ env.name }}
           version: ${{ needs.init.outputs.version }}
 
   tests:
@@ -93,7 +94,8 @@ jobs:
         id: test-runner
         uses: ./.github/actions/dotnet/test-dotnet
         with:
-          folder: ${{ env.folder }}        
+          folder: ${{ env.folder }}   
+          name: ${{ env.name }}     
 
   prepare-service-builder:
     runs-on: ubuntu-latest
@@ -126,6 +128,7 @@ jobs:
         uses: ./.github/actions/dotnet/publish-nugets
         with:
           folder: ${{ env.folder }}
+          name: ${{ env.name }}
 
   upload-test-results:
     runs-on: ubuntu-latest
@@ -157,6 +160,7 @@ jobs:
           password: ${{ secrets.GITHUB_TOKEN }}
           packages-pat: ${{ secrets.PACKAGES_PAT }}
           folder: ${{env.folder}}
+          name: ${{env.name}}
 
   push-git-tag:
     runs-on: ubuntu-latest

@@ -13,6 +13,9 @@ inputs:
   folder:
     description: "Root folder for scanning for solutions"
     required: true
+  name:
+    description: "service name"
+    required: true
   username:
     description: "username to login into container registry"
     required: true
@@ -28,7 +31,7 @@ runs:
       id: download
       uses: actions/download-artifact@v3
       with:
-        name: dockerfile
+        name: dockerfile_${{inputs.name}}
         path: ${{inputs.folder}}
     - name: Save pat to file
       run: |

@@ -17,7 +17,7 @@ runs:
       id: download
       uses: actions/download-artifact@v3
       with:
-        name: test-results
+        name: test-results_${{ inputs.name }}
         path: ${{ inputs.folder }}/temp/coverage
     - name: Upload unit tests to codecov
       uses: codecov/codecov-action@v3
