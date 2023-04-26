@@ -42,7 +42,7 @@ jobs:
     needs: deploy-infa
     strategy:
       matrix:
-        service: ['uniscore-auth', 'uniscore-scores', 'uniscore-users', 'uniscore-placeholder']
+        service: ['uniscore-scores']
     uses: ./.github/workflows/service-deploy.yaml
     with:
       service: ${{ matrix.service }}
