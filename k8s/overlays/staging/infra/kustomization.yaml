@@ -5,7 +5,3 @@ resources:
 - monitoring
 - storage
 - ../../../base/infra
-- ../services/uniscore-auth
-- ../services/uniscore-placeholder
-- ../services/uniscore-scores
-- ../services/uniscore-users
