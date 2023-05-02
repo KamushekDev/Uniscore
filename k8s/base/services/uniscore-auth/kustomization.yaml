@@ -4,3 +4,6 @@ kind: Kustomization
 resources:
 - service.yaml
 - deployment.yaml
+
+commonLabels:
+  build: uniscore-auth
