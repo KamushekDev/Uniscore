@@ -4,12 +4,18 @@ inputs:
   environment:
     description: 'Environment to be deployed'
     required: true
-  resourcePath:
-    description: 'Relative path to kustomization.yaml file from environment overlay'
-    required: true
+  resourcesLabels:
+    description: 'Label(s) of the resource(s) to be deployed'
+    type: array
+    required: false
 runs:
   using: "composite"
   steps:
-  - name: SetUp Kustomize
-    run: kubectl apply -k ./k8s/overlays/${{ inputs.environment }}/${{ inputs.resourcePath }} -l build=${{inputs.service}}
+  - name: SetUp Kustomize with label
+    if: inputs.resousrceLabels == '[]'
+    run: kubectl apply -k ./k8s/overlays/${{ inputs.environment }}
+    shell: bash
+  - name: SetUp Kustomize without label
+    if: inputs.resousrceLabels != '[]'
+    run: kubectl apply -k ./k8s/overlays/${{ inputs.environment }} -l 'resource in (${{ join( inputs.resousrceLabels, ', ') }})'
     shell: bash

@@ -6,4 +6,4 @@ resources:
 - deployment.yaml
 
 commonLabels:
-  build: uniscore-users
+  resource: uniscore-users
