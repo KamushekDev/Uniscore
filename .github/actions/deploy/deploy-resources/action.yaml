@@ -13,6 +13,7 @@ runs:
   steps:
   - name: Test
     run: echo join( inputs.resourcesLabels, ', ')
+    shell: bash
   - name: SetUp Kustomize with label
     if: inputs.resourcesLabels == '[]'
     run: kubectl apply -k ./k8s/overlays/${{ inputs.environment }}
