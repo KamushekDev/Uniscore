@@ -6,8 +6,8 @@ inputs:
     required: true
   resourceLabel:
     description: 'Label of the resource to be deployed'
-    type: array
     required: false
+    default: ''
 runs:
   using: "composite"
   steps:
