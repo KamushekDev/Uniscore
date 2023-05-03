@@ -4,21 +4,18 @@ inputs:
   environment:
     description: 'Environment to be deployed'
     required: true
-  resourcesLabels:
-    description: 'Label(s) of the resource(s) to be deployed'
+  resourceLabel:
+    description: 'Label of the resource to be deployed'
     type: array
     required: false
 runs:
   using: "composite"
   steps:
-  - name: Test
-    run: echo ${{ join( inputs.resourcesLabels, ', ') }}
-    shell: bash
   - name: SetUp Kustomize with label
-    if: inputs.resourcesLabels == '[]'
+    if: inputs.resourcesLabels == ''
     run: kubectl apply -k ./k8s/overlays/${{ inputs.environment }}
     shell: bash
   - name: SetUp Kustomize without label
-    if: inputs.resourcesLabels != '[]'
-    run: kubectl apply -k ./k8s/overlays/${{ inputs.environment }} -l 'resource in (${{ join( inputs.resourcesLabels, ', ') }})'
+    if: inputs.resourcesLabels != ''
+    run: kubectl apply -k ./k8s/overlays/${{ inputs.environment }} -l resource=${{inputs.resourceLabel}}
     shell: bash
