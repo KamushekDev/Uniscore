@@ -12,7 +12,7 @@ runs:
   using: "composite"
   steps:
   - name: Test
-    run: echo join( inputs.resourcesLabels, ', ')
+    run: echo ${{ join( inputs.resourcesLabels, ', ') }}
     shell: bash
   - name: SetUp Kustomize with label
     if: inputs.resourcesLabels == '[]'
