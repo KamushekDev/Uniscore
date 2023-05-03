@@ -25,5 +25,5 @@ runs:
     run: command+='-l resource=${{inputs.resourceLabel}}'
     shell: bash
   - name: Run command
-    run: -c $command
+    run: eval $command
     shell: bash
