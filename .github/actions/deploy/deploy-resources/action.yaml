@@ -12,10 +12,10 @@ runs:
   using: "composite"
   steps:
   - name: SetUp Kustomize with label
-    if: inputs.resousrceLabels == '[]'
+    if: inputs.resourcesLabels == '[]'
     run: kubectl apply -k ./k8s/overlays/${{ inputs.environment }}
     shell: bash
   - name: SetUp Kustomize without label
-    if: inputs.resousrceLabels != '[]'
-    run: kubectl apply -k ./k8s/overlays/${{ inputs.environment }} -l 'resource in (${{ join( inputs.resousrceLabels, ', ') }})'
+    if: inputs.resourcesLabels != '[]'
+    run: kubectl apply -k ./k8s/overlays/${{ inputs.environment }} -l 'resource in (${{ join( inputs.resourcesLabels, ', ') }})'
     shell: bash

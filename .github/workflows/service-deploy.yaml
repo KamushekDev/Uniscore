@@ -76,7 +76,7 @@ jobs:
           kubeConfig: ${{ secrets.KUBE_CONFIG }}
       - name: Deploy service
         uses: ./.github/actions/deploy/deploy-resources
-        with: 
+        with:
           environment: ${{ inputs.environment }}
           resourcesLabels: '[ ${{ inputs.service }} ]'
       - name: Restart service
