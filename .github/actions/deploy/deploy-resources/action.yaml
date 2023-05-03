@@ -13,20 +13,15 @@ inputs:
 runs:
   using: "composite"
   steps:
-  - name: Create base command
-    run: command='kubectl apply -k ./k8s/overlays/${{ inputs.environment }}'
-    shell: bash
-  - name: Add resource type label
-    if: inputs.resourceLabel != ''
-    run: command+='-l resourceType=${{inputs.resourceTypeLabel}}'
-    shell: bash
-  - name: Add resource label
-    if: inputs.resourceLabel != ''
-    run: command+='-l resource=${{inputs.resourceLabel}}'
-    shell: bash
-  - name: Test
-    run: echo $command
-    shell: bash
-  - name: Run command
-    run: eval $command
+  - name: Deploy resource
+    run: |
+      command='kubectl apply -k ./k8s/overlays/${{ inputs.environment }}'
+      if [ ${{ inputs.resourceTypeLabel }} != '' ]; then
+        command+='-l resourceType=${{inputs.resourceTypeLabel}}'
+      fi
+      if [ ${{ inputs.resourceLabel }} != '' ]; then
+        command+='-l resource=${{inputs.resourceLabel}}'
+      fi
+      echo $command
+      eval $command
     shell: bash
