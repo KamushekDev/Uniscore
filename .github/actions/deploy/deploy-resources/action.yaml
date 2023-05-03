@@ -24,6 +24,9 @@ runs:
     if: inputs.resourceLabel != ''
     run: command+='-l resource=${{inputs.resourceLabel}}'
     shell: bash
+  - name: Test
+    run: echo $command
+    shell: bash
   - name: Run command
     run: eval $command
     shell: bash
