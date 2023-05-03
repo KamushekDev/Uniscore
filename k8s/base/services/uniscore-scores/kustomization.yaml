@@ -6,4 +6,4 @@ resources:
 - deployment.yaml
 
 commonLabels:
-  resource: uniscore-scores
+  part: uniscore-scores
