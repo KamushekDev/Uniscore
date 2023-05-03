@@ -37,8 +37,10 @@ jobs:
         with: 
           environment: ${{ inputs.environment }}
 
-  deploy-services:
+  restart-services:
     needs: deploy-infa
+    runs-on: ubuntu-latest
+    environment: ${{ inputs.environment }}
     strategy:
       matrix:
         service: ['uniscore-auth', 'uniscore-scores', 'uniscore-users', 'uniscore-placeholder']
