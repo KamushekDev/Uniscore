@@ -3,3 +3,6 @@ kind: Kustomization
 
 resources:
 - ../../../../base/infra/storage
+
+commonLabels:
+  resourceType: storage

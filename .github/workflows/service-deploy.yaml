@@ -78,6 +78,7 @@ jobs:
         uses: ./.github/actions/deploy/deploy-resources
         with:
           environment: ${{ inputs.environment }}
+          resourceTypeLabel: 'service'
           resourceLabel: ${{ inputs.service }}
       - name: Restart service
         run: |

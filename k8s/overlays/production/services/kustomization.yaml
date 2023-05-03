@@ -6,3 +6,6 @@ resources:
 - uniscore-placeholder
 - uniscore-scores
 - uniscore-users
+
+commonLabels:
+  resourceType: service
