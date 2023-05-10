@@ -22,6 +22,5 @@ runs:
       if [ ${{ inputs.resourceLabel }} != '' ]; then
         command+='-l resource=${{inputs.resourceLabel}}'
       fi
-      echo $command
       eval $command
     shell: bash
