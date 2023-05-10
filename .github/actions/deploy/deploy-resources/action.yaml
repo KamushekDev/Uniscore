@@ -17,10 +17,10 @@ runs:
     run: |
       command='kubectl apply -k ./k8s/overlays/${{ inputs.environment }}'
       if [ ${{ inputs.resourceTypeLabel }} != '' ]; then
-        command+='-l resourceType=${{inputs.resourceTypeLabel}}'
+        command+=' -l resourceType=${{inputs.resourceTypeLabel}}'
       fi
       if [ ${{ inputs.resourceLabel }} != '' ]; then
-        command+='-l resource=${{inputs.resourceLabel}}'
+        command+=' -l resource=${{inputs.resourceLabel}}'
       fi
       eval $command
     shell: bash
