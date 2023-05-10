@@ -32,6 +32,8 @@ jobs:
         uses: ./.github/actions/deploy/kubectl-setup
         with: 
           kubeConfig: ${{ secrets.KUBE_CONFIG }}
+      - name: Certificates create
+        run: echo -n ${{ secrets.KUBE_CERTIFICATE }} > ./k8s/base/infra/cert-secret.crt
       - name: Deploy infra
         uses: ./.github/actions/deploy/deploy-resources
         with: 

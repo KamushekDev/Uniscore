@@ -7,3 +7,8 @@ resources:
 - namespace.yaml
 - nginx-config.yaml
 - nginx-ingress-class.yaml
+
+secretGenerator:
+- name: infra-secrets
+  files:
+  - certificates.crt
