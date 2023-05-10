@@ -10,6 +10,7 @@ resources:
 
 secretGenerator:
 - name: tls-secret
+  namespace: uniscore
   files:
   - tls.crt
   - tls.key
