@@ -11,4 +11,4 @@ resources:
 secretGenerator:
 - name: infra-secrets
   files:
-  - certificates.crt
+  - cert-secret.crt
