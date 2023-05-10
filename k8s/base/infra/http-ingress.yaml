@@ -10,7 +10,7 @@ spec:
   - hosts:
       - "*.uniscore.ru"
       - "uniscore.ru"
-    secretName: cert-secret
+    secretName: tls-secret
   rules:
   - host: auth.uniscore.ru
     http:

@@ -12,7 +12,7 @@ spec:
   tls:
   - hosts:
     - "*.uniscore.ru"
-    secretName: cert-secret
+    secretName: tls-secret
     # secretName: cert-manager-webhook-ca
   rules:
   - host: auth-grpc.uniscore.ru

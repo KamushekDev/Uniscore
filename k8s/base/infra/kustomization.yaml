@@ -9,6 +9,7 @@ resources:
 - nginx-ingress-class.yaml
 
 secretGenerator:
-- name: infra-secrets
+- name: tls-secret
   files:
-  - cert-secret.crt
+  - tls.crt
+  - tls.key

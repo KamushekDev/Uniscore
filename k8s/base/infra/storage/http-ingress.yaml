@@ -9,7 +9,7 @@ spec:
   tls:
   - hosts:
       - "*.uniscore.ru"
-    secretName: cert-secret
+    secretName: tls-secret
   rules:
   - host: longhorn.uniscore.ru
     http:
