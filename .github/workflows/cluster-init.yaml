@@ -1,0 +1,17 @@
+name: Kubernetes cluster init
+on: 
+  workflow_dispatch:
+    inputs:
+      environment:
+        description: 'Environment to be deployed on'
+        required: true
+        type: choice
+        options:
+        - production
+        - staging
+jobs:
+  deploy-infa:
+    runs-on: ubuntu-latest
+    steps:
+      - name: test
+        run: echo "kekw"
