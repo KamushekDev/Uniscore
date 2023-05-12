@@ -21,7 +21,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
       - name: OpenVpn setup
-        uses: ./.github/actions/deploy/openVpn-setup
+        uses: ./.github/actions/deploy/openVpn-setup-connect
         with: 
           openVpnConfig: ${{ secrets.VPN_CONFIG }}
           openVpnUserName: ${{ secrets.VPN_USERNAME }}
@@ -52,7 +52,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
       - name: OpenVpn setup
-        uses: ./.github/actions/deploy/openVpn-setup
+        uses: ./.github/actions/deploy/openVpn-setup-connect
         with: 
           openVpnConfig: ${{ secrets.VPN_CONFIG }}
           openVpnUserName: ${{ secrets.VPN_USERNAME }}

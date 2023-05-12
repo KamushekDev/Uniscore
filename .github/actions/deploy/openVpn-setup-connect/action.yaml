@@ -1,5 +1,5 @@
-name: 'Setup OpenVpn'
-description: 'Setups OpenVpn to deploy cluster'
+name: 'Setup OpenVpn and connect'
+description: 'Setups OpenVpn to deploy cluster and connect to it'
 inputs:
   openVpnConfig:
     description: 'OpenVpn config file content'
