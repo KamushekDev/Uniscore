@@ -1,8 +1,8 @@
 name: react - uniscore-placeholder
 on:
   push:
-    branches:
-      - 'master'
+    # branches:
+    #   - 'master'
     paths:
       - ".github/**"
       - "!.github/workflows/**"

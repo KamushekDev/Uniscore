@@ -1,8 +1,8 @@
 name: dotnet - Uniscore.Events.Twitch
 on:
   push:
-    branches:
-      - 'master'
+    # branches:
+    #   - 'master'
     paths:
       - ".github/**"
       - "!.github/workflows/**"
