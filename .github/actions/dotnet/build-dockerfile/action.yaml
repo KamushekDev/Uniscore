@@ -53,4 +53,7 @@ runs:
         push: true
         tags: ${{ inputs.tag }}
         secret-files: |
-           "packages_pat=${{ inputs.folder }}/temp/PACKAGES_PAT"
+          "packages_pat=${{ inputs.folder }}/temp/PACKAGES_PAT"
+        platforms: |
+          linux/arm64/v8
+          linux/amd64
