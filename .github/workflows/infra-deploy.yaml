@@ -16,6 +16,8 @@ jobs:
       ConfigFileDir: "configs"
       OvpnConfigFile: "config.ovpn"
       KubeCtlConfigFile: "kubeConfig"
+      FirebaseSDKfile: "adminsdk.json"
+      dockerconfig: ".dockerconfigjson"
     environment: ${{ inputs.environment }}
     steps:
       - name: Checkout
@@ -36,6 +38,15 @@ jobs:
         run: |
           echo -n '${{ secrets.KUBE_TLS_CRT }}' > ./k8s/base/infra/tls.crt
           echo -n '${{ secrets.KUBE_TLS_KEY }}' > ./k8s/base/infra/tls.key
+        shell: bash
+      - name: Create firebase secret
+        run: |
+          echo -n '${{secrets.FIREBASE_ADMIN_SDK_JSON}}' > ./k8s/base/infra/${{env.FirebaseSDKfile}}
+        shell: bash
+      - name: Create ghcr secret
+        run: |
+          echo -n '${{secrets.DOCKER_CONFIG_JSON}}' > ./k8s/base/infra/${{env.dockerconfig}}
+        shell: bash
       - name: Deploy infra
         uses: ./.github/actions/deploy/deploy-resources
         with: 
