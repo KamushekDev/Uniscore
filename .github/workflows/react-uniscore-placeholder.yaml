@@ -74,6 +74,9 @@ jobs:
           context: ${{ env.folder }}
           push: true
           tags: ${{ needs.prepare-service-builder.outputs.tag }}
+          platforms: |
+            linux/arm64/v8
+            linux/amd64
           
   push-git-tag:
     runs-on: ubuntu-latest
