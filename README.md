@@ -45,4 +45,5 @@ Add kube metrics to prometheus
 
 Add longhorn
 * kubectl apply -f https://raw.githubusercontent.com/longhorn/longhorn/master/deploy/longhorn.yaml
+* `sudo apt-get install open-iscsi` **(CLUSTER INIT JOB DOESN'T DO IT)**
 * create storageClass with needed amount of replicas
