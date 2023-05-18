@@ -44,6 +44,11 @@ Add kube metrics to prometheus
 * kubectl get deployments kube-state-metrics -n kube-system
 
 Add longhorn
-* kubectl apply -f https://raw.githubusercontent.com/longhorn/longhorn/master/deploy/longhorn.yaml
+* microk8s enable helm3
+* microk8s kubectl create namespace longhorn-system
+* microk8s helm3 install longhorn longhorn/longhorn --namespace longhorn-system \
+  --set defaultSettings.defaultDataPath="/longhorn" \
+  --set csi.kubeletRootDir="/var/snap/microk8s/common/var/lib/kubelet"
+* ~~kubectl apply -f https://raw.githubusercontent.com/longhorn/longhorn/master/deploy/longhorn.yaml~~
 * `sudo apt-get install open-iscsi` **(CLUSTER INIT JOB DOESN'T DO IT)**
 * create storageClass with needed amount of replicas
