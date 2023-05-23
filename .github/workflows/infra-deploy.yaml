@@ -36,6 +36,7 @@ jobs:
         uses: ./.github/actions/deploy/deploy-resources
         with: 
           environment: ${{ inputs.environment }}
+        secrets: inherit
 
   restart-services:
     needs: deploy-infa

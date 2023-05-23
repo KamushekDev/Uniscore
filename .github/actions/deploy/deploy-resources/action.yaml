@@ -15,6 +15,7 @@ runs:
   steps:
   - name: Prepare kustomize
     uses: ./.github/actions/deploy/prepare-kustomize
+    secrets: inherit
   - name: Deploy resource
     run: |
       command='kubectl apply -k ./k8s/overlays/${{ inputs.environment }}'

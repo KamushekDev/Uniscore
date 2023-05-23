@@ -70,6 +70,7 @@ jobs:
           environment: ${{ inputs.environment }}
           resourceTypeLabel: 'service'
           resourceLabel: ${{ inputs.service }}
+        secrets: inherit
       - name: Restart service
         uses: ./.github/actions/deploy/service-restart
         with:
