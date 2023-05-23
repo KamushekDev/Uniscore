@@ -1,0 +1,23 @@
+name: 'Prepare kustomize'
+description: Prepare necessary infra for kustomize'
+env:
+  TlsCertificateFile: "tls.crt"
+  TlsKeyFile: "tls.key"
+  FirebaseSDKfile: "adminsdk.json"
+  DockerconfigFile: ".dockerconfigjson"
+runs:
+  using: "composite"
+  steps:
+  - name: Certificates create
+    run: |
+      echo -n '${{ secrets.KUBE_TLS_CRT }}' > ./k8s/base/infra/${{ env.TlsCertificateFile }}
+      echo -n '${{ secrets.KUBE_TLS_KEY }}' > ./k8s/base/infra/${{ env.TlsKeyFile }}
+    shell: bash
+  - name: Create firebase secret
+    run: |
+      echo -n '${{secrets.FIREBASE_ADMIN_SDK_JSON}}' > ./k8s/base/infra/${{env.FirebaseSDKfile}}
+    shell: bash
+  - name: Create ghcr secret
+    run: |
+      echo -n '${{secrets.DOCKER_CONFIG_JSON}}' > ./k8s/base/infra/${{env.DockerconfigFile}}
+    shell: bash
