@@ -1,5 +1,18 @@
 name: 'Prepare kustomize'
 description: Prepare necessary infra for kustomize'
+inputs:
+  tlsCertificate:
+    description: 'Tls certificate content'
+    required: true
+  tlsKey:
+    description: 'Tls key'
+    required: true
+  firebaseSdkFileContent:
+    description: 'Firebase SDK file content'
+    required: true
+  dockerConfigFileContent:
+    description: 'Docker config file content'
+    required: true
 env:
   TlsCertificateFile: "tls.crt"
   TlsKeyFile: "tls.key"
@@ -10,14 +23,14 @@ runs:
   steps:
   - name: Certificates create
     run: |
-      echo -n '${{ secrets.KUBE_TLS_CRT }}' > ./k8s/base/infra/${{ env.TlsCertificateFile }}
-      echo -n '${{ secrets.KUBE_TLS_KEY }}' > ./k8s/base/infra/${{ env.TlsKeyFile }}
+      echo -n '${{ inputs.tlsCertificate }}' > ./k8s/base/infra/${{ env.TlsCertificateFile }}
+      echo -n '${{ inputs.tlsKey }}' > ./k8s/base/infra/${{ env.TlsKeyFile }}
     shell: bash
   - name: Create firebase secret
     run: |
-      echo -n '${{secrets.FIREBASE_ADMIN_SDK_JSON}}' > ./k8s/base/infra/${{env.FirebaseSDKfile}}
+      echo -n '${{inputs.firebaseSdkFileContent}}' > ./k8s/base/infra/${{env.FirebaseSDKfile}}
     shell: bash
   - name: Create ghcr secret
     run: |
-      echo -n '${{secrets.DOCKER_CONFIG_JSON}}' > ./k8s/base/infra/${{env.DockerconfigFile}}
+      echo -n '${{inputs.dockerConfigFileContent}}' > ./k8s/base/infra/${{env.DockerconfigFile}}
     shell: bash
