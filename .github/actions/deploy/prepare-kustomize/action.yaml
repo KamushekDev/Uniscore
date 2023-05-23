@@ -13,24 +13,36 @@ inputs:
   dockerConfigFileContent:
     description: 'Docker config file content'
     required: true
-env:
-  TlsCertificateFile: "tls.crt"
-  TlsKeyFile: "tls.key"
-  FirebaseSDKfile: "adminsdk.json"
-  DockerconfigFile: ".dockerconfigjson"
+  tlsCertificateFileName:
+    description: 'Tls certificate file name'
+    required: false
+    default: "tls.crt"
+  tlsKeyFileName:
+    description: 'Tls key file name'
+    required: false
+    default: "tls.key"
+  firebaseSDKFileName:
+    description: 'Firebase SDK file name'
+    required: false
+    default: "adminsdk.json"
+  dockerconfigFileName:
+    description: 'Docker config file name'
+    required: false
+    default: ".dockerconfigjson"
+
 runs:
   using: "composite"
   steps:
   - name: Certificates create
     run: |
-      echo -n '${{ inputs.tlsCertificate }}' > ./k8s/base/infra/${{ env.TlsCertificateFile }}
-      echo -n '${{ inputs.tlsKey }}' > ./k8s/base/infra/${{ env.TlsKeyFile }}
+      echo -n '${{ inputs.tlsCertificate }}' > ./k8s/base/infra/${{ inputs.tlsCertificateFileName }}
+      echo -n '${{ inputs.tlsKey }}' > ./k8s/base/infra/${{ inputs.tlsKeyFileName }}
     shell: bash
   - name: Create firebase secret
     run: |
-      echo -n '${{inputs.firebaseSdkFileContent}}' > ./k8s/base/infra/${{env.FirebaseSDKfile}}
+      echo -n '${{inputs.firebaseSdkFileContent}}' > ./k8s/base/infra/${{ inputs.firebaseSDKFileName }}
     shell: bash
   - name: Create ghcr secret
     run: |
-      echo -n '${{inputs.dockerConfigFileContent}}' > ./k8s/base/infra/${{env.DockerconfigFile}}
+      echo -n '${{inputs.dockerConfigFileContent}}' > ./k8s/base/infra/${{ inputs.dockerconfigFileName }}
     shell: bash

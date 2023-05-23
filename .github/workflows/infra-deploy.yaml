@@ -37,8 +37,8 @@ jobs:
         with:
           tlsCertificate: ${{ secrets.KUBE_TLS_CRT }}
           tlsKey: ${{ secrets.KUBE_TLS_KEY }}
-          firebaseSdkFileContent: ${{secrets.FIREBASE_ADMIN_SDK_JSON}}
-          dockerConfigFileContent: ${{secrets.DOCKER_CONFIG_JSON}}
+          firebaseSdkFileContent: ${{ secrets.FIREBASE_ADMIN_SDK_JSON }}
+          dockerConfigFileContent: ${{ secrets.DOCKER_CONFIG_JSON }}
       - name: Deploy infra
         uses: ./.github/actions/deploy/deploy-resources
         with: 
