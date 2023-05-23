@@ -12,7 +12,7 @@ WORKDIR /app
 # https://github.com/dotnet/dotnet-docker/issues/4388#issuecomment-1470996533
 # https://github.com/NuGet/Home/issues/12227
 # https://github.com/dotnet/sdk/issues/28971
-FROM mcr.microsoft.com/dotnet/nightly/sdk:8.0-preview AS build
+FROM mcr.microsoft.com/dotnet/sdk:7.0 AS build
 ARG c
 
 RUN --mount=type=secret,id=packages_pat,required=true \

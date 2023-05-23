@@ -12,7 +12,7 @@ on:
 env:
   folder: "./dotnet/uniscore-users"
   name: "uniscore-users"
-  dotnet_sdk_version: 7.0.102
+  dotnet_sdk_version: 7.0.302
   dockerfile-template-path: "./dotnet/uniscore-users/Dockerfile.template"
 
   DOTNET_NOLOGO: 1
