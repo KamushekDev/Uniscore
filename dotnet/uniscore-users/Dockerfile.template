@@ -1,6 +1,6 @@
 ARG c=Release
 
-FROM mcr.microsoft.com/dotnet/aspnet:7.0-alpine AS base
+FROM mcr.microsoft.com/dotnet/aspnet:7.0.5-alpine3.17 AS base
 EXPOSE 80
 EXPOSE 82
 EXPOSE 84
