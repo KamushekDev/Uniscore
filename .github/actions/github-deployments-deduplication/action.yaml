@@ -1,0 +1,49 @@
+name: 'Deployments deduplication'
+description: 'Deletes duplucated deployment history items for the enviroment'
+inputs:
+  environment: 
+    description: 'Environment of the result deployment history item'
+    required: true
+  resultState:
+    description: 'State of the result deployment history item'
+    required: true
+  
+runs:
+  using: "composite"
+  steps:
+    - name: Delete Previous deployments
+      uses: actions/github-script@v6
+      with:
+        script: |
+          const deployments = await github.rest.repos.listDeployments({
+            owner: context.repo.owner,
+            repo: context.repo.repo,
+            sha: context.sha
+          });
+          await Promise.all(
+            deployments.data.map(async (deployment) => {
+              await github.rest.repos.createDeploymentStatus({ 
+                owner: context.repo.owner, 
+                repo: context.repo.repo, 
+                deployment_id: deployment.id, 
+                state: 'inactive' 
+              });
+              return github.rest.repos.deleteDeployment({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                deployment_id: deployment.id
+              });
+            })
+          );
+          const createdDeployment = await github.rest.repos.createDeployment({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                ref: context.sha,
+                environment: inputs.environment
+              };
+          await github.rest.repos.createDeploymentStatus({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                deployment_id: createdDeploymnet.id,
+                state: inputs.resultStatus
+              };
