@@ -78,13 +78,13 @@ jobs:
     steps:
       - name: Successfull deployment
         if: ${{ needs.build.result == 'success' }}
-        uses: ./.github/actions/github-deployments-deduplicationgithub-deployments-deduplication
+        uses: ./.github/actions/github-deployments-deduplication
         with:
           environment: ${{ inputs.environment }}
           resultState: 'success'
       - name: Failed deployment 
         if: ${{ needs.build.result != 'success' }}
-        uses: ./.github/actions/github-deployments-deduplicationgithub-deployments-deduplication
+        uses: ./.github/actions/github-deployments-deduplication
         with:
           environment: ${{ inputs.environment }}
           resultState: 'failure'
