@@ -40,10 +40,10 @@ runs:
                 repo: context.repo.repo,
                 ref: context.sha,
                 environment: inputs.environment
-              };
+              });
           await github.rest.repos.createDeploymentStatus({
                 owner: context.repo.owner,
                 repo: context.repo.repo,
                 deployment_id: createdDeploymnet.id,
                 state: inputs.resultStatus
-              };
+              });
