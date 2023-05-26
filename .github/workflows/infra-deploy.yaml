@@ -71,19 +71,19 @@ jobs:
         with: 
           service: ${{ matrix.service }}
 
-    deduplicate-deployments:
-      if: ${{ always() }}
-      needs: restart-services
-      steps:
-        - name: Successfull deployment
-          if: ${{ needs.build.result == 'success' }}
-          uses: ./.github/actions/deploy/github-deployments-deduplicationgithub-deployments-deduplication
-          with:
-            environment: ${{ inputs.environment }}
-            resultState: 'success'
-        - name: Failed deployment 
-          if: ${{ needs.build.result != 'success' }}
-          uses: ./.github/actions/deploy/github-deployments-deduplicationgithub-deployments-deduplication
-          with:
-            environment: ${{ inputs.environment }}
-            resultState: 'failure'
+  deduplicate-deployments:
+    if: ${{ always() }}
+    needs: restart-services
+    steps:
+      - name: Successfull deployment
+        if: ${{ needs.build.result == 'success' }}
+        uses: ./.github/actions/deploy/github-deployments-deduplicationgithub-deployments-deduplication
+        with:
+          environment: ${{ inputs.environment }}
+          resultState: 'success'
+      - name: Failed deployment 
+        if: ${{ needs.build.result != 'success' }}
+        uses: ./.github/actions/deploy/github-deployments-deduplicationgithub-deployments-deduplication
+        with:
+          environment: ${{ inputs.environment }}
+          resultState: 'failure'
