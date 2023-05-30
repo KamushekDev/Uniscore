@@ -45,5 +45,5 @@ runs:
                 owner: context.repo.owner,
                 repo: context.repo.repo,
                 deployment_id: createdDeployment.data.id,
-                state: '${{ inputs.resultStatus }}'
+                state: '${{ inputs.resultState }}'
               });
