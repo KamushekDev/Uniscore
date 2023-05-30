@@ -44,6 +44,6 @@ runs:
           await github.rest.repos.createDeploymentStatus({
                 owner: context.repo.owner,
                 repo: context.repo.repo,
-                deployment_id: createdDeploymnet.id,
+                deployment_id: createdDeployment.id,
                 state: '${{ inputs.resultStatus }}'
               });
