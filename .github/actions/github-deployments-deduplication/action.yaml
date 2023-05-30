@@ -41,6 +41,7 @@ runs:
                 ref: context.sha,
                 environment: '${{ inputs.environment }}'
               });
+          console.log("%j", createdDeployment);
           await github.rest.repos.createDeploymentStatus({
                 owner: context.repo.owner,
                 repo: context.repo.repo,
