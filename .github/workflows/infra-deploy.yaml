@@ -79,13 +79,13 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
       - name: Successfull deployment
-        if: ${{ needs.build.result == 'success' }}
+        if: ${{ needs.restart-services.result == 'success' }}
         uses: ./.github/actions/github-deployments-deduplication
         with:
           environment: ${{ inputs.environment }}
           resultState: 'success'
       - name: Failed deployment 
-        if: ${{ needs.build.result != 'success' }}
+        if: ${{ needs.restart-services.result != 'success' }}
         uses: ./.github/actions/github-deployments-deduplication
         with:
           environment: ${{ inputs.environment }}
