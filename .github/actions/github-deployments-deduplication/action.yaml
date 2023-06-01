@@ -50,5 +50,6 @@ runs:
               });
           return createdDeployment;
     - name: Log created deployment
+      shell: bash
       run: echo "${{ steps.delete-prev-deployments.outputs.result }}"
           
