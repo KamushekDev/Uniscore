@@ -47,5 +47,6 @@ runs:
                 owner: context.repo.owner,
                 repo: context.repo.repo,
                 deployment_id: createdDeployment.data.id,
-                state: '${{ inputs.resultState }}'
+                state: '${{ inputs.resultState }}',
+                description: 'Deployed by GitHub Actions on behalf of ${{ github.actor }}'
               });          
