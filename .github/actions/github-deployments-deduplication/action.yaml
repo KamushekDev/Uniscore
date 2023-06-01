@@ -49,4 +49,8 @@ runs:
                 deployment_id: createdDeployment.data.id,
                 state: '${{ inputs.resultState }}',
                 description: 'Deployed by GitHub Actions on behalf of ${{ github.actor }}'
-              });          
+              });
+          return createdDeployment;
+    - name: Log created deployment
+      shell: bash
+      run: echo "${{ steps.delete-prev-deployments.outputs.result }}" 
