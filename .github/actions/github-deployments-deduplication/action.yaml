@@ -41,16 +41,10 @@ runs:
                 repo: context.repo.repo,
                 ref: context.sha,
                 environment: '${{ inputs.environment }}',
-                description: 'Deployed by GitHub Actions on behalf of ${{ github.actor }}'
               });
           await github.rest.repos.createDeploymentStatus({
                 owner: context.repo.owner,
                 repo: context.repo.repo,
                 deployment_id: createdDeployment.data.id,
-                state: '${{ inputs.resultState }}',
-                description: 'Deployed by GitHub Actions on behalf of ${{ github.actor }}'
+                state: '${{ inputs.resultState }}'
               });
-          return createdDeployment;
-    - name: Log created deployment
-      shell: bash
-      run: echo "${{ steps.delete-prev-deployments.outputs.result }}" 
