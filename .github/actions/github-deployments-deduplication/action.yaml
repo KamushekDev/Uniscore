@@ -12,6 +12,7 @@ runs:
   using: "composite"
   steps:
     - name: Delete Previous deployments
+      id: delete-prev-deployments
       uses: actions/github-script@v6
       with:
         script: |
@@ -47,3 +48,7 @@ runs:
                 deployment_id: createdDeployment.data.id,
                 state: '${{ inputs.resultState }}'
               });
+          return createdDeployment;
+    - name: Log created deployment
+      run: echo "${{ steps.delete-prev-deployments.outputs.result }}"
+          
