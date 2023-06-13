@@ -10,6 +10,12 @@ inputs:
   name: 
     description: "Name to use"
     required: true
+  dotnet-runtime-vesion:
+    description: "Dotnet runtime version"
+    required: true
+  dotnet-sdk-vesion:
+    description: "Dotnet sdk version"
+    required: true
   registry:
     description: "Registry to use"
     required: true
@@ -26,48 +32,57 @@ outputs:
   tag:
     description: "Tag that should be used for building dockerfile"
     value: ${{ steps.tag.outputs.tag }}
-  should-build:
-    description: "Indicates whether service image should be created"
-    value: ${{ steps.check.outputs.should-build}}
 runs:
   using: "composite"
   steps:
-    - name: Check whether should build
-      id: check
+    - name: Setup runtime images dictionary
       run: |
-        if files=$(find ${{ inputs.folder }} -type f -name "*.csproj" -path "*/src/*") \
-            && grep "Microsoft.NET.Sdk.Web" $files; \
-          then echo "should-build=true" >> $GITHUB_OUTPUT; \
-          else echo "should-build=false" >> $GITHUB_OUTPUT; \
+        declare -A runtimes_images_dict
+        runtimes_images_dict[6.0.15]="6.0.15-alpine3.17",
+    - name: Get dotnet runtime image name
+    # TODO: add all target framework images
+      id: runtime-image
+      run: |
+        if [ ! -v runtimes_images_dict[${{ inputs.dotnet-runtime-vesion }}] ]; then
+          echo "Image for dotnet runtime version ${{ inputs.dotnet-runtime-vesion }} is not supported"
+          exit 1
+        else
+          echo "runtime-image=runtimes_images_dict[${{ inputs.dotnet-runtime-vesion }}]" >> $GITHUB_OUTPUT;
         fi
       shell: bash
-    - name: Get COPY lines
-      if: steps.check.outputs.should-build == 'true'
+    - name: Setup sdk images dictionary
+    # TODO: add all sdk framework images
       run: |
-        (cd ${{ inputs.folder }} \
-        && files=$(find . -type f -name "*.csproj" -o -name "*.sln") \
-        && for file in $files; do echo "COPY $file $file" >> .copy_lines; done)
+        declare -A sdk_images_dict
+        sdk_images_dict[6.0.408]="6.0.408-alpine3.17",
+    - name: Get dotnet sdk image name
+      id: sdk-image
+      run: |
+        if [ ! -v sdk_images_dict[${{ inputs.dotnet-sdk-vesion }}] ]; then
+          echo "Image for dotnet sdk version ${{ inputs.dotnet-sdk-vesion }} is not supported"
+          exit 1
+        else
+          echo "sdk-image=sdk_images_dict[${{ inputs.dotnet-sdk-vesion }}]" >> $GITHUB_OUTPUT;
+        fi
       shell: bash
     - name: Get startup dll
       id: dll
-      if: steps.check.outputs.should-build == 'true'
       run: |
         (cd ${{ inputs.folder }} \
         && sln=$(find . -type f -name "*.sln" -printf "%f") \
         && echo "startup-dll=$(echo ${sln[0]} | sed "s/sln/dll/")" >> $GITHUB_OUTPUT)
       shell: bash
     - name: Generate dockerfile from a template
-      if: steps.check.outputs.should-build == 'true'
       run: |
         mkdir ${{ inputs.folder }}/temp
         cp .github/templates/.dockerignore ${{ inputs.folder }}/temp/.dockerignore
         sed -e "s/_REPOSITORY_OWNER_NAME_/${{ inputs.repository-owner-name }}/g" \
           -e "s/_STARTUP_DLL_/${{steps.dll.outputs.startup-dll}}/g" \
-          -e "/_COPY_CSPROJS_SLN_/{r ${{ inputs.folder }}/.copy_lines" -e "d}" \
+          -e "s/_RUNTIME_IMAGE_NAME_/aspnet:${{steps.runtime-image.outputs.runtime-image}}/g" \
+          -e "s/_SDK_IMAGE_NAME_/sdk:${{steps.sdk-image.outputs.sdk-image}}/g" \
           ${{ inputs.dockerfile-template-path }} > ${{ inputs.folder }}/temp/Dockerfile
       shell: bash
     - name: Upload dockerfile to artifacts
-      if: steps.check.outputs.should-build == 'true'
       uses: actions/upload-artifact@v3
       with:
         name: dockerfile_${{ inputs.name }}
@@ -77,7 +92,6 @@ runs:
         retention-days: 7
         if-no-files-found: error
     - name: Create tag
-      if: steps.check.outputs.should-build == 'true'
       id: tag
       uses: ./.github/actions/create-tag
       with:

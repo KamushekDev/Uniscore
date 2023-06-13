@@ -1,0 +1,27 @@
+name: "Get SDK version"
+description: "Get SDK version by runtime version"
+inputs:
+  runtime-version:
+    description: "Target runtime version"
+    required: true
+outputs:
+  sdk-version:
+    description: "Supporting sdk version"
+    value: 
+runs:
+  using: "composite"
+  steps:
+    - name: Setup supported sdk versions
+    # TODO: add all sdk frameworks
+      run: |
+        declare -A sdk_dict
+        sdk_dict[6.0.15]=6.0.408
+      shell: bash
+    - name: Find appropriate runtime version
+      run: |
+        if [ ! -v sdk_dict[${{ inputs.runtime-version }}] ]; then
+          echo "Runtime version ${{ inputs.runtime-version }} is not supported"
+          exit 1
+        else
+          echo "sdk-version=sdk_dict[${{ inputs.runtime-version }}]" >> $GITHUB_OUTPUT;
+        fi

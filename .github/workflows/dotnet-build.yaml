@@ -1,0 +1,194 @@
+name: dotnet - Project Build
+on: 
+  # Consider adding yaml for ci with data needed for workflow to autoset variables
+  # This pipeline should be triggered from other build pipelines (for each project), which should be triggered by changes in concrete branches or paths)
+  workflow_call:
+    inputs:
+      project_name:
+        required: true
+        type: string
+env:
+  folder: "./dotnet/${{ inputs.project_name }}"
+  ci-file-path: folder: "./dotnet/${{ inputs.project_name }}/github.ci.yaml"
+  DOTNET_NOLOGO: 1
+  DOTNET_CLI_TELEMETRY_OPTOUT: 1
+  DOTNET_SKIP_FIRST_TIME_EXPERIENCE: 1
+
+jobs:
+  init:
+    runs-on: ubuntu-latest
+    outputs:
+      version: ${{ steps.version.outputs.version }}
+      runtime-version: ${{ steps.get-runtime.outputs.runtime-version }}
+      sdk-version: ${{ steps.get-runtime.get-sdk.sdk-version }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Generate version
+        id: version
+        uses: ./.github/actions/generate-version
+        with:
+          name: ${{ inputs.project_name }}
+      - name: Get runtime framework version
+        id: get-runtime
+        uses: ./.github/actions/dotnet/get-runtime-from-ci-file
+        with:
+        # TODO: add github.ci.yaml files in all projects
+          file-path: ${{ ci-file-path }}
+      - name: Get SDK version
+        id: get-sdk
+        uses: ./.github/actions/dotnet/get-sdk-by-runtime
+        with:
+          runtime-version: ${{ steps.get-runtime.outputs.runtime-version }}
+
+  build:
+    runs-on: ubuntu-latest
+    needs: init
+    outputs:
+      has-nuget: ${{ steps.build.outputs.has-nuget }}
+      has-service: ${{ steps.build.outputs.has-service }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Setup dotnet
+        uses: xt0rted/setup-dotnet@v1
+        with:
+          dotnet-version: ${{ needs.init.outputs.runtime-version }}
+      - name: Add source
+        uses: ./.github/actions/dotnet/add-github-source
+      # TODO: check how it works and if it is benefitial
+      # - name: Cache nuget
+      #   uses: actions/cache@v1
+      #   with:
+      #     path: ~/.nuget/packages
+      #     key: nuget-${{ runner.os }}-${{ env.folder }}-${{ hashFiles('**/*.csproj') }}
+      #     restore-keys: |
+      #       nuget-${{ runner.os }}-${{ env.folder }}-
+      #       nuget-${{ runner.os }}-
+      - name: Build
+        id: build
+        uses: ./.github/actions/dotnet/build-dotnet
+        with: 
+          folder: ${{ env.folder }}
+          name: ${{ inputs.project_name }}"
+          version: ${{ needs.init.outputs.version }}
+
+  tests:
+    runs-on: ubuntu-latest
+    needs: init
+    outputs:
+      contains-tests: ${{ steps.test-runner.outputs.contains-tests }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Setup dotnet
+        uses: xt0rted/setup-dotnet@v1
+        with:
+          dotnet-version: ${{ needs.init.outputs.runtime-version }}
+      - name: Add source
+        uses: ./.github/actions/dotnet/add-github-source
+      - name: Run tests
+        id: test-runner
+        uses: ./.github/actions/dotnet/test-dotnet
+        with:
+          folder: ${{ env.folder }}    
+          name: ${{ inputs.project_name }}
+  
+  prepare-service-builder:
+    runs-on: ubuntu-latest
+    needs: [init, build]
+    if: ${{ need.build.outputs.has-service }}
+    outputs:
+      tag: ${{ steps.build.outputs.tag }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Create dockerfile
+        id: build
+        uses: ./.github/actions/dotnet/create-dockerfile
+        with:
+          folder: ${{ env.folder }}
+          version: ${{ needs.init.outputs.version }}
+          name: ${{ inputs.project_name }}
+          dotnet-runtime-vesion: ${{ needs.init.outputs.runtime-version }}
+          dotnet-sdk-vesion: ${{ needs.init.outputs.sdk-version }}
+  
+  publish-nugets:
+    runs-on: ubuntu-latest
+    needs: [build, tests]
+    if: needs.build.outputs.has-nuget == 'true'
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Add source
+        uses: ./.github/actions/dotnet/add-github-source
+      - name: Publish nugets
+        uses: ./.github/actions/dotnet/publish-nugets
+        with:
+          folder: ${{ env.folder }}
+          name: ${{ inputs.project_name }}
+
+  upload-test-results:
+    runs-on: ubuntu-latest
+    needs: [tests]
+    if: needs.tests.outputs.contains-tests == 'true'
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Upload tests
+        uses: ./.github/actions/upload-to-codecov
+        with: 
+          folder: ${{ env.folder }}
+          codecov-token: ${{ secrets.CODECOV_TOKEN }}
+          name: ${{ inputs.project_name }} 
+
+  build-service-image:
+    runs-on: ubuntu-latest
+    needs: [prepare-service-builder, build, tests]
+    if: need.build.outputs.has-service == 'true'
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Build dockerfile
+        uses: ./.github/actions/dotnet/build-dockerfile
+        with:
+          tag: ${{ needs.prepare-service-builder.outputs.tag }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+          packages-pat: ${{ secrets.PACKAGES_PAT }}
+          folder: ${{env.folder}}
+          name: ${{inputs.project_name}}
+
+  push-git-tag:
+    runs-on: ubuntu-latest
+    needs: [init, build-service-image, publish-nugets]
+    if: |
+      always() &&
+      needs.init.result == 'success' &&
+      (needs.build-service-image.result == 'success' || needs.build-service-image.result == 'skipped')&&
+      (needs.publish-nugets.result == 'success' || needs.publish-nugets.result == 'skipped') &&
+      !(needs.build-service-image.result == 'skipped' && needs.publish-nugets.result == 'skipped')
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Push tag
+        uses: ./.github/actions/create-git-tag
+        with:
+          name: ${{inputs.project_name}}
+          version: ${{needs.init.outputs.version}}
+
+  update-badge:
+    runs-on: ubuntu-latest
+    needs: [init, push-git-tag]
+    if: |
+      always() &&
+      needs.init.result == 'success' &&
+      needs.push-git-tag.result == 'success'
+    steps:
+      - name: Update badge
+        uses: RubbaBoy/BYOB@v1.2.1
+        with:
+          NAME: ${{ inputs.project_name }}
+          LABEL: latest success version
+          STATUS: ${{ needs.init.outputs.version }}
+          COLOR: green
+          GITHUB_TOKEN: ${{ github.token }}

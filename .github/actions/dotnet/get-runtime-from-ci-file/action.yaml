@@ -1,0 +1,33 @@
+name: "Get runtime framework version"
+description: "Get target runtime framework version from project ci file"
+inputs:
+  file-path:
+    description: "CI path file"
+    required: true
+outputs:
+  runtime-version:
+    description: "Concrete runtime version"
+    value: 
+runs:
+  using: "composite"
+  steps:
+    - name: Get project target framework
+      id: parse-ci-file
+      uses: the-coding-turtle/ga-yaml-parser@v0.1.2
+      with:
+        file: ${{ inputs.file-path }}
+        key: target-framework
+    - name: Setup supported runtimes
+    # TODO: add all target frameworks
+      run: |
+        declare -A runtimes_dict
+        runtimes_dict[net6.0]=6.0.15
+      shell: bash
+    - name: Find appropriate runtime version
+      run: |
+        if [ ! -v runtimes_dict[${{ steps.parse-ci-file.outputs.result }}] ]; then
+          echo "Target framework ${{ steps.parse-ci-file.outputs.result }} is not supported"
+          exit 1
+        else
+          echo "runtime-version=runtimes_dict[${{ steps.parse-ci-file.outputs.result }}]" >> $GITHUB_OUTPUT;
+        fi
