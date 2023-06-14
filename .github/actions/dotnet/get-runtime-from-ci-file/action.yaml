@@ -20,7 +20,7 @@ runs:
     - name: Setup supported runtimes
       run: |
         declare -A runtimes_dict
-        runtimes_dict[net6.0]='6.0.18'
+        runtimes_dict[net6]='6.0.18'
         runtimes_dict[net7.0]='7.0.7'
       shell: bash
     - name: Find appropriate runtime version
