@@ -27,7 +27,7 @@ runs:
           echo "Target framework ${{ steps.parse-ci-file.outputs.result }} is not supported"
           exit 150
         else
-          echo $(runtimes_dict[${{ steps.parse-ci-file.outputs.result }}])
+          echo runtimes_dict[${{ steps.parse-ci-file.outputs.result }}]
           echo "runtime-version=$(echo runtimes_dict[${{ steps.parse-ci-file.outputs.result }}])" >> $GITHUB_OUTPUT;
         fi
       shell: bash
