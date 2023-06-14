@@ -17,14 +17,11 @@ runs:
       with:
         file: ${{ inputs.file-path }}
         key: target-framework
-    - name: Setup supported runtimes
+    - name: Find appropriate runtime version
       run: |
         declare -A runtimes_dict
         runtimes_dict[net6]='6.0.18'
         runtimes_dict[net7.0]='7.0.7'
-      shell: bash
-    - name: Find appropriate runtime version
-      run: |
         if [ ! -v runtimes_dict[${{ steps.parse-ci-file.outputs.result }}] ]; then
           echo "Target framework ${{ steps.parse-ci-file.outputs.result }} is not supported"
           exit 42
