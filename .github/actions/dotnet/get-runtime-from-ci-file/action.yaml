@@ -17,6 +17,7 @@ runs:
       with:
         file: ${{ inputs.file-path }}
         key: target-framework
+      shell: bash
     - name: Setup supported runtimes
       run: |
         declare -A runtimes_dict
@@ -31,3 +32,4 @@ runs:
         else
           echo "runtime-version=runtimes_dict[${{ steps.parse-ci-file.outputs.result }}]" >> $GITHUB_OUTPUT;
         fi
+      shell: bash
