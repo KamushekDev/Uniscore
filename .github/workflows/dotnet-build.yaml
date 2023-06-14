@@ -7,7 +7,7 @@ on:
         type: string
 env:
   folder: "./dotnet/${{ inputs.project_name }}"
-  ci-file-path: folder: "./dotnet/${{ inputs.project_name }}/github.ci.yaml"
+  ci-file-path: "./dotnet/${{ inputs.project_name }}/github.ci.yaml"
   DOTNET_NOLOGO: 1
   DOTNET_CLI_TELEMETRY_OPTOUT: 1
   DOTNET_SKIP_FIRST_TIME_EXPERIENCE: 1
