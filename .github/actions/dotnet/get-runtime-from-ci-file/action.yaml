@@ -17,7 +17,6 @@ runs:
       with:
         file: ${{ inputs.file-path }}
         key: target-framework
-      shell: bash
     - name: Setup supported runtimes
       run: |
         declare -A runtimes_dict
