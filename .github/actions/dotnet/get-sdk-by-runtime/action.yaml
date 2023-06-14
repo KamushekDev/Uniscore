@@ -11,18 +11,16 @@ outputs:
 runs:
   using: "composite"
   steps:
-    - name: Setup supported sdk versions
-      run: |
-        declare -A sdk_dict
-        sdk_dict['6.0.18']='6.0.410'
-        sdk_dict['7.0.7']='7.0.304'
-      shell: bash
     - name: Find appropriate runtime version
       run: |
-        if [ ! -v sdk_dict['${{ inputs.runtime-version }}'] ]; then
+        declare -A sdk_dict
+        sdk_dict[6.0.18]='6.0.410'
+        sdk_dict[7.0.7]='7.0.304'
+        
+        if [ ! -v sdk_dict[${{ inputs.runtime-version }}] ]; then
           echo "Runtime version ${{ inputs.runtime-version }} is not supported"
-          exit 1
+          exit 150
         else
-          echo "sdk-version=sdk_dict['${{ inputs.runtime-version }}']" >> $GITHUB_OUTPUT;
+          echo "sdk-version=sdk_dict[${{ inputs.runtime-version }}]" >> $GITHUB_OUTPUT;
         fi
       shell: bash

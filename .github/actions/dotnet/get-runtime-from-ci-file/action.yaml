@@ -22,9 +22,10 @@ runs:
         declare -A runtimes_dict
         runtimes_dict[net6.0]='6.0.18'
         runtimes_dict[net7.0]='7.0.7'
+        
         if [ ! -v runtimes_dict[${{ steps.parse-ci-file.outputs.result }}] ]; then
           echo "Target framework ${{ steps.parse-ci-file.outputs.result }} is not supported"
-          exit 42
+          exit 150
         else
           echo "runtime-version=runtimes_dict[${{ steps.parse-ci-file.outputs.result }}]" >> $GITHUB_OUTPUT;
         fi
