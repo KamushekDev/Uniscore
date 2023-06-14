@@ -20,15 +20,15 @@ runs:
     - name: Setup supported runtimes
       run: |
         declare -A runtimes_dict
-        runtimes_dict["net6.0"]='6.0.18'
-        runtimes_dict["net7.0"]='7.0.7'
+        runtimes_dict['net6.0']='6.0.18'
+        runtimes_dict['net7.0']='7.0.7'
       shell: bash
     - name: Find appropriate runtime version
       run: |
-        if [ ! -v runtimes_dict["${{ steps.parse-ci-file.outputs.result }}"] ]; then
+        if [ ! -v runtimes_dict['${{ steps.parse-ci-file.outputs.result }}'] ]; then
           echo "Target framework '${{ steps.parse-ci-file.outputs.result }}' is not supported"
-          exit 1
+          exit 42
         else
-          echo "runtime-version=runtimes_dict[\"${{ steps.parse-ci-file.outputs.result }}\"]" >> $GITHUB_OUTPUT;
+          echo "runtime-version=runtimes_dict['${{ steps.parse-ci-file.outputs.result }}']" >> $GITHUB_OUTPUT;
         fi
       shell: bash
