@@ -1,6 +1,5 @@
 name: dotnet - Project Build
 on: 
-  # This pipeline should be triggered from other build pipelines (for each project), which should be triggered by changes in concrete branches or paths)
   workflow_call:
     inputs:
       project_name:

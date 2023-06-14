@@ -1,0 +1,18 @@
+name: Uniscore.Auth build
+on:
+  push:
+    # branches:
+    #   - 'master'
+    paths:
+      - ".github/**"
+      - "!.github/workflows/**"
+      - ".github/workflows/uniscore-auth-build.yaml"
+      - "dotnet/uniscore-auth/**"
+  workflow_dispatch:
+
+jobs:
+  build-uniscore-auth:
+    uses: ./.github/workflows/dotnet-build.yaml
+    with:
+      project_name: "uniscore-auth"
+    secrets: inherit
