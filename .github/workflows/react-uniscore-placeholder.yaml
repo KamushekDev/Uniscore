@@ -1,11 +1,14 @@
 name: react - uniscore-placeholder
 on:
   push:
+    # branches:
+    #   - 'master'
     paths:
       - ".github/**"
       - "!.github/workflows/**"
       - ".github/workflows/react-uniscore-placeholder.yaml"
       - "react/placeholder/**"
+  workflow_call:
 env:
   folder: "./react/placeholder"
   name: "uniscore-placeholder"
@@ -71,6 +74,9 @@ jobs:
           context: ${{ env.folder }}
           push: true
           tags: ${{ needs.prepare-service-builder.outputs.tag }}
+          platforms: |
+            linux/arm64/v8
+            linux/amd64
           
   push-git-tag:
     runs-on: ubuntu-latest

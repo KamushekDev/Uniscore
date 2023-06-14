@@ -1,0 +1,50 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: scores
+  namespace: uniscore
+spec:
+  replicas: 1
+  revisionHistoryLimit: 3
+  selector:
+    matchLabels:
+      app: scores
+  template:
+    metadata:
+      namespace: uniscore
+      labels:
+        app: scores
+    spec:
+      imagePullSecrets:
+      - name: dockerconfigjson-github-com
+      containers:
+      - name: scores-container
+        imagePullPolicy: Always
+        image: ghcr.io/kamushekdev/uniscore-scores:latest
+        livenessProbe:
+          initialDelaySeconds: 20
+          periodSeconds: 5
+          httpGet:
+            path: /live
+            port: 80
+            scheme: HTTP
+          timeoutSeconds: 2
+          failureThreshold: 3
+          successThreshold: 1
+        readinessProbe:
+          initialDelaySeconds: 20
+          periodSeconds: 10
+          httpGet:
+            path: /health
+            port: 80
+            scheme: HTTP
+          timeoutSeconds: 2
+          failureThreshold: 3
+          successThreshold: 1
+        resources:
+          requests:
+            memory: "64Mi"
+            cpu: "150m"
+          limits:
+            memory: "128Mi"
+            cpu: "300m"

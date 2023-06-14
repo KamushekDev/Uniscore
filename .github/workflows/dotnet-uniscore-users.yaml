@@ -1,15 +1,18 @@
 name: dotnet - Uniscore.Users
 on:
   push:
+    # branches:
+    #   - 'master'
     paths:
       - ".github/**"
       - "!.github/workflows/**"
       - ".github/workflows/dotnet-uniscore-users.yaml"
       - "dotnet/uniscore-users/**"
+  workflow_call:
 env:
   folder: "./dotnet/uniscore-users"
   name: "uniscore-users"
-  dotnet_sdk_version: 7.0.102
+  dotnet_sdk_version: 7.0.302
   dockerfile-template-path: "./dotnet/uniscore-users/Dockerfile.template"
 
   DOTNET_NOLOGO: 1
@@ -66,6 +69,7 @@ jobs:
         uses: ./.github/actions/dotnet/build-dotnet
         with: 
           folder: ${{ env.folder }}
+          name: ${{ env.name }}
           version: ${{ needs.init.outputs.version }}
 
   tests:
@@ -90,7 +94,8 @@ jobs:
         id: test-runner
         uses: ./.github/actions/dotnet/test-dotnet
         with:
-          folder: ${{ env.folder }}        
+          folder: ${{ env.folder }}   
+          name: ${{ env.name }}     
 
   prepare-service-builder:
     runs-on: ubuntu-latest
@@ -121,6 +126,9 @@ jobs:
         uses: ./.github/actions/dotnet/add-github-source
       - name: Publish nugets
         uses: ./.github/actions/dotnet/publish-nugets
+        with:
+          folder: ${{ env.folder }}
+          name: ${{ env.name }}
 
   upload-test-results:
     runs-on: ubuntu-latest
@@ -132,6 +140,7 @@ jobs:
       - name: Upload tests
         uses: ./.github/actions/upload-to-codecov
         with: 
+          folder: ${{ env.folder }}
           codecov-token: ${{ secrets.CODECOV_TOKEN }}
           name: ${{ env.name }}  
 
@@ -151,6 +160,7 @@ jobs:
           password: ${{ secrets.GITHUB_TOKEN }}
           packages-pat: ${{ secrets.PACKAGES_PAT }}
           folder: ${{env.folder}}
+          name: ${{env.name}}
 
   push-git-tag:
     runs-on: ubuntu-latest

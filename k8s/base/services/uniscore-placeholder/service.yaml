@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: placeholder-service
+  namespace: uniscore
+  annotations:
+    cloud.google.com/app-protocols: '{"grpc":"HTTP2", "http": "HTTP"}'
+    service.alpha.kubernetes.io/app-protocols: '{"grpc":"HTTP2", "http": "HTTP"}'
+spec:
+  selector:
+    app: placeholder
+  ports:
+  - name: http
+    port: 80
+    targetPort: 80
+    protocol: TCP
+  type: NodePort

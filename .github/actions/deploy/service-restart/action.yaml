@@ -1,0 +1,13 @@
+name: 'Restart service'
+description: 'Restarts selected service'
+inputs:
+  service:
+    description: 'Service to be restarted'
+    required: true
+
+runs:
+  using: "composite"
+  steps:
+    - name: Restart service
+      run: kubectl rollout restart -f ./k8s/base/services/${{ inputs.service }}/deployment.yaml
+      shell: bash

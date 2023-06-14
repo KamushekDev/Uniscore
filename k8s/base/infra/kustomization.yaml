@@ -1,0 +1,32 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+resources:
+  - grpc-ingress.yaml
+  - http-ingress.yaml
+  - namespace.yaml
+  - nginx-config.yaml
+  - nginx-ingress-class.yaml
+
+secretGenerator:
+  # Внутренний самоподписанный сертификат для размещения в куберовский ингрессах
+  # Между nginx и кубером
+  - name: tls-secret
+    namespace: uniscore
+    files:
+      - tls.crt
+      - tls.key
+
+  # Настройка конфига докера, чтобы кубер мог скачивать образы
+  # {"auths":{"ghcr.io":{"auth":"<BASE64>"}}} where BASE64 is login:PersonalAccessToken in base64
+  - name: dockerconfigjson-github-com
+    namespace: uniscore
+    type: kubernetes.io/dockerconfigjson
+    files:
+      - .dockerconfigjson
+
+  # Файл adminsdk.json для работы с firebase admin sdk, который будет мапится в поды, которые с ним работают
+  - name: firebase-admin-sdk-json
+    namespace: uniscore
+    files:
+      - adminsdk.json

@@ -1,13 +1,18 @@
 ARG c=Release
 
-FROM mcr.microsoft.com/dotnet/aspnet:7.0-alpine-arm64v8 AS base
+FROM mcr.microsoft.com/dotnet/aspnet:7.0.5-alpine3.17 AS base
 EXPOSE 80
 EXPOSE 82
 EXPOSE 84
 WORKDIR /app
 
-
-FROM mcr.microsoft.com/dotnet/sdk:7.0 AS build
+# Используется 8 версия из-за того, что в 7 дотнете есть баг ебучий, который ещё не пофиксили
+# Баг заключается в том, что dotnet restore падает для arm64 при мультитаргете
+# see also:
+# https://github.com/dotnet/dotnet-docker/issues/4388#issuecomment-1470996533
+# https://github.com/NuGet/Home/issues/12227
+# https://github.com/dotnet/sdk/issues/28971
+FROM --platform=$BUILDPLATFORM mcr.microsoft.com/dotnet/sdk:7.0.302 AS build
 ARG c
 
 RUN --mount=type=secret,id=packages_pat,required=true \

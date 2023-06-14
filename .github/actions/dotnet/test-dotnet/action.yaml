@@ -4,6 +4,9 @@ inputs:
   folder:
     description: "Root folder for scanning for solutions"
     required: true
+  name:
+    description: "Project name"
+    required: true
 outputs:
   contains-tests:
     description: "Does project have runable tests"
@@ -14,17 +17,17 @@ runs:
     - name: Run all integration tests
       run: |
         solutions=$(find ${{ inputs.folder }} -type f -name "*.sln") \
-          && for solution in $solutions; do echo $solution; dotnet test $solution --collect:"XPlat Code Coverage" --results-directory ./coverage/units --filter "FullyQualifiedName!~IntegrationTests"; done
+          && for solution in $solutions; do echo $solution; dotnet test $solution --collect:"XPlat Code Coverage" --results-directory ${{ inputs.folder }}/coverage/units --filter "FullyQualifiedName!~IntegrationTests"; done
       shell: bash
     - name: Run all unit tests
       run: |
         solutions=$(find ${{ inputs.folder }} -type f -name "*.sln") \
-          && for solution in $solutions; do echo $solution; dotnet test $solution --collect:"XPlat Code Coverage" --results-directory ./coverage/integrations --filter "FullyQualifiedName~IntegrationTests"; done
+          && for solution in $solutions; do echo $solution; dotnet test $solution --collect:"XPlat Code Coverage" --results-directory ${{ inputs.folder }}/coverage/integrations --filter "FullyQualifiedName~IntegrationTests"; done
       shell: bash
     - name: Check tests
       id: check
       run: |
-        if [[ $(find ./coverage -type f | wc -l) > 0 ]]; \
+        if [[ $(find ${{ inputs.folder }}/coverage -type f | wc -l) > 0 ]]; \
           then echo "contains-tests=true" >> $GITHUB_OUTPUT; \
           else echo "contains-tests=false" >> $GITHUB_OUTPUT; \
         fi
@@ -33,6 +36,6 @@ runs:
       uses: actions/upload-artifact@v3
       if: steps.check.outputs.contains-tests == 'true'
       with:
-        name: test-results
-        path: "./coverage"
+        name: test-results_${{ inputs.name }}
+        path: "${{ inputs.folder }}/coverage"
         retention-days: 7

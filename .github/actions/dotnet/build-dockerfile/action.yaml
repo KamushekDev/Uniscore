@@ -13,6 +13,9 @@ inputs:
   folder:
     description: "Root folder for scanning for solutions"
     required: true
+  name:
+    description: "service name"
+    required: true
   username:
     description: "username to login into container registry"
     required: true
@@ -28,10 +31,12 @@ runs:
       id: download
       uses: actions/download-artifact@v3
       with:
-        name: dockerfile
+        name: dockerfile_${{inputs.name}}
         path: ${{inputs.folder}}
     - name: Save pat to file
-      run: echo ${{ inputs.packages-pat }} > ./PACKAGES_PAT
+      run: |
+        mkdir ${{ inputs.folder }}/temp
+        echo ${{ inputs.packages-pat }} > ${{ inputs.folder }}/temp/PACKAGES_PAT
       shell: bash
     - name: Log in to the Container registry
       uses: docker/login-action@f054a8b539a109f9f41c372932f1ae047eff08c9
@@ -48,4 +53,7 @@ runs:
         push: true
         tags: ${{ inputs.tag }}
         secret-files: |
-           "packages_pat=./PACKAGES_PAT"
+          "packages_pat=${{ inputs.folder }}/temp/PACKAGES_PAT"
+        platforms: |
+          linux/arm64/v8
+          linux/amd64

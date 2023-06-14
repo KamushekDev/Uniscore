@@ -1,0 +1,50 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: grpc-ingress
+  namespace: uniscore
+  annotations:
+    kubernetes.io/ingress.class: "nginx"
+    ingress.kubernetes.io/ssl-redirect: "true"
+    nginx.ingress.kubernetes.io/backend-protocol: "GRPC"
+    #cert-manager.io/issuer: "letsencrypt-staging"
+spec:
+  tls:
+  - hosts:
+    - "*.uniscore.ru"
+    secretName: tls-secret
+    # secretName: cert-manager-webhook-ca
+  rules:
+  - host: auth-grpc.uniscore.ru
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service: 
+            name: auth-service
+            port:
+              # name: grpc
+              number: 82
+  - host: scores-grpc.uniscore.ru
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service: 
+            name: scores-service
+            port:
+              # name: grpc
+              number: 82
+  - host: users-grpc.uniscore.ru
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service: 
+            name: users-service
+            port:
+              # name: grpc
+              number: 82

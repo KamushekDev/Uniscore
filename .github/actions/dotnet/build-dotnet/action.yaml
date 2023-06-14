@@ -4,6 +4,9 @@ inputs:
   folder:
     description: "Root folder for scanning for solutions"
     required: true
+  name:
+    description: "Project name"
+    required: true
   version:
     description: "Version"
     required: true
@@ -43,7 +46,7 @@ runs:
       uses: actions/upload-artifact@v3
       if: steps.check-nuget.outputs.has-nuget == 'true'
       with:
-        name: nugets
+        name: nugets_${{ inputs.name }}
         path: "${{ inputs.folder }}/**/*.nupkg"
         retention-days: 1
         if-no-files-found: error

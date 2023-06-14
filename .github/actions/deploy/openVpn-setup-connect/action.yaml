@@ -1,0 +1,39 @@
+name: 'Setup OpenVpn and connect'
+description: 'Setups OpenVpn to deploy cluster and connect to it'
+inputs:
+  openVpnConfig:
+    description: 'OpenVpn config file content'
+    required: true
+  openVpnUserName:
+    description: 'OpenVpn username'
+    required: true
+  openVpnUserPassword:
+    description: 'OpenVpn user password'
+    required: true
+  configFilesDirectory:
+    description: 'Directory for config files'
+    required: false
+    default: "configs"
+  ovpnConfigFile:
+    descritpion: 'Ovpn config file name'
+    required: false
+    default: "config.ovpn"
+runs:
+  using: "composite"
+  steps:        
+  - name: OpenVPN-ConfigFile-Download
+    run: |
+      mkdir -p ${{ inputs.configFilesDirectory }}
+      echo "${{ inputs.openVpnConfig }}" > ${{ inputs.configFilesDirectory }}/${{ inputs.ovpnConfigFile }}
+    shell: bash
+  - name: Install OpenVPN
+    run: |
+      sudo apt update
+      sudo apt install -y openvpn openvpn-systemd-resolved
+    shell: bash
+  - name: OpenVPN-Connect
+    uses: kota65535/github-openvpn-connect-action@v2.0.2
+    with:
+      config_file: ${{ inputs.configFilesDirectory }}/${{ inputs.ovpnConfigFile }}
+      username: ${{ inputs.openVpnUserName }}
+      password: ${{ inputs.openVpnUserPassword }}

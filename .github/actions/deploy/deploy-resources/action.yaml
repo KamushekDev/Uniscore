@@ -1,0 +1,26 @@
+name: 'Deploy resources'
+description: 'Deploys resources from provided kustomization.yaml file to chosen environment'
+inputs:
+  environment:
+    description: 'Environment to be deployed'
+    required: true
+  resourceTypeLabel:
+    description: 'Label of the resource type to be deployed'
+    required: false
+  resourceLabel:
+    description: 'Label of the resource to be deployed'
+    required: false
+runs:
+  using: "composite"
+  steps:
+  - name: Deploy resource
+    run: |
+      command='kubectl apply -k ./k8s/overlays/${{ inputs.environment }}'
+      if [ ${{ inputs.resourceTypeLabel }} != '' ]; then
+        command+=' -l resourceType=${{inputs.resourceTypeLabel}}'
+      fi
+      if [ ${{ inputs.resourceLabel }} != '' ]; then
+        command+=' -l resource=${{inputs.resourceLabel}}'
+      fi
+      eval $command
+    shell: bash

@@ -1,0 +1,16 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+resources:
+- clusterRole.yaml
+- config-map.yaml
+- daemonset.yaml
+- grafana-datasource-config.yaml
+- grafana-deployment.yaml
+- grafana-pvc.yaml
+- grafana-service.yaml
+- http-ingress.yaml
+- namespace.yaml
+- prom-deployment.yaml
+- prom-pvc.yaml
+- prom-service.yaml
