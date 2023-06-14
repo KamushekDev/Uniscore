@@ -12,7 +12,6 @@ on:
       - ".github/workflows/dotnet-build.yaml"
       - "dotnet/uniscore-auth/**"
 
-
 jobs:
   build-uniscore-auth:
     uses: ./.github/workflows/dotnet-build.yaml

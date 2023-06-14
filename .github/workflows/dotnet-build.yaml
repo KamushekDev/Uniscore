@@ -31,7 +31,7 @@ jobs:
         id: get-runtime
         uses: ./.github/actions/dotnet/get-runtime-from-ci-file
         with:
-          file-path: ${{ inputs.ci-file-path }}
+          file-path: ${{ env.ci-file-path }}
       - name: Get SDK version
         id: get-sdk
         uses: ./.github/actions/dotnet/get-sdk-by-runtime
