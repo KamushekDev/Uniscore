@@ -1,6 +1,5 @@
 name: dotnet - Project Build
 on: 
-  # Consider adding yaml for ci with data needed for workflow to autoset variables
   # This pipeline should be triggered from other build pipelines (for each project), which should be triggered by changes in concrete branches or paths)
   workflow_call:
     inputs:
@@ -33,7 +32,6 @@ jobs:
         id: get-runtime
         uses: ./.github/actions/dotnet/get-runtime-from-ci-file
         with:
-        # TODO: add github.ci.yaml files in all projects
           file-path: ${{ ci-file-path }}
       - name: Get SDK version
         id: get-sdk
