@@ -9,6 +9,7 @@ on:
       - ".github/**"
       - "!.github/workflows/**"
       - ".github/workflows/uniscore-auth-build.yaml"
+      - ".github/workflows/dotnet-build.yaml"
       - "dotnet/uniscore-auth/**"
 
 jobs:
