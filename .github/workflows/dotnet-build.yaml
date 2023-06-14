@@ -32,6 +32,9 @@ jobs:
         uses: ./.github/actions/dotnet/get-runtime-from-ci-file
         with:
           file-path: ${{ env.ci-file-path }}
+      - name: logger
+        run: echo ${{ steps.get-runtime.outputs.runtime-version }}
+        shell: bash
       - name: Get SDK version
         id: get-sdk
         uses: ./.github/actions/dotnet/get-sdk-by-runtime
