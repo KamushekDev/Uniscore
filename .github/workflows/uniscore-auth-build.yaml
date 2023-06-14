@@ -1,5 +1,7 @@
 name: Uniscore.Auth build
 on:
+  workflow_dispatch:
+
   push:
     # branches:
     #   - 'master'
@@ -8,7 +10,6 @@ on:
       - "!.github/workflows/**"
       - ".github/workflows/uniscore-auth-build.yaml"
       - "dotnet/uniscore-auth/**"
-  workflow_dispatch:
 
 jobs:
   build-uniscore-auth:
