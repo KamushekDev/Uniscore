@@ -70,7 +70,7 @@ jobs:
         uses: ./.github/actions/dotnet/build-dotnet
         with: 
           folder: ${{ env.folder }}
-          name: ${{ inputs.project_name }}"
+          name: ${{ inputs.project_name }}
           version: ${{ needs.init.outputs.version }}
 
   tests:
