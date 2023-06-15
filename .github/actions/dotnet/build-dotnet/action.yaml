@@ -18,9 +18,9 @@ outputs:
   has-nuget: 
     description: "Indicates whether project contains nuget packages or not"
     value: ${{ steps.check-nuget.outputs.has-nuget }}
-  has-services: 
+  has-service: 
     description: "Indicates whether solution contains any project"
-    value: ${{ steps.check-executable.outputs.has-services }}
+    value: ${{ steps.check-executable.outputs.has-service }}
 runs:
   using: "composite"
   steps:
@@ -34,8 +34,8 @@ runs:
       run: |
         if files=$(find ${{ inputs.folder }} -type f -name "*.csproj" -path "*/src/*") \
             && grep "Microsoft.NET.Sdk.Web" $files; \
-          then echo "has-services=true" >> $GITHUB_OUTPUT; \
-          else echo "has-services=false" >> $GITHUB_OUTPUT; \
+          then echo "has-service=true" >> $GITHUB_OUTPUT; \
+          else echo "has-service=false" >> $GITHUB_OUTPUT; \
         fi
       shell: bash
     - name: Check nuget packages
