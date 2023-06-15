@@ -84,7 +84,7 @@ jobs:
       - name: Setup dotnet
         uses: xt0rted/setup-dotnet@v1
         with:
-          dotnet-version: ${{ needs.init.outputs.runtime-version }}
+          dotnet-version: ${{ needs.init.outputs.sdk-version }}
       - name: Add source
         uses: ./.github/actions/dotnet/add-github-source
       - name: Run tests
