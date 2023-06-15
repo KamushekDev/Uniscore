@@ -22,6 +22,6 @@ runs:
           echo "Runtime version ${{ inputs.runtime-version }} is not supported"
           exit 150
         else
-          echo "sdk-version=sdk_dict[${{ inputs.runtime-version }}]" >> $GITHUB_OUTPUT;
+          echo "sdk-version=$(echo ${sdk_dict[${{ inputs.runtime-version }}]})" >> $GITHUB_OUTPUT;
         fi
       shell: bash
