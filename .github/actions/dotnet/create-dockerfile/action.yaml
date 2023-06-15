@@ -46,7 +46,7 @@ runs:
           echo "Image for dotnet runtime version ${{ inputs.dotnet-runtime-version }} is not supported"
           exit 1
         else
-          echo "runtime-image=runtimes_images_dict[${{ inputs.dotnet-runtime-version }}]" >> $GITHUB_OUTPUT;
+          echo "runtime-image=$(echo ${runtimes_images_dict[${{ inputs.dotnet-runtime-version }}]})" >> $GITHUB_OUTPUT;
         fi
       shell: bash
     - name: Get dotnet sdk image name
@@ -60,7 +60,7 @@ runs:
           echo "Image for dotnet sdk version ${{ inputs.dotnet-sdk-version }} is not supported"
           exit 1
         else
-          echo "sdk-image=sdk_images_dict[${{ inputs.dotnet-sdk-version }}]" >> $GITHUB_OUTPUT;
+          echo "sdk-image=$(echo ${sdk_images_dict[${{ inputs.dotnet-sdk-version }}]})" >> $GITHUB_OUTPUT;
         fi
       shell: bash
     - name: Get startup dll
