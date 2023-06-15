@@ -18,7 +18,7 @@ jobs:
     outputs:
       version: ${{ steps.version.outputs.version }}
       runtime-version: ${{ steps.get-runtime.outputs.runtime-version }}
-      sdk-version: ${{ steps.get-runtime.get-sdk.sdk-version }}
+      sdk-version: ${{ steps.get-sdk.outputs.sdk-version }}
     steps:
       - name: Checkout
         uses: actions/checkout@v3
