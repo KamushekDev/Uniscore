@@ -7,16 +7,17 @@ inputs:
 outputs:
   sdk-version:
     description: "Supporting sdk version"
-    value: 
+    value: ${{ steps.get-sdk.outputs.sdk-version }}
 runs:
   using: "composite"
   steps:
     - name: Find appropriate runtime version
+      id: get-sdk
       run: |
         declare -A sdk_dict
         sdk_dict[6.0.18]='6.0.410'
         sdk_dict[7.0.7]='7.0.304'
-        
+
         if [ ! -v sdk_dict[${{ inputs.runtime-version }}] ]; then
           echo "Runtime version ${{ inputs.runtime-version }} is not supported"
           exit 150
