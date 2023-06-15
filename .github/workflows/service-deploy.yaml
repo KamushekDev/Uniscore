@@ -22,15 +22,15 @@ on:
 jobs:
   deploy-uniscore-auth:
     if: inputs.service == 'uniscore-auth'
-    uses: ./.github/workflows/dotnet-uniscore-auth.yaml
+    uses: ./.github/workflows/uniscore-auth.yaml
     secrets: inherit
   deploy-uniscore-scores:
     if: inputs.service == 'uniscore-scores'
-    uses: ./.github/workflows/dotnet-uniscore-scores.yaml
+    uses: ./.github/workflows/uniscore-scores.yaml
     secrets: inherit
   deploy-uniscore-users:
     if: inputs.service == 'uniscore-users'
-    uses: ./.github/workflows/dotnet-uniscore-users.yaml
+    uses: ./.github/workflows/uniscore-users.yaml
     secrets: inherit
   deploy-uniscore-placeholder:
     if: inputs.service == 'uniscore-placeholder'
