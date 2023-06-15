@@ -1,4 +1,4 @@
-name: Uniscore.Auth build
+name: Uniscore.Users
 on:
   workflow_dispatch:
 
@@ -8,13 +8,13 @@ on:
     paths:
       - ".github/**"
       - "!.github/workflows/**"
-      - ".github/workflows/uniscore-auth-build.yaml"
+      - ".github/workflows/uniscore-users.yaml"
       - ".github/workflows/dotnet-build.yaml"
-      - "dotnet/uniscore-auth/**"
+      - "dotnet/uniscore-users/**"
 
 jobs:
   build-uniscore-auth:
-    uses: ./.github/workflows/dotnet-build.yaml
+    uses: ./.github/workflows/dotnet.yaml
     with:
-      project_name: "uniscore-auth"
+      project_name: "uniscore-users"
     secrets: inherit

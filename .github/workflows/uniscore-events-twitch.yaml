@@ -1,0 +1,20 @@
+name: Uniscore.Event.Twitch
+on:
+  workflow_dispatch:
+
+  push:
+    # branches:
+    #   - 'master'
+    paths:
+      - ".github/**"
+      - "!.github/workflows/**"
+      - ".github/workflows/uniscore-events-twitch.yaml"
+      - ".github/workflows/dotnet.yaml"
+      - "dotnet/uniscore-events-twitch/**"
+
+jobs:
+  build-uniscore-auth:
+    uses: ./.github/workflows/dotnet.yaml
+    with:
+      project_name: "uniscore-events-twitch"
+    secrets: inherit

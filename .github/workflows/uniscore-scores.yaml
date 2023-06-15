@@ -1,0 +1,20 @@
+name: Uniscore.Scores
+on:
+  workflow_dispatch:
+
+  push:
+    # branches:
+    #   - 'master'
+    paths:
+      - ".github/**"
+      - "!.github/workflows/**"
+      - ".github/workflows/uniscore-scores.yaml"
+      - ".github/workflows/dotnet.yaml"
+      - "dotnet/uniscore-scores/**"
+
+jobs:
+  build-uniscore-auth:
+    uses: ./.github/workflows/dotnet.yaml
+    with:
+      project_name: "uniscore-scores"
+    secrets: inherit
