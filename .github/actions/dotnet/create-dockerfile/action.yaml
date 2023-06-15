@@ -10,10 +10,10 @@ inputs:
   name: 
     description: "Name to use"
     required: true
-  dotnet-runtime-vesion:
+  dotnet-runtime-version:
     description: "Dotnet runtime version"
     required: true
-  dotnet-sdk-vesion:
+  dotnet-sdk-version:
     description: "Dotnet sdk version"
     required: true
   registry:
@@ -39,28 +39,28 @@ runs:
       id: runtime-image
       run: |
         declare -A runtimes_images_dict
-        runtimes_images_dict['6.0.18']="6.0.9-alpine3.16"
-        runtimes_images_dict['6.0.18']="7.0.3-alpine3.17"
+        runtimes_images_dict[6.0.18]='6.0.9-alpine3.16'
+        runtimes_images_dict[6.0.18]='7.0.3-alpine3.17'
 
-        if [ ! -v runtimes_images_dict['${{ inputs.dotnet-runtime-vesion }}'] ]; then
-          echo "Image for dotnet runtime version '${{ inputs.dotnet-runtime-vesion }}' is not supported"
+        if [ ! -v runtimes_images_dict[${{ inputs.dotnet-runtime-version }}] ]; then
+          echo "Image for dotnet runtime version ${{ inputs.dotnet-runtime-version }} is not supported"
           exit 1
         else
-          echo "runtime-image=runtimes_images_dict['${{ inputs.dotnet-runtime-vesion }}']" >> $GITHUB_OUTPUT;
+          echo "runtime-image=runtimes_images_dict[${{ inputs.dotnet-runtime-version }}]" >> $GITHUB_OUTPUT;
         fi
       shell: bash
     - name: Get dotnet sdk image name
       id: sdk-image
       run: |
         declare -A sdk_images_dict
-        sdk_images_dict[6.0.410]="6.0.408"
-        sdk_images_dict[7.0.304]="7.0.302"
-        
-        if [ ! -v sdk_images_dict['${{ inputs.dotnet-sdk-vesion }}'] ]; then
-          echo "Image for dotnet sdk version '${{ inputs.dotnet-sdk-vesion }}' is not supported"
+        sdk_images_dict[6.0.410]='6.0.408'
+        sdk_images_dict[7.0.304]='7.0.302'
+
+        if [ ! -v sdk_images_dict[${{ inputs.dotnet-sdk-version }}] ]; then
+          echo "Image for dotnet sdk version ${{ inputs.dotnet-sdk-version }} is not supported"
           exit 1
         else
-          echo "sdk-image=sdk_images_dict['${{ inputs.dotnet-sdk-vesion }}']" >> $GITHUB_OUTPUT;
+          echo "sdk-image=sdk_images_dict[${{ inputs.dotnet-sdk-version }}]" >> $GITHUB_OUTPUT;
         fi
       shell: bash
     - name: Get startup dll

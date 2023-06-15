@@ -110,8 +110,8 @@ jobs:
           folder: ${{ env.folder }}
           version: ${{ needs.init.outputs.version }}
           name: ${{ inputs.project_name }}
-          dotnet-runtime-vesion: ${{ needs.init.outputs.runtime-version }}
-          dotnet-sdk-vesion: ${{ needs.init.outputs.sdk-version }}
+          dotnet-runtime-version: ${{ needs.init.outputs.runtime-version }}
+          dotnet-sdk-version: ${{ needs.init.outputs.sdk-version }}
   
   publish-nugets:
     runs-on: ubuntu-latest
