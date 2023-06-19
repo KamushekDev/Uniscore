@@ -15,8 +15,6 @@ RUN --mount=type=secret,id=packages_pat,required=true \
 WORKDIR /source
 COPY . .
 
-RUN dotnet restore
-
 FROM build AS publish
 ARG c
 RUN dotnet publish -c $c -o /app/publish

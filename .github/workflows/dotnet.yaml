@@ -32,9 +32,6 @@ jobs:
         uses: ./.github/actions/dotnet/get-runtime-from-ci-file
         with:
           file-path: ${{ env.ci-file-path }}
-      - name: logger
-        run: echo ${{ steps.get-runtime.outputs.runtime-version }}
-        shell: bash
       - name: Get SDK version
         id: get-sdk
         uses: ./.github/actions/dotnet/get-sdk-by-runtime
@@ -56,15 +53,6 @@ jobs:
           dotnet-version: ${{ needs.init.outputs.sdk-version }}
       - name: Add source
         uses: ./.github/actions/dotnet/add-github-source
-      # TODO: check how it works and if it is benefitial
-      # - name: Cache nuget
-      #   uses: actions/cache@v1
-      #   with:
-      #     path: ~/.nuget/packages
-      #     key: nuget-${{ runner.os }}-${{ env.folder }}-${{ hashFiles('**/*.csproj') }}
-      #     restore-keys: |
-      #       nuget-${{ runner.os }}-${{ env.folder }}-
-      #       nuget-${{ runner.os }}-
       - name: Build
         id: build
         uses: ./.github/actions/dotnet/build-dotnet
@@ -97,7 +85,7 @@ jobs:
   prepare-service-builder:
     runs-on: ubuntu-latest
     needs: [init, build]
-    if: ${{ needs.build.outputs.has-service }}
+    if: needs.build.outputs.has-service == 'true'
     outputs:
       tag: ${{ steps.build.outputs.tag }}
     steps:

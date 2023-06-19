@@ -1,4 +1,4 @@
-name: Uniscore.Auth
+name: Dotnet Uniscore.Auth
 on:
   workflow_dispatch:
 
@@ -13,7 +13,7 @@ on:
       - "dotnet/uniscore-auth/**"
 
 jobs:
-  build-uniscore-auth:
+  build-project:
     uses: ./.github/workflows/dotnet.yaml
     with:
       project_name: "uniscore-auth"
