@@ -183,4 +183,3 @@ jobs:
           STATUS: ${{ needs.init.outputs.version }}
           COLOR: green
           GITHUB_TOKEN: ${{ github.token }}
-          
