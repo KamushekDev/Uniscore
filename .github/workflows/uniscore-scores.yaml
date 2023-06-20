@@ -1,4 +1,4 @@
-name: Dotnet Uniscore.Scores
+name: dotnet - Uniscore.Scores
 on:
   workflow_dispatch:
 

@@ -1,4 +1,4 @@
-name: Dotnet Uniscore.Users
+name: dotnet - Uniscore.Users
 on:
   workflow_dispatch:
 

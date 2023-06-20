@@ -1,4 +1,4 @@
-name: Dotnet Uniscore.Event.Twitch
+name: dotnet - Uniscore.Event.Twitch
 on:
   workflow_dispatch:
 

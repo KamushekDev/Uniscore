@@ -1,4 +1,4 @@
-name: Dotnet Uniscore.Auth
+name: dotnet - Uniscore.Auth
 on:
   workflow_dispatch:
 

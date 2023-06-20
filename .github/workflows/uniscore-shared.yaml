@@ -1,4 +1,4 @@
-name: Dotnet Uniscore.Shared
+name: dotnet - Uniscore.Shared
 on:
   workflow_dispatch:
 

@@ -1,4 +1,4 @@
-name: Dotnet Uniscore.Bff.Mobile
+name: dotnet - Uniscore.Bff.Mobile
 on:
   workflow_dispatch:
 
