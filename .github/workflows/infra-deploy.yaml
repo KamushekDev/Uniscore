@@ -10,7 +10,21 @@ on:
         - staging
         - production
 jobs:
+  rebuild-dotnet-services:
+    strategy:
+      matrix:
+        service: ['uniscore-auth', 'uniscore-scores', 'uniscore-users']
+    uses: ./.github/workflows/dotnet.yaml
+    with:
+      project_name: ${{ matrix.service }}
+    secrets: inherit
+
+  rebuild-uniscore-placeholder:
+    uses: ./.github/workflows/react-uniscore-placeholder.yaml
+    secrets: inherit
+
   deploy-infa:
+    needs: [rebuild-dotnet-services, rebuild-uniscore-placeholder]
     runs-on: ubuntu-latest
     env:
       ConfigFileDir: "configs"
