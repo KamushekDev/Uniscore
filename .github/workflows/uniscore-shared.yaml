@@ -1,6 +1,6 @@
 name: dotnet - Uniscore.Shared
 on:
-  workflow_dispatch:
+  workflow_call:
 
   push:
     # branches:
