@@ -24,6 +24,7 @@ jobs:
     secrets: inherit
 
   deploy-infa:
+    needs: [rebuild-dotnet-services, rebuild-uniscore-placeholder]
     runs-on: ubuntu-latest
     env:
       ConfigFileDir: "configs"
