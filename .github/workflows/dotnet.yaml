@@ -21,6 +21,9 @@ jobs:
       runtime-version: ${{ steps.get-runtime.outputs.runtime-version }}
       sdk-version: ${{ steps.get-sdk.outputs.sdk-version }}
     steps:
+      - name: Log concurrency
+        run: echo > ${{ inputs.project_name }}-${{ github.ref }}
+        shell: bash
       - name: Checkout
         uses: actions/checkout@v3
       - name: Generate version
