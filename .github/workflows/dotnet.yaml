@@ -5,7 +5,9 @@ on:
       project_name:
         required: true
         type: string
-concurrency: ${{ inputs.project_name }}-${{ github.ref }}
+concurrency: 
+  group: ${{ inputs.project_name }}-${{ github.ref }}
+  cancel-in-progress: true
 env:
   folder: "./dotnet/${{ inputs.project_name }}"
   ci-file-path: "./dotnet/${{ inputs.project_name }}/github.ci.yaml"
@@ -22,7 +24,7 @@ jobs:
       sdk-version: ${{ steps.get-sdk.outputs.sdk-version }}
     steps:
       - name: Log concurrency
-        run: echo > ${{ inputs.project_name }}-${{ github.ref }}
+        run: echo ${{ inputs.project_name }}-${{ github.ref }}
         shell: bash
       - name: Checkout
         uses: actions/checkout@v3
