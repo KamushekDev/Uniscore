@@ -5,6 +5,7 @@ on:
       project_name:
         required: true
         type: string
+concurrency: ${{ inputs.project_name }}-${{ github.ref }}
 env:
   folder: "./dotnet/${{ inputs.project_name }}"
   ci-file-path: "./dotnet/${{ inputs.project_name }}/github.ci.yaml"
