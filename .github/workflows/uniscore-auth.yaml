@@ -1,0 +1,23 @@
+name: dotnet - Uniscore.Auth
+on:
+  workflow_dispatch:
+
+  push:
+    # branches:
+    #   - 'master'
+    paths:
+      - ".github/**"
+      - "!.github/workflows/**"
+      - ".github/workflows/uniscore-auth.yaml"
+      - ".github/workflows/dotnet.yaml"
+      - "dotnet/uniscore-auth/**"
+
+jobs:
+  build-project:
+    uses: ./.github/workflows/dotnet.yaml
+    with:
+      project_name: "uniscore-auth"
+    secrets: inherit
+    concurrency:
+      group: ${{ github.workflow }}
+      cancel-in-progress: true

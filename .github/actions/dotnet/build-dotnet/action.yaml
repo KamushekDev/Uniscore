@@ -18,6 +18,9 @@ outputs:
   has-nuget: 
     description: "Indicates whether project contains nuget packages or not"
     value: ${{ steps.check-nuget.outputs.has-nuget }}
+  has-service: 
+    description: "Indicates whether solution contains any project"
+    value: ${{ steps.check-executable.outputs.has-service }}
 runs:
   using: "composite"
   steps:
@@ -27,11 +30,12 @@ runs:
         && for solution in $solutions; do echo $solution; dotnet publish -c Release /p:Version=${{ inputs.version }} /p:RepositoryUrl=${{ inputs.repository-url }} $solution; done
       shell: bash
     - name: Find all nuget packages
+      id: check-executable
       run: |
         if files=$(find ${{ inputs.folder }} -type f -name "*.csproj" -path "*/src/*") \
             && grep "Microsoft.NET.Sdk.Web" $files; \
-          then echo "should-build=true" >> $GITHUB_OUTPUT; \
-          else echo "should-build=false" >> $GITHUB_OUTPUT; \
+          then echo "has-service=true" >> $GITHUB_OUTPUT; \
+          else echo "has-service=false" >> $GITHUB_OUTPUT; \
         fi
       shell: bash
     - name: Check nuget packages

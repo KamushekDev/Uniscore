@@ -1,69 +1,64 @@
-name: dotnet - Uniscore.Scores
-on:
-  push:
-    # branches:
-    #   - 'master'
-    paths:
-      - ".github/**"
-      - "!.github/workflows/**"
-      - ".github/workflows/dotnet-uniscore-scores.yaml"
-      - "dotnet/uniscore-scores/**"
+name: dotnet - Project Build
+on: 
   workflow_call:
+    inputs:
+      project_name:
+        required: true
+        type: string
 env:
-  folder: "./dotnet/uniscore-scores"
-  name: "uniscore-scores"
+  folder: "./dotnet/${{ inputs.project_name }}"
+  ci-file-path: "./dotnet/${{ inputs.project_name }}/github.ci.yaml"
   DOTNET_NOLOGO: 1
   DOTNET_CLI_TELEMETRY_OPTOUT: 1
   DOTNET_SKIP_FIRST_TIME_EXPERIENCE: 1
-
 
 jobs:
   init:
     runs-on: ubuntu-latest
     outputs:
       version: ${{ steps.version.outputs.version }}
+      runtime-version: ${{ steps.get-runtime.outputs.runtime-version }}
+      sdk-version: ${{ steps.get-sdk.outputs.sdk-version }}
     steps:
-      - name: Cancel Previous Runs
-        uses: styfle/cancel-workflow-action@0.9.1
-        with:
-          access_token: ${{ github.token }}
       - name: Checkout
         uses: actions/checkout@v3
       - name: Generate version
         id: version
         uses: ./.github/actions/generate-version
         with:
-          name: ${{ env.name }}
+          name: ${{ inputs.project_name }}
+      - name: Get runtime framework version
+        id: get-runtime
+        uses: ./.github/actions/dotnet/get-runtime-from-ci-file
+        with:
+          file-path: ${{ env.ci-file-path }}
+      - name: Get SDK version
+        id: get-sdk
+        uses: ./.github/actions/dotnet/get-sdk-by-runtime
+        with:
+          runtime-version: ${{ steps.get-runtime.outputs.runtime-version }}
 
   build:
     runs-on: ubuntu-latest
     needs: init
     outputs:
       has-nuget: ${{ steps.build.outputs.has-nuget }}
+      has-service: ${{ steps.build.outputs.has-service }}
     steps:
       - name: Checkout
         uses: actions/checkout@v3
       - name: Setup dotnet
         uses: xt0rted/setup-dotnet@v1
         with:
-          dotnet-version: |
-            6.0.303
+          dotnet-version: ${{ needs.init.outputs.sdk-version }}
       - name: Add source
         uses: ./.github/actions/dotnet/add-github-source
-      - name: Cache nuget
-        uses: actions/cache@v1
-        with:
-          path: ~/.nuget/packages
-          key: nuget-${{ runner.os }}-${{ env.folder }}-${{ hashFiles('**/*.csproj') }}
-          restore-keys: |
-            nuget-${{ runner.os }}-${{ env.folder }}-
-            nuget-${{ runner.os }}-
       - name: Build
         id: build
         uses: ./.github/actions/dotnet/build-dotnet
         with: 
           folder: ${{ env.folder }}
-          name: ${{ env.name }}
+          name: ${{ inputs.project_name }}
           version: ${{ needs.init.outputs.version }}
 
   tests:
@@ -77,8 +72,7 @@ jobs:
       - name: Setup dotnet
         uses: xt0rted/setup-dotnet@v1
         with:
-          dotnet-version: |
-            6.0.303
+          dotnet-version: ${{ needs.init.outputs.sdk-version }}
       - name: Add source
         uses: ./.github/actions/dotnet/add-github-source
       - name: Run tests
@@ -86,14 +80,14 @@ jobs:
         uses: ./.github/actions/dotnet/test-dotnet
         with:
           folder: ${{ env.folder }}    
-          name: ${{ env.name }}    
-
+          name: ${{ inputs.project_name }}
+  
   prepare-service-builder:
     runs-on: ubuntu-latest
-    needs: init
+    needs: [init, build]
+    if: needs.build.outputs.has-service == 'true'
     outputs:
       tag: ${{ steps.build.outputs.tag }}
-      should-build: ${{ steps.build.outputs.should-build }}
     steps:
       - name: Checkout
         uses: actions/checkout@v3
@@ -103,8 +97,10 @@ jobs:
         with:
           folder: ${{ env.folder }}
           version: ${{ needs.init.outputs.version }}
-          name: ${{ env.name }}
-
+          name: ${{ inputs.project_name }}
+          dotnet-runtime-version: ${{ needs.init.outputs.runtime-version }}
+          dotnet-sdk-version: ${{ needs.init.outputs.sdk-version }}
+  
   publish-nugets:
     runs-on: ubuntu-latest
     needs: [build, tests]
@@ -118,7 +114,7 @@ jobs:
         uses: ./.github/actions/dotnet/publish-nugets
         with:
           folder: ${{ env.folder }}
-          name: ${{ env.name }}
+          name: ${{ inputs.project_name }}
 
   upload-test-results:
     runs-on: ubuntu-latest
@@ -132,15 +128,13 @@ jobs:
         with: 
           folder: ${{ env.folder }}
           codecov-token: ${{ secrets.CODECOV_TOKEN }}
-          name: ${{ env.name }}  
+          name: ${{ inputs.project_name }} 
 
   build-service-image:
     runs-on: ubuntu-latest
-    needs: [prepare-service-builder, tests]
-    if: needs.prepare-service-builder.outputs.should-build == 'true'
+    needs: [prepare-service-builder, build, tests]
+    if: needs.build.outputs.has-service == 'true'
     steps:
-      - name: Test
-        run: echo ${{needs.prepare-service-builder.outputs.should-build}}
       - name: Checkout
         uses: actions/checkout@v3
       - name: Build dockerfile
@@ -150,7 +144,7 @@ jobs:
           password: ${{ secrets.GITHUB_TOKEN }}
           packages-pat: ${{ secrets.PACKAGES_PAT }}
           folder: ${{env.folder}}
-          name: ${{env.name}}
+          name: ${{inputs.project_name}}
 
   push-git-tag:
     runs-on: ubuntu-latest
@@ -167,9 +161,9 @@ jobs:
       - name: Push tag
         uses: ./.github/actions/create-git-tag
         with:
-          name: ${{env.name}}
+          name: ${{inputs.project_name}}
           version: ${{needs.init.outputs.version}}
-            
+
   update-badge:
     runs-on: ubuntu-latest
     needs: [init, push-git-tag]
@@ -181,7 +175,7 @@ jobs:
       - name: Update badge
         uses: RubbaBoy/BYOB@v1.2.1
         with:
-          NAME: ${{ env.name }}
+          NAME: ${{ inputs.project_name }}
           LABEL: latest success version
           STATUS: ${{ needs.init.outputs.version }}
           COLOR: green
