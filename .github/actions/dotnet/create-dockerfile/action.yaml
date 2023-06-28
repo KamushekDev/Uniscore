@@ -70,13 +70,6 @@ runs:
         && sln=$(find . -type f -name "*.sln" -printf "%f") \
         && echo "startup-dll=$(echo ${sln[0]} | sed "s/sln/dll/")" >> $GITHUB_OUTPUT)
       shell: bash
-    - name: Generate service info file
-      run: |
-        echo "---\n branch-name: ${{ github.ref_name }}\n version: ${{ inputs.version }}" > serviceinfo.yaml
-      shell: bash
-    - name: Log file
-      run: cat serviceinfo.yaml
-      shell: bash
     - name: Generate dockerfile from a template
       run: |
         mkdir ${{ inputs.folder }}/temp
