@@ -25,4 +25,5 @@ LABEL org.opencontainers.image.source="https://github.com/_REPOSITORY_OWNER_NAME
 ENV DOTNET_HOSTBUILDER__RELOADCONFIGONCHANGE=false
 WORKDIR /app
 COPY --from=publish /app/publish .
+COPY serviceinfo.yaml .
 ENTRYPOINT dotnet _STARTUP_DLL_
