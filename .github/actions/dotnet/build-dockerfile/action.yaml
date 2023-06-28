@@ -16,6 +16,9 @@ inputs:
   name:
     description: "service name"
     required: true
+  version:
+    description: "Service version"
+    required: true
   username:
     description: "username to login into container registry"
     required: true
@@ -40,10 +43,13 @@ runs:
       shell: bash
     - name: Generate service info file
       run: |
-        echo "---\n branch-name: ${{ github.ref_name }}\n version: ${{ inputs.version }}" > serviceinfo.yaml
+        echo "---\n branch-name: ${{ github.ref_name }}\n version: ${{ inputs.version }}" > ${{ inputs.folder }}/serviceinfo.yaml
       shell: bash
     - name: Log file
-      run: cat serviceinfo.yaml
+      run: |
+        cd ${{ inputs.folder }}
+        pwd
+        cat ${{ inputs.folder }}/serviceinfo.yaml
       shell: bash
     - name: Log in to the Container registry
       uses: docker/login-action@f054a8b539a109f9f41c372932f1ae047eff08c9

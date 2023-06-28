@@ -135,7 +135,7 @@ jobs:
 
   build-service-image:
     runs-on: ubuntu-latest
-    needs: [prepare-service-builder, build, tests]
+    needs: [init, prepare-service-builder, build, tests]
     if: needs.build.outputs.has-service == 'true'
     steps:
       - name: Checkout
@@ -148,6 +148,7 @@ jobs:
           packages-pat: ${{ secrets.PACKAGES_PAT }}
           folder: ${{env.folder}}
           name: ${{inputs.project_name}}
+          version: ${{ needs.init.outputs.version }}
 
   push-git-tag:
     runs-on: ubuntu-latest
