@@ -16,9 +16,6 @@ inputs:
   name:
     description: "service name"
     required: true
-  version:
-    description: "Service version"
-    required: true
   username:
     description: "username to login into container registry"
     required: true
@@ -31,24 +28,19 @@ runs:
   using: "composite"
   steps:
     - name: Download dockerfile
-      id: download
       uses: actions/download-artifact@v3
       with:
         name: dockerfile_${{inputs.name}}
+        path: ${{inputs.folder}}
+    - name: Download git info file
+      uses: actions/download-artifact@v3
+      with:
+        name: git-info.yaml_${{ inputs.name }}
         path: ${{inputs.folder}}
     - name: Save pat to file
       run: |
         mkdir ${{ inputs.folder }}/temp
         echo ${{ inputs.packages-pat }} > ${{ inputs.folder }}/temp/PACKAGES_PAT
-      shell: bash
-    - name: Generate service info file
-      run: |
-        echo "---\n branch-name: ${{ github.ref_name }}\n version: ${{ inputs.version }}" > ${{ inputs.folder }}/serviceinfo.yaml
-      shell: bash
-    - name: Log file
-      run: |
-        cd ${{ inputs.folder }}
-        cat serviceinfo.yaml
       shell: bash
     - name: Log in to the Container registry
       uses: docker/login-action@f054a8b539a109f9f41c372932f1ae047eff08c9
