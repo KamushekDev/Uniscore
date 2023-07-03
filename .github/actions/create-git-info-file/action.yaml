@@ -21,9 +21,6 @@ runs:
         echo $" commit-name: ${{ github.event.head_commit.message }}" >> .git-info.yaml
         echo $" commit-sha: ${{ github.sha }}" >> .git-info.yaml
       shell: bash
-    - name: log-file
-      run: cat .git-info.yaml
-      shell: bash
     - name: Upload .git-info.yaml info file to artifacts
       uses: actions/upload-artifact@v3
       with:
