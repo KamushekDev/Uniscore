@@ -19,9 +19,6 @@ runs:
         echo $" branch-name: ${{ github.ref_name }}" >> .git-info.yaml
         echo $" version: ${{ inputs.version }}" >> .git-info.yaml
       shell: bash
-    - name: log-file
-      run: cat .git-info.yaml
-      shell: bash
     - name: Upload .git-info.yaml info file to artifacts
       uses: actions/upload-artifact@v3
       with:
