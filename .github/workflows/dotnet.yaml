@@ -42,7 +42,7 @@ jobs:
           runtime-version: ${{ steps.get-runtime.outputs.runtime-version }}
       - name: Create git info file
         id: create-git-info
-        uses: ./.github/actions/dotnet/create-git-info-file
+        uses: ./.github/actions/create-git-info-file
         with: 
           version: ${{ steps.version.outputs.version }}
           name: ${{ inputs.project_name }}
