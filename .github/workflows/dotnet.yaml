@@ -40,6 +40,12 @@ jobs:
         uses: ./.github/actions/dotnet/get-sdk-by-runtime
         with:
           runtime-version: ${{ steps.get-runtime.outputs.runtime-version }}
+      - name: Create git info file
+        id: create-git-info
+        uses: ./.github/actions/create-git-info-file
+        with: 
+          version: ${{ steps.version.outputs.version }}
+          name: ${{ inputs.project_name }}
 
   build:
     runs-on: ubuntu-latest
@@ -135,7 +141,7 @@ jobs:
 
   build-service-image:
     runs-on: ubuntu-latest
-    needs: [prepare-service-builder, build, tests]
+    needs: [init, prepare-service-builder, build, tests]
     if: needs.build.outputs.has-service == 'true'
     steps:
       - name: Checkout

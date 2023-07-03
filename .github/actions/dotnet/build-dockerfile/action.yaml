@@ -28,10 +28,14 @@ runs:
   using: "composite"
   steps:
     - name: Download dockerfile
-      id: download
       uses: actions/download-artifact@v3
       with:
         name: dockerfile_${{inputs.name}}
+        path: ${{inputs.folder}}
+    - name: Download git info file
+      uses: actions/download-artifact@v3
+      with:
+        name: git-info.yaml_${{ inputs.name }}
         path: ${{inputs.folder}}
     - name: Save pat to file
       run: |

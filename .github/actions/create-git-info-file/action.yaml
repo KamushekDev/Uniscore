@@ -1,0 +1,29 @@
+name: 'Generate git info file'
+inputs:
+  version: 
+    description: "Service version"
+    required: true
+  name:
+    description: "Service name"
+    required: true
+outputs:
+  version:
+    description: "Generated version for workflow"
+    value: ${{ steps.output-step.outputs.version }}
+runs:
+  using: "composite"
+  steps:
+    - name: Generate file
+      run: |
+        echo "---" > .git-info.yaml
+        echo $" branch-name: ${{ github.ref_name }}" >> .git-info.yaml
+        echo $" version: ${{ inputs.version }}" >> .git-info.yaml
+        echo $" commit-name: ${{ github.event.head_commit.message }}" >> .git-info.yaml
+        echo $" commit-sha: ${{ github.sha }}" >> .git-info.yaml
+      shell: bash
+    - name: Upload .git-info.yaml info file to artifacts
+      uses: actions/upload-artifact@v3
+      with:
+        name: git-info.yaml_${{ inputs.name }}
+        path: ".git-info.yaml"
+        retention-days: 1
